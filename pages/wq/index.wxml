@@ -1,0 +1,1 @@
+<button bind:tap="handleTest">测试</button>
