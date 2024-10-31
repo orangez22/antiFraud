@@ -1,0 +1,38 @@
+<!--pages/login/phone/pwd/index.wxml-->
+<view class="login-box">
+  <view class="login-box-top">
+    <image src="msjimg.png"></image>
+    <view class="login-box-top-text">折扣价结账</view>
+  </view>
+  <view class="login-box-center">
+    <view class="login-box-center-phone">
+      <view class="login-box-center-phone-86">+86</view>
+      <input type="number" bindinput="onPhoneInput" placeholder="输入手机号码" class="login-box-center-phone-input" placeholder-style="color:#AAAAAA" value="{{phone}}"/>
+    </view>
+    <view class="login-box-center-password">
+      <view class="login-box-center-password-left">
+        <input type="password" bindinput="onPasswordInput" placeholder="输入密码" placeholder-style="color:#AAAAAA"  value="{{password}}"/>
+      </view>
+      <view class="login-box-center-password-right">
+        <button bindtap="goRetrievepasswordPage">找回密码</button>
+      </view>
+    </view>
+    <view class="login-box-center-login">
+      <button bindtap="mylogin">登录</button>
+      <text bindtap="nav2code">使用短信验证码登录</text>
+    </view>
+  </view>
+  <view class="login-box-bottom">
+    <view class="login-box-bottom-title">
+      <view class="login-box-bottom-title-xianl"></view>
+      <view class="login-box-bottom-title-text">快速登录</view>
+      <view class="login-box-bottom-title-xianr"></view>
+    </view>
+    <view class="login-box-bottom-party-login">
+      <image src="{{commonImg('wximg.png')}}"></image>
+    </view>
+    <view class="login-box-bottom-agreement">
+      <view>注册即同意<text>《用户协议》</text>和<text>《隐私策略》</text></view>
+    </view>
+  </view>
+</view>
