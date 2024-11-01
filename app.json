@@ -1,27 +1,26 @@
 {
   "pages": [
+    "pages/index/index",
+    "pages/my/index",
     "pages/login/phone/code/index",
     "pages/login/phone/pwd/index",
     "pages/login/wechat/index",
-   
-    "pages/index/index",
-    "pages/my/index",
+
     "pages/logs/logs"
   ],
 
-    "tabBar": {
-      "list": [
-        {
-          "pagePath": "pages/index/index",
-          "text": "首页"
-        },
-        {
-          "pagePath": "pages/my/index",
-          "text": "我的"
-        }
-      ]
-    },
-  
+  "tabBar": {
+    "list": [{
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/my/index",
+        "text": "我的"
+      }
+    ]
+  },
+
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "Weixin",
@@ -31,7 +30,15 @@
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents",
-    "resolveAlias": {
-      "@/*": "/*"
+  "permission": {
+    "scope.userLocation": {
+      "desc": "您的位置信息将用于搜索附近的店铺"
     }
+  },
+  "requiredPrivateInfos": [
+    "getLocation"
+  ],
+  "resolveAlias": {
+    "@/*": "/*"
+  }
 }
