@@ -1,11 +1,12 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/my/index",
     "pages/login/phone/code/index",
+    "pages/my/index",
+    "pages/index/index",
     "pages/login/phone/pwd/index",
     "pages/login/wechat/index",
-
+    "pages/bean/index",
+    "pages/order/index",
     "pages/logs/logs"
   ],
 

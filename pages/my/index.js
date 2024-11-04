@@ -1,5 +1,8 @@
 // pages/my/index.js
 import request from '@/utils/request';
+import {
+  isLogin
+} from '@/utils/common'
 Page({
 
   /**
@@ -30,7 +33,6 @@ Page({
    */
   onShow() {
     this._getInfoByToken()
-    this._getSetPayConfig()
   },
 
   /**
@@ -84,12 +86,15 @@ Page({
     } else if (!wx.getStorageSync('openId') && this.getUrlParam('code')) {
       const code = this.getUrlParam('code')
       wx.request({
-        url: `${config.api_base_url}member/member/openid/${code}`,
+        url: `/member/member/openid/${code}`,
         header: {
           'Content-Type': 'application/json'
         },
         success: (res) => {
-          const { status, data } = res.data
+          const {
+            status,
+            data
+          } = res.data
           if (status.flag === true) {
             wx.setStorageSync('openId', data.openid)
             this.onClickSetPLUSVIP2()
@@ -105,12 +110,15 @@ Page({
       title: '支付中...'
     })
     wx.request({
-      url: `${config.api_base_url}orders/orders/buyVip/198`,
+      url: `/orders/orders/buyVip/198`,
       header: {
         'AUTH': 'ROBOT ' + wx.getStorageSync('token')
       },
       success: (res) => {
-        const { status, data } = res.data
+        const {
+          status,
+          data
+        } = res.data
         if (status.flag) {
           const paymentData = {
             openId: data.memberOpenId || wx.getStorageSync('openId'),
@@ -133,14 +141,17 @@ Page({
   },
   initiatePayment(paymentData) {
     wx.request({
-      url: `${config.api_base_url}orders/pay/pay`,
+      url: `/orders/pay/pay`,
       method: 'POST',
       data: paymentData,
       header: {
         'Content-Type': 'application/json'
       },
       success: (res) => {
-        const { status, data } = res.data
+        const {
+          status,
+          data
+        } = res.data
         if (status.flag) {
           wx.hideLoading()
           wx.requestPayment({
@@ -182,12 +193,14 @@ Page({
   },
   _refreshOrder(orderId) {
     wx.request({
-      url: `${config.api_base_url}orders/pay/queryOrders/${orderId}`,
+      url: `/orders/pay/queryOrders/${orderId}`,
       header: {
         'AUTH': 'ROBOT ' + wx.getStorageSync('token')
       },
       success: (res) => {
-        const { status } = res.data
+        const {
+          status
+        } = res.data
         if (status.flag) {
           this.user = {}
           this._getInfoByToken()
@@ -203,28 +216,6 @@ Page({
           icon: 'none',
           title: '查询订单失败'
         })
-      }
-    })
-  },
-  _getSetPayConfig() {
-    wx.request({
-      url: `${config.api_base_url}orders/pay/config`,
-      method: 'POST',
-      data: {
-        url: window.location.href
-      },
-      success: (res) => {
-        const { status, data } = res.data
-        if (status.flag) {
-          wx.config({
-            debug: false,
-            appId: data.appid,
-            timestamp: data.timestamp,
-            nonceStr: data.nonceStr,
-            signature: data.signature,
-            jsApiList: ['checkJsApi', 'chooseWXPay']
-          })
-        }
       }
     })
   },
@@ -248,42 +239,27 @@ Page({
     })
   },
   _getInfoByToken() {
-    const token = wx.getStorageSync('token')
-    if (!token) {
-      wx.showToast({
-        icon: 'none',
-        title: '尚未登录, 请先登录'
-      })
-      setTimeout(() => {
-        wx.clearStorageSync()
-        wx.reLaunch({
-          url: 'pages/login/phone/code/index'
+    //判断是否已经登录
+    isLogin()
+
+    request({
+      url: `/sso/member/findByToken`,
+    }).then(res => {
+      const {success,data} = res.data
+      if (success) {
+        this.user = data
+      } else {
+        wx.showToast({
+          icon: 'none',
+          title: status.msg
         })
-      }, 1000)
-      return
-    }
-    wx.showLoading({
-      title: '加载中'
-    })
-    wx.request({
-      url: `/member/member/findByToken`,
-      header: {
-        'AUTH': token
-      },
-      success: (res) => {
-        const { success, data } = res.data
-        if (success) {
-          this.user = data
-        } else {
-          wx.showToast({
-            icon: 'none',
-            title: status.msg
-          })
-        }
-      },
-      complete: () => {
-        wx.hideLoading()
       }
     })
+  },
+  navigate(event) {
+    const url = event.currentTarget.dataset.url;
+    wx.navigateTo({
+      url: url
+    });
   }
 })

@@ -28,3 +28,21 @@ export function validateForm(data, rules) {
     resolve(); // 所有校验都通过
   });
 }
+
+//验证登录方法
+export function isLogin() {
+  let token = wx.getStorageSync('Authorization')
+  if (!token) {
+    wx.showToast({
+      icon: 'none',
+      title: '尚未登录, 请先登录'
+    })
+    setTimeout(() => {
+      wx.clearStorageSync()
+      wx.reLaunch({
+        url: '/pages/login/phone/code/index'
+      })
+    }, 1000)
+    return
+  }
+}

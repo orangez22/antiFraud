@@ -5,6 +5,7 @@ import { getToken } from '@/utils/auth';
 const request = (options) => {
   return new Promise((resolve, reject) => {
     const token = getToken();
+    console.log("token:"+token)
     if (token) {
       options.header = {
         ...options.header,

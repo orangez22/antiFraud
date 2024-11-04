@@ -75,19 +75,12 @@
             </view>
         </view>
     </view>
-
-    <view class="my-js">
-        <text class="my-js-left">会员中心</text>
-        <text class="my-js-middle"></text>
-        <text class="my-js-right">商家中心</text>
-    </view>
-
     <!-- Assets Section -->
     <view class="my-zc">
         <view class="my-zc-wrap">
             <text class="my-zc-wrap-txt">我的资产</text>
             <view class="my-zc-wrap-list">
-                <view bindtap="onClickGotoMDpage" class="my-zc-wrap-list-item">
+                <view bindtap="navigate" data-url='/pages/bean/index' class="my-zc-wrap-list-item">
                     <image src="{{commonImg('madou.png')}}" class="my-zc-wrap-list-item-img"></image>
                     <text class="my-zc-wrap-list-item-txt">码豆</text>
                 </view>
@@ -113,17 +106,9 @@
             <view class="my-list-wrap-item">
                 <text class="my-list-wrap-item-name">我的功能</text>
                 <view class="my-list-wrap-item-list">
-                    <view bindtap="onClickGotoTDPage" class="my-list-wrap-item-list-item">
-                        <image src="{{commonImg('wodetuandui.png')}}" class="my-list-wrap-item-list-item-img"></image>
-                        <text class="my-list-wrap-item-list-item-txt">我的团队</text>
-                    </view>
-                    <view bindtap="onClickGotoOrderPage" class="my-list-wrap-item-list-item">
+                    <view bindtap="navigate" data-url="/pages/order/index" class="my-list-wrap-item-list-item">
                         <image style="width: 44rpx;height: 46rpx;" src="{{commonImg('wodedingdan.png')}}" class="my-list-wrap-item-list-item-img"></image>
                         <text class="my-list-wrap-item-list-item-txt">我的订单</text>
-                    </view>
-                    <view bindtap="onClickGOtoAddressPage" class="my-list-wrap-item-list-item">
-                        <image style="width: 37rpx;height: 44rpx;" src="{{commonImg('wodedizhi.png')}}" class="my-list-wrap-item-list-item-img"></image>
-                        <text class="my-list-wrap-item-list-item-txt">我的地址</text>
                     </view>
                     <view bindtap="onClickGotoPJPage" class="my-list-wrap-item-list-item">
                         <image style="width: 46rpx;height: 40rpx;" src="{{commonImg('wodepingjia.png')}}" class="my-list-wrap-item-list-item-img"></image>

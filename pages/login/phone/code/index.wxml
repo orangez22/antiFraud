@@ -3,7 +3,7 @@
   <!-- Only display the nav bar for APP-PLUS platform in Uni-app -->
   <view class="code-login-box">
     <view class="code-login-box-top">
-      <image src="../../images/msjimg.png"></image> <!-- Replace with the direct image path -->
+      <image src="/assets/images/login/msjimg.png"></image> <!-- Replace with the direct image path -->
       <view class="code-login-box-top-text">会员价结账</view>
     </view>
     <view class="code-login-box-center">
@@ -34,7 +34,7 @@
         <view class="code-login-box-bottom-title-xianr"></view>
       </view>
       <view class="code-login-box-bottom-party-login">
-        <image bindtap="loginByWeChat" src="../../images/wximg.png"></image>
+        <image bindtap="loginByWeChat" src="/assets/images/login/wximg.png"></image>
       </view>
       <view class="code-login-box-bottom-agreement">
         <view>注册即同意<text>《用户协议》</text>和<text>《隐私策略》</text></view>

@@ -1,0 +1,142 @@
+<view>
+	<view class="order">
+		<view class="order-title">
+			<view bind:tap="onClickSelectIndex(0)" :class="{ active: selectIndex === 0 }" class="order-title-all">全部订单</view>
+			<view bind:tap="onClickSelectIndex(1)" :class="{ active: selectIndex === 1 }" class="order-title-nocomment">未支付({{ noPayTotal }})</view>
+			<view bind:tap="onClickSelectIndex(2)" :class="{ active: selectIndex === 2 }" class="order-title-nocomment">已支付({{ alreadyPayTotal }})</view>
+			<view bind:tap="onClickSelectIndex(3)" :class="{ active: selectIndex === 3 }" class="order-title-nocomment">已关闭({{ closePayTotal }})</view>
+		</view>
+
+		<scroll-view :style="{ display: selectIndex === 0 ? 'flex' : 'none', height: appListHeight + 'px' }" scroll-y bind:scrolltolower="onScrolltolowerAllOrderList" class="order-list">
+			<view v-if="allOrderList && allOrderList.length" class="order-list-item" wx:for="{{allOrderList}}" wx:key="id">
+				<view class="order-list-item-name">
+					<text class="order-list-item-name-txt">{{item.storeName}}</text>
+					<text v-if="item.status === '1'" bind:tap="onClickTSSJ(item)" class="order-list-item-name-status">投诉商家</text>
+				</view>
+				<view class="order-list-item-price">
+					<text v-if="item.payAmount" class="order-list-item-price-left">实付：¥{{item.payAmount}}</text>
+					<text v-if="item.discountAmount" class="order-list-item-price-right">节省：¥{{item.discountAmount}}</text>
+				</view>
+				<view class="order-list-item-line"></view>
+				<view class="order-list-item-content">
+					<view class="order-list-item-content-info">
+						<text class="order-list-item-content-info-ordernum">订单编号：{{item.id}}</text>
+						<text class="order-list-item-content-info-ordernum">下单时间：{{item.createdAt}}</text>
+						<text v-if="item.price" class="order-list-item-content-info-ordernum">小票金额：¥{{item.price}}</text>
+						<view class="order-list-item-content-info-ordernum">
+							<text v-if="item.rate">会员折扣：{{Math.floor(item.rate * 100) / 10}}折</text>
+						</view>
+						<view class="order-list-item-content-info-ordernum order-list-item-content-info-ordernum-last">
+							<text bind:tap="onClickGotoZF(item)" v-if="item.status === '0'" class="order-list-item-content-info-ordernum-last-zlyd">前往支付</text>
+							<text bind:tap="onClickGotoZLYD" v-if="item.status === '1' || item.status === '2'" class="order-list-item-content-info-ordernum-last-zlyd">再来一单</text>
+							<text bind:tap="onClickGotoPLPage(item, 'go')" v-if="item.evaluating === '0' && item.status === '1'" class="order-list-item-content-info-ordernum-last-zlyd">去评论</text>
+							<text v-if="item.status === '0'" bind:tap="onClickCancelItem(item)" class="order-list-item-content-info-ordernum-last-zlyd">取消订单</text>
+							<text bind:tap="onClickDelItem(item)" class="order-list-item-content-info-ordernum-last-zlyd">删除</text>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view v-else class="noorder">
+				<image class="noorder-img" :src="commonImg('noorder.png')"></image>
+				<text class="noorder-txt">您暂时没有订单，快去首页逛逛吧~</text>
+			</view>
+		</scroll-view>
+
+		<scroll-view :style="{ display: selectIndex === 1 ? 'flex' : 'none', height: appListHeight + 'px' }" scroll-y bind:scrolltolower="onScrolltolowerNoPayOrderList" class="order-list">
+			<view v-if="noPayOrderList && noPayOrderList.length" class="order-list-item" wx:for="{{noPayOrderList}}" wx:key="id">
+				<view class="order-list-item-name">
+					<text class="order-list-item-name-txt">{{item.storeName}}</text>
+				</view>
+				<view class="order-list-item-price">
+					<text v-if="item.payAmount" class="order-list-item-price-left">实付：¥{{item.payAmount}}</text>
+					<text v-if="item.discountAmount" class="order-list-item-price-right">节省：¥{{item.discountAmount}}</text>
+				</view>
+				<view class="order-list-item-line"></view>
+				<view class="order-list-item-content">
+					<view class="order-list-item-content-info">
+						<text class="order-list-item-content-info-ordernum">订单编号：{{item.id}}</text>
+						<text class="order-list-item-content-info-ordernum">下单时间：{{item.createdAt}}</text>
+						<text v-if="item.price" class="order-list-item-content-info-ordernum">小票金额：¥{{item.price}}</text>
+						<view class="order-list-item-content-info-ordernum">
+							<text v-if="item.rate">会员折扣：{{Math.floor(item.rate * 100) / 10}}折</text>
+						</view>
+						<view class="order-list-item-content-info-ordernum order-list-item-content-info-ordernum-last">
+							<text bind:tap="onClickGotoZF(item)" v-if="item.status === '0'" class="order-list-item-content-info-ordernum-last-zlyd">前往支付</text>
+							<text bind:tap="onClickGotoZLYD" v-if="item.status === '1' || item.status === '2'" class="order-list-item-content-info-ordernum-last-zlyd">再来一单</text>
+							<text bind:tap="onClickGotoPLPage(item, 'go')" v-if="item.evaluating === '0' && item.status === '1'" class="order-list-item-content-info-ordernum-last-zlyd">去评论</text>
+							<text v-if="item.status === '0'" bind:tap="onClickCancelItem(item)" class="order-list-item-content-info-ordernum-last-zlyd">取消订单</text>
+							<text bind:tap="onClickDelItem(item, 0)" class="order-list-item-content-info-ordernum-last-zlyd">删除</text>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view v-else class="noorder">
+				<image class="noorder-img" :src="commonImg('noorder.png')"></image>
+				<text class="noorder-txt">您暂时没有订单，快去首页逛逛吧~</text>
+			</view>
+		</scroll-view>
+
+		<scroll-view :style="{ display: selectIndex === 2 ? 'flex' : 'none', height: appListHeight + 'px' }" scroll-y bind:scrolltolower="onScrolltolowerAlreadyPayOrderList" class="order-list">
+			<view v-if="alreadyPayOrderList && alreadyPayOrderList.length" class="order-list-item" wx:for="{{alreadyPayOrderList}}" wx:key="id">
+				<view class="order-list-item-name">
+					<text class="order-list-item-name-txt">{{item.storeName}}</text>
+					<text bind:tap="onClickTSSJ(item)" class="order-list-item-name-status">投诉商家</text>
+				</view>
+				<view class="order-list-item-price">
+					<text v-if="item.payAmount" class="order-list-item-price-left">实付：¥{{item.payAmount}}</text>
+					<text v-if="item.discountAmount" class="order-list-item-price-right">节省：¥{{item.discountAmount}}</text>
+				</view>
+				<view class="order-list-item-line"></view>
+				<view class="order-list-item-content">
+					<view class="order-list-item-content-info">
+						<text class="order-list-item-content-info-ordernum">订单编号：{{item.id}}</text>
+						<text class="order-list-item-content-info-ordernum">下单时间：{{item.createdAt}}</text>
+						<text v-if="item.price" class="order-list-item-content-info-ordernum">小票金额：¥{{item.price}}</text>
+						<view class="order-list-item-content-info-ordernum">
+							<text v-if="item.rate">会员折扣：{{Math.floor(item.rate * 100) / 10}}折</text>
+						</view>
+						<view class="order-list-item-content-info-ordernum order-list-item-content-info-ordernum-last">
+							<text bind:tap="onClickGotoZLYD" v-if="item.status === '1' || item.status === '2'" class="order-list-item-content-info-ordernum-last-zlyd">再来一单</text>
+							<text bind:tap="onClickGotoPLPage(item, 'go')" v-if="item.evaluating === '0' && item.status === '1'" class="order-list-item-content-info-ordernum-last-zlyd">去评论</text>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view v-else class="noorder">
+				<image class="noorder-img" :src="commonImg('noorder.png')"></image>
+				<text class="noorder-txt">您暂时没有订单，快去首页逛逛吧~</text>
+			</view>
+		</scroll-view>
+
+		<scroll-view :style="{ display: selectIndex === 3 ? 'flex' : 'none', height: appListHeight + 'px' }" scroll-y bind:scrolltolower="onScrolltolowerClosePayOrderList" class="order-list">
+			<view v-if="closePayOrderList && closePayOrderList.length" class="order-list-item" wx:for="{{closePayOrderList}}" wx:key="id">
+				<view class="order-list-item-name">
+					<text class="order-list-item-name-txt">{{item.storeName}}</text>
+				</view>
+				<view class="order-list-item-price">
+					<text v-if="item.payAmount" class="order-list-item-price-left">实付：¥{{item.payAmount}}</text>
+					<text v-if="item.discountAmount" class="order-list-item-price-right">节省：¥{{item.discountAmount}}</text>
+				</view>
+				<view class="order-list-item-line"></view>
+				<view class="order-list-item-content">
+					<view class="order-list-item-content-info">
+						<text class="order-list-item-content-info-ordernum">订单编号：{{item.id}}</text>
+						<text class="order-list-item-content-info-ordernum">下单时间：{{item.createdAt}}</text>
+						<text v-if="item.price" class="order-list-item-content-info-ordernum">小票金额：¥{{item.price}}</text>
+						<view class="order-list-item-content-info-ordernum">
+							<text v-if="item.rate">会员折扣：{{Math.floor(item.rate * 100) / 10}}折</text>
+						</view>
+						<view class="order-list-item-content-info-ordernum order-list-item-content-info-ordernum-last">
+							<text bind:tap="onClickGotoZLYD" v-if="item.status === '1' || item.status === '2'" class="order-list-item-content-info-ordernum-last-zlyd">再来一单</text>
+							<text bind:tap="onClickDelItem(item)" class="order-list-item-content-info-ordernum-last-zlyd">删除</text>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view v-else class="noorder">
+				<image class="noorder-img" :src="commonImg('noorder.png')"></image>
+				<text class="noorder-txt">您暂时没有订单，快去首页逛逛吧~</text>
+			</view>
+		</scroll-view>
+	</view>
+</view>

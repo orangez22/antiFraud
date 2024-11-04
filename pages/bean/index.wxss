@@ -1,0 +1,130 @@
+/* pages/bean/index.wxss */
+.beans {
+  width: 100%;
+  box-sizing: border-box;
+  padding-top: 24rpx;
+  padding-left: 14rpx;
+  padding-right: 14rpx;
+}
+
+.beans-desc {
+  height: 242rpx;
+  border-radius: 20rpx;
+  background: linear-gradient(180deg, rgba(252, 219, 0, 1) 0%, rgba(247, 181, 0, 1) 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.beans-desc-left {
+  width: 48%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.beans-desc-left-txt {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #6D7278;
+  line-height: 40rpx;
+  margin-bottom: 4rpx;
+}
+
+.beans-desc-left-num {
+  font-size: 52rpx;
+  font-weight: 600;
+  color: #fff;
+  line-height: 74rpx;
+}
+
+.beans-desc-middle {
+  width: 2%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.beans-desc-middle-line {
+  width: 2rpx;
+  height: 104rpx;
+  background-color: #979797;
+}
+
+.beans-desc-right {
+  width: 48%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding-top: 40rpx;
+}
+
+.beans-desc-right-txt {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #6D7278;
+  line-height: 40rpx;
+  margin-bottom: 4rpx;
+}
+
+.beans-desc-right-num {
+  font-size: 52rpx;
+  font-weight: 600;
+  color: #fff;
+  line-height: 74rpx;
+}
+
+.beans-desc-right-tx {
+  width: 160rpx;
+  height: 40rpx;
+  border: 2rpx solid #979797;
+  font-size: 26rpx;
+  color: #979797;
+  line-height: 40rpx;
+  text-align: center;
+  font-weight: 600;
+}
+
+.beans-list {
+  width: 100%;
+  margin-top: 20rpx;
+  box-sizing: border-box;
+  padding-left: 26rpx;
+  padding-right: 20rpx;
+  padding-bottom: 166rpx;
+  border-radius: 20rpx;
+  background-color: #fff;
+}
+
+.beans-list-title {
+  width: 100%;
+  height: 107rpx;
+  box-sizing: border-box;
+  padding-left: 10rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.85);
+  line-height: 40rpx;
+  border-bottom: 1px solid #EEEEEE;
+  padding-top: 38rpx;
+}
+
+.beans-list-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 73rpx;
+  box-sizing: border-box;
+  padding-left: 10rpx;
+  border-bottom: 1px solid #EEEEEE;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: rgba(153, 153, 153, 1);
+  line-height: 40rpx;
+}
