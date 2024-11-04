@@ -1,8 +1,14 @@
 // pages/login/phone/code/index.js
-import request from '@/utils/request';
+import request from '@/utils/request'
 import {
-  validateForm
-} from '@/utils/common';
+  validateForm,
+  isLogin
+} from '@/utils/common'
+
+import {
+  setToken,
+  getToken
+} from '@/utils/auth'
 
 Page({
   /**
@@ -22,6 +28,22 @@ Page({
   onUnload() {
     if (this.data.timer) {
       clearTimeout(this.data.timer);
+    }
+  },
+  onLoad() {
+    let token = getToken()
+    if (token) {
+      wx.showToast({
+        icon: 'none',
+        title: '已登录,即将跳转...'
+      })
+
+      setTimeout(() => {
+        wx.switchTab({
+          url: "/pages/my/index"
+        });
+      }, 1500)
+
     }
   },
 
@@ -122,7 +144,7 @@ Page({
           } = res;
           if (success) {
             console.log(data.token)
-            wx.setStorageSync('Authorization', data.token);
+            setToken(data.token)
             wx.showToast({
               title: '登录成功',
               icon: 'success'

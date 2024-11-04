@@ -1,8 +1,14 @@
 // pages/my/index.js
-import request from '@/utils/request';
+import request from '@/utils/request'
 import {
+  validateForm,
   isLogin
 } from '@/utils/common'
+
+import {
+  setToken,
+  getToken
+} from '@/utils/auth'
 Page({
 
   /**

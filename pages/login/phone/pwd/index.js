@@ -1,5 +1,14 @@
 // pages/login/phone/pwd/index.js
 import request from '@/utils/request';
+import {
+  validateForm,
+  isLogin
+} from '@/utils/common'
+
+import {
+  setToken,
+  getToken
+} from '@/utils/auth'
 
 Page({
   data: {
@@ -48,7 +57,7 @@ Page({
       console.log(res)
       const { success, data } = res;
       if (success) {
-        wx.setStorageSync('token', data.token);
+        setToken(data.token)
         wx.showToast({
           title: '登录成功',
           icon: 'none'

@@ -8,7 +8,7 @@ export function getToken() {
 
 // 设置 Token
 export function setToken(token) {
-    return wx.setStorageSync(TOKEN_KEY, token);
+    return wx.setStorageSync(TOKEN_KEY, 'Bearer '+token);
 }
 
 // 删除 Token

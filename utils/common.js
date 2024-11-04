@@ -45,4 +45,5 @@ export function isLogin() {
     }, 1000)
     return
   }
+  return true
 }

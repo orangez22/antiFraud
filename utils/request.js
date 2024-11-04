@@ -9,7 +9,7 @@ const request = (options) => {
     if (token) {
       options.header = {
         ...options.header,
-        Authorization: `Bearer ${token}`
+        Authorization: `${token}`
       };
     }
 

@@ -17,11 +17,11 @@
                 <view class="my-info-mail-lj">累计节省：¥{{user.totalSave}}</view>
             </view>
             <view style="background: linear-gradient(103deg,rgba(62,56,23,1) 0%,rgba(31,20,0,1) 100%);" class="my-info-desc">
-                <image src="{{commonImg('huangguan.png')}}" class="my-info-desc-jb"></image>
+                <image src="/assets/images/my/huangguan.png" class="my-info-desc-jb"></image>
                 <text style="color: #E8C57B;" class="my-info-desc-txt">PLUS会员 | 尊享最高折扣</text>
             </view>
             <view class="my-info-bottom">
-                <image class="my-info-bottom-img" src="{{commonImg('bottom.png')}}"></image>
+                <image class="my-info-bottom-img" src="/assets/images/my/bottom.png"></image>
             </view>
         </view>
 
@@ -41,12 +41,12 @@
                 <view class="my-info-mail-lj">累计节省：¥{{user.totalSave}}</view>
             </view>
             <view style="background:linear-gradient(103deg,rgba(255,237,139,1) 0%,rgba(226,173,81,1) 100%);" class="my-info-desc">
-                <image src="{{commonImg('huangguan.png')}}" class="my-info-desc-jb"></image>
+                <image src="/assets/images/my/huangguan.png" class="my-info-desc-jb"></image>
                 <text style="color: #6D7278;" class="my-info-desc-txt">会员 | 尊享会员折扣</text>
                 <text bindtap="onClickSetPLUSVIP" class="my-info-mail-info-bottom-cwplus" style="height: 22rpx;margin-top: 10rpx;">成为plus会员 ></text>
             </view>
             <view class="my-info-bottom">
-                <image class="my-info-bottom-img" src="{{commonImg('bottom.png')}}"></image>
+                <image class="my-info-bottom-img" src="/assets/images/my/bottom.png"></image>
             </view>
         </view>
 
@@ -66,12 +66,12 @@
                 <view class="my-info-mail-lj">累计节省：¥{{user.totalSave}}</view>
             </view>
             <view style="background:linear-gradient(99deg,rgba(245,245,245,1) 0%,rgba(225,224,224,1) 100%);" class="my-info-desc">
-                <image src="{{commonImg('huangguan.png')}}" class="my-info-desc-jb"></image>
+                <image src="/assets/images/my/huangguan.png" class="my-info-desc-jb"></image>
                 <text style="color: #6D7278;" class="my-info-desc-txt">游客 | 无会员折扣</text>
                 <text bindtap="onClickSetVIP" class="my-info-mail-info-bottom-cwplus" style="height: 22rpx;margin-top: 10rpx;background-color: #F7DC7C;color: #6D7278;">成为会员 ></text>
             </view>
             <view class="my-info-bottom">
-                <image class="my-info-bottom-img" src="{{commonImg('bottom.png')}}"></image>
+                <image class="my-info-bottom-img" src="/assets/images/my/bottom.png"></image>
             </view>
         </view>
     </view>
