@@ -34,7 +34,7 @@
                 <view class="my-info-mail-info">
                     <view class="my-info-mail-info-top">
                         <text wx:if="{{user.nickname}}" class="my-info-mail-info-top-txt">{{user.nickname}}</text>
-                        <image style="width: 40rpx;" src="{{commonImg('status_vip.png')}}" class="my-info-mail-info-top-jb"></image>
+                        <image style="width: 40rpx;" src="/assets/images/my/vip.png" class="my-info-mail-info-top-jb"></image>
                     </view>
                     <view class="my-info-mail-info-bottom">会员号 {{user.id}}</view>
                 </view>

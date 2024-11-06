@@ -16,7 +16,11 @@ Page({
    */
   data: {
     user: {
-      totalSave: 0
+      id:'',
+      totalSave: 0,
+      isPlus:'2',
+      avatar:'',
+      nickname:''
     },
   },
 
