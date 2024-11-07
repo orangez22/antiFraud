@@ -18,7 +18,7 @@ Page({
     user: {
       id:'',
       totalSave: 0,
-      isPlus:'2',
+      isPlus:'0',
       avatar:'',
       nickname:''
     },

@@ -3,7 +3,7 @@
   <!-- 导航栏：APP-PLUS特定代码删除，微信小程序中使用view替代 -->
   <view class="index">
     <view class="index-title">
-      <image src="{{commonImg('dingwei.png')}}" class="index-title-icon"></image>
+      <image src="'/assets/images/index/dingwei.png" class="index-title-icon"></image>
       <text class="index-title-txt">{{ address }}</text>
       <image src="{{commonImg('downarrow.png')}}" class="index-title-addressicon"></image>
     </view>
@@ -86,7 +86,7 @@
     <!-- 扫码结账按钮 -->
     <view class="index-btn savepadding">
       <button bindtap="onClickscanCode" class="index-btn-btn">
-        <image src="{{commonImg('saoma.png')}}" class="index-btn-btn-img"></image>
+        <image src="/assets/images/index/saoma.png" class="index-btn-btn-img"></image>
         <text class="index-btn-btn-txt">扫码结账</text>
       </button>
     </view>
