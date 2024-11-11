@@ -255,13 +255,13 @@ Page({
     request({
       url: `/sso/member/findByToken`,
     }).then(res => {
-      const {success,data} = res.data
+      const {success,data,message} = res
       if (success) {
         this.user = data
       } else {
         wx.showToast({
           icon: 'none',
-          title: status.msg
+          title: message
         })
       }
     })

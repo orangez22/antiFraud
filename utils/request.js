@@ -1,11 +1,14 @@
 // utils/request.js
 import config from '@/config/config';
-import { getToken } from '@/utils/auth';
+import {
+  getToken,
+  removeToken
+} from '@/utils/auth';
 
 const request = (options) => {
   return new Promise((resolve, reject) => {
     const token = getToken();
-    console.log("token:"+token)
+    console.log("token:" + token)
     if (token) {
       options.header = {
         ...options.header,
@@ -19,10 +22,10 @@ const request = (options) => {
     wx.request({
       ...options,
       success: (response) => {
-        const statusCode = response.statusCode;
+        const errorCode = response.statusCode;
         const data = response.data;
 
-        if (statusCode >= 200 && statusCode < 300) {
+        if (errorCode === 20000) {
           resolve(data);
         } else {
           handleError(response);
@@ -42,21 +45,48 @@ const request = (options) => {
 };
 
 function handleError(response) {
-  const { statusCode, data } = response;
-  if (statusCode === 401 || statusCode === 402) {
-    store.dispatch('logout').then(() => {
-      wx.showToast({
-        title: '认证失效，请重新登录',
-        icon: 'none'
-      });
-      setTimeout(() => {
-        wx.reLaunch({ url: '/pages/login/login' });
-      }, 1500);
+  const {
+    data
+  } = response;
+  const authErrorCodes = [40001, 40002, 40003, 40004];
+
+  if (authErrorCodes.includes(data.errorCode)) {
+    removeToken()
+    wx.showToast({
+      title: '认证失效，请重新登录',
+      icon: 'none'
     });
+    setTimeout(() => {
+      wx.navigateTo({
+        url: 'pages/login/phone/code/index',
+      })
+    }, 1500);
+
   } else if (!data.success) {
     const message = data.message || '请求失败';
-    wx.showToast(message, 'error');
+    wx.showToast({
+      title: message,
+      icon: 'error'
+    });
   }
 }
+
+// function handleError(response) {
+//   const { statusCode, data } = response;
+//   if (statusCode === 401 || statusCode === 402) {
+//     store.dispatch('logout').then(() => {
+//       wx.showToast({
+//         title: '认证失效，请重新登录',
+//         icon: 'none'
+//       });
+//       setTimeout(() => {
+//         wx.reLaunch({ url: '/pages/login/login' });
+//       }, 1500);
+//     });
+//   } else if (!data.success) {
+//     const message = data.message || '请求失败';
+//     wx.showToast(message, 'error');
+//   }
+// }
 
 export default request;
