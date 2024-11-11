@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/login/phone/code/index",
     "pages/my/index",
+    "pages/login/phone/code/index",
     "pages/index/index",
     "pages/login/phone/pwd/index",
     "pages/login/wechat/index",

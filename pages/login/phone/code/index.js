@@ -1,19 +1,9 @@
 // pages/login/phone/code/index.js
-import request from '@/utils/request'
-import {
-  validateForm,
-  isLogin
-} from '@/utils/common'
-
-import {
-  setToken,
-  getToken
-} from '@/utils/auth'
+import request from '@/utils/request';
+import { validateForm, isLogin } from '@/utils/common';
+import { setToken, getToken } from '@/utils/auth';
 
 Page({
-  /**
-   * 页面的初始数据
-   */
   data: {
     phone: '13812341234',
     countdown: 60,
@@ -22,54 +12,39 @@ Page({
     code: ''
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
   onUnload() {
     if (this.data.timer) {
       clearTimeout(this.data.timer);
     }
   },
+
   onLoad() {
-    let token = getToken()
+    let token = getToken();
     if (token) {
       wx.showToast({
         icon: 'none',
         title: '已登录,即将跳转...'
-      })
+      });
 
       setTimeout(() => {
         wx.switchTab({
           url: "/pages/my/index"
         });
-      }, 1500)
-
+      }, 1500);
     }
   },
 
-  // 表单校验规则
   rules: {
-    phone: [{
-        required: true,
-        message: '手机号不能为空'
-      },
-      {
-        pattern: /^1[3456789]\d{9}$/,
-        message: '手机号码格式错误'
-      }
+    phone: [
+      { required: true, message: '手机号不能为空' },
+      { pattern: /^1[3456789]\d{9}$/, message: '手机号码格式错误' }
     ],
-    code: [{
-        required: true,
-        message: '验证码不能为空'
-      },
-      {
-        pattern: /^\d{4}$/,
-        message: '验证码格式错误'
-      }
+    code: [
+      { required: true, message: '验证码不能为空' },
+      { pattern: /^\d{4}$/, message: '验证码格式错误' }
     ]
   },
 
-  // 倒计时操作
   beginSetTime() {
     if (this.data.countdown === 0) {
       this.setData({
@@ -89,7 +64,6 @@ Page({
     }, 1000);
   },
 
-  // 获取验证码按钮点击事件
   getSendSms() {
     if (this.data.timer) {
       return;
@@ -99,29 +73,19 @@ Page({
     request({
       url: '/sso/member/getCode',
       method: 'POST',
-      data: {
-        "phone": this.data.phone,
-        "type": "login"
-      }
+      data: { phone: this.data.phone, type: 'login' }
     }).then(res => {
-      const {
-        success,
-        message
-      } = res;
-      if (success) {
-        wx.showToast({
-          title: '短信发送成功',
-        });
-      }
+      wx.showToast({
+        title: '短信发送成功',
+      });
     }).catch(err => {
       wx.showToast({
-        title: '网络异常，无法获取验证码',
+        title: err.message || '网络异常，无法获取验证码',
         icon: 'error'
       });
     });
   },
 
-  // 短信登录方法
   messagelogin() {
     const data = {
       phone: this.data.phone,
@@ -130,38 +94,24 @@ Page({
     };
     validateForm(data, this.rules)
       .then(() => {
-        wx.showLoading({
-          title: '登录中...'
-        });
+        wx.showLoading({ title: '登录中...' });
         request({
           url: `/sso/member/login`,
           method: 'POST',
-          data: data
+          data
         }).then(res => {
-          const {
-            success,
-            data
-          } = res;
-          if (success) {
-            console.log(data.token)
-            setToken(data.token)
-            wx.showToast({
-              title: '登录成功',
-              icon: 'success'
-            });
-            wx.switchTab({
-              url: "/pages/my/index"
-            });
-          } else {
-            wx.showToast({
-              title: data.message || '登录失败',
-              icon: 'none'
-            });
-          }
-        }).catch(err => {
-          console.log(err);
+          console.log(res.token)
+          setToken(res.token);
           wx.showToast({
-            title: '网络错误',
+            title: '登录成功',
+            icon: 'success'
+          });
+          wx.switchTab({
+            url: "/pages/my/index"
+          });
+        }).catch(err => {
+          wx.showToast({
+            title: err.message || '登录失败',
             icon: 'none'
           });
         }).finally(() => {
@@ -176,22 +126,14 @@ Page({
       });
   },
 
-  // 跳转到使用账号和密码登录页面
   goLoginPage() {
-    wx.redirectTo({
-      url: '/pages/login/phone/pwd/index'
-    });
+    wx.redirectTo({ url: '/pages/login/phone/pwd/index' });
   },
   loginByWeChat() {
-    wx.redirectTo({
-      url: '/pages/login/wechat/index',
-    })
+    wx.redirectTo({ url: '/pages/login/wechat/index' });
   },
 
-  // 输入框绑定
   onCodeInput(e) {
-    this.setData({
-      code: e.detail.value
-    });
+    this.setData({ code: e.detail.value });
   }
 });
