@@ -71,22 +71,4 @@ function handleError(response) {
   }
 }
 
-// function handleError(response) {
-//   const { statusCode, data } = response;
-//   if (statusCode === 401 || statusCode === 402) {
-//     store.dispatch('logout').then(() => {
-//       wx.showToast({
-//         title: '认证失效，请重新登录',
-//         icon: 'none'
-//       });
-//       setTimeout(() => {
-//         wx.reLaunch({ url: '/pages/login/login' });
-//       }, 1500);
-//     });
-//   } else if (!data.success) {
-//     const message = data.message || '请求失败';
-//     wx.showToast(message, 'error');
-//   }
-// }
-
 export default request;
