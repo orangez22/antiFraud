@@ -1,89 +1,83 @@
 <!--pages/merchant/apply.wxml-->
 <view>
-		<view class="merchant-submits-apply">
-			<view class="merchant-submits-applys">
-				<view class="merchant-submits-apply-top">
-					<view class="title">会员编号</view>
-					<view class="number">{{ memberId }}</view>
-				</view>
-				<view class="merchant-submits-apply-bottom">
-					<view class="merchant-submits-apply-info" v-if="isChain === '1'">
-						<text class="merchant-submits-apply-info-txt">公司名称</text>
-						<view class="merchant-submits-apply-info-input">
-							<input v-model="companyName" placeholder="请输入公司名称" class="merchant-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
-							<view v-if="companyName" bindtap="companyName = ''" class="merchant-submits-apply-info-input-close">×</view>
-						</view>
-					</view>
-					<view class="merchant-submits-apply-info">
-						<text class="merchant-submits-apply-info-txt">店铺名称</text>
-						<view class="merchant-submits-apply-info-input">
-							<input v-model="storeName" placeholder="请输入店铺名称" class="merchant-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
-							<view v-if="storeName" bindtap="storeName = ''" class="merchant-submits-apply-info-input-close">×</view>
-						</view>
-					</view>
-					<view class="merchant-submits-apply-info">
-						<text class="merchant-submits-apply-info-txt">联系人</text>
-						<view class="merchant-submits-apply-info-input">
-							<input v-model="contract" placeholder="请输入联系人" class="merchant-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
-							<view v-if="contract" bindtap="contract = ''" class="merchant-submits-apply-info-input-close">×</view>
-						</view>
-					</view>
-					<view class="merchant-submits-apply-info">
-						<text class="merchant-submits-apply-info-txt">联系电话</text>
-						<view class="merchant-submits-apply-info-input">
-							<input v-model="phone" placeholder="请输入联系电话" class="merchant-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
-							<view v-if="phone" bindtap="phone = ''" class="merchant-submits-apply-info-input-close">×</view>
-						</view>
-					</view>
-	
-					<view class="merchant-submits-apply-info">
-						<text class="merchant-submits-apply-info-txt">营业开始时间</text>
-						<view class="merchant-submits-apply-info-input">
-							 <picker mode="time" :value="businessHoursStart"  change="bindStartTimeChange">
-							     <view class="uni-input">{{businessHoursStart}}</view>
-							 </picker>
-						</view>
-					</view>
-					<view class="merchant-submits-apply-info">
-						<text class="merchant-submits-apply-info-txt">营业结束时间</text>
-						<view class="merchant-submits-apply-info-input">
-							 <picker mode="time" :value="businessHoursEnd" change="bindEndTimeChange">
-							       <view class="uni-input">{{businessHoursEnd}}</view>
-							 </picker>
-						</view>
-					</view>
-					<view class="merchant-submits-apply-city">
-						<view class="merchant-submits-apply-city-item">
-							<text class="merchant-submits-apply-city-item-txt">省市区</text>
-							<view v-if="label" bindtap="onClickOpenAddress" class="merchant-submits-apply-city-item-border">{{ label }}</view>
-							<view v-else bindtap="onClickOpenAddress" class="merchant-submits-apply-city-item-border-h">请选择地址</view>
-						</view>
-					</view>
+  <view class="merchant-submits-apply">
+    <view class="merchant-submits-applys">
+      <view class="merchant-submits-apply-top">
+        <view class="title">会员编号</view>
+        <view class="number">{{ memberId }}</view>
+      </view>
+      <view class="merchant-submits-apply-bottom">
+        <view class="merchant-submits-apply-info">
+          <text class="merchant-submits-apply-info-txt">商户名称</text>
+          <view class="merchant-submits-apply-info-input">
+            <input v-model="merchantName" placeholder="请输入商户名称" class="merchant-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
+          </view>
+        </view>
+        <view class="merchant-submits-apply-info">
+          <text class="merchant-submits-apply-info-txt">联系人</text>
+          <view class="merchant-submits-apply-info-input">
+            <input v-model="contract" placeholder="请输入联系人" class="merchant-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
+            <view v-if="contract" bindtap="contract = ''" class="merchant-submits-apply-info-input-close">×</view>
+          </view>
+        </view>
+        <view class="merchant-submits-apply-info">
+          <text class="merchant-submits-apply-info-txt">联系电话</text>
+          <view class="merchant-submits-apply-info-input">
+            <input v-model="phone" placeholder="请输入联系电话" class="merchant-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
+            <view v-if="phone" bindtap="phone = ''" class="merchant-submits-apply-info-input-close">×</view>
+          </view>
+        </view>
 
-					<view class="merchant-submits-apply-info">
-						<text class="merchant-submits-apply-info-txt">详细</text>
-						<view class="merchant-submits-apply-info-input">
-							<input v-model="address" placeholder="请输入详细地址" class="merchant-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
-							<view v-if="address" bindtap="address = ''" class="merchant-submits-apply-info-input-close">×</view>
-						</view>
-					</view>
-					<view class="merchant-submits-apply-info">
-						<text class="merchant-submits-apply-info-txt">品牌介绍</text>
-						<view class="merchant-submits-apply-info-textarea">
-							<textarea
-								v-model="recommendation"
-								placeholder="品牌详细介绍"
-								class="merchant-submits-apply-info-input-input"
-								auto-height
-								placeholder-style="color:#CCCCCC"
-							/>
-							<view v-if="recommendation" bindtap="recommendation = ''" class="merchant-submits-apply-info-input-close">×</view>
-						</view>
-					</view>
-				</view>
-			</view>
-			<view bindtap="onClickSubmitBtn" class="merchant-submits-apply-btn">提交入驻申请</view>
-			<!-- 鬼也晓得我为什么放在外面，但是如果放在里面的话，会有BUG -->
-			<simple-address ref="simpleAddress" :pickerValueDefault="cityPickerValueDefault" onConfirm="onConfirmAddress" themeColor="#007AFF"></simple-address>
-		</view>
-	</view>
+        <view class="merchant-submits-apply-info">
+          <text class="merchant-submits-apply-info-txt">营业开始时间</text>
+          <view class="merchant-submits-apply-info-input">
+            <picker mode="time" :value="businessHoursStart" change="bindStartTimeChange">
+              <view class="uni-input">{{businessHoursStart}}</view>
+            </picker>
+          </view>
+        </view>
+        <view class="merchant-submits-apply-info">
+          <text class="merchant-submits-apply-info-txt">营业结束时间</text>
+          <view class="merchant-submits-apply-info-input">
+            <picker mode="time" :value="businessHoursEnd" change="bindEndTimeChange">
+              <view class="uni-input">{{businessHoursEnd}}</view>
+            </picker>
+          </view>
+        </view>
+        <view class="merchant-submits-apply-city">
+          <view class="merchant-submits-apply-city-item">
+            <text class="merchant-submits-apply-city-item-txt">省市区</text>
+            <view v-if="label" bindtap="onClickOpenAddress" class="merchant-submits-apply-city-item-border">{{ label }}</view>
+            <view v-else bindtap="onClickOpenAddress" class="merchant-submits-apply-city-item-border-h">请选择地址</view>
+          </view>
+        </view>
+
+
+        <view class="merchant-submits-apply-city">
+          <view>请选择地址</view>
+          <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{item}}">
+
+          </picker>
+        </view>
+
+        <view class="merchant-submits-apply-info">
+          <text class="merchant-submits-apply-info-txt">详细</text>
+          <view class="merchant-submits-apply-info-input">
+            <input v-model="address" placeholder="请输入详细地址" class="merchant-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
+            <view v-if="address" bindtap="address = ''" class="merchant-submits-apply-info-input-close">×</view>
+          </view>
+        </view>
+        <view class="merchant-submits-apply-info">
+          <text class="merchant-submits-apply-info-txt">品牌介绍</text>
+          <view class="merchant-submits-apply-info-textarea">
+            <textarea v-model="recommendation" placeholder="品牌详细介绍" class="merchant-submits-apply-info-input-input" auto-height placeholder-style="color:#CCCCCC" />
+            <view v-if="recommendation" bindtap="recommendation = ''" class="merchant-submits-apply-info-input-close">×</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view bindtap="onClickSubmitBtn" class="merchant-submits-apply-btn">提交入驻申请</view>
+    <!-- 鬼也晓得我为什么放在外面，但是如果放在里面的话，会有BUG -->
+    <simple-address ref="simpleAddress" :pickerValueDefault="cityPickerValueDefault" onConfirm="onConfirmAddress" themeColor="#007AFF"></simple-address>
+  </view>
+</view>

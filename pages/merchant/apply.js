@@ -1,14 +1,22 @@
+import request from '@/utils/request'
+import {
+  validateForm,
+  isLogin
+} from '@/utils/common'
+
+import {
+  setToken,
+  getToken
+} from '@/utils/auth'
 Page({
   data: {
     industryIndex: 0,
     industryArray: [],
     isChain: '0',
     memberId: undefined,
-    companyName: '',
-    storeName: '',
+    merchantName: '',
     contract: '',
     phone: '',
-    industryId: '',
     cityPickerValueDefault: [0, 0, 0],
     label: '',
     provinceId: '',
@@ -19,17 +27,12 @@ Page({
     longitude: '',
     latitude: '',
     businessHoursStart: '09:00',
-    businessHoursEnd: '22:00'
+    businessHoursEnd: '22:00',
+    region:['福建省','厦门市','思明区','集美区']
   },
 
   onLoad() {
-    const authorization = wx.getStorageSync('authorization');
-    if (!authorization) {
-      wx.showToast({ icon: 'none', title: '尚未登录，请先登录' });
-      wx.reLaunch({ url: '../login/login' });
-      return;
-    }
-    this.getIndustryData();
+    isLogin()
   },
 
   onInputChange(e) {
@@ -40,14 +43,6 @@ Page({
   clearField(e) {
     const field = e.currentTarget.dataset.field;
     this.setData({ [field]: '' });
-  },
-
-  setIsChain(e) {
-    const isChain = e.currentTarget.dataset.value;
-    this.setData({
-      isChain,
-      companyName: isChain === '0' ? '' : this.data.companyName
-    });
   },
 
   onIndustryChange(e) {
@@ -73,12 +68,9 @@ Page({
   onSubmit() {
     if (!this.validateFields()) return;
     const formData = {
-      isChain: this.data.isChain,
-      companyName: this.data.companyName,
-      storeName: this.data.storeName,
+      merchantName: this.data.merchantName,
       contract: this.data.contract,
       phone: this.data.phone,
-      industryId: this.data.industryId,
       provinceId: this.data.provinceId,
       cityId: this.data.cityId,
       areaId: this.data.areaId,
@@ -89,19 +81,21 @@ Page({
   },
 
   validateFields() {
-    const { isChain, companyName, storeName, contract, phone, industryId, label, address } = this.data;
-    if (!storeName) return this.showError('请填写店铺名称');
+    const {  merchantName, contract, phone, industryId, label, address } = this.data;
+    if (!merchantName) return this.showError('请填写商家');
     if (!contract) return this.showError('请填写联系人');
     if (!phone) return this.showError('请填写联系电话');
     if (!industryId) return this.showError('请选择行业');
     if (!label) return this.showError('请选择省市区');
     if (!address) return this.showError('请输入详细地址');
-    if (isChain === '1' && !companyName) return this.showError('请填写公司名称');
     return true;
   },
 
   showError(msg) {
     wx.showToast({ icon: 'none', title: msg });
     return false;
+  },
+  bindRegionChange:function(e){
+    console.log(e.detail.value)
   }
 });
