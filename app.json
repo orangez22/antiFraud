@@ -1,6 +1,7 @@
 {
   "pages": [
-    "pages/merchant/apply",
+    "pages/merchant/apply/list/index",
+    "pages/merchant/apply/index/index",
     "pages/my/index",
     "pages/login/phone/code/index",
     "pages/index/index",

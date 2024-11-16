@@ -1,3 +1,4 @@
+/* pages/merchant/apply/index/index.wxss */
 .merchant-submits-apply {
   padding: 15rpx;
   box-sizing: border-box;

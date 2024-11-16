@@ -1,7 +1,7 @@
 // pages/login/phone/code/index.js
 import request from '@/utils/request';
 import { validateForm, isLogin } from '@/utils/common';
-import { setToken, getToken } from '@/utils/auth';
+import { setToken, getToken, setId } from '@/utils/auth';
 
 Page({
   data: {

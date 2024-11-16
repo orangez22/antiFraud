@@ -18,10 +18,11 @@ const request = (options) => {
     wx.request({
       ...options,
       success: (response) => {
-        const { errorCode, success, data, message } = response.data;
+        console.log(response)
+        const { errorCode, success, message } = response.data;
 
         if (success) {
-          resolve(data);
+          resolve(response.data);
         } else {
           handleError(response);
           reject({ errorCode, message });
