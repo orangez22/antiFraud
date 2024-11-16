@@ -237,7 +237,8 @@
 
 .merchant-submits-apply-city-item-border {
   font-size: 28rpx;
-  width: 100%;
+  width: 222%;
+  margin-top:20rpx;
   box-sizing: border-box;
   height: 72rpx;
   line-height: 72rpx;

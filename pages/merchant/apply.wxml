@@ -44,21 +44,16 @@
             </picker>
           </view>
         </view>
-        <view class="merchant-submits-apply-city">
-          <view class="merchant-submits-apply-city-item">
-            <text class="merchant-submits-apply-city-item-txt">省市区</text>
-            <view v-if="label" bindtap="onClickOpenAddress" class="merchant-submits-apply-city-item-border">{{ label }}</view>
-            <view v-else bindtap="onClickOpenAddress" class="merchant-submits-apply-city-item-border-h">请选择地址</view>
-          </view>
-        </view>
-
-
-        <view class="merchant-submits-apply-city">
-          <view>请选择地址</view>
-          <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{item}}">
-
+        <!-- <view class="merchant-submits-apply-city">
+          <text class="merchant-submits-apply-city-item-txt">省市区</text>
+          -->
+          <picker class="merchant-submits-apply-city" mode="region" bindchange="bindRegionChange" value="{{region}}">
+            <view class="merchant-submits-apply-city-item-border">
+              {{region[0] || '请选择省'}} {{region[1] || '市'}} {{region[2] || '区'}}
+            </view>
           </picker>
-        </view>
+       
+        <!-- </view> -->
 
         <view class="merchant-submits-apply-info">
           <text class="merchant-submits-apply-info-txt">详细</text>
@@ -67,6 +62,7 @@
             <view v-if="address" bindtap="address = ''" class="merchant-submits-apply-info-input-close">×</view>
           </view>
         </view>
+
         <view class="merchant-submits-apply-info">
           <text class="merchant-submits-apply-info-txt">品牌介绍</text>
           <view class="merchant-submits-apply-info-textarea">
@@ -77,7 +73,5 @@
       </view>
     </view>
     <view bindtap="onClickSubmitBtn" class="merchant-submits-apply-btn">提交入驻申请</view>
-    <!-- 鬼也晓得我为什么放在外面，但是如果放在里面的话，会有BUG -->
-    <simple-address ref="simpleAddress" :pickerValueDefault="cityPickerValueDefault" onConfirm="onConfirmAddress" themeColor="#007AFF"></simple-address>
   </view>
 </view>
