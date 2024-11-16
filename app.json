@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/merchant/apply",
     "pages/my/index",
     "pages/login/phone/code/index",
     "pages/index/index",
@@ -7,6 +8,8 @@
     "pages/login/wechat/index",
     "pages/bean/index",
     "pages/order/index",
+    
+    "pages/store/appley",
     "pages/logs/logs"
   ],
 

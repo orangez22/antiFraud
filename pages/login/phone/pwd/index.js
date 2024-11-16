@@ -47,11 +47,12 @@ Page({
 
     // 使用封装的请求
     request({
-      url: '/member/login',
+      url: '/sso/member/login',
       method: 'POST',
       data: {
         phone: phone,
-        password: password
+        password: password,
+        type:'passwordAuthService'
       }
     }).then(res => {
       console.log(res)
