@@ -40,23 +40,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    const token = uni.getStorageSync('token');
-    if (!token) {
-      uni.showToast({
-        icon: 'none',
-        title: '尚未登录, 请先登录'
-      });
-      uni.reLaunch({
-        url: '../verificationcodelogin/verificationcodelogin'
-      })
-      return false;
-    }
     this._getAllOrderData();
     this._getNoPayOrderData();
     this._getAlreadyPayOrderData();
     this._getClosePayOrderData();
   },
-
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -68,7 +57,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    this._getInfoByToken()
   },
 
   /**
@@ -126,7 +115,24 @@ Page({
   onReachBottom() {
 
   },
+  _getInfoByToken() {
+    //判断是否已经登录
+    isLogin()
 
+    request({
+      url: `/sso/member/findByToken`,
+    }).then(res => {
+      const {success,data,message} = res
+      if (success) {
+        this.user = data
+      } else {
+        wx.showToast({
+          icon: 'none',
+          title: message
+        })
+      }
+    })
+  },
   /**
    * 用户点击右上角分享
    */
@@ -135,11 +141,11 @@ Page({
   },
   // 返回
   back() {
-    uni.navigateBack({})
+    wx.navigateBack({})
   },
 
   onClickGotoZLYD() {
-    uni.showToast({
+    wx.showToast({
       icon: 'none',
       title: '功能正在开发中....'
     })
@@ -271,10 +277,10 @@ Page({
   _getAllOrderData() {
     const page = this.allPage;
     const size = this.allSize;
-    uni.request({
+    request({
       url: `/orders/orders/${page}/${size}`,
       header: {
-        AUTH: 'ROBOT ' + uni.getStorageSync('token'),
+        AUTH: 'ROBOT ' + wx.getStorageSync('token'),
         'Content-Type': 'application/json'
       },
       success: res => {
@@ -291,13 +297,13 @@ Page({
         }
       },
       fail: () => {
-        uni.showToast({
+        wx.showToast({
           title: '请求失败, 网络异常',
           icon: 'none'
         });
       },
       complete: () => {
-        uni.stopPullDownRefresh();
+        wx.stopPullDownRefresh();
       }
     });
   },
@@ -305,7 +311,7 @@ Page({
   _getNoPayOrderData() {
     const page = this.noPayPage;
     const size = this.noPaySize;
-    uni.request({
+    request({
       url: `/orders/orders/payment/0/${page}/${size}`,
       success: res => {
         let {
@@ -321,13 +327,13 @@ Page({
         }
       },
       fail: () => {
-        uni.showToast({
+        wx.showToast({
           title: '请求失败, 网络异常',
           icon: 'none'
         });
       },
       complete: () => {
-        uni.stopPullDownRefresh();
+        wx.stopPullDownRefresh();
       }
     });
   },
@@ -335,7 +341,7 @@ Page({
   _getAlreadyPayOrderData() {
     const page = this.alreadyPayPage;
     const size = this.alreadyPaySize;
-    uni.request({
+    request({
       url: `/orders/orders/payment/1/${page}/${size}`,
       success: res => {
         let {
@@ -351,13 +357,13 @@ Page({
         }
       },
       fail: () => {
-        uni.showToast({
+        wx.showToast({
           title: '请求失败, 网络异常',
           icon: 'none'
         });
       },
       complete: () => {
-        uni.stopPullDownRefresh();
+        wx.stopPullDownRefresh();
       }
     });
   },
@@ -365,10 +371,10 @@ Page({
   _getClosePayOrderData() {
     const page = this.closePayPage;
     const size = this.closePaySize;
-    uni.request({
+    request({
       url: `/orders/orders/payment/2/${page}/${size}`,
       header: {
-        AUTH: 'ROBOT ' + uni.getStorageSync('token'),
+        AUTH: 'ROBOT ' + wx.getStorageSync('token'),
         'Content-Type': 'application/json'
       },
       success: res => {
@@ -385,13 +391,13 @@ Page({
         }
       },
       fail: () => {
-        uni.showToast({
+        wx.showToast({
           title: '请求失败, 网络异常',
           icon: 'none'
         });
       },
       complete: () => {
-        uni.stopPullDownRefresh();
+        wx.stopPullDownRefresh();
       }
     });
   },
@@ -403,7 +409,7 @@ Page({
       this.allPage = page1;
       this._getAllOrderData();
     } else {
-      uni.showToast({
+      wx.showToast({
         title: '已经到底部了',
         icon: 'none'
       });
@@ -417,7 +423,7 @@ Page({
       this.noPayPage = page1;
       this._getNoPayOrderData();
     } else {
-      uni.showToast({
+      wx.showToast({
         title: '已经到底部了',
         icon: 'none'
       });
@@ -431,7 +437,7 @@ Page({
       this.alreadyPayPage = page1;
       this._getAlreadyPayOrderData();
     } else {
-      uni.showToast({
+      wx.showToast({
         title: '已经到底部了',
         icon: 'none'
       });
@@ -445,7 +451,7 @@ Page({
       this.closePayPage = page1;
       this._getClosePayOrderData();
     } else {
-      uni.showToast({
+      wx.showToast({
         title: '已经到底部了',
         icon: 'none'
       });
@@ -456,7 +462,7 @@ Page({
     if (!obj.storeId) {
       return false;
     }
-    uni.navigateTo({
+    wx.navigateTo({
       url: `../complaintsmerchant/complaintsmerchant?storeid=${obj.storeId}&storename=${obj.storeName}`
     });
   },
@@ -470,7 +476,7 @@ Page({
     if (!item.storeName) {
       return false;
     }
-    uni.navigateTo({
+    wx.navigateTo({
       url: `../gotoappraise/gotoappraise?ordersId=${item.id}&storeId=${item.storeId}&storeName=${item.storeName}&flag=${flag}`
     });
   }

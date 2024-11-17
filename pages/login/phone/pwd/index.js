@@ -118,8 +118,8 @@ Page({
   },
   // 跳转到找回密码页面
   goRetrievepasswordPage() {
-    wx.navigateTo({
-      url: '../retrievepassword/retrievepassword'
+    wx.redirectTo({
+      url: '/pages/findback/index'
     });
   },
   // 监听手机号输入

@@ -1,18 +1,24 @@
-<!--pages/bean/index.wxml-->
-<view>
-
-	<view class="beans">
-		<view class="beans-desc">
-			<view class="beans-desc-left">
-				<text class="beans-desc-left-txt">码豆</text>
-				<text class="beans-desc-left-num">{{md}}</text>
-			</view>
-		</view>
-		<view class="beans-list">
-			<view class="beans-list-title">消费明细</view>
-			<block wx:for="{{list}}" wx:key="id">
-				<view class="beans-list-item">{{item.time}} 提现 {{item.num}} 码豆</view>
-			</block>
-		</view>
-	</view>
+<view class="container">
+  <view class="beans">
+    <view class="beans-desc">
+      <view class="beans-desc-left">
+        <text class="beans-desc-left-txt">码豆</text>
+        <text class="beans-desc-left-num">{{codeBean}}</text>
+      </view>
+      <view class="beans-desc-middle">
+        <view class="beans-desc-middle-line"></view>
+      </view>
+      <view class="beans-desc-right">
+        <text class="beans-desc-right-txt">金豆</text>
+        <text class="beans-desc-right-num">{{goldBean}}</text>
+        <view bindtap="onClickTXgoldBean" class="beans-desc-right-tx">提现</view>
+      </view>
+    </view>
+    <view class="beans-list">
+      <view class="beans-list-title">消费明细</view>
+      <block wx:for="{{list}}" wx:key="id">
+        <view class="beans-list-item">{{item.time}} 提现 {{item.num}} 码豆</view>
+      </block>
+    </view>
+  </view>
 </view>
