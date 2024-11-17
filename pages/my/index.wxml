@@ -103,7 +103,11 @@
         <view class="my-list-wrap-item">
           <text class="my-list-wrap-item-name">我的功能</text>
           <view class="my-list-wrap-item-list">
-            <view bindtap="onClickGotoPJPage" class="my-list-wrap-item-list-item">
+            <view bindtap="navigate" data-url='/pages/order/index' class="my-list-wrap-item-list-item">
+              <image style="width: 46rpx; height: 40rpx;" src="{{commonImg('wodepingjia.png')}}" class="my-list-wrap-item-list-item-img"></image>
+              <text class="my-list-wrap-item-list-item-txt">我的订单</text>
+            </view>
+            <view bindtap="navigate" data-url='/pages/appraise/list/index' class="my-list-wrap-item-list-item">
               <image style="width: 46rpx; height: 40rpx;" src="{{commonImg('wodepingjia.png')}}" class="my-list-wrap-item-list-item-img"></image>
               <text class="my-list-wrap-item-list-item-txt">我的评价</text>
             </view>
@@ -116,7 +120,7 @@
         <view class="my-list-wrap-item">
           <text class="my-list-wrap-item-name">我的服务</text>
           <view class="my-list-wrap-item-list">
-            <view bindtap="onClickGotoModifydataPage" class="my-list-wrap-item-list-item">
+            <view bindtap="navigate" data-url='/pages/modify/index' class="my-list-wrap-item-list-item">
               <image style="width: 46rpx; height: 46rpx;" src="{{commonImg('xiugaiziliao.png')}}" class="my-list-wrap-item-list-item-img"></image>
               <text class="my-list-wrap-item-list-item-txt">完善信息</text>
             </view>
@@ -124,11 +128,11 @@
               <image style="width: 48rpx; height: 48rpx;" src="{{commonImg('bangzhufankui.png')}}" class="my-list-wrap-item-list-item-img"></image>
               <text class="my-list-wrap-item-list-item-txt">关于我们</text>
             </view>
-            <view bindtap="onClickGoToTSPage" class="my-list-wrap-item-list-item">
+            <view bindtap="navigate" data-url='/pages/complain/list/index' class="my-list-wrap-item-list-item">
               <image style="width: 46rpx; height: 44rpx;" src="{{commonImg('tousushangjia.png')}}" class="my-list-wrap-item-list-item-img"></image>
               <text class="my-list-wrap-item-list-item-txt">投诉商家</text>
             </view>
-            <view bindtap="onClickGoToFeedback" class="my-list-wrap-item-list-item">
+            <view bindtap="navigate" data-url='/pages/feedback/list/index' class="my-list-wrap-item-list-item">
               <image style="width: 50rpx; height: 46rpx;" src="{{commonImg('yijianfankui.png')}}" class="my-list-wrap-item-list-item-img"></image>
               <text class="my-list-wrap-item-list-item-txt">意见反馈</text>
             </view>
@@ -137,9 +141,13 @@
         <view class="my-list-wrap-item">
           <text class="my-list-wrap-item-name">更多</text>
           <view class="my-list-wrap-item-list">
-            <view bindtap="onClickGotoMerchantentryPage" class="my-list-wrap-item-list-item">
+            <view bindtap="navigate" data-url='/pages/merchant/apply/list/index' class="my-list-wrap-item-list-item">
               <image style="width: 50rpx; height: 50rpx;" src="{{commonImg('shangjiaruzhu.png')}}" class="my-list-wrap-item-list-item-img"></image>
               <text class="my-list-wrap-item-list-item-txt">商家入驻</text>
+            </view>
+            <view bindtap="navigate" data-url='/pages/store/apply/index' class="my-list-wrap-item-list-item">
+              <image style="width: 50rpx; height: 50rpx;" src="{{commonImg('shangjiaruzhu.png')}}" class="my-list-wrap-item-list-item-img"></image>
+              <text class="my-list-wrap-item-list-item-txt">商铺入驻</text>
             </view>
             <view bindtap="onClickExit" class="my-list-wrap-item-list-item">
               <image style="width: 50rpx; height: 50rpx;" src="{{commonImg('exit.png')}}" class="my-list-wrap-item-list-item-img"></image>
