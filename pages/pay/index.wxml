@@ -1,2 +1,16 @@
-<!--pages/pay/index.wxml-->
-<text>pages/pay/index.wxml</text>
+<view>
+  <!-- APP-PLUS 平台特定代码移除，微信小程序无此平台标记 -->
+  <view class="paysuccess">
+    <image src="{{commonImg('paysuccess.png')}}" class="paysuccess-img"></image>
+    <text class="paysuccess-statustxt">支付成功</text>
+    <text class="paysuccess-shopname">{{storeInfo.storeName}}</text>
+    <!-- 如果需要显示支付金额 -->
+    <!-- <text class="paysuccess-pricetxt">￥{{payAmount}}</text> -->
+    <view class="paysuccess-desc">
+      <text class="paysuccess-desc-firsttxt">码上结</text>
+      <text class="paysuccess-desc-firsttxt">去哪消费都打折</text>
+    </view>
+    <view bindtap="onClickMessage" class="paysuccess-back">完成信息，享受会员待遇</view>
+    <view bindtap="onClickGotoBack" class="paysuccess-back">返回</view>
+  </view>
+</view>

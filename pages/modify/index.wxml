@@ -1,2 +1,65 @@
-<!--pages/modify/index.wxml-->
-<text>pages/modify/index.wxml</text>
+<view>
+  <!-- #ifdef APP-PLUS -->
+  <view>
+    <uni-nav-bar left-icon="arrowleft" bindclickLeft="back" title="完善信息" statusBar="true" fixed="true"></uni-nav-bar>
+  </view>
+  <!-- #endif -->
+
+  <view class="modifydata">
+    <view class="modifydata-wrap">
+      <!-- 修改手机号 -->
+      <view wx:if="{{modifyingFlag === true}}" class="modifydata-wrap-tel">
+        <text class="modifydata-wrap-tel-title">手机号</text>
+        <text class="modifydata-wrap-tel-tel modifydata-wrap-tel-tel-txt">{{oldphone}}</text>
+        <text bindtap="onClickShowModify" class="modifydata-wrap-tel-sendtxt">请输入手机号</text>
+      </view>
+      <view wx:if="{{modifyingFlag === false}}" class="modifydata-wrap-tel">
+        <text class="modifydata-wrap-tel-title">手机号</text>
+        <input placeholder="请输入手机号" value="{{phone}}" class="modifydata-wrap-tel-tel" bindinput="handlePhoneInput" />
+        <text class="modifydata-wrap-tel-sendtxt" bindtap="getSendSms">{{getMessageText}}</text>
+      </view>
+      <view wx:if="{{modifyingFlag === false}}" class="modifydata-wrap-tel">
+        <text class="modifydata-wrap-tel-title">验证码</text>
+        <view class="modifydata-wrap-tel-code">
+          <input class="modifydata-wrap-tel-code-input" value="{{code}}" placeholder="请输入验证码" bindinput="handleCodeInput" />
+          <image bindtap="onClickClearCode" class="modifydata-wrap-tel-code-close" src="{{commonImg('close.png')}}"></image>
+        </view>
+      </view>
+
+      <!-- 设置生日 -->
+      <view class="modifydata-wrap-tel">
+        <text style="box-sizing: border-box;padding-left: 14rpx;" class="modifydata-wrap-tel-title">生日</text>
+        <view wx:if="{{canModifyBirthday === false}}" class="modifydata-wrap-tel-code">
+          <text class="modifydata-wrap-tel-code-input-date">{{birthday}}</text>
+        </view>
+        <view wx:if="{{canModifyBirthday === true}}" class="modifydata-wrap-tel-code">
+          <picker class="modifydata-wrap-tel-code-input" mode="date" value="{{birthday}}" start="{{startDate}}" end="{{endDate}}" bindchange="bindDateChange">
+            <text wx:if="{{birthday}}" class="modifydata-wrap-tel-code-input-date">{{birthday}}</text>
+            <text wx:else style="color: #333333;" class="modifydata-wrap-tel-code-input-date">点击此处设置生日, 只允许设置一次</text>
+          </picker>
+          <image wx:if="{{birthday}}" bindtap="onClickClearBirthday" class="modifydata-wrap-tel-code-close" src="{{commonImg('close.png')}}"></image>
+        </view>
+      </view>
+
+      <!-- 性别选择 -->
+      <view class="modifydata-wrap-tel">
+        <text style="box-sizing: border-box;padding-left: 14rpx;" class="modifydata-wrap-tel-title">性别</text>
+        <view class="modifydata-wrap-tel-sex">
+          <view class="modifydata-wrap-tel-sex-item" bindtap="selectSex" data-value="1">
+            <image src="{{sex === '1' ? commonImg('select.png') : commonImg('no-select.png')}}" class="modifydata-wrap-tel-sex-item-img"></image>
+            <text class="modifydata-wrap-tel-sex-item-txt">男</text>
+          </view>
+          <view class="modifydata-wrap-tel-sex-item" bindtap="selectSex" data-value="0">
+            <image src="{{sex === '0' ? commonImg('select.png') : commonImg('no-select.png')}}" class="modifydata-wrap-tel-sex-item-img"></image>
+            <text class="modifydata-wrap-tel-sex-item-txt">女</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 保存按钮 -->
+    <view class="modifydata-savebtn">
+      <button class="modifydata-savebtn-btn" bindtap="updateBirthdayOrSex">保存</button>
+    </view>
+  </view>
+</view>

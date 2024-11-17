@@ -1,2 +1,25 @@
-<!--pages/findback/index.wxml-->
-<text>pages/findback/index.wxml</text>
+<!-- pages/findback/index.wxml -->
+
+<view>
+    <view class="retrieve-password">
+    <view class="retrieve-password-ul">
+      <!-- 手机号输入框 -->
+      <view class="retrieve-password-li">
+        <input type="number" value="{{phone}}" placeholder="请输入手机号" placeholder-style="color:#AAAAAA" bindinput="onInputPhone" />
+      </view>
+      <!-- 验证码输入框 -->
+      <view class="retrieve-password-li-two">
+        <input type="number" value="{{messageCode}}" placeholder="请输入验证码" placeholder-style="color:#AAAAAA" bindinput="onInputMessageCode" />
+        <view class="xian"></view>
+        <button class="red" bindtap="onClickSendCode">{{getMessageText}}</button>
+      </view>
+      <!-- 密码输入框 -->
+      <view class="retrieve-password-li">
+        <input type="password" value="{{pass}}" placeholder="请输入新密码（6-20位英文或数字）" placeholder-style="color:#AAAAAA" bindinput="onInputPass" />
+      </view>
+    </view>
+    <!-- 确认修改按钮 -->
+    <button class="retrieve-password-btn {{phone && messageCode && pass ? 'writetel-submitbtn-active' : ''}}" bindtap="updatePass">确认修改</button>
+  </view>
+</view>
+

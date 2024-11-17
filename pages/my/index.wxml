@@ -1,125 +1,166 @@
-<!-- pages/my/index.wxml -->
 <view class="my">
-    <view class="my-info">
-        <!-- Plus Member -->
-        <view wx:if="{{user.isPlus === '2'}}">
-            <view class="my-info-mail">
-                <view class="my-info-mail-avatar">
-                    <image src="{{user.avatar}}" class="my-info-mail-avatar-img"></image>
-                </view>
-                <view class="my-info-mail-info">
-                    <view class="my-info-mail-info-top">
-                        <text wx:if="{{user.nickname}}" class="my-info-mail-info-top-txt">{{user.nickname}}</text>
-                        <image src="{{commonImg('status_plus_vip.png')}}" class="my-info-mail-info-top-jb"></image>
-                    </view>
-                    <view class="my-info-mail-info-bottom">会员号 {{user.id}}</view>
-                </view>
-                <view class="my-info-mail-lj">累计节省：¥{{user.totalSave}}</view>
-            </view>
-            <view style="background: linear-gradient(103deg,rgba(62,56,23,1) 0%,rgba(31,20,0,1) 100%);" class="my-info-desc">
-                <image src="/assets/images/my/huangguan.png" class="my-info-desc-jb"></image>
-                <text style="color: #E8C57B;" class="my-info-desc-txt">PLUS会员 | 尊享最高折扣</text>
-            </view>
-            <view class="my-info-bottom">
-                <image class="my-info-bottom-img" src="/assets/images/my/bottom.png"></image>
-            </view>
+  <view class="my-info">
+    <!-- plus会员 -->
+    <block wx:if="{{user.isPlus === '2'}}">
+      <view class="my-info-mail">
+        <view class="my-info-mail-avatar">
+          <image src="{{user.avatar}}" class="my-info-mail-avatar-img"></image>
         </view>
+        <view class="my-info-mail-info">
+          <view class="my-info-mail-info-top">
+            <text wx:if="{{user.nickname}}" class="my-info-mail-info-top-txt">{{user.nickname}}</text>
+            <image src="/assets/images/my/vip.png" class="my-info-mail-info-top-jb"></image>
+          </view>
+          <view class="my-info-mail-info-bottom">会员号 {{user.id}}</view>
+        </view>
+        <view class="my-info-mail-lj">累计节省：¥{{user.totalSave}}</view>
+      </view>
+      <view class="my-info-desc" style="background: linear-gradient(103deg,rgba(62,56,23,1) 0%,rgba(31,20,0,1) 100%);">
+        <image src="/assets/images/my/huangguan.png" class="my-info-desc-jb"></image>
+        <text class="my-info-desc-txt" style="color: #E8C57B;">PLUS会员 | 尊享最高折扣</text>
+      </view>
+      <view class="my-info-bottom">
+        <image src="/assets/images/my/bottom.png" class="my-info-bottom-img"></image>
+      </view>
+    </block>
 
-        <!-- Regular Member -->
-        <view wx:if="{{user.isPlus === '1'}}">
-            <view class="my-info-mail">
-                <view class="my-info-mail-avatar">
-                    <image src="{{user.avatar}}" class="my-info-mail-avatar-img"></image>
-                </view>
-                <view class="my-info-mail-info">
-                    <view class="my-info-mail-info-top">
-                        <text wx:if="{{user.nickname}}" class="my-info-mail-info-top-txt">{{user.nickname}}</text>
-                        <image style="width: 40rpx;" src="/assets/images/my/vip.png" class="my-info-mail-info-top-jb"></image>
-                    </view>
-                    <view class="my-info-mail-info-bottom">会员号 {{user.id}}</view>
-                </view>
-                <view class="my-info-mail-lj">累计节省：¥{{user.totalSave}}</view>
-            </view>
-            <view style="background:linear-gradient(103deg,rgba(255,237,139,1) 0%,rgba(226,173,81,1) 100%);" class="my-info-desc">
-                <image src="/assets/images/my/huangguan.png" class="my-info-desc-jb"></image>
-                <text style="color: #6D7278;" class="my-info-desc-txt">会员 | 尊享会员折扣</text>
-                <text bindtap="onClickSetPLUSVIP" class="my-info-mail-info-bottom-cwplus" style="height: 22rpx;margin-top: 10rpx;">成为plus会员 ></text>
-            </view>
-            <view class="my-info-bottom">
-                <image class="my-info-bottom-img" src="/assets/images/my/bottom.png"></image>
-            </view>
+    <!-- 其他会员状态（1和0） -->
+    <block wx:elif="{{user.isPlus === '1'}}">
+      <view class="my-info-mail">
+        <view class="my-info-mail-avatar">
+          <image src="{{user.avatar}}" class="my-info-mail-avatar-img"></image>
         </view>
+        <view class="my-info-mail-info">
+          <view class="my-info-mail-info-top">
+            <text wx:if="{{user.nickname}}" class="my-info-mail-info-top-txt">{{user.nickname}}</text>
+            <image style="width: 40rpx;" src="/assets/images/my/vip.png" class="my-info-mail-info-top-jb"></image>
+          </view>
+          <view class="my-info-mail-info-bottom">会员号 {{user.id}}</view>
+        </view>
+        <view class="my-info-mail-lj">累计节省：¥{{user.totalSave}}</view>
+      </view>
+      <view class="my-info-desc" style="background:linear-gradient(103deg,rgba(255,237,139,1) 0%,rgba(226,173,81,1) 100%);">
+        <image src="/assets/images/my/huangguan.png" class="my-info-desc-jb"></image>
+        <text class="my-info-desc-txt" style="color: #6D7278;">会员 | 尊享会员折扣</text>
+        <text class="my-info-mail-info-bottom-cwplus" style="height: 22rpx;margin-top: 10rpx;" bindtap="pay(198)">成为plus会员 ></text>
+      </view>
+      <view class="my-info-bottom">
+        <image src="/assets/images/my/bottom.png" class="my-info-bottom-img"></image>
+      </view>
+    </block>
 
-        <!-- Guest -->
-        <view wx:if="{{user.isPlus === '0'}}">
-            <view class="my-info-mail">
-                <view class="my-info-mail-avatar">
-                    <image src="{{user.avatar}}" class="my-info-mail-avatar-img"></image>
-                </view>
-                <view class="my-info-mail-info">
-                    <view class="my-info-mail-info-top">
-                        <text wx:if="{{user.nickname}}" class="my-info-mail-info-top-txt">{{user.nickname}}</text>
-                        <image style="width: 40rpx;" src="{{commonImg('status_youke.png')}}" class="my-info-mail-info-top-jb"></image>
-                    </view>
-                    <view class="my-info-mail-info-bottom">会员号 {{user.id}}</view>
-                </view>
-                <view class="my-info-mail-lj">累计节省：¥{{user.totalSave}}</view>
-            </view>
-            <view style="background:linear-gradient(99deg,rgba(245,245,245,1) 0%,rgba(225,224,224,1) 100%);" class="my-info-desc">
-                <image src="/assets/images/my/huangguan.png" class="my-info-desc-jb"></image>
-                <text style="color: #6D7278;" class="my-info-desc-txt">游客 | 无会员折扣</text>
-                <text bindtap="onClickSetVIP" class="my-info-mail-info-bottom-cwplus" style="height: 22rpx;margin-top: 10rpx;background-color: #F7DC7C;color: #6D7278;">成为会员 ></text>
-            </view>
-            <view class="my-info-bottom">
-                <image class="my-info-bottom-img" src="/assets/images/my/bottom.png"></image>
-            </view>
+    <block wx:elif="{{user.isPlus === '0'}}">
+      <view class="my-info-mail">
+        <view class="my-info-mail-avatar">
+          <image src="{{user.avatar}}" class="my-info-mail-avatar-img"></image>
         </view>
+        <view class="my-info-mail-info">
+          <view class="my-info-mail-info-top">
+            <text wx:if="{{user.nickname}}" class="my-info-mail-info-top-txt">{{user.nickname}}</text>
+            <image style="width: 40rpx;" src="/assets/images/my/youke.png" class="my-info-mail-info-top-jb"></image>
+          </view>
+          <view class="my-info-mail-info-bottom">会员号 {{user.id}}</view>
+        </view>
+        <view class="my-info-mail-lj">累计节省：¥{{user.totalSave}}</view>
+      </view>
+      <view class="my-info-desc" style="background:linear-gradient(99deg,rgba(245,245,245,1) 0%,rgba(225,224,224,1) 100%);">
+        <image src="/assets/images/my/huangguan.png" class="my-info-desc-jb"></image>
+        <text class="my-info-desc-txt" style="color: #6D7278;">游客 | 无会员折扣</text>
+        <text class="my-info-mail-info-bottom-cwplus" style="height: 22rpx;margin-top: 10rpx;" bindtap="pay(1)">成为会员 ></text>
+      </view>
+      <view class="my-info-bottom">
+        <image src="/assets/images/my/bottom.png" class="my-info-bottom-img"></image>
+      </view>
+    </block>
+  </view>
+
+  <view class="my-js">
+    <text class="my-js-left">会员中心</text>
+    <text class="my-js-middle"></text>
+    <text class="my-js-right">商家中心</text>
+  </view>
+
+  <!-- 我的资产 -->
+  <view class="my-zc">
+    <view class="my-zc-wrap">
+      <text class="my-zc-wrap-txt">我的资产</text>
+      <view class="my-zc-wrap-list">
+        <view class="my-zc-wrap-list-item" bindtap="navigate" data-url='/pages/bean/index'>
+          <image src="{{commonImg('madou.png')}}" class="my-zc-wrap-list-item-img"></image>
+          <text class="my-zc-wrap-list-item-txt">码豆</text>
+        </view>
+        <view class="my-zc-wrap-list-item" bindtap="onClickGotoCouponPage">
+          <image src="{{commonImg('youhuiquan.png')}}" class="my-zc-wrap-list-item-img"></image>
+          <text class="my-zc-wrap-list-item-txt">优惠券</text>
+        </view>
+        <view class="my-zc-wrap-list-item" bindtap="onClickGotoSharePage">
+          <image src="{{commonImg('tuijian.png')}}" class="my-zc-wrap-list-item-img"></image>
+          <text class="my-zc-wrap-list-item-txt">分享赚钱</text>
+        </view>
+      </view>
     </view>
-    <!-- Assets Section -->
-    <view class="my-zc">
-        <view class="my-zc-wrap">
-            <text class="my-zc-wrap-txt">我的资产</text>
-            <view class="my-zc-wrap-list">
-                <view bindtap="navigate" data-url='/pages/bean/index' class="my-zc-wrap-list-item">
-                    <image src="{{commonImg('madou.png')}}" class="my-zc-wrap-list-item-img"></image>
-                    <text class="my-zc-wrap-list-item-txt">码豆</text>
-                </view>
-                <view bindtap="onClickGotoCouponPage" class="my-zc-wrap-list-item">
-                    <image src="{{commonImg('youhuiquan.png')}}" class="my-zc-wrap-list-item-img"></image>
-                    <text class="my-zc-wrap-list-item-txt">优惠券</text>
-                </view>
-                <view class="my-zc-wrap-list-item">
-                    <image src="{{commonImg('kabao.png')}}" class="my-zc-wrap-list-item-img"></image>
-                    <text class="my-zc-wrap-list-item-txt">卡包</text>
-                </view>
-                <view bindtap="onClickGotoSharePage" class="my-zc-wrap-list-item">
-                    <image src="{{commonImg('tuijian.png')}}" class="my-zc-wrap-list-item-img"></image>
-                    <text class="my-zc-wrap-list-item-txt">分享赚钱</text>
-                </view>
-            </view>
-        </view>
-    </view>
-
-    <!-- My Functions Section -->
+  </view>
     <view class="my-list">
-        <view class="my-list-wrap">
-            <view class="my-list-wrap-item">
-                <text class="my-list-wrap-item-name">我的功能</text>
-                <view class="my-list-wrap-item-list">
-                    <view bindtap="navigate" data-url="/pages/order/index" class="my-list-wrap-item-list-item">
-                        <image style="width: 44rpx;height: 46rpx;" src="{{commonImg('wodedingdan.png')}}" class="my-list-wrap-item-list-item-img"></image>
-                        <text class="my-list-wrap-item-list-item-txt">我的订单</text>
-                    </view>
-                    <view bindtap="onClickGotoPJPage" class="my-list-wrap-item-list-item">
-                        <image style="width: 46rpx;height: 40rpx;" src="{{commonImg('wodepingjia.png')}}" class="my-list-wrap-item-list-item-img"></image>
-                        <text class="my-list-wrap-item-list-item-txt">我的评价</text>
-                    </view>
-                    <view class="my-list-wrap-item-list-item">
-                        <image style="width: 48rpx;height: 42rpx;" src="{{commonImg('huiyuanxuzhi.png')}}" class="my-list-wrap-item-list-item-img"></image>
-                        <text class="my-list-wrap-item-list-item-txt">会员须知</text>
-                    </view>
-                </view>
+      <view class="my-list-wrap">
+        <view class="my-list-wrap-item">
+          <text class="my-list-wrap-item-name">我的功能</text>
+          <view class="my-list-wrap-item-list">
+            <view bindtap="onClickGotoTDPage" class="my-list-wrap-item-list-item">
+              <image src="{{commonImg('wodetuandui.png')}}" class="my-list-wrap-item-list-item-img"></image>
+              <text class="my-list-wrap-item-list-item-txt">我的团队</text>
             </view>
+            <view bindtap="onClickGOtoAddressPage" class="my-list-wrap-item-list-item">
+              <image style="width: 37rpx; height: 44rpx;" src="{{commonImg('wodedizhi.png')}}" class="my-list-wrap-item-list-item-img"></image>
+              <text class="my-list-wrap-item-list-item-txt">我的地址</text>
+            </view>
+            <view bindtap="onClickGotoPJPage" class="my-list-wrap-item-list-item">
+              <image style="width: 46rpx; height: 40rpx;" src="{{commonImg('wodepingjia.png')}}" class="my-list-wrap-item-list-item-img"></image>
+              <text class="my-list-wrap-item-list-item-txt">我的评价</text>
+            </view>
+            <view bindtap="onMemberNotice" class="my-list-wrap-item-list-item">
+              <image style="width: 48rpx; height: 42rpx;" src="{{commonImg('huiyuanxuzhi.png')}}" class="my-list-wrap-item-list-item-img"></image>
+              <text class="my-list-wrap-item-list-item-txt">会员须知</text>
+            </view>
+          </view>
         </view>
-    </view>
+        <view class="my-list-wrap-item">
+          <text class="my-list-wrap-item-name">我的服务</text>
+          <view class="my-list-wrap-item-list">
+            <view bindtap="onClickGotoModifydataPage" class="my-list-wrap-item-list-item">
+              <image style="width: 46rpx; height: 46rpx;" src="{{commonImg('xiugaiziliao.png')}}" class="my-list-wrap-item-list-item-img"></image>
+              <text class="my-list-wrap-item-list-item-txt">完善信息</text>
+            </view>
+            <view bindtap="onClickAbout" class="my-list-wrap-item-list-item">
+              <image style="width: 48rpx; height: 48rpx;" src="{{commonImg('bangzhufankui.png')}}" class="my-list-wrap-item-list-item-img"></image>
+              <text class="my-list-wrap-item-list-item-txt">关于我们</text>
+            </view>
+            <view bindtap="onClickGoToTSPage" class="my-list-wrap-item-list-item">
+              <image style="width: 46rpx; height: 44rpx;" src="{{commonImg('tousushangjia.png')}}" class="my-list-wrap-item-list-item-img"></image>
+              <text class="my-list-wrap-item-list-item-txt">投诉商家</text>
+            </view>
+            <view bindtap="onClickGoToFeedback" class="my-list-wrap-item-list-item">
+              <image style="width: 50rpx; height: 46rpx;" src="{{commonImg('yijianfankui.png')}}" class="my-list-wrap-item-list-item-img"></image>
+              <text class="my-list-wrap-item-list-item-txt">意见反馈</text>
+            </view>
+          </view>
+        </view>
+        <view class="my-list-wrap-item">
+          <text class="my-list-wrap-item-name">更多</text>
+          <view class="my-list-wrap-item-list">
+            <view bindtap="onClickGotoMywantagentPage" class="my-list-wrap-item-list-item">
+              <image style="width: 48rpx; height: 48rpx;" src="{{commonImg('woyaodaili.png')}}" class="my-list-wrap-item-list-item-img"></image>
+              <text class="my-list-wrap-item-list-item-txt">我要代理</text>
+            </view>
+            <view bindtap="onClickGotoMerchantentryPage" class="my-list-wrap-item-list-item">
+              <image style="width: 50rpx; height: 50rpx;" src="{{commonImg('shangjiaruzhu.png')}}" class="my-list-wrap-item-list-item-img"></image>
+              <text class="my-list-wrap-item-list-item-txt">商家入驻</text>
+            </view>
+            <view bindtap="onClickExit" class="my-list-wrap-item-list-item">
+              <image style="width: 50rpx; height: 50rpx;" src="{{commonImg('exit.png')}}" class="my-list-wrap-item-list-item-img"></image>
+              <text class="my-list-wrap-item-list-item-txt">退出登录</text>
+            </view>
+          </view>
+        </view>
+      </view>
+  </view>
 </view>

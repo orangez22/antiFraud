@@ -123,10 +123,7 @@ Page({
           method: 'POST',
           data
         }).then(res => {
-          //console.log(res.token)
-          //setToken(res.token);
-          console.log("res:" + res);
-          setToken(res.data);
+          setToken(res.data.token);
           wx.showToast({
             title: '登录成功',
             icon: 'success'

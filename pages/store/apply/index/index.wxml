@@ -1,2 +1,77 @@
 <!--pages/store/apply/index/index.wxml-->
-<text>pages/store/apply/index/index.wxml</text>
+<view>
+  <view class="store-submits-apply">
+    <view class="store-submits-applys">
+      <view class="store-submits-apply-top">
+        <view class="title">会员编号</view>
+        <view class="number">{{memberId}}</view>
+      </view>
+
+      <view class="store-submits-apply-bottom">
+        <view class="store-submits-apply-info">
+          <text class="store-submits-apply-info-txt">店铺名称</text>
+          <view class="store-submits-apply-info-input">
+            <input bindinput="onInputChange" data-field="storeName" value="{{storeName}}" placeholder="请输入店铺名称" class="store-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
+          </view>
+        </view>
+
+        <view class="store-submits-apply-info">
+          <text class="store-submits-apply-info-txt">联系人</text>
+          <view class="store-submits-apply-info-input">
+            <input bindinput="onInputChange" data-field="contract" value="{{contract}}" placeholder="请输入联系人" class="store-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
+          </view>
+        </view>
+
+        <view class="store-submits-apply-info">
+          <text class="store-submits-apply-info-txt">联系电话</text>
+          <view class="store-submits-apply-info-input">
+            <input bindinput="onInputChange" data-field="phone" value="{{phone}}" placeholder="请输入联系电话" class="store-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
+          </view>
+        </view>
+
+        <view class="store-submits-apply-info">
+          <text class="store-submits-apply-info-txt">营业开始时间</text>
+          <view class="store-submits-apply-info-input">
+            <picker mode="time" value="{{businessHoursStart}}" bindchange="bindStartTimeChange">
+              <view class="uni-input">{{businessHoursStart}}</view>
+            </picker>
+          </view>
+        </view>
+
+        <view class="store-submits-apply-info">
+          <text class="store-submits-apply-info-txt">营业结束时间</text>
+          <view class="store-submits-apply-info-input">
+            <picker mode="time" value="{{businessHoursEnd}}" bindchange="bindEndTimeChange">
+              <view class="uni-input">{{businessHoursEnd}}</view>
+            </picker>
+          </view>
+        </view>
+
+        <view class="store-submits-apply-info">
+          <text class="store-submits-apply-info-txt">省市区</text>
+          <picker mode="region" value="{{region}}" bindchange="bindRegionChange" class="store-submits-apply-city">
+            <view class="store-submits-apply-city-item-border">
+              {{region[0] || '请选择省'}} {{region[1] || '市'}} {{region[2] || '区'}}
+            </view>
+          </picker>
+        </view>
+
+        <view class="store-submits-apply-info">
+          <text class="store-submits-apply-info-txt">详细地址</text>
+          <view class="store-submits-apply-info-input">
+            <input bindinput="onInputChange" data-field="address" value="{{address}}" placeholder="请输入详细地址" class="store-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
+          </view>
+        </view>
+
+        <view class="store-submits-apply-info">
+          <text class="store-submits-apply-info-txt">品牌介绍</text>
+          <view class="store-submits-apply-info-textarea">
+            <textarea bindinput="onInputChange" data-field="recommendation" value="{{recommendation}}" placeholder="品牌详细介绍" class="store-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view bindtap="apply" class="store-submits-apply-btn">提交入驻申请</view>
+  </view>
+</view>
