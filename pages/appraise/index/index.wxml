@@ -1,2 +1,23 @@
 <!--pages/appraise/index/index.wxml-->
-<text>pages/appraise/index/index.wxml</text>
+<view>
+  <!-- #ifdef APP-PLUS -->
+  <view>
+    <uni-nav-bar left-icon="arrowleft" bind:clickLeft="back" title="去评论" statusBar="{{true}}" fixed="{{true}}"></uni-nav-bar>
+  </view>
+  <!-- #endif -->
+  
+  <view class="gotoappraise">
+    <view class="gotoappraise-content">
+      <text wx:if="{{storeName && storeId}}" class="gotoappraise-content-name">商店商铺名称：{{ storeName }}</text>
+      <text wx:if="{{ordersId}}" class="gotoappraise-content-ddh">订单编号：{{ ordersId }}</text>
+      <text class="gotoappraise-content-line"></text>
+      <view class="gotoappraise-content-content">
+        <text class="gotoappraise-content-content-txt">评价内容：</text>
+        <textarea bindinput="onContentChange" class="gotoappraise-content-content-content" placeholder="请输入评价内容" value="{{content}}"/>
+      </view>
+    </view>
+    <view class="gotoappraise-btn">
+      <button bindtap="onClickSubmit" class="gotoappraise-btn-wrap">提交</button>
+    </view>
+  </view>
+</view>

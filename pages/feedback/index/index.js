@@ -1,66 +1,83 @@
 // pages/feedback/index/index.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    content: '',
+    cityPickerValueDefault: ''
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
+  // 返回上一页
+  back() {
+    wx.navigateBack();
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
+  // 监听内容输入
+  onContentInput(e) {
+    this.setData({
+      content: e.detail.value
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
+  // 清除内容
+  clearContent() {
+    this.setData({
+      content: ''
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
+  // 提交按钮点击事件
+  onClickSubmitBtn() {
+    const { content } = this.data;
+    
+    if (!content) {
+      wx.showToast({
+        icon: 'none',
+        title: '请输入您的反馈'
+      });
+      return false;
+    }
 
+    const obj = { content };
+    const authorization = wx.getStorageSync('authorization');
+
+    wx.showLoading({ title: '提交中...' });
+
+    wx.request({
+      url: `${config.api_base_url}member/feedback`,
+      method: 'POST',
+      header: {
+        'AUTH': authorization.token
+      },
+      data: obj,
+      success: (res) => {
+        const { status } = res.data;
+        if (status.flag) {
+          wx.showToast({
+            icon: 'none',
+            title: '提交成功'
+          });
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: '提交失败，请稍后重试'
+          });
+        }
+      },
+      fail: () => {
+        wx.showToast({
+          icon: 'none',
+          title: '提交失败, 网络异常'
+        });
+      },
+      complete: () => {
+        wx.hideLoading();
+      }
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
+  // 地址选择确认事件
+  onConfirmAddress(e) {
+    this.setData({
+      content: e.content
+    });
   }
-})
+});

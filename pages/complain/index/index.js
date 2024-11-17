@@ -1,66 +1,108 @@
 // pages/complain/index/index.js
+import { yourFormatDateTime, config } from '../../utils/config.js';
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    storeid: '',
+    storename: '',
+    content: '',
+    currentTime: ''
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
+  onLoad: function (e) {
+    const authorization = wx.getStorageSync('authorization');
+    if (Object.keys(authorization).length == 0) {
+      wx.showToast({
+        icon: 'none',
+        title: '尚未登录, 请先登录'
+      });
+      setTimeout(() => {
+        wx.reLaunch({
+          url: '../verificationcodelogin/verificationcodelogin'
+        });
+      }, 777);
+      return false;
+    }
+    this.setData({
+      currentTime: yourFormatDateTime(+new Date())
+    });
 
+    if (e.storeid) {
+      this.setData({
+        storeid: e.storeid
+      });
+    }
+    if (e.storename) {
+      this.setData({
+        storename: e.storename
+      });
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
+  back: function () {
+    wx.navigateBack();
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
+  onContentInput: function (e) {
+    this.setData({
+      content: e.detail.value
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
+  onClickBtnSubmitContent: function () {
+    const authorization = wx.getStorageSync('authorization');
+    if (!this.data.storeid) {
+      wx.showToast({
+        icon: 'none',
+        title: '暂未获取到商户id, 无法投诉'
+      });
+      return false;
+    }
+    if (!this.data.content) {
+      wx.showToast({
+        icon: 'none',
+        title: '请填写您要投诉的内容'
+      });
+      return false;
+    }
+    wx.showLoading({ title: '保存中' });
+    wx.request({
+      url: `${config.api_base_url}member/complaint/${this.data.storeid}`,
+      method: 'POST',
+      header: {
+        'AUTH': authorization.token
+      },
+      data: {
+        content: this.data.content
+      },
+      success: (res) => {
+        const { status, data } = res.data;
+        if (status.flag === true) {
+          wx.showToast({
+            icon: 'none',
+            title: '投诉成功'
+          });
+          setTimeout(() => {
+            wx.redirectTo({
+              url: '../complaintssuccess/complaintssuccess'
+            });
+          }, 777);
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: status.msg
+          });
+        }
+      },
+      fail: () => {
+        wx.showToast({
+          icon: 'none',
+          title: '投诉失败, 网络异常'
+        });
+      },
+      complete: () => {
+        wx.hideLoading();
+      }
+    });
   }
-})
+});

@@ -1,2 +1,29 @@
 <!--pages/feedback/list/index.wxml-->
-<text>pages/feedback/list/index.wxml</text>
+<view>
+  <!-- #ifdef APP-PLUS -->
+  <view>
+    <uni-nav-bar left-icon="arrowleft" bind:clickLeft="back" title="我的评价" statusBar="true" fixed="true"></uni-nav-bar>
+  </view>
+  <!-- #endif -->
+  <view>
+    <view wx:if="{{list && list.length > 0}}">
+      <view class="appraise">
+        <view class="appraise-list">
+          <block wx:for="{{list}}" wx:key="id">
+            <view class="appraise-list-item">
+              <text class="appraise-list-item-name">商店商铺名称：{{item.storeName}}</text>
+              <text class="appraise-list-item-ordernum">订单编号：{{item.ordersId}}</text>
+              <view class="appraise-list-item-content">我给的反馈：{{item.content}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+    <view wx:else>
+      <view class="noappraise">
+        <image class="noappraise-img" src="/path/to/noappraise.png"></image>
+        <text class="noappraise-txt">暂时没有反馈~</text>
+      </view>
+    </view>
+  </view>
+</view>
