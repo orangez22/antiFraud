@@ -85,7 +85,7 @@
     <view class="my-zc-wrap">
       <text class="my-zc-wrap-txt">我的资产</text>
       <view class="my-zc-wrap-list">
-        <view class="my-zc-wrap-list-item" bindtap="onClickGotoMDpage">
+        <view class="my-zc-wrap-list-item" bindtap="navigate" data-url='/pages/bean/index'>
           <image src="{{commonImg('madou.png')}}" class="my-zc-wrap-list-item-img"></image>
           <text class="my-zc-wrap-list-item-txt">码豆</text>
         </view>
