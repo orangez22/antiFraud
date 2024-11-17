@@ -1,4 +1,4 @@
-// pages/store/appley.js
+// pages/feedback/index/index.js
 Page({
 
   /**

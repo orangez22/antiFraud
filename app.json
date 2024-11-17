@@ -2,16 +2,28 @@
   "pages": [
     "pages/merchant/apply/list/index",
     "pages/merchant/apply/index/index",
+    "pages/store/apply/list/index",
+    "pages/store/apply/index/index",
     "pages/my/index",
+    "pages/modify/index",
+    "pages/findback/index",
+    "pages/pay/index",
     "pages/login/phone/code/index",
     "pages/index/index",
     "pages/login/phone/pwd/index",
     "pages/login/wechat/index",
     "pages/bean/index",
     "pages/order/index",
-    
-    "pages/store/appley",
-    "pages/logs/logs"
+    "pages/appraise/index/index",
+    "pages/appraise/list/index",
+    "pages/complain/index/index",
+    "pages/complain/list/index",
+    "pages/feedback/index/index",
+    "pages/feedback/list/index",
+    "pages/store/apply/index",
+    "pages/store/detail/index",
+    "pages/logs/logs",
+    "pages/about/index"
   ],
 
   "tabBar": {
