@@ -1,31 +1,124 @@
-<!--pages/store/apply/index/index.wxml-->
+<!--pages/store/apply/index.wxml-->
 <view>
+  <!-- 微信小程序专用的导航栏 -->
   <view class="store-submits-apply">
     <view class="store-submits-applys">
       <view class="store-submits-apply-top">
         <view class="title">会员编号</view>
-        <view class="number">{{memberId}}</view>
+        <view class="number">{{ memberId }}</view>
+        <view class="radio-box">
+          <text class="radio-box-text">是否连锁店：</text>
+          <label class="radio-one" bindtap="onChangeChainNo">
+            <radio value="0" checked="{{isChain === '0'}}" color="#f00" style="transform:scale(0.7);" />
+            <text>否</text>
+          </label>
+          <label class="radio-two" bindtap="onChangeChainYes">
+            <radio value="1" checked="{{isChain === '1'}}" color="#f00" style="transform:scale(0.7);" />
+            <text>是</text>
+          </label>
+        </view>
       </view>
 
       <view class="store-submits-apply-bottom">
+        <view wx:if="{{isChain === '1'}}" class="store-submits-apply-info">
+          <text class="store-submits-apply-info-txt">公司名称</text>
+          <view class="store-submits-apply-info-input">
+            <input bindinput="onCompanyNameInput" value="{{companyName}}" placeholder="请输入公司名称" class="store-submits-apply-info-input-input" />
+          </view>
+        </view>
+
         <view class="store-submits-apply-info">
           <text class="store-submits-apply-info-txt">店铺名称</text>
           <view class="store-submits-apply-info-input">
-            <input bindinput="onInputChange" data-field="storeName" value="{{storeName}}" placeholder="请输入店铺名称" class="store-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
+            <input bindinput="onStoreNameInput" value="{{storeName}}" placeholder="请输入店铺名称" class="store-submits-apply-info-input-input" />
           </view>
         </view>
 
         <view class="store-submits-apply-info">
           <text class="store-submits-apply-info-txt">联系人</text>
           <view class="store-submits-apply-info-input">
-            <input bindinput="onInputChange" data-field="contract" value="{{contract}}" placeholder="请输入联系人" class="store-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
+            <input bindinput="onContractInput" value="{{contract}}" placeholder="请输入联系人" class="store-submits-apply-info-input-input" />
           </view>
         </view>
 
         <view class="store-submits-apply-info">
           <text class="store-submits-apply-info-txt">联系电话</text>
           <view class="store-submits-apply-info-input">
-            <input bindinput="onInputChange" data-field="phone" value="{{phone}}" placeholder="请输入联系电话" class="store-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
+            <input bindinput="onPhoneInput" value="{{phone}}" placeholder="请输入联系电话" class="store-submits-apply-info-input-input" />
+          </view>
+        </view>
+
+        <view class="store-submits-apply-info">
+          <text class="store-submits-apply-info-txt">身份证号</text>
+          <view class="store-submits-apply-info-input">
+            <input bindinput="onidCardInput" value="{{idCard}}" placeholder="请输入身份证号码" class="store-submits-apply-info-input-input" />
+          </view>
+        </view>
+        <view class="store-submits-apply-info">
+          <text class="store-submits-apply-info-txt">邮箱</text>
+          <view class="store-submits-apply-info-input">
+            <input bindinput="onEmailInput" value="{{email}}" placeholder="请输入邮箱" class="store-submits-apply-info-input-input" />
+          </view>
+        </view>
+
+        <view class="store-submits-apply-info">
+          <text class="store-submits-apply-info-txt">营业执照编号</text>
+          <view class="store-submits-apply-info-input">
+            <input bindinput="onLicenseInput" value="{{license}}" placeholder="请输入营业执照编号" class="store-submits-apply-info-input-input" />
+          </view>
+        </view>
+
+        <view class="store-submits-apply-info">
+          <text class="store-submits-apply-info-txt">店面照片</text>
+            <!-- 显示已选择的图片 -->
+            <image src="{{coverImageUrl}}" class="uploaded-image" wx:if="{{coverImageUrl}}" />
+            <!-- 上传图片按钮 -->
+            <button class="upload-button" bindtap="chooseCoverImage">上传图片</button>
+        </view>
+
+        <view class="store-submits-apply-info">
+          <text class="store-submits-apply-info-txt">店内照片</text>
+          <!-- 显示已选择的图片 -->
+          <image src="{{imageUrl}}" class="uploaded-image" wx:if="{{imageUrl}}" />
+          <!-- 上传图片按钮 -->
+          <button class="upload-button" bindtap="chooseImage">上传图片</button>
+        </view>
+
+
+        <view class="store-submits-apply-info">
+          <text class="store-submits-apply-info-txt">开户行名称</text>
+          <view class="store-submits-apply-info-input">
+            <input bindinput="onBankNameInput" value="{{bankName}}" placeholder="请输入开户行名称" class="store-submits-apply-info-input-input" />
+          </view>
+        </view>
+
+        <view class="store-submits-apply-info">
+          <text class="store-submits-apply-info-txt">银行账号</text>
+          <view class="store-submits-apply-info-input">
+            <input bindinput="onBankAccountInput" value="{{bankAccount}}" placeholder="请输入银行卡号码" class="store-submits-apply-info-input-input" />
+          </view>
+        </view>
+
+        <view class="store-submits-apply-info">
+          <text class="store-submits-apply-info-txt">户名</text>
+          <view class="store-submits-apply-info-input">
+            <input bindinput="onAccountNameInput" value="{{accountName}}" placeholder="请输入银行卡户名" class="store-submits-apply-info-input-input" />
+          </view>
+        </view>
+
+        <view class="store-submits-apply-info">
+          <text class="store-submits-apply-info-txt">账户类型</text>
+          <view class="store-submits-apply-info-input">
+            <input bindinput="onAccountTypeInput" value="{{accountType}}" placeholder="请选择账户类型" class="store-submits-apply-info-input-input" />
+          </view>
+        </view>
+
+        <view class="store-submits-apply-info">
+          <text class="store-submits-apply-info-txt">行业</text>
+          <view class="store-submits-apply-info-input">
+            <picker mode="selector" value="{{industry_index}}" range="{{industry_array}}" bindchange="industry_change">
+              <view class="store-submits-apply-info-input-ts">{{ industry_array[industry_index].name }}</view>
+            </picker>
           </view>
         </view>
 
@@ -47,31 +140,30 @@
           </view>
         </view>
 
-        <view class="store-submits-apply-info">
-          <text class="store-submits-apply-info-txt">省市区</text>
-          <picker mode="region" value="{{region}}" bindchange="bindRegionChange" class="store-submits-apply-city">
-            <view class="store-submits-apply-city-item-border">
-              {{region[0] || '请选择省'}} {{region[1] || '市'}} {{region[2] || '区'}}
+        <view class="store-submits-apply-city">
+          <view class="store-submits-apply-city-item">
+            <text class="store-submits-apply-city-item-txt">省市区</text>
+            <view bindtap="onClickOpenAddress" class="store-submits-apply-city-item-border">
+              {{ label || '请选择地址' }}
             </view>
-          </picker>
+          </view>
         </view>
 
         <view class="store-submits-apply-info">
           <text class="store-submits-apply-info-txt">详细地址</text>
           <view class="store-submits-apply-info-input">
-            <input bindinput="onInputChange" data-field="address" value="{{address}}" placeholder="请输入详细地址" class="store-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
+            <input bindinput="onAddressInput" value="{{address}}" placeholder="请输入详细地址" class="store-submits-apply-info-input-input" />
           </view>
         </view>
 
         <view class="store-submits-apply-info">
           <text class="store-submits-apply-info-txt">品牌介绍</text>
           <view class="store-submits-apply-info-textarea">
-            <textarea bindinput="onInputChange" data-field="recommendation" value="{{recommendation}}" placeholder="品牌详细介绍" class="store-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
+            <textarea bindinput="onRecommendationInput" value="{{recommendation}}" placeholder="品牌详细介绍" class="store-submits-apply-info-input-input" auto-height />
           </view>
         </view>
       </view>
     </view>
-
-    <view bindtap="apply" class="store-submits-apply-btn">提交入驻申请</view>
+    <view bindtap="onClickSubmitBtn" class="store-submits-apply-btn">提交入驻申请</view>
   </view>
 </view>
