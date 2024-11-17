@@ -129,7 +129,33 @@ Page({
     wx.redirectTo({ url: '/pages/login/phone/pwd/index' });
   },
   loginByWeChat() {
-    wx.redirectTo({ url: '/pages/login/wechat/index' });
+    wx.login({
+      success(res){
+        console.log(res)
+        request({
+          url:'/sso/member/login',
+          method:'post',
+          data:{'code':res.code,'type':'weChatAuthService'}
+        }).then(r=>{
+          console.log(r)
+          const {data,success}=r
+          if(success){
+            setToken(data.token)
+            setTimeout(function(){
+              wx.showToast({
+                title: '登录成功',
+                icon:'success'
+              })
+            })
+            wx.switchTab({
+              url: "/pages/my/index"
+            });
+          }
+        }).catch(err=>{
+          console.log(err)
+        })
+      }
+    })
   },
 
   onCodeInput(e) {
