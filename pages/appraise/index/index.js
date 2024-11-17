@@ -1,66 +1,116 @@
 // pages/appraise/index/index.js
+//import { config } from '../../utils/config.js';
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    storeName: '',
+    ordersId: '',
+    storeId: '',
+    content: ''
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
+  onLoad(e) {
+    const authorization = wx.getStorageSync('authorization');
+    if (!authorization || Object.keys(authorization).length === 0) {
+      wx.showToast({
+        icon: 'none',
+        title: '尚未登录, 请先登录'
+      });
+      setTimeout(() => {
+        wx.removeStorageSync('authorization');
+        wx.reLaunch({
+          url: '../verificationcodelogin/verificationcodelogin'
+        });
+      }, 777);
+      return;
+    }
 
+    if (e && e.ordersId) {
+      this.setData({ ordersId: e.ordersId });
+    }
+    if (e && e.storeId) {
+      this.setData({ storeId: e.storeId });
+    }
+    if (e && e.storeName) {
+      this.setData({ storeName: e.storeName });
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
+  // 返回上一页
+  back() {
+    wx.navigateBack({});
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
+  // 评价内容输入
+  onContentChange(e) {
+    this.setData({
+      content: e.detail.value
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
+  // 提交评价
+  onClickSubmit() {
+    if (!this.data.ordersId) {
+      wx.showToast({
+        icon: 'none',
+        title: '暂无订单号'
+      });
+      return false;
+    }
+    if (!this.data.storeId) {
+      wx.showToast({
+        icon: 'none',
+        title: '暂无商户'
+      });
+      return false;
+    }
+    if (!this.data.content) {
+      wx.showToast({
+        icon: 'none',
+        title: '请填写要评价的内容'
+      });
+      return false;
+    }
 
-  },
+    wx.showLoading({ title: '保存中' });
+    const authorization = wx.getStorageSync('authorization');
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
+    wx.request({
+      url: `${config.api_base_url}member/evaluate/${this.data.storeId}`,
+      method: 'POST',
+      data: {
+        ordersId: this.data.ordersId,
+        content: this.data.content
+      },
+      header: {
+        'AUTH': authorization.token
+      },
+      success: (res) => {
+        const { status, data } = res.data;
+        if (status.flag) {
+          wx.showToast({
+            icon: 'none',
+            title: '评价成功'
+          });
+          setTimeout(() => {
+            wx.navigateBack({});
+          }, 888);
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: status.msg
+          });
+        }
+      },
+      fail: () => {
+        wx.showToast({
+          icon: 'none',
+          title: '无法评价, 网络异常'
+        });
+      },
+      complete: () => {
+        wx.hideLoading();
+      }
+    });
   }
-})
+});

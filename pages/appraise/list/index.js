@@ -1,66 +1,115 @@
 // pages/appraise/list/index.js
+//import { config } from '../../../utils/config.js';
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    page: 1,
+    size: 10,
+    total: 0,
+    totalPage: 0,
+    list: [1,2,3,4,5]
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
+  onLoad() {
+    const authorization = wx.getStorageSync('authorization');
+    if (!authorization || Object.keys(authorization).length === 0) {
+      wx.showToast({
+        icon: 'none',
+        title: '尚未登录, 请先登录'
+      });
+      setTimeout(() => {
+        wx.removeStorageSync('authorization');
+        wx.reLaunch({
+          url: '../verificationcodelogin/verificationcodelogin'
+        });
+      }, 777);
+      return;
+    }
+    this.findListPage();
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
+  findListPage() {
+    wx.showLoading({
+      title: '加载中'
+    });
+    const authorization = wx.getStorageSync('authorization');
+    const {
+      page,
+      size
+    } = this.data;
 
+    wx.request({
+      url: `${config.api_base_url}member/evaluate/${page}/${size}`,
+      header: {
+        'AUTH': authorization.token
+      },
+      success: (res) => {
+        const {
+          status,
+          data
+        } = res.data;
+        if (status.flag) {
+          this.setData({
+            total: data.total,
+            totalPage: this.pageTotal(data.total, size),
+            list: this.data.list.concat(data.rows)
+          });
+        } else {
+          this.setData({
+            list: []
+          });
+        }
+      },
+      fail: () => {
+        wx.showToast({
+          title: '请求失败, 网络异常',
+          icon: 'none'
+        });
+      },
+      complete: () => {
+        wx.stopPullDownRefresh();
+        wx.hideLoading();
+      }
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
+  pageTotal(rowCount, pageSize) {
+    if (!rowCount) return 0;
+    return Math.ceil(rowCount / pageSize);
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
+  // 返回上一页
+  back() {
+    wx.navigateBack();
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
+  // 下拉刷新
   onPullDownRefresh() {
-
+    this.setData({
+      page: 1,
+      list: [],
+      total: 0,
+      totalPage: 0
+    });
+    this.findListPage();
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
+  // 上滑加载更多
   onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
+    const {
+      page,
+      totalPage
+    } = this.data;
+    if (page < totalPage) {
+      this.setData({
+        page: page + 1
+      });
+      this.findListPage();
+    } else {
+      wx.showToast({
+        title: '已经到底部了',
+        icon: 'none'
+      });
+    }
   }
-})
+});

@@ -1,2 +1,19 @@
 <!--pages/feedback/index/index.wxml-->
-<text>pages/feedback/index/index.wxml</text>
+<view>
+  <!-- #ifdef APP-PLUS -->
+  <view>
+    <uni-nav-bar left-icon="arrowleft" bindtap="back" title="意见反馈" statusBar="{{true}}" fixed="{{true}}"></uni-nav-bar>
+  </view>
+  <!-- #endif -->
+  
+  <view class="feedback">
+    <view class="feedback-textarea">
+      <textarea bindinput="onContentInput" value="{{content}}" placeholder="请输入您的意见反馈" class="feedback-textarea-input" placeholder-style="color:#CCCCCC"></textarea>
+      <view wx:if="{{content}}" bindtap="clearContent" class="feedback-textarea-input-close">×</view>
+    </view>
+    <view bindtap="onClickSubmitBtn" class="feedback-submit">提交您的反馈</view>
+  </view>
+  
+  <!-- 自定义组件，传入参数并绑定事件 -->
+  <simple-address ref="simpleAddress" pickerValueDefault="{{cityPickerValueDefault}}" bindonConfirm="onConfirmAddress" themeColor="#007AFF"></simple-address>
+</view>

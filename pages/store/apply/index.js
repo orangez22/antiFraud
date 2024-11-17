@@ -1,66 +1,205 @@
 // pages/store/apply/index.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    industry_index: 0,
+    industry_array: [],
+    isChain: '0',
+    memberId: undefined,
+    companyName: '',
+    storeName: '',
+    contract: '',
+    phone: '',
+    industryId: '',
+    cityPickerValueDefault: [0, 0, 0],
+    label: '',
+    provinceId: '',
+    cityId: '',
+    areaId: '',
+    province: '',
+    city: '',
+    area: '',
+    address: '',
+    recommendation: '',
+    longitude: '',
+    latitude: '',
+    businessHoursStart: '09:00',
+    businessHoursEnd: '22:00'
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
+  onLoad() {
+    const authorization = wx.getStorageSync('authorization');
+    if (!authorization || Object.keys(authorization).length === 0) {
+      wx.showToast({
+        icon: 'none',
+        title: '尚未登录, 请先登录'
+      });
+      wx.reLaunch({
+        url: '/pages/verificationcodelogin/verificationcodelogin'
+      });
+      return;
+    }
+    this._getNavData(); // 获取行业
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
+  bindStartTimeChange(e) {
+    this.setData({
+      businessHoursStart: e.detail.value
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
+  bindEndTimeChange(e) {
+    this.setData({
+      businessHoursEnd: e.detail.value
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
+  onChangeChainNo() {
+    this.setData({
+      isChain: '0',
+      companyName: ''
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
+  onChangeChainYes() {
+    this.setData({
+      isChain: '1'
+    });
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
+  onCompanyNameInput(e) {
+    this.setData({
+      companyName: e.detail.value
+    });
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
+  onStoreNameInput(e) {
+    this.setData({
+      storeName: e.detail.value
+    });
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
+  onContractInput(e) {
+    this.setData({
+      contract: e.detail.value
+    });
+  },
 
+  onPhoneInput(e) {
+    this.setData({
+      phone: e.detail.value
+    });
+  },
+
+  onAddressInput(e) {
+    this.setData({
+      address: e.detail.value
+    });
+  },
+
+  onRecommendationInput(e) {
+    this.setData({
+      recommendation: e.detail.value
+    });
+  },
+
+  onClickOpenAddress() {
+    // 打开选择地址弹窗
+    this.selectComponent('#simpleAddress').open();
+  },
+
+  onConfirmAddress(e) {
+    this.setData({
+      label: e.label,
+      provinceId: e.provinceCode,
+      cityId: e.cityCode,
+      areaId: e.areaCode,
+      province: e.provinceName,
+      city: e.cityName,
+      area: e.areaName,
+      recommendation: e.recommendation,
+      longitude: e.longitude,
+      latitude: e.latitude
+    });
+  },
+
+  onClickSubmitBtn() {
+    if (this.data.isChain !== '0' && this.data.isChain !== '1') {
+      wx.showToast({
+        icon: 'none',
+        title: '请先选择是否连锁店'
+      });
+      return;
+    }
+
+    if (this.data.isChain === '1' && !this.data.companyName) {
+      wx.showToast({
+        icon: 'none',
+        title: '请输入公司名称'
+      });
+      return;
+    }
+
+    if (!this.data.storeName) {
+      wx.showToast({
+        icon: 'none',
+        title: '请输入店铺名称'
+      });
+      return;
+    }
+
+    if (!this.data.contract) {
+      wx.showToast({
+        icon: 'none',
+        title: '请输入联系人'
+      });
+      return;
+    }
+
+    if (!this.data.phone) {
+      wx.showToast({
+        icon: 'none',
+        title: '请输入联系电话'
+      });
+      return;
+    }
+
+    if (!this.data.industryId) {
+      wx.showToast({
+        icon: 'none',
+        title: '请选择行业'
+      });
+      return;
+    }
+
+    if (!this.data.address) {
+      wx.showToast({
+        icon: 'none',
+        title: '请输入详细地址'
+      });
+      return;
+    }
+
+    // 执行提交申请操作
+  },
+
+  industry_change(e) {
+    const index = e.detail.value;
+    this.setData({
+      industry_index: index,
+      industryId: this.data.industry_array[index].id
+    });
+  },
+
+  _getNavData() {
+    // 模拟获取行业数据
+    const industryData = [
+      { name: '餐饮', id: 1 },
+      { name: '零售', id: 2 },
+      { name: '教育', id: 3 }
+    ];
+
+    this.setData({
+      industry_array: industryData
+    });
   }
-})
+});

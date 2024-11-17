@@ -1,2 +1,19 @@
 <!--pages/complain/index/index.wxml-->
-<text>pages/complain/index/index.wxml</text>
+<view>
+  <!-- #ifdef APP-PLUS -->
+  <view>
+    <uni-nav-bar left-icon="arrowleft" bindtap="back" title="投诉商家" statusBar="{{true}}" fixed="{{true}}"></uni-nav-bar>
+  </view>
+  <!-- #endif -->
+
+  <view style="padding: 15rpx;">
+    <view class="complaints-merchant">
+      <view class="complaints-merchant-title">{{storename}}</view>
+      <view class="complaints-merchant-detail">
+        <view class="complaints-merchant-detail-title">投诉内容：</view>
+        <textarea bindinput="onContentInput" value="{{content}}"></textarea>
+        <button bindtap="onClickBtnSubmitContent">提交</button>
+      </view>
+    </view>
+  </view>
+</view>
