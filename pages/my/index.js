@@ -150,7 +150,7 @@ Page({
     })
   },
   initiatePayment(paymentData) {
-    wx.request({
+    request({
       url: `/orders/pay/pay`,
       method: 'POST',
       data: paymentData,
@@ -202,7 +202,7 @@ Page({
     })
   },
   _refreshOrder(orderId) {
-    wx.request({
+    request({
       url: `/orders/pay/queryOrders/${orderId}`,
       header: {
         'AUTH': 'ROBOT ' + wx.getStorageSync('token')

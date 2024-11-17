@@ -1,66 +1,119 @@
-// pages/pay/index.js
+
+import request from '@/utils/request'
+import {
+  validateForm,
+  isLogin
+} from '@/utils/common'
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    storeInfo: {},
+    payAmount: 0,
+    ordersId: '',
+    storeId: ''
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
+    if (options && options.storeId && options.payAmount) {
+      this.setData({
+        storeId: options.storeId,
+        payAmount: options.payAmount,
+      });
+      this._getStoreInfoByStoreId();
+      this._SendCodeBean();
+    }
 
+    const myOrdersId = wx.getStorageSync('myOrdersId');
+    if (myOrdersId) {
+      this.setData({ ordersId: myOrdersId });
+      this._sendOrderId();
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
+  // Go back to the previous page
+  back() {
+    wx.navigateBack();
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
+  // Navigate to the homepage
+  onClickGotoBack() {
+    wx.navigateTo({
+      url: 'pages/index/index'
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
+  // Navigate to modify data page
+  onClickMessage() {
+    wx.navigateTo({
+      url: 'pages/modify/index'
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
+  // Fetch store info by storeId
+  _getStoreInfoByStoreId() {
+    const authorization = wx.getStorageSync('authorization');
+    request({
+      url: `${config.api_base_url}merchant/store/${this.data.storeId}`,
+      header: {
+        AUTH: authorization.token
+      },
+      success: (res) => {
+        const { status, data } = res.data;
+        if (status.flag === true) {
+          this.setData({ storeInfo: data });
+        } else {
+          this.setData({ storeInfo: {} });
+        }
+      },
+      fail: () => {
+        this.setData({ storeInfo: {} });
+      }
+    });
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
+  // Send order ID for payment status query
+  _sendOrderId() {
+    const authorization = wx.getStorageSync('authorization');
+    request({
+      url: `${config.api_base_url}orders/pay/queryOrders/${this.data.ordersId}`,
+      header: {
+        AUTH: authorization.token
+      },
+      success: (res) => {
+        const { status, data } = res.data;
+        if (status.flag === true) {
+          wx.removeStorageSync('myOrdersId');
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: status.msg
+          });
+        }
+      },
+      fail: () => {
+        wx.showToast({
+          icon: 'none',
+          title: '发送订单号失败, 网络异常'
+        });
+      }
+    });
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
+  _getInfoByToken() {
+    //判断是否已经登录
+    isLogin()
 
+    request({
+      url: `/sso/member/findByToken`,
+    }).then(res => {
+      const {success,data,message} = res
+      if (success) {
+        this.user = data
+      } else {
+        wx.showToast({
+          icon: 'none',
+          title: message
+        })
+      }
+    })
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
-})
+});
