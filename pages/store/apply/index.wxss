@@ -3,20 +3,20 @@ page {
   background: #F5F5F5;
 }
 
-.merchant-submits-apply {
+.store-submits-apply {
   padding: 15rpx;
   box-sizing: border-box;
 
 }
 
-.merchant-submits-applys {
+.store-submits-applys {
   background: #fff;
   padding: 30rpx;
   box-sizing: border-box;
   border-radius: 12rpx;
 }
 
-.merchant-submits-apply-top {
+.store-submits-apply-top {
   border-bottom: 2rpx solid #EEEEEE;
 }
 
@@ -86,11 +86,11 @@ page {
   float: left;
 }
 
-.merchant-submits-apply-bottom {}
+.store-submits-apply-bottom {}
 
-.merchant-submits-apply-info {}
+.store-submits-apply-info {}
 
-.merchant-submits-apply-info-txt {
+.store-submits-apply-info-txt {
   font-size: 28rpx;
   color: #000000;
   line-height: 70rpx;
@@ -99,7 +99,7 @@ page {
 
 }
 
-.merchant-submits-apply-info-input {
+.store-submits-apply-info-input {
   width: 100%;
   height: 80rpx;
   border-radius: 12rpx;
@@ -109,7 +109,7 @@ page {
   box-sizing: border-box;
 }
 
-.merchant-submits-apply-info-textarea {
+.store-submits-apply-info-textarea {
   width: 100%;
   /* height:300rpx; */
   height: auto !important;
@@ -126,7 +126,7 @@ page {
 	    padding: 10rpx;
 	} */
 
-.merchant-submits-apply-info-input-input {
+.store-submits-apply-info-input-input {
   padding: 0;
   margin: 0;
   outline: none;
@@ -140,7 +140,7 @@ page {
 
 }
 
-.merchant-submits-apply-info-input-close {
+.store-submits-apply-info-input-close {
   width: 30rpx;
   height: 30rpx;
   border-radius: 50%;
@@ -154,7 +154,7 @@ page {
   justify-content: center;
 }
 
-.merchant-submits-apply-info-input uni-picker {
+.store-submits-apply-info-input uni-picker {
   padding: 0;
   margin: 0;
   outline: none;
@@ -168,7 +168,7 @@ page {
   position: relative;
 }
 
-.merchant-submits-apply-info-input uni-picker::after {
+.store-submits-apply-info-input uni-picker::after {
   content: "";
   position: absolute;
   right: 20rpx;
@@ -182,7 +182,7 @@ page {
   margin-top: -4rpx;
 }
 
-.merchant-submits-apply-info-input picker {
+.store-submits-apply-info-input picker {
   padding: 0;
   margin: 0;
   outline: none;
@@ -196,7 +196,7 @@ page {
   position: relative;
 }
 
-.merchant-submits-apply-info-input picker::after {
+.store-submits-apply-info-input picker::after {
   content: "";
   position: absolute;
   right: 20rpx;
@@ -210,7 +210,7 @@ page {
   margin-top: -4rpx;
 }
 
-.merchant-submits-apply-city {
+.store-submits-apply-city {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -219,11 +219,11 @@ page {
   justify-content: space-between;
 }
 
-.merchant-submits-apply-city-item {
+.store-submits-apply-city-item {
   width: 100%;
 }
 
-.merchant-submits-apply-city-item-txt {
+.store-submits-apply-city-item-txt {
   font-size: 28rpx;
   color: #000000;
   line-height: 70rpx;
@@ -231,7 +231,7 @@ page {
   margin-right: 10rpx;
 }
 
-.merchant-submits-apply-city uni-picker {
+.store-submits-apply-city uni-picker {
   font-size: 28rpx;
   width: 192rpx;
   height: 72rpx;
@@ -242,7 +242,7 @@ page {
   position: relative;
 }
 
-.merchant-submits-apply-city-item-border {
+.store-submits-apply-city-item-border {
   font-size: 28rpx;
   width: 100%;
   box-sizing: border-box;
@@ -254,7 +254,7 @@ page {
   position: relative;
 }
 
-.merchant-submits-apply-city-item-border-h {
+.store-submits-apply-city-item-border-h {
   font-size: 28rpx;
   width: 100%;
   box-sizing: border-box;
@@ -267,7 +267,7 @@ page {
   color: #CCCCCC;
 }
 
-.merchant-submits-apply-city uni-picker::after {
+.store-submits-apply-city uni-picker::after {
   content: "";
   position: absolute;
   right: 20rpx;
@@ -281,7 +281,7 @@ page {
   margin-top: -4rpx;
 }
 
-.merchant-submits-apply-btn {
+.store-submits-apply-btn {
   width: 660rpx;
   height: 82rpx;
   background: rgba(240, 34, 48, 1);

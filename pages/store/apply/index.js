@@ -7,6 +7,8 @@ Page({
     memberId: undefined,
     companyName: '',
     storeName: '',
+    imageUrl: '', // 存储选择的图片URL
+    coverImageUrl: '',
     contract: '',
     phone: '',
     industryId: '',
@@ -93,6 +95,51 @@ Page({
   onAddressInput(e) {
     this.setData({
       address: e.detail.value
+    });
+  },
+  // 选择店内图片
+  chooseImage: function () {
+    wx.chooseImage({
+      count: 1, // 只允许选择1张图片
+      sizeType: ['original', 'compressed'], // 可以选择原图或压缩图
+      sourceType: ['album', 'camera'], // 可以选择相册或相机
+      success: (res) => {
+        const tempFilePath = res.tempFilePaths[0]; // 获取选择的图片路径
+        this.setData({
+          imageUrl: tempFilePath, // 设置图片路径
+        });
+
+        // 可选：上传图片到服务器
+        this.uploadImage(tempFilePath);
+      },
+      fail: (err) => {
+        wx.showToast({
+          title: '选择图片失败',
+          icon: 'none',
+        });
+      }
+    });
+  },
+  chooseCoverImage: function () {
+    wx.chooseImage({
+      count: 1, // 只允许选择1张图片
+      sizeType: ['original', 'compressed'], // 可以选择原图或压缩图
+      sourceType: ['album', 'camera'], // 可以选择相册或相机
+      success: (res) => {
+        const tempFilePath = res.tempFilePaths[0]; // 获取选择的图片路径
+        this.setData({
+          coverImageUrl: tempFilePath, // 设置图片路径
+        });
+
+        // 可选：上传图片到服务器
+        this.uploadImage(tempFilePath);
+      },
+      fail: (err) => {
+        wx.showToast({
+          title: '选择图片失败',
+          icon: 'none',
+        });
+      }
     });
   },
 
@@ -192,10 +239,18 @@ Page({
 
   _getNavData() {
     // 模拟获取行业数据
-    const industryData = [
-      { name: '餐饮', id: 1 },
-      { name: '零售', id: 2 },
-      { name: '教育', id: 3 }
+    const industryData = [{
+        name: '餐饮',
+        id: 1
+      },
+      {
+        name: '零售',
+        id: 2
+      },
+      {
+        name: '教育',
+        id: 3
+      }
     ];
 
     this.setData({
