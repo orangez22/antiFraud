@@ -1,123 +1,68 @@
 import request from '@/utils/request';
 import { isLogin } from '@/utils/common';
-
 Page({
   data: {
-    applys: [], // 存储申请数据
-    page: 1,    // 当前页码
-    size: 10,   // 每页大小
-    total: 0,   // 总记录数
-    totalPage: 0 // 总页数
+    applys: [], // 申请数据
+    page: 1,
+    size: 10,
+    totalPage: 0
   },
 
   onLoad() {
-    isLogin(); // 检查登录状态
+    this.loadData();
   },
 
-  onShow() {
-    this.resetData(); // 初始化数据
-    this.getApplys(); // 加载数据
-  },
-
-  onReachBottom() {
-    const { page, totalPage } = this.data;
-    if (page < totalPage) {
-      this.setData({ page: page + 1 });
-      this.getApplys();
-    } else {
-      wx.showToast({
-        title: '已经到底部了',
-        icon: 'none'
-      });
-    }
-  },
-
-  onPullDownRefresh() {
-    this.resetData(); // 重置分页数据
-    this.getApplys(); // 加载第一页数据
-    wx.stopPullDownRefresh(); // 停止下拉刷新
-  },
-
-  resetData() {
-    this.setData({
-      applys: [],
-      page: 1,
-      size: 10,
-      total: 0,
-      totalPage: 0
-    });
-  },
-
-  // 查看原因
-  onClickSeeBecause(e) {
-    const item = e.currentTarget.dataset.item;
-    if (item.status !== '2' && item.status !== '5') return;
-    wx.showModal({
-      content: item.remark || '暂无原因',
-      showCancel: false
-    });
-  },
-
-  // 查看详情
-  onClickWSDetailInfo(e) {
-    const item = e.currentTarget.dataset.item;
-    if (!item.id) return;
-    wx.navigateTo({
-      url: `../submitdetails/submitdetails?id=${item.id}`
-    });
-  },
-
-  // 计算总页数
-  pageTotal(rowCount, pageSize) {
-    return rowCount ? Math.ceil(rowCount / pageSize) : 0;
-  },
-
-  // 获取申请列表
-  getApplys() {
+  loadData() {
     wx.showLoading({ title: '加载中' });
-    const { page, size } = this.data;
     request({
       url: '/apply/merchantApply/page',
       method: 'POST',
-      data: { current: page, size }
-    })
-      .then((res) => {
-        wx.hideLoading();
-        const { success, data } = res;
-        if (success && data.records) {
-          const { records, total } = data;
-          this.setData({
-            applys: this.data.applys.concat(records), // 拼接新数据
-            total, // 总记录数
-            totalPage: this.pageTotal(total, size) // 总页数
-          });
-        } else {
-          this.handleEmptyData();
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        wx.hideLoading();
-        this.handleEmptyData();
-        wx.showToast({
-          title: '请求失败，网络异常',
-          icon: 'none'
+      data: { current: this.data.page, size: this.data.size }
+    }).then(({ success, data }) => {
+      wx.hideLoading();
+      if (success) {
+        const formattedData = data.records.map((item) => ({
+          ...item,
+          statusText: this.getStatusText(item.status),
+          statusClass: this.getStatusClass(item.status)
+        }));
+        this.setData({
+          applys: this.data.applys.concat(formattedData),
+          totalPage: Math.ceil(data.total / this.data.size)
         });
-      });
+      }
+    }).catch(() => {
+      wx.hideLoading();
+      wx.showToast({ title: '加载失败', icon: 'none' });
+    });
   },
 
-  handleEmptyData() {
-    this.setData({
-      applys: [],
-      total: 0,
-      totalPage: 0
-    });
+  getStatusText(status) {
+    switch (status) {
+      case '0': return '待审核';
+      case '1': return '审核通过';
+      case '2': return '审核失败';
+      default: return '未知状态';
+    }
+  },
+
+  getStatusClass(status) {
+    switch (status) {
+      case '0': return 'state-pending';
+      case '1': return 'state-approved';
+      case '2': return 'state-rejected';
+      default: return '';
+    }
+  },
+
+  // 查看原因
+  onClickSeeReason(e) {
+    const { remark } = e.currentTarget.dataset.item;
+    wx.showModal({ content: remark || '暂无原因', showCancel: false });
   },
 
   // 新增申请
   addApply() {
-    wx.navigateTo({
-      url: '/pages/merchantsubmitsapply/merchantsubmitsapply'
-    });
-  }
+    wx.navigateTo({ url: '/pages/merchant/apply/index/index' });
+  },
 });

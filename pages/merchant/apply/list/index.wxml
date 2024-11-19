@@ -1,22 +1,16 @@
-<view>
-  <view class="merchant-entry">
-    <view wx:for="{{applys}}" wx:key="id" class="merchant-entry-list">
+<view class="merchant-entry">
+  <block wx:for="{{applys}}" wx:key="id">
+    <view class="merchant-entry-list">
       <view class="merchant-entry-list-top">
-        <text class="name">商家名称：{{item.storeName}}</text>
-        <text wx:if="{{item.status === '0'}}" class="state stateColorOne">初审待审核</text>
-        <text wx:if="{{item.status === '1'}}" class="state stateColorTwo">初审通过</text>
-        <text wx:if="{{item.status === '2'}}" class="state stateColorThree">初审失败</text>
-        <text wx:if="{{item.status === '3'}}" class="state stateColorOne">待平台审核</text>
-        <text wx:if="{{item.status === '4'}}" class="state stateColorTwo">平台审核通过</text>
-        <text wx:if="{{item.status === '5'}}" class="state stateColorThree">平台审核失败</text>
+        <text class="name">商家名称：{{item.merchantName}}</text>
+        <text class="state {{item.statusClass}}">{{item.statusText}}</text>
       </view>
       <view class="merchant-entry-list-numbers">申请单号：{{item.id}}</view>
       <view class="merchant-entry-list-time">提交时间：{{item.createdAt}}</view>
-      <view class="merchant-entry-list-btn">
-        <view bindtap="onClickSeeBecause" data-item="{{item}}" wx:if="{{item.status === '2' || item.status === '5'}}" class="merchant-entry-list-btn-one">查看原因</view>
-        <view bindtap="onClickWSDetailInfo" data-item="{{item}}" wx:if="{{item.status === '1'}}" class="merchant-entry-list-btn-one">完善信息</view>
+      <view class="merchant-entry-list-btn" wx:if="{{item.status === '2'}}">
+        <view bindtap="onClickSeeReason" data-item="{{item}}" class="btn-see-reason">查看原因</view>
       </view>
     </view>
-    <view class="addBtn" bindtap="addApply">新增提交</view>
-  </view>
+  </block>
+  <view class="add-btn" bindtap="addApply">新增提交</view>
 </view>
