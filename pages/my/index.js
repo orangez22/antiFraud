@@ -146,8 +146,17 @@ Page({
           this.setData({
             user: user
           })
+          wx.showToast({
+            title: '支付成功',
+            icon: 'success',
+            duration: 2000//持续的时间
+          })
         } else if (res.cancel) {
-          // 用户点击了取消
+          wx.showToast({
+            title: '支付失败',
+            icon: 'error',
+            duration: 2000//持续的时间
+          })
           console.log("取消");
         }
       },
@@ -164,8 +173,8 @@ Page({
           setTimeout(() => {
             wx.hideLoading()
             wx.clearStorageSync()
-            wx.redirectTo({
-              url: `${config.base_url}`
+            wx.navigateTo({
+              url: "/pages/login/phone/code/index"
             })
           }, 2000)
         }
