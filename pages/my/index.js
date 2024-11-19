@@ -1,7 +1,6 @@
 // pages/my/index.js
 import request from '@/utils/request'
 import {
-  validateForm,
   isLogin
 } from '@/utils/common'
 
@@ -16,11 +15,11 @@ Page({
    */
   data: {
     user: {
-      id:'',
+      id: '',
       totalSave: 0,
-      isPlus:'1',
-      avatar:'',
-      nickname:''
+      isPlus: '0',
+      avatar: '',
+      nickname: ''
     },
   },
 
@@ -87,147 +86,72 @@ Page({
     }
     return null;
   },
-  onClickSetPLUSVIP() {
-    if (!wx.getStorageSync('openId') && !this.getUrlParam('code')) {
-      const url = encodeURIComponent(window.location.href)
-      wx.redirectTo({
-        url: `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6246e0503023027f&redirect_uri=${url}&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect`
-      })
-    } else if (!wx.getStorageSync('openId') && this.getUrlParam('code')) {
-      const code = this.getUrlParam('code')
-      wx.request({
-        url: `/member/member/openid/${code}`,
-        header: {
-          'Content-Type': 'application/json'
-        },
-        success: (res) => {
-          const {
-            status,
-            data
-          } = res.data
-          if (status.flag === true) {
-            wx.setStorageSync('openId', data.openid)
-            this.onClickSetPLUSVIP2()
-          }
-        }
-      })
-    } else {
-      this.onClickSetPLUSVIP2()
-    }
-  },
-  onClickSetPLUSVIP2() {
+  vipToPay(e) {
+    let payAmount = e.currentTarget.dataset.value
+    let authorization = wx.getStorageSync('authorization')
+    let orders = {
+      payAmount: payAmount,
+      rate: 1,
+      payment: '10',
+      openId: authorization.openId,
+      storeId: 0,
+      price: payAmount,
+      memberId: authorization.memberId,
+      nickname: authorization.nickname,
+    };
     wx.showLoading({
-      title: '支付中...'
-    })
-    wx.request({
-      url: `/orders/orders/buyVip/198`,
-      header: {
-        'AUTH': 'ROBOT ' + wx.getStorageSync('token')
-      },
+      title: '正在生成订单...', // 提示框文字
+      mask: true, // 是否显示透明蒙层，防止触摸穿透
+    });
+    // 模拟加载时间，2秒后关闭加载提示
+    setTimeout(() => {
+      wx.hideLoading();
+      this.showPayModal(orders);
+    }, 1000);
+    // request({
+    //   url:`/orders/orders/preOrders`,
+    //   success: (res) => {
+    //     let {status,data}=res.data
+    //     if(status.flag===true){
+    //       console.log(data.ordersId+"+time1="+(new Date().valueOf()))
+    //       orders.ordersId=data.ordersId
+    //     }
+    //   }
+    // })
+
+    if (payAmount === 198) {
+      orders.remark = "vip2"
+    } else {
+      orders.remark = "vip1"
+    }
+
+  },
+  // 显示弹窗
+  showPayModal(orders) {
+    wx.showModal({
+      title: '支付确认',
+      content: '收费' + orders.payAmount + '元，是否立即支付？',
+      confirmText: '确定',
+      cancelText: '取消',
       success: (res) => {
-        const {
-          status,
-          data
-        } = res.data
-        if (status.flag) {
-          const paymentData = {
-            openId: data.memberOpenId || wx.getStorageSync('openId'),
-            ordersId: data.ordersId,
-            price: 198,
-            payAmount: 198,
-            memberId: data.memberId,
-            remark: 'vip2'
+        if (res.confirm) {
+          // 用户点击了确定
+          console.log("确定");
+          let user = this.data.user
+          if (orders.payAmount == 198) {
+            user.isPlus = "2"
+          } else {
+            user.isPlus = "1"
           }
-          this.initiatePayment(paymentData)
-        } else {
-          wx.hideLoading()
-          wx.showToast({
-            icon: 'none',
-            title: '购买失败'
+          this.setData({
+            user: user
           })
-        }
-      }
-    })
-  },
-  initiatePayment(paymentData) {
-    request({
-      url: `/orders/pay/pay`,
-      method: 'POST',
-      data: paymentData,
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success: (res) => {
-        const {
-          status,
-          data
-        } = res.data
-        if (status.flag) {
-          wx.hideLoading()
-          wx.requestPayment({
-            timeStamp: data.timeStamp,
-            nonceStr: data.nonceStr,
-            package: data.package,
-            signType: data.signType,
-            paySign: data.paySign,
-            success: () => {
-              wx.showToast({
-                icon: 'none',
-                title: '支付成功'
-              })
-              this._refreshOrder(paymentData.ordersId)
-            },
-            fail: () => {
-              wx.showToast({
-                icon: 'none',
-                title: '支付取消'
-              })
-            }
-          })
-        } else {
-          wx.hideLoading()
-          wx.showToast({
-            icon: 'none',
-            title: '支付失败'
-          })
+        } else if (res.cancel) {
+          // 用户点击了取消
+          console.log("取消");
         }
       },
-      fail: () => {
-        wx.hideLoading()
-        wx.showToast({
-          icon: 'none',
-          title: '请求失败, 网络异常'
-        })
-      }
-    })
-  },
-  _refreshOrder(orderId) {
-    request({
-      url: `/orders/pay/queryOrders/${orderId}`,
-      header: {
-        'AUTH': 'ROBOT ' + wx.getStorageSync('token')
-      },
-      success: (res) => {
-        const {
-          status
-        } = res.data
-        if (status.flag) {
-          this.user = {}
-          this._getInfoByToken()
-        } else {
-          wx.showToast({
-            icon: 'none',
-            title: status.msg
-          })
-        }
-      },
-      fail: () => {
-        wx.showToast({
-          icon: 'none',
-          title: '查询订单失败'
-        })
-      }
-    })
+    });
   },
   onClickExit() {
     wx.showModal({
@@ -255,7 +179,11 @@ Page({
     request({
       url: `/sso/member/findByToken`,
     }).then(res => {
-      const {success,data,message} = res
+      const {
+        success,
+        data,
+        message
+      } = res
       if (success) {
         this.user = data
       } else {
@@ -271,5 +199,13 @@ Page({
     wx.navigateTo({
       url: url
     });
-  }
+  },
+  // 提示功能尚未开发
+  showNotDeveloped() {
+    wx.showToast({
+      title: '功能尚未开发', // 提示内容
+      icon: 'none', // 无图标
+      duration: 2000, // 显示时间，单位毫秒
+    });
+  },
 })

@@ -2,17 +2,18 @@
   <view class="store-entry">
     <view wx:for="{{applys}}" wx:key="id" class="store-entry-list">
       <view class="store-entry-list-top">
-        <text class="name">商家名称：{{item.storeName}}</text>
-        <text wx:if="{{item.status === '0'}}" class="state stateColorOne">初审核</text>
-        <text wx:if="{{item.status === '1'}}" class="state stateColorTwo">审核通过</text>
-        <text wx:if="{{item.status === '2'}}" class="state stateColorThree">审核失败</text>
+        <text class="name">店铺名称：{{item.storeName}}</text>
+        <text wx:if="{{item.status === '0'}}" class="state state-pending">待审核</text>
+        <text wx:elif="{{item.status === '1'}}" class="state state-approved">审核通过</text>
+        <text wx:elif="{{item.status === '2'}}" class="state state-rejected">审核失败</text>
+        <text wx:else class="state stateColorThree">未知状态</text>
       </view>
       <view class="store-entry-list-numbers">申请单号：{{item.id}}</view>
       <view class="store-entry-list-time">提交时间：{{item.createdAt}}</view>
       <view class="store-entry-list-btn">
-        <view bindtap="onClickSeeBecause" data-item="{{item}}" wx:if="{{item.status === '2'}}" class="store-entry-list-btn-one">查看原因</view>
+        <view bindtap="onClickSeeBecause" data-item="{{item}}" wx:if="{{item.status === '2'}}" class="btn-see-reason">查看原因</view>
       </view>
     </view>
-    <view class="addBtn" bindtap="addApply">新增提交</view>
+    <view class="add-btn" bindtap="addApply">新增提交</view>
   </view>
 </view>

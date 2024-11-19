@@ -12,11 +12,33 @@ Page({
 
   onLoad() {
     isLogin(); // 检查登录状态
+
   },
 
   onShow() {
-    this.resetData(); // 初始化数据
-    this.getApplys(); // 加载数据
+    this.resetData(); // 初始化数据`
+    // this.getApplys(); // 加载数据
+    let list = [
+      {
+        id:1,
+        storeName:"xxx",
+        status:"0",
+        createdAt:"2024年11月11日11时11分11秒"
+      },
+      {
+        id:1,
+        storeName:"xxx",
+        status:"1",
+        createdAt:"2024年11月11日11时11分11秒"
+      },
+      {
+        id:1,
+        storeName:"xxx",
+        status:"2",
+        createdAt:"2024年11月11日11时11分11秒"
+      }
+    ]
+    this.setData({applys:list})
   },
 
   onReachBottom() {
@@ -36,6 +58,7 @@ Page({
     this.resetData(); // 重置分页数据
     this.getApplys(); // 加载第一页数据
     wx.stopPullDownRefresh(); // 停止下拉刷新
+
   },
 
   resetData() {
@@ -47,7 +70,23 @@ Page({
       totalPage: 0
     });
   },
+  getStatusText(status) {
+    switch (status) {
+      case '0': return '待审核';
+      case '1': return '审核通过';
+      case '2': return '审核失败';
+      default: return '未知状态';
+    }
+  },
 
+  getStatusClass(status) {
+    switch (status) {
+      case '0': return 'state-pending';
+      case '1': return 'state-approved';
+      case '2': return 'state-rejected';
+      default: return '';
+    }
+  },
   // 查看原因
   onClickSeeBecause(e) {
     const item = e.currentTarget.dataset.item;
@@ -74,6 +113,7 @@ Page({
 
   // 获取申请列表
   getApplys() {
+
     wx.showLoading({ title: '加载中' });
     const { page, size } = this.data;
     request({
