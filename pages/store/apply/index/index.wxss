@@ -86,10 +86,6 @@ page {
   float: left;
 }
 
-.store-submits-apply-bottom {}
-
-.store-submits-apply-info {}
-
 .store-submits-apply-info-txt {
   font-size: 28rpx;
   color: #000000;
