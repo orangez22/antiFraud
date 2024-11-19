@@ -10,7 +10,9 @@ Page({
     goldBean: '', // 金豆
     list: []      // 消费明细
   },
-
+  onShow() {
+    this._getInfoByToken()
+  },
   _getInfoByToken() {
     //判断是否已经登录
     isLogin()

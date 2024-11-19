@@ -20,7 +20,6 @@
     "pages/complain/list/index",
     "pages/feedback/index/index",
     "pages/feedback/list/index",
-    "pages/store/apply/index",
     "pages/store/detail/index",
     "pages/logs/logs",
     "pages/about/index"

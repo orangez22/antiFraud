@@ -9,6 +9,34 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/store/apply/list/index",
+          "pathName": "pages/store/apply/list/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/store/apply/index/index",
+          "pathName": "pages/store/apply/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/merchant/apply/index/index",
+          "pathName": "pages/merchant/apply/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/feedback/list/index",
           "pathName": "pages/feedback/list/index",
           "query": "",
@@ -18,13 +46,6 @@
         {
           "name": "pages/feedback/index/index",
           "pathName": "pages/feedback/index/index",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "pages/store/apply/index",
-          "pathName": "pages/store/apply/index",
           "query": "",
           "launchMode": "default",
           "scene": null

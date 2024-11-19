@@ -72,6 +72,9 @@ Page({
         wx.hideLoading();
       }
     });
+    wx.redirectTo({
+      url: 'pages/feedback/list/index',
+    })
   },
 
   // 地址选择确认事件

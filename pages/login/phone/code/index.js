@@ -1,7 +1,14 @@
 // pages/login/phone/code/index.js
 import request from '@/utils/request';
-import { validateForm, isLogin } from '@/utils/common';
-import { setToken, getToken, setId } from '@/utils/auth';
+import {
+  validateForm,
+  isLogin
+} from '@/utils/common';
+import {
+  setToken,
+  getToken,
+  setId
+} from '@/utils/auth';
 
 Page({
   data: {
@@ -35,13 +42,23 @@ Page({
   },
 
   rules: {
-    phone: [
-      { required: true, message: '手机号不能为空' },
-      { pattern: /^1[3456789]\d{9}$/, message: '手机号码格式错误' }
+    phone: [{
+        required: true,
+        message: '手机号不能为空'
+      },
+      {
+        pattern: /^1[3456789]\d{9}$/,
+        message: '手机号码格式错误'
+      }
     ],
-    code: [
-      { required: true, message: '验证码不能为空' },
-      { pattern: /^\d{4}$/, message: '验证码格式错误' }
+    code: [{
+        required: true,
+        message: '验证码不能为空'
+      },
+      {
+        pattern: /^\d{4}$/,
+        message: '验证码格式错误'
+      }
     ]
   },
 
@@ -73,7 +90,10 @@ Page({
     request({
       url: '/sso/member/getCode',
       method: 'POST',
-      data: { phone: this.data.phone, type: 'login' }
+      data: {
+        phone: this.data.phone,
+        type: 'login'
+      }
     }).then(res => {
       wx.showToast({
         title: '短信发送成功',
@@ -90,11 +110,14 @@ Page({
     const data = {
       phone: this.data.phone,
       code: this.data.code,
-      type: 'verificationCodeAuthService'
+      // type: 'verificationCodeAuthService'
+      type: 'memberServiceImplByCode'
     };
     validateForm(data, this.rules)
       .then(() => {
-        wx.showLoading({ title: '登录中...' });
+        wx.showLoading({
+          title: '登录中...'
+        });
         request({
           url: `/sso/member/login`,
           method: 'POST',
@@ -126,7 +149,9 @@ Page({
   },
 
   goLoginPage() {
-    wx.redirectTo({ url: '/pages/login/phone/pwd/index' });
+    wx.redirectTo({
+      url: '/pages/login/phone/pwd/index'
+    });
   },
   loginByWeChat() {
     wx.login({
@@ -159,6 +184,8 @@ Page({
   },
 
   onCodeInput(e) {
-    this.setData({ code: e.detail.value });
+    this.setData({
+      code: e.detail.value
+    });
   }
 });
