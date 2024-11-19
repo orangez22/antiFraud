@@ -282,7 +282,7 @@ Page({
     // }
 
     // 执行提交申请操作(向后端发起请求)
-
+    
     //请求完成后跳转到列表页面
     wx.redirectTo({
       url: '/pages/store/apply/list/index'

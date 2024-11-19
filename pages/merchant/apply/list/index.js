@@ -117,7 +117,7 @@ Page({
   // 新增申请
   addApply() {
     wx.navigateTo({
-      url: '/pages/merchantsubmitsapply/merchantsubmitsapply'
+      url: '/pages/merchant/apply/index/index'
     });
   }
 });
