@@ -1,4 +1,7 @@
 // pages/store/apply/index.js
+import request from '@/utils/request';
+import { isLogin, getIdByToken } from '@/utils/common';
+import { getId } from '@/utils/auth';
 Page({
   data: {
     industry_index: 0,
@@ -32,7 +35,8 @@ Page({
     longitude: '',
     latitude: '',
     businessHoursStart: '09:00',
-    businessHoursEnd: '22:00'
+    businessHoursEnd: '22:00',
+    region: ['福建省', '厦门市', '思明区'],
   },
 
   onLoad() {
@@ -211,21 +215,8 @@ Page({
   },
 
   onClickSubmitBtn() {
-    // if (this.data.isChain !== '0' && this.data.isChain !== '1') {
-    //   wx.showToast({
-    //     icon: 'none',
-    //     title: '请先选择是否连锁店'
-    //   });
-    //   return;
-    // }
-
-    // if (this.data.isChain === '1' && !this.data.companyName) {
-    //   wx.showToast({
-    //     icon: 'none',
-    //     title: '请输入公司名称'
-    //   });
-    //   return;
-    // }
+ 
+ 
 
     // if (!this.data.storeName) {
     //   wx.showToast({
@@ -282,7 +273,15 @@ Page({
     // }
 
     // 执行提交申请操作(向后端发起请求)
-
+    request({
+      url:'/apply/storeApply/apply',
+      data:this.data,
+      method:'post'
+    }).then(res=>{
+      console.log(res)
+    }).catch(err=>{
+      console.log(err)
+    })
     //请求完成后跳转到列表页面
     wx.redirectTo({
       url: '/pages/store/apply/list/index'

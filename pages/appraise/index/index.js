@@ -74,7 +74,7 @@ Page({
 
     wx.showLoading({ title: '保存中' });
     const authorization = wx.getStorageSync('authorization');
-
+  // 执行提交评价操作(向后端发起请求)
     wx.request({
       url: `${config.api_base_url}member/evaluate/${this.data.storeId}`,
       method: 'POST',
@@ -112,5 +112,9 @@ Page({
         wx.hideLoading();
       }
     });
+    //提交完成后跳转到列表页面
+    wx.redirectTo({
+      url: 'pages/appraise/list/index'
+    })
   }
 });

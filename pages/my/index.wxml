@@ -141,7 +141,7 @@
               <image style="width: 50rpx; height: 50rpx;" src="{{commonImg('shangjiaruzhu.png')}}" class="my-list-wrap-item-list-item-img"></image>
               <text class="my-list-wrap-item-list-item-txt">商家入驻</text>
             </view>
-            <view bindtap="navigate" data-url='/pages/store/apply/index/index' class="my-list-wrap-item-list-item">
+            <view bindtap="navigate" data-url='/pages/store/apply/list/index' class="my-list-wrap-item-list-item">
               <image style="width: 50rpx; height: 50rpx;" src="{{commonImg('shangjiaruzhu.png')}}" class="my-list-wrap-item-list-item-img"></image>
               <text class="my-list-wrap-item-list-item-txt">商铺入驻</text>
             </view>

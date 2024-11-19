@@ -1,5 +1,5 @@
 // pages/complain/index/index.js
-import { yourFormatDateTime, config } from '../../utils/config.js';
+//import { yourFormatDateTime, config } from '../../utils/config.js';
 
 Page({
   data: {
@@ -104,5 +104,8 @@ Page({
         wx.hideLoading();
       }
     });
+    wx.redirectTo({
+      url: 'pages/complain/list/index',
+    })
   }
 });

@@ -1,1 +1,29 @@
 /* pages/about/index.wxss */
+.about{
+    padding: 40rpx;
+    font-size: 28rpx;
+}
+.about_content{
+    margin-bottom: 20rpx;
+}
+.about_content>.view-itemQ{
+    margin: 10rpx 0;
+    font-size: 29rpx;
+    font-weight: bolder;
+    color: #F02230;
+}
+.about_content>.view-itemA{
+    margin-left: 20rpx;
+    line-height: 45rpx;
+}
+.about_content>.view-itemA>text{
+    font-weight: bolder;
+}
+.about_content>.view-itemC{
+    margin-top: 20rpx;
+    margin-left: 40rpx;
+    line-height: 45rpx;
+}
+.about_content>.view-itemQ>text{
+    font-weight: bolder;
+}

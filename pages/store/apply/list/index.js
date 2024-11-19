@@ -117,7 +117,7 @@ Page({
   // 新增申请
   addApply() {
     wx.navigateTo({
-      url: '/pages/storesubmitsapply/storesubmitsapply'
+      url: '/pages/store/apply/index/index'
     });
   }
 });

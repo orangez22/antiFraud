@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/index/index",
+    "pages/about/index",
     "pages/merchant/apply/list/index",
     "pages/merchant/apply/index/index",
     "pages/store/apply/list/index",
@@ -9,7 +11,6 @@
     "pages/findback/index",
     "pages/pay/index",
     "pages/login/phone/code/index",
-    "pages/index/index",
     "pages/login/phone/pwd/index",
     "pages/login/wechat/index",
     "pages/bean/index",
@@ -21,8 +22,7 @@
     "pages/feedback/index/index",
     "pages/feedback/list/index",
     "pages/store/detail/index",
-    "pages/logs/logs",
-    "pages/about/index"
+    "pages/logs/logs"
   ],
 
   "tabBar": {

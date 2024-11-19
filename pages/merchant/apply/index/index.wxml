@@ -30,24 +30,6 @@
         </view>
 
         <view class="merchant-submits-apply-info">
-          <text class="merchant-submits-apply-info-txt">营业开始时间</text>
-          <view class="merchant-submits-apply-info-input">
-            <picker mode="time" value="{{businessHoursStart}}" bindchange="bindStartTimeChange">
-              <view class="uni-input">{{businessHoursStart}}</view>
-            </picker>
-          </view>
-        </view>
-
-        <view class="merchant-submits-apply-info">
-          <text class="merchant-submits-apply-info-txt">营业结束时间</text>
-          <view class="merchant-submits-apply-info-input">
-            <picker mode="time" value="{{businessHoursEnd}}" bindchange="bindEndTimeChange">
-              <view class="uni-input">{{businessHoursEnd}}</view>
-            </picker>
-          </view>
-        </view>
-
-        <view class="merchant-submits-apply-info">
           <text class="merchant-submits-apply-info-txt">省市区</text>
           <picker mode="region" value="{{region}}" bindchange="bindRegionChange" class="merchant-submits-apply-city">
             <view class="merchant-submits-apply-city-item-border">
