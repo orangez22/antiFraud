@@ -1,10 +1,4 @@
 <view>
-  <!-- #ifdef APP-PLUS -->
-  <view>
-    <uni-nav-bar left-icon="arrowleft" bindclickLeft="back" title="完善信息" statusBar="true" fixed="true"></uni-nav-bar>
-  </view>
-  <!-- #endif -->
-
   <view class="modifydata">
     <view class="modifydata-wrap">
       <!-- 修改手机号 -->
@@ -46,11 +40,14 @@
         <text style="box-sizing: border-box;padding-left: 14rpx;" class="modifydata-wrap-tel-title">性别</text>
         <view class="modifydata-wrap-tel-sex">
           <view class="modifydata-wrap-tel-sex-item" bindtap="selectSex" data-value="1">
-            <image src="{{sex === '1' ? commonImg('select.png') : commonImg('no-select.png')}}" class="modifydata-wrap-tel-sex-item-img"></image>
+            <image wx:if="{{sex === '1'}}" src="/assets/images/novippay/select-plusvip.png"  class="modifydata-wrap-tel-sex-item-img"></image>
+            <image wx:else src="/assets/images/novippay/no-select.png"  class="modifydata-wrap-tel-sex-item-img"></image>
+
             <text class="modifydata-wrap-tel-sex-item-txt">男</text>
           </view>
           <view class="modifydata-wrap-tel-sex-item" bindtap="selectSex" data-value="0">
-            <image src="{{sex === '0' ? commonImg('select.png') : commonImg('no-select.png')}}" class="modifydata-wrap-tel-sex-item-img"></image>
+            <image wx:if="{{sex === '0'}}" src="/assets/images/novippay/select-plusvip.png"  class="modifydata-wrap-tel-sex-item-img"></image>
+            <image wx:else src="/assets/images/novippay/no-select.png"  class="modifydata-wrap-tel-sex-item-img"></image>
             <text class="modifydata-wrap-tel-sex-item-txt">女</text>
           </view>
         </view>

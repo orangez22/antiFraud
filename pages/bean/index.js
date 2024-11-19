@@ -6,9 +6,15 @@ import {
 } from '@/utils/common'
 Page({
   data: {
-    codeBean: '', // 码豆
+    codeBean: '1000', // 码豆
     goldBean: '', // 金豆
-    list: []      // 消费明细
+    list: [
+      {
+        id:1,
+        time:"2024年1月1日",
+        num:"100"
+      }
+    ]      // 消费明细
   },
   onShow() {
     this._getInfoByToken()

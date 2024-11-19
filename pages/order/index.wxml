@@ -2,54 +2,53 @@
   <view class="order">
     <view class="order-title">
       <view bindtap="onClickSelectIndex" data-index="" class="order-title-all {{currentIndex === '' ? 'active' : ''}}">
-        全部订单({{allTotal}})
+        全部订单 ({{allTotal}})
       </view>
       <view bindtap="onClickSelectIndex" data-index="0" class="order-title-nocomment {{currentIndex === '0' ? 'active' : ''}}">
-        未支付({{noPayTotal}})
+        未支付 ({{noPayTotal}})
       </view>
       <view bindtap="onClickSelectIndex" data-index="1" class="order-title-nocomment {{currentIndex === '1' ? 'active' : ''}}">
-        已支付({{alreadyPayTotal}})
+        已支付 ({{alreadyPayTotal}})
       </view>
       <view bindtap="onClickSelectIndex" data-index="2" class="order-title-nocomment {{currentIndex === '2' ? 'active' : ''}}">
-        已关闭({{closePayTotal}})
+        已关闭 ({{closePayTotal}})
       </view>
     </view>
 
-    <scroll-view style="height:{{h5ListHeight}}px;" scroll-y="true" bindscrolltolower="onScrolltolowerOrderList" class="order-list">
-      <block wx:for="{{OrderList}}" wx:key="id">
-        <view class="order-list-item">
-          <view class="order-list-item-name">
-            <text class="order-list-item-name-txt">{{item.storeName}}</text>
-            <text wx:if="{{item.status === '1' && item.storeName}}" bindtap="complain" data-item="{{item}}" class="order-list-item-name-status">投诉商家</text>
-          </view>
-          <view class="order-list-item-price">
-            <text wx:if="{{item.payAmount}}" class="order-list-item-price-left">实付：¥{{item.payAmount}}</text>
-            <text wx:if="{{item.discountAmount}}" class="order-list-item-price-right">节省：¥{{item.discountAmount}}</text>
-          </view>
-          <view class="order-list-item-line"></view>
-          <view class="order-list-item-content">
-            <view class="order-list-item-content-info">
-              <text class="order-list-item-content-info-ordernum">订单编号：{{item.id}}</text>
-              <text class="order-list-item-content-info-ordernum">下单时间：{{item.createdAt}}</text>
-              <text wx:if="{{item.price}}" class="order-list-item-content-info-ordernum">小票金额：¥{{item.price}}</text>
-              <view class="order-list-item-content-info-ordernum">
-                <text wx:if="{{item.rate}}">会员折扣：{{(item.rate * 100) / 10}}折</text>
-              </view>
-              <view class="order-list-item-content-info-ordernum order-list-item-content-info-ordernum-last">
-                <text bindtap="pay" data-item="{{item}}" wx:if="{{item.status === '0'}}" class="order-list-item-content-info-ordernum-last-zlyd">前往支付</text>
-                <text bindtap="goToStore" data-storeid="{{item.storeId}}" wx:if="{{item.status === '1' || item.status === '2'}}" class="order-list-item-content-info-ordernum-last-zlyd">
-                  再来一单
-                </text>
-                <text bindtap="onClickGotoPLPage" data-item="{{item}}" wx:if="{{item.status === '1' && item.storeName}}" class="order-list-item-content-info-ordernum-last-zlyd">去评论</text>
-                <text bindtap="onClickCancelItem" data-item="{{item}}" wx:if="{{item.status === '0'}}" class="order-list-item-content-info-ordernum-last-zlyd">取消订单</text>
-                <text bindtap="onClickDelItem" data-item="{{item}}" class="order-list-item-content-info-ordernum-last-zlyd">删除</text>
+    <scroll-view scroll-y bindscrolltolower="onScrolltolowerOrderList" class="order-list">
+      <block wx:if="{{OrderList.length > 0}}">
+        <block wx:for="{{OrderList}}" wx:key="id">
+          <view class="order-list-item">
+            <view class="order-list-item-name">
+              <text class="order-list-item-name-txt">{{item.storeName}}</text>
+              <text wx:if="{{item.status === '1' && item.storeName}}" bindtap="complain" data-item="{{item}}" class="order-list-item-name-status">投诉商家</text>
+            </view>
+            <view class="order-list-item-price">
+              <text wx:if="{{item.payAmount}}" class="order-list-item-price-left">实付：¥{{item.payAmount}}</text>
+              <text wx:if="{{item.discountAmount}}" class="order-list-item-price-right">节省：¥{{item.discountAmount}}</text>
+            </view>
+            <view class="order-list-item-line"></view>
+            <view class="order-list-item-content">
+              <view class="order-list-item-content-info">
+                <text class="order-list-item-content-info-ordernum">订单编号：{{item.id}}</text>
+                <text class="order-list-item-content-info-ordernum">下单时间：{{item.createdAt}}</text>
+                <text wx:if="{{item.price}}" class="order-list-item-content-info-ordernum">小票金额：¥{{item.price}}</text>
+                <view class="order-list-item-content-info-ordernum">
+                  <text wx:if="{{item.rate}}">会员折扣：{{item.rate * 100 / 10}}折</text>
+                </view>
+                <view class="order-list-item-content-info-ordernum order-list-item-content-info-ordernum-last">
+                  <text wx:if="{{item.status === '0'}}" bindtap="toPay" data-item="{{item}}" class="order-list-item-content-info-ordernum-last-zlyd">前往支付</text>
+                  <text wx:if="{{item.status === '1' || item.status === '2'}}" bindtap="goToStore" data-storeid="{{item.storeId}}" class="order-list-item-content-info-ordernum-last-zlyd">再来一单</text>
+                  <text wx:if="{{item.status === '1' && item.storeName}}" bindtap="onClickGotoPLPage" data-item="{{item}}" data-action="go" class="order-list-item-content-info-ordernum-last-zlyd">去评论</text>
+                  <text wx:if="{{item.status === '0'}}" bindtap="onClickCancelItem" data-item="{{item}}" class="order-list-item-content-info-ordernum-last-zlyd">取消订单</text>
+                  <text bindtap="onClickDelItem" data-item="{{item}}" class="order-list-item-content-info-ordernum-last-zlyd">删除</text>
+                </view>
               </view>
             </view>
           </view>
-        </view>
+        </block>
       </block>
-
-      <view wx:if="{{!OrderList || OrderList.length === 0}}" class="noorder">
+      <view wx:else class="noorder">
         <image class="noorder-img" src="{{commonImg('noorder.png')}}"></image>
         <text class="noorder-txt">您暂时没有订单，快去首页逛逛吧~</text>
       </view>

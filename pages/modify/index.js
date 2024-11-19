@@ -79,7 +79,7 @@ Page({
       return false;
     }
     this.beginSetTime();
-    wx.request({
+    request({
       url: `${config.api_base_url_tools}sms`,
       method: 'POST',
       data: {
@@ -130,7 +130,8 @@ Page({
     this.setData({ birthday: e.detail.value });
   },
 
-  selectSex(sex) {
+  selectSex(e) {
+    let sex = e.currentTarget.dataset.value
     this.setData({ sex });
   },
 

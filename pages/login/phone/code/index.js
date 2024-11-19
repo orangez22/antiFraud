@@ -110,8 +110,8 @@ Page({
     const data = {
       phone: this.data.phone,
       code: this.data.code,
-      // type: 'verificationCodeAuthService'
-      type: 'memberServiceImplByCode'
+      type: 'verificationCodeAuthService'
+      // type: 'memberServiceImplByCode'
     };
     validateForm(data, this.rules)
       .then(() => {

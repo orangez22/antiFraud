@@ -74,10 +74,6 @@
     </block>
   </view>
 
-  <view class="my-js">
-    <text class="my-js-left">会员中心</text>
-  </view>
-
   <!-- 我的资产 -->
   <view class="my-zc">
     <view class="my-zc-wrap">
@@ -141,11 +137,11 @@
         <view class="my-list-wrap-item">
           <text class="my-list-wrap-item-name">更多</text>
           <view class="my-list-wrap-item-list">
-            <view bindtap="navigate" data-url='/pages/merchant/apply/list/index' class="my-list-wrap-item-list-item">
+            <view bindtap="navigate" data-url='/pages/merchant/apply/index/index' class="my-list-wrap-item-list-item">
               <image style="width: 50rpx; height: 50rpx;" src="{{commonImg('shangjiaruzhu.png')}}" class="my-list-wrap-item-list-item-img"></image>
               <text class="my-list-wrap-item-list-item-txt">商家入驻</text>
             </view>
-            <view bindtap="navigate" data-url='/pages/store/apply/index' class="my-list-wrap-item-list-item">
+            <view bindtap="navigate" data-url='/pages/store/apply/index/index' class="my-list-wrap-item-list-item">
               <image style="width: 50rpx; height: 50rpx;" src="{{commonImg('shangjiaruzhu.png')}}" class="my-list-wrap-item-list-item-img"></image>
               <text class="my-list-wrap-item-list-item-txt">商铺入驻</text>
             </view>
