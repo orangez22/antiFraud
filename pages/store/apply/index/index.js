@@ -32,7 +32,8 @@ Page({
     longitude: '',
     latitude: '',
     businessHoursStart: '09:00',
-    businessHoursEnd: '22:00'
+    businessHoursEnd: '22:00',
+    region: ['福建省', '厦门市', '思明区'],
   },
 
   onLoad() {

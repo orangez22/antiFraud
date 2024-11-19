@@ -1,32 +1,13 @@
 <!--pages/store/apply/index.wxml-->
 <view>
-  <!-- 微信小程序专用的导航栏 -->
   <view class="store-submits-apply">
     <view class="store-submits-applys">
       <view class="store-submits-apply-top">
         <view class="title">会员编号</view>
         <view class="number">{{ memberId }}</view>
-        <view class="radio-box">
-          <text class="radio-box-text">是否连锁店：</text>
-          <label class="radio-one" bindtap="onChangeChainNo">
-            <radio value="0" checked="{{isChain === '0'}}" color="#f00" style="transform:scale(0.7);" />
-            <text>否</text>
-          </label>
-          <label class="radio-two" bindtap="onChangeChainYes">
-            <radio value="1" checked="{{isChain === '1'}}" color="#f00" style="transform:scale(0.7);" />
-            <text>是</text>
-          </label>
-        </view>
       </view>
 
       <view class="store-submits-apply-bottom">
-        <view wx:if="{{isChain === '1'}}" class="store-submits-apply-info">
-          <text class="store-submits-apply-info-txt">公司名称</text>
-          <view class="store-submits-apply-info-input">
-            <input bindinput="onCompanyNameInput" value="{{companyName}}" placeholder="请输入公司名称" class="store-submits-apply-info-input-input" />
-          </view>
-        </view>
-
         <view class="store-submits-apply-info">
           <text class="store-submits-apply-info-txt">店铺名称</text>
           <view class="store-submits-apply-info-input">
@@ -49,7 +30,7 @@
         </view>
 
         <view class="store-submits-apply-info">
-          <text class="store-submits-apply-info-txt">身份证号</text>
+          <text class="store-submits-apply-info-txt">法人身份证号</text>
           <view class="store-submits-apply-info-input">
             <input bindinput="onidCardInput" value="{{idCard}}" placeholder="请输入身份证号码" class="store-submits-apply-info-input-input" />
           </view>
@@ -114,15 +95,6 @@
         </view>
 
         <view class="store-submits-apply-info">
-          <text class="store-submits-apply-info-txt">行业</text>
-          <view class="store-submits-apply-info-input">
-            <picker mode="selector" value="{{industry_index}}" range="{{industry_array}}" bindchange="industry_change">
-              <view class="store-submits-apply-info-input-ts">{{ industry_array[industry_index].name }}</view>
-            </picker>
-          </view>
-        </view>
-
-        <view class="store-submits-apply-info">
           <text class="store-submits-apply-info-txt">营业开始时间</text>
           <view class="store-submits-apply-info-input">
             <picker mode="time" value="{{businessHoursStart}}" bindchange="bindStartTimeChange">
@@ -140,13 +112,13 @@
           </view>
         </view>
 
-        <view class="store-submits-apply-city">
-          <view class="store-submits-apply-city-item">
-            <text class="store-submits-apply-city-item-txt">省市区</text>
-            <view bindtap="onClickOpenAddress" class="store-submits-apply-city-item-border">
-              {{ label || '请选择地址' }}
+        <view class="merchant-submits-apply-info">
+          <text class="merchant-submits-apply-info-txt">省市区</text>
+          <picker mode="region" value="{{region}}" bindchange="bindRegionChange" class="merchant-submits-apply-city">
+            <view class="merchant-submits-apply-city-item-border">
+              {{region[0] || '请选择省'}} {{region[1] || '市'}} {{region[2] || '区'}}
             </view>
-          </view>
+          </picker>
         </view>
 
         <view class="store-submits-apply-info">
