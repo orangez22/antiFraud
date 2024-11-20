@@ -6,7 +6,9 @@ import {
 
 import {
   setToken,
-  getToken
+  getToken,
+  removeToken,
+  removeId
 } from '@/utils/auth'
 Page({
 
@@ -170,6 +172,8 @@ Page({
           wx.showLoading({
             title: '正在退出'
           })
+          removeToken()
+          removeId()
           setTimeout(() => {
             wx.hideLoading()
             wx.clearStorageSync()
