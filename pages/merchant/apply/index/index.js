@@ -1,20 +1,22 @@
 // pages/merchant/apply/index/index.js
 import request from '@/utils/request';
 import { isLogin, getIdByToken } from '@/utils/common';
-import { getId } from '@/utils/auth';
+import { getUser } from '@/utils/auth';
 
 Page({
   data: {
-    memberId: undefined,
+    memberId: getUser().id,
     merchantName: '',
     contract: '',
     phone: '',
     address: '',
+    idCard:'',
+    email:'',
     recommendation: '',
     region: ['福建省', '厦门市', '思明区'],
-    provinceId: '',
-    cityId: '',
-    areaId: ''
+    province: '',
+    city: '',
+    area: ''
   },
 
   onLoad() {
@@ -24,14 +26,6 @@ Page({
 
   onShow() {
     isLogin(); // 检查登录状态
-    const id = getId();
-    if (!id) {
-      console.log('获取会员编号失败');
-      return;
-    }
-    this.setData({
-      memberId: id // 将 ID 赋值给 memberId
-    });
   },
 
   onInputChange(e) {
@@ -40,7 +34,11 @@ Page({
       [field]: e.detail.value // 更新对应字段值
     });
   },
-
+  onRecommendationInput(e) {
+    this.setData({
+      recommendation: e.detail.value
+    });
+  },
   bindStartTimeChange(e) {
     this.setData({
       businessHoursStart: e.detail.value // 更新开始时间
@@ -57,9 +55,9 @@ Page({
     const [province, city, area] = e.detail.value; // 解构省市区
     this.setData({
       region: e.detail.value,
-      provinceId: province,
-      cityId: city,
-      areaId: area
+      province: province,
+      city: city,
+      area: area
     });
   },
 
@@ -72,9 +70,11 @@ Page({
       merchantName: this.data.merchantName,
       contract: this.data.contract,
       phone: this.data.phone,
-      provinceId: this.data.provinceId,
-      cityId: this.data.cityId,
-      areaId: this.data.areaId,
+      province: this.data.province,
+      city: this.data.city,
+      area: this.data.area,
+      idCard:this.data.idCard,
+      email:this.data.email,
       address: this.data.address,
       recommendation: this.data.recommendation,
       businessHoursStart: this.data.businessHoursStart,

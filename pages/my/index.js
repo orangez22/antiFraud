@@ -5,8 +5,8 @@ import {
 } from '@/utils/common'
 
 import {
-  setToken,
-  getToken
+  setUser,
+  getUser
 } from '@/utils/auth'
 Page({
 
@@ -15,11 +15,13 @@ Page({
    */
   data: {
     user: {
-      id: '',
+      id: "",
       totalSave: 0,
       isPlus: '0',
       avatar: '',
-      nickname: ''
+      nickname: '',
+      gender: '',
+      isMerchant:''
     },
   },
 
@@ -194,7 +196,8 @@ Page({
         message
       } = res
       if (success) {
-        this.user = data
+        this.setData({user:data})
+        setUser(data)
       } else {
         wx.showToast({
           icon: 'none',
@@ -204,6 +207,22 @@ Page({
     })
   },
   navigate(event) {
+    const url = event.currentTarget.dataset.url;
+    wx.navigateTo({
+      url: url
+    });
+  },
+  //判断是否是商家
+  toStore(event){
+    if(this.data.user.isMerchant == 0){
+      wx.showToast({
+        title: '请先入驻商家，再使用此功能。',
+        icon: 'none',
+        duration: 2000//持续的时间
+      })
+      return false;
+    }
+
     const url = event.currentTarget.dataset.url;
     wx.navigateTo({
       url: url

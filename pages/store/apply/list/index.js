@@ -1,6 +1,8 @@
 import request from '@/utils/request';
 import { isLogin } from '@/utils/common';
-
+import {
+  getUser
+} from '@/utils/auth'
 Page({
   data: {
     applys: [], // 存储申请数据
@@ -12,33 +14,11 @@ Page({
 
   onLoad() {
     isLogin(); // 检查登录状态
-
   },
 
   onShow() {
     this.resetData(); // 初始化数据`
-    // this.getApplys(); // 加载数据
-    let list = [
-      {
-        id:1,
-        storeName:"xxx",
-        status:"0",
-        createdAt:"2024年11月11日11时11分11秒"
-      },
-      {
-        id:1,
-        storeName:"xxx",
-        status:"1",
-        createdAt:"2024年11月11日11时11分11秒"
-      },
-      {
-        id:1,
-        storeName:"xxx",
-        status:"2",
-        createdAt:"2024年11月11日11时11分11秒"
-      }
-    ]
-    this.setData({applys:list})
+    this.getApplys(); // 加载数据
   },
 
   onReachBottom() {
@@ -159,5 +139,13 @@ Page({
     wx.navigateTo({
       url: '/pages/store/apply/index/index'
     });
+  },
+  isMerchant(){
+    let user = getUser()
+    if(user.isMerchant == "0"){
+      wx.redirectTo({
+        url: 'pages/my/index'
+      })
+    }
   }
 });

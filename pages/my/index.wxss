@@ -73,7 +73,7 @@
   line-height: 24rpx;
   color: #fff;
   font-weight: 400;
-  max-width: 300rpx;
+  max-width: 350rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
