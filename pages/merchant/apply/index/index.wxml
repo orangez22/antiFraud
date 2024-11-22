@@ -1,4 +1,3 @@
-<!--pages/merchant/apply/index/index.wxml-->
 <view>
   <view class="merchant-submits-apply">
     <view class="merchant-submits-applys">
@@ -11,59 +10,94 @@
         <view class="merchant-submits-apply-info">
           <text class="merchant-submits-apply-info-txt">商户名称</text>
           <view class="merchant-submits-apply-info-input">
-            <input bindinput="onInputChange" data-field="merchantName" value="{{merchantName}}" placeholder="请输入商户名称" class="merchant-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
+            <input 
+              bindinput="onInputChange" 
+              data-field="merchantName" 
+              value="{{merchantName}}" 
+              placeholder="请输入商户名称" 
+              class="merchant-submits-apply-info-input-input" 
+              placeholder-style="color:#CCCCCC" 
+            />
           </view>
         </view>
 
         <view class="merchant-submits-apply-info">
-          <text class="merchant-submits-apply-info-txt">法人身份证号码</text>
+          <text class="merchant-submits-apply-info-txt">法人身份证号码</text>
           <view class="merchant-submits-apply-info-input">
-            <input bindinput="onInputChange" data-field="idCard" value="{{idCard}}" placeholder="法人身份证号码" class="merchant-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
+            <input 
+              bindinput="onInputChange" 
+              data-field="idCard" 
+              value="{{idCard}}" 
+              placeholder="请输入身份证号码" 
+              class="merchant-submits-apply-info-input-input" 
+              placeholder-style="color:#CCCCCC" 
+            />
           </view>
         </view>
 
         <view class="merchant-submits-apply-info">
           <text class="merchant-submits-apply-info-txt">联系人</text>
           <view class="merchant-submits-apply-info-input">
-            <input bindinput="onInputChange" data-field="contract" value="{{contract}}" placeholder="请输入联系人" class="merchant-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
+            <input 
+              bindinput="onInputChange" 
+              data-field="contract" 
+              value="{{contract}}" 
+              placeholder="请输入联系人" 
+              class="merchant-submits-apply-info-input-input" 
+              placeholder-style="color:#CCCCCC" 
+            />
           </view>
         </view>
 
         <view class="merchant-submits-apply-info">
           <text class="merchant-submits-apply-info-txt">联系电话</text>
           <view class="merchant-submits-apply-info-input">
-            <input bindinput="onInputChange" data-field="phone" value="{{phone}}" placeholder="请输入联系电话" class="merchant-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
-          </view>
-        </view>
-        <view class="merchant-submits-apply-info">
-          <text class="merchant-submits-apply-info-txt">身份证号</text>
-          <view class="merchant-submits-apply-info-input">
-            <input bindinput="onInputChange" data-field="idCard" value="{{idCard}}" placeholder="请输入身份证号" class="merchant-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
-          </view>
-        </view>
-        <view class="merchant-submits-apply-info">
-          <text class="merchant-submits-apply-info-txt">邮箱</text>
-          <view class="merchant-submits-apply-info-input">
-            <input bindinput="onInputChange" data-field="email" value="{{email}}" placeholder="请输入邮箱" class="merchant-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
-          </view>
-        </view>
-        <view class="merchant-submits-apply-info">
-          <text class="merchant-submits-apply-info-txt">Email</text>
-          <view class="merchant-submits-apply-info-input">
-            <input bindinput="onInputChange" data-field="email" value="{{email}}" placeholder="请输入Email" class="merchant-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
+            <input 
+              bindinput="onInputChange" 
+              data-field="phone" 
+              value="{{phone}}" 
+              placeholder="请输入联系电话" 
+              class="merchant-submits-apply-info-input-input" 
+              placeholder-style="color:#CCCCCC" 
+            />
           </view>
         </view>
 
         <view class="merchant-submits-apply-info">
-          <text class="merchant-submits-apply-info-txt">推荐人id</text>
+          <text class="merchant-submits-apply-info-txt">邮箱</text>
           <view class="merchant-submits-apply-info-input">
-            <input bindinput="onInputChange" data-field="recommendId" value="{{recommendId}}" placeholder="请输入推荐人id" class="merchant-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
+            <input 
+              bindinput="onInputChange" 
+              data-field="email" 
+              value="{{email}}" 
+              placeholder="请输入邮箱" 
+              class="merchant-submits-apply-info-input-input" 
+              placeholder-style="color:#CCCCCC" 
+            />
+          </view>
+        </view>
+
+        <view class="merchant-submits-apply-info">
+          <text class="merchant-submits-apply-info-txt">推荐人ID</text>
+          <view class="merchant-submits-apply-info-input">
+            <input 
+              bindinput="onInputChange" 
+              data-field="recommendId" 
+              value="{{recommendId}}" 
+              placeholder="请输入推荐人ID" 
+              class="merchant-submits-apply-info-input-input" 
+              placeholder-style="color:#CCCCCC" 
+            />
           </view>
         </view>
 
         <view class="merchant-submits-apply-info">
           <text class="merchant-submits-apply-info-txt">省市区</text>
-          <picker mode="region" value="{{region}}" bindchange="bindRegionChange" class="merchant-submits-apply-city">
+          <picker 
+            mode="region" 
+            value="{{region}}" 
+            bindchange="bindRegionChange" 
+            class="merchant-submits-apply-city">
             <view class="merchant-submits-apply-city-item-border">
               {{region[0] || '请选择省'}} {{region[1] || '市'}} {{region[2] || '区'}}
             </view>
@@ -73,19 +107,37 @@
         <view class="merchant-submits-apply-info">
           <text class="merchant-submits-apply-info-txt">详细地址</text>
           <view class="merchant-submits-apply-info-input">
-            <input bindinput="onInputChange" data-field="address" value="{{address}}" placeholder="请输入详细地址" class="merchant-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
+            <input 
+              bindinput="onInputChange" 
+              data-field="address" 
+              value="{{address}}" 
+              placeholder="请输入详细地址" 
+              class="merchant-submits-apply-info-input-input" 
+              placeholder-style="color:#CCCCCC" 
+            />
           </view>
         </view>
 
         <view class="merchant-submits-apply-info">
           <text class="merchant-submits-apply-info-txt">品牌介绍</text>
           <view class="merchant-submits-apply-info-textarea">
-            <textarea bindinput="onRecommendationInput" value="{{recommendation}}" placeholder="品牌详细介绍" class="merchant-submits-apply-info-input-input" auto-height />
+            <textarea 
+              bindinput="onInputChange" 
+              data-field="recommendation" 
+              value="{{recommendation}}" 
+              placeholder="品牌详细介绍" 
+              class="merchant-submits-apply-info-input-input" 
+              auto-height 
+            />
           </view>
         </view>
       </view>
     </view>
 
-    <view bindtap="apply" class="merchant-submits-apply-btn">提交入驻申请</view>
+    <view 
+      bindtap="apply" 
+      class="merchant-submits-apply-btn">
+      提交入驻申请
+    </view>
   </view>
 </view>
