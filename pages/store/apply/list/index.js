@@ -1,6 +1,8 @@
 import request from '@/utils/request';
 import { isLogin } from '@/utils/common';
-
+import {
+  getUser
+} from '@/utils/auth'
 Page({
   data: {
     applys: [], // 存储申请数据
@@ -12,14 +14,11 @@ Page({
 
   onLoad() {
     isLogin(); // 检查登录状态
-
   },
 
   onShow() {
     this.resetData(); // 初始化数据`
     this.getApplys(); // 加载数据
- 
-    this.setData({applys:list})
   },
 
   onReachBottom() {
@@ -140,5 +139,13 @@ Page({
     wx.navigateTo({
       url: '/pages/store/apply/index/index'
     });
+  },
+  isMerchant(){
+    let user = getUser()
+    if(user.isMerchant == "0"){
+      wx.redirectTo({
+        url: 'pages/my/index'
+      })
+    }
   }
 });
