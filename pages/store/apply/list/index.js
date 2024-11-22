@@ -1,4 +1,5 @@
-import { isLogin } from '@/utils/common';
+import { isLogin } from '@/utils/common'
+import { storePageApi } from '@/api/storeApply'
 import {
   getUser
 } from '@/utils/auth'
@@ -95,7 +96,7 @@ Page({
 
     wx.showLoading({ title: '加载中' });
 
-    storePageApi({'current':this.data.current,'pageSize':this.current.pageSize}).then((res) => {
+    storePageApi({'current':this.data.current,'pageSize':this.data.pageSize}).then((res) => {
         wx.hideLoading();
         const { success, data } = res;
         if (success && data.records) {
@@ -103,14 +104,14 @@ Page({
           this.setData({
             applys: this.data.applys.concat(records), // 拼接新数据
             total, // 总记录数
-            totalPage: this.pageTotal(total, size) // 总页数
+            totalPage: this.pageTotal(total, this.data.pageSize) // 总页数
           });
         } else {
           this.handleEmptyData();
         }
       })
       .catch((err) => {
-        console.error(err);
+        console.log(err);
         wx.hideLoading();
         this.handleEmptyData();
         wx.showToast({

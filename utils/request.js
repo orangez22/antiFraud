@@ -1,4 +1,4 @@
-// utils/request.js
+/* utils/request.js*/
 import config from '@/config/config';
 import { getToken, removeToken } from '@/utils/auth';
 
