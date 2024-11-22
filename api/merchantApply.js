@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export const merchantApplyApi = (data) => {
   return request({
-    url: '',
+    url: '/apply/merchantApply',
     method: 'POST',
     data: data
   })

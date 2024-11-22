@@ -1,6 +1,7 @@
 import { isLogin, getIdByToken ,validateForm} from '@/utils/common';
 import { getUser } from '@/utils/auth';
 import {merchantPageApi} from '@/api/merchantApply'
+import {merchantApplyApi} from "../../../../api/merchantApply";
 
 Page({
   data: {
@@ -57,7 +58,7 @@ Page({
     validateForm(formData, this.rules)
         .then(() => {
           // 如果校验通过，则提交表单数据
-          return merchantPageApi(formData);
+          return merchantApplyApi(formData);
         })
         .then((res) => {
           if (res.success) {
@@ -105,9 +106,6 @@ Page({
     recommendId: [
       // 推荐人不是必填项，但如果有值，需要校验是否为有效ID
       { pattern: /^[0-9]*$/, message: '推荐人ID必须为数字' }
-    ],
-    region: [
-      { required: true, message: '请选择省市区' }
     ],
     address: [{ required: true, message: '详细地址必填' }],
     recommendation: [
