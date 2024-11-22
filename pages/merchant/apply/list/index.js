@@ -1,5 +1,6 @@
 import request from '@/utils/request';
 import { isLogin } from '@/utils/common';
+import {merchantPageApi} from '@/api/merchantApply'
 Page({
   data: {
     applys: [], // 申请数据
@@ -14,11 +15,9 @@ Page({
 
   loadData() {
     wx.showLoading({ title: '加载中' });
-    request({
-      url: '/apply/merchantApply/page',
-      method: 'POST',
-      data: { current: this.data.page, size: this.data.size }
-    }).then(({ success, data }) => {
+
+    merchantPageApi({ current: this.data.page, size: this.data.size })
+    .then(({ success, data }) => {
       wx.hideLoading();
       if (success) {
         const formattedData = data.records.map((item) => ({

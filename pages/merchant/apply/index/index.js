@@ -1,7 +1,6 @@
-import request from '@/utils/request';
 import { isLogin, getIdByToken } from '@/utils/common';
 import { getUser } from '@/utils/auth';
-
+import {merchantPageApi} from '@/api/merchantApply'
 Page({
   data: {
     memberId: getUser().id,
@@ -55,12 +54,7 @@ Page({
 
     const formData = this.getFormData();
 
-    request({
-      url: '/apply/merchantApply',
-      method: 'POST',
-      data: formData
-    })
-      .then((res) => {
+    merchantPageApi(formData).then((res) => {
         if (res.success) {
           wx.showToast({ icon: 'success', title: '提交成功' });
           wx.navigateTo({ url: '/pages/merchant/apply/list/index' });

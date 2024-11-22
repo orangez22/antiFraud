@@ -1,4 +1,3 @@
-import request from '@/utils/request';
 import { isLogin } from '@/utils/common';
 import {
   getUser
@@ -6,8 +5,8 @@ import {
 Page({
   data: {
     applys: [], // 存储申请数据
-    page: 1,    // 当前页码
-    size: 10,   // 每页大小
+    current: 1,    // 当前页码
+    pageSize: 10,   // 每页大小
     total: 0,   // 总记录数
     totalPage: 0 // 总页数
   },
@@ -44,8 +43,8 @@ Page({
   resetData() {
     this.setData({
       applys: [],
-      page: 1,
-      size: 10,
+      current: 1,
+      pageSize: 10,
       total: 0,
       totalPage: 0
     });
@@ -95,13 +94,8 @@ Page({
   getApplys() {
 
     wx.showLoading({ title: '加载中' });
-    const { page, size } = this.data;
-    request({
-      url: '/apply/storeApply/page',
-      method: 'POST',
-      data: { current: page, size }
-    })
-      .then((res) => {
+
+    storePageApi({'current':this.data.current,'pageSize':this.current.pageSize}).then((res) => {
         wx.hideLoading();
         const { success, data } = res;
         if (success && data.records) {
