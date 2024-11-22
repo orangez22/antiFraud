@@ -17,27 +17,8 @@ Page({
 
   onShow() {
     this.resetData(); // 初始化数据`
-    // this.getApplys(); // 加载数据
-    let list = [
-      {
-        id:1,
-        storeName:"xxx",
-        status:"0",
-        createdAt:"2024年11月11日11时11分11秒"
-      },
-      {
-        id:1,
-        storeName:"xxx",
-        status:"1",
-        createdAt:"2024年11月11日11时11分11秒"
-      },
-      {
-        id:1,
-        storeName:"xxx",
-        status:"2",
-        createdAt:"2024年11月11日11时11分11秒"
-      }
-    ]
+    this.getApplys(); // 加载数据
+ 
     this.setData({applys:list})
   },
 

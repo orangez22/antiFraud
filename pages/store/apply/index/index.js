@@ -16,7 +16,7 @@ Page({
     phone: '',
     idCard: '',
     email:'',
-    license:'',
+    businessLicense:'',
     bankName:'',
     bankAccount:'',
     accountName:'',
@@ -114,7 +114,7 @@ Page({
   },
   onLicenseInput(e){
     this.setData({
-      license: e.detail.value
+      businessLicense: e.detail.value
     });
   },
   onBankNameInput(e){
@@ -210,7 +210,8 @@ Page({
       area: e.areaName,
       recommendation: e.recommendation,
       longitude: e.longitude,
-      latitude: e.latitude
+      latitude: e.latitude,
+      businessLicense:e.businessLicense
     });
   },
 

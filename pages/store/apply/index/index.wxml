@@ -45,7 +45,7 @@
         <view class="store-submits-apply-info">
           <text class="store-submits-apply-info-txt">营业执照编号</text>
           <view class="store-submits-apply-info-input">
-            <input bindinput="onLicenseInput" value="{{license}}" placeholder="请输入营业执照编号" class="store-submits-apply-info-input-input" />
+            <input bindinput="onLicenseInput" value="{{business_license}}" placeholder="请输入营业执照编号" class="store-submits-apply-info-input-input" />
           </view>
         </view>
 

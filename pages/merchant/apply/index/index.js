@@ -12,9 +12,11 @@ Page({
     address: '',
     recommendation: '',
     region: ['福建省', '厦门市', '思明区'],
-    provinceId: '',
-    cityId: '',
-    areaId: ''
+    recommendId:'',
+    email:'',
+    province:'福建省',
+    city:'厦门市',
+    area:'思明区'
   },
 
   onLoad() {
@@ -57,9 +59,9 @@ Page({
     const [province, city, area] = e.detail.value; // 解构省市区
     this.setData({
       region: e.detail.value,
-      provinceId: province,
-      cityId: city,
-      areaId: area
+      province: province,
+      city: city,
+      area: area
     });
   },
 
@@ -70,15 +72,16 @@ Page({
     // 构造提交数据
     const formData = {
       merchantName: this.data.merchantName,
+      idCard:this.data.idCard,
       contract: this.data.contract,
       phone: this.data.phone,
-      provinceId: this.data.provinceId,
-      cityId: this.data.cityId,
-      areaId: this.data.areaId,
+      province: this.data.province,
+      city: this.data.city,
+      area: this.data.area,
       address: this.data.address,
       recommendation: this.data.recommendation,
-      businessHoursStart: this.data.businessHoursStart,
-      businessHoursEnd: this.data.businessHoursEnd
+      recommendId:this.data.recommendId,
+      email:this.data.email
     };
 
     // 提交入驻申请

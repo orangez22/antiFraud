@@ -16,6 +16,13 @@
         </view>
 
         <view class="merchant-submits-apply-info">
+          <text class="merchant-submits-apply-info-txt">法人身份证号码</text>
+          <view class="merchant-submits-apply-info-input">
+            <input bindinput="onInputChange" data-field="idCard" value="{{idCard}}" placeholder="法人身份证号码" class="merchant-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
+          </view>
+        </view>
+
+        <view class="merchant-submits-apply-info">
           <text class="merchant-submits-apply-info-txt">联系人</text>
           <view class="merchant-submits-apply-info-input">
             <input bindinput="onInputChange" data-field="contract" value="{{contract}}" placeholder="请输入联系人" class="merchant-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
@@ -26,6 +33,20 @@
           <text class="merchant-submits-apply-info-txt">联系电话</text>
           <view class="merchant-submits-apply-info-input">
             <input bindinput="onInputChange" data-field="phone" value="{{phone}}" placeholder="请输入联系电话" class="merchant-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
+          </view>
+        </view>
+
+        <view class="merchant-submits-apply-info">
+          <text class="merchant-submits-apply-info-txt">Email</text>
+          <view class="merchant-submits-apply-info-input">
+            <input bindinput="onInputChange" data-field="email" value="{{email}}" placeholder="请输入Email" class="merchant-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
+          </view>
+        </view>
+
+        <view class="merchant-submits-apply-info">
+          <text class="merchant-submits-apply-info-txt">推荐人id</text>
+          <view class="merchant-submits-apply-info-input">
+            <input bindinput="onInputChange" data-field="recommendId" value="{{recommendId}}" placeholder="请输入推荐人id" class="merchant-submits-apply-info-input-input" placeholder-style="color:#CCCCCC" />
           </view>
         </view>
 
