@@ -43,22 +43,22 @@ Page({
 
   rules: {
     phone: [{
-        required: true,
-        message: '手机号不能为空'
-      },
-      {
-        pattern: /^1[3456789]\d{9}$/,
-        message: '手机号码格式错误'
-      }
+      required: true,
+      message: '手机号不能为空'
+    },
+    {
+      pattern: /^1[3456789]\d{9}$/,
+      message: '手机号码格式错误'
+    }
     ],
     code: [{
-        required: true,
-        message: '验证码不能为空'
-      },
-      {
-        pattern: /^\d{4}$/,
-        message: '验证码格式错误'
-      }
+      required: true,
+      message: '验证码不能为空'
+    },
+    {
+      pattern: /^\d{4}$/,
+      message: '验证码格式错误'
+    }
     ]
   },
 
@@ -155,28 +155,34 @@ Page({
   },
   loginByWeChat() {
     wx.login({
-      success(res){
+      success(res) {
         console.log(res)
         request({
-          url:'/sso/member/login',
-          method:'post',
-          data:{'code':res.code,'type':'weChatAuthService'}
-        }).then(r=>{
+          url: '/sso/member/login',
+          method: 'post',
+          data: {
+            'code': res.code,
+            'type': 'weChatAuthService'
+          }
+        }).then(r => {
           console.log(r)
-          const {data,success}=r
-          if(success){
+          const {
+            data,
+            success
+          } = r
+          if (success) {
             setToken(data.token)
-            setTimeout(function(){
+            setTimeout(function () {
               wx.showToast({
                 title: '登录成功',
-                icon:'success'
+                icon: 'success'
               })
             })
             wx.switchTab({
               url: "/pages/my/index"
             });
           }
-        }).catch(err=>{
+        }).catch(err => {
           console.log(err)
         })
       }

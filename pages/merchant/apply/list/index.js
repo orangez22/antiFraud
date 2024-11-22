@@ -36,6 +36,8 @@ Page({
     });
   },
 
+
+
   getStatusText(status) {
     switch (status) {
       case '0': return '待审核';
