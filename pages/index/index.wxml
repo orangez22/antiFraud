@@ -57,7 +57,7 @@
     <!-- 商店列表 -->
     <view class="index-list">
       <view wx:for="{{store_list}}" wx:key="id" class="index-list-item">
-        <image mode="aspectFill" src="{{commonImg(item.store.coverImage)}}" class="index-list-item-img"></image>
+        <image mode="aspectFill" src="{{item.coverImage}}" class="index-list-item-img"></image>
         <view class="index-list-item-info">
           <view class="index-list-item-info-name">
             <text class="index-list-item-info-name-txt">{{ item.storeName }}</text>
