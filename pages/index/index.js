@@ -134,4 +134,12 @@ Page({
             console.log(err);
         });
     },
+    onClickscanCode(){
+        wx.scanCode({
+            onlyFromCamera: true,
+            success (res) {
+                console.log(res)
+            }
+        })
+    }
 });
