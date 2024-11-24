@@ -1,7 +1,9 @@
 import request from '@/utils/request'
+
 import {
   isLogin
 } from '@/utils/common'
+import {getNearbyPage} from "@/api/merchantApi";
 Page({
       data: {
         indicatorColor: '#fff',
@@ -168,14 +170,10 @@ Page({
         });
       },
       getShopData() {
-        request({
-            url: `/merchant/store/getStoresByPoint/${this.data.zh_page}/${this.data.zh_size}`,
-            method: 'POST',
-            data: {
-              latitude: this.data.latitude,
-              longitude: this.data.longitude
-            }})
-          .then(res => {
+        getNearbyPage({
+          latitude: this.data.latitude,
+          longitude: this.data.longitude
+        }).then(res => {
             const {
               status,
               data
