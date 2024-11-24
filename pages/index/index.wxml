@@ -1,9 +1,8 @@
 <!--index.wxml-->
 <view>
-  <!-- 导航栏：APP-PLUS特定代码删除，微信小程序中使用view替代 -->
   <view class="index">
     <view class="index-title">
-      <image src="'/assets/images/index/dingwei.png" class="index-title-icon"></image>
+      <image src="/assets/images/index/dingwei.png" class="index-title-icon"></image>
       <text class="index-title-txt">{{ address }}</text>
       <image src="{{commonImg('downarrow.png')}}" class="index-title-addressicon"></image>
     </view>
@@ -61,15 +60,15 @@
         <image mode="aspectFill" src="{{commonImg(item.store.coverImage)}}" class="index-list-item-img"></image>
         <view class="index-list-item-info">
           <view class="index-list-item-info-name">
-            <text class="index-list-item-info-name-txt">{{ item.store.storeName }}</text>
-            <text class="index-list-item-info-name-jl">{{ item.store.jlresult }}km</text>
+            <text class="index-list-item-info-name-txt">{{ item.storeName }}</text>
+            <text class="index-list-item-info-name-jl">{{ item.distance}}km</text>
           </view>
           <view class="index-list-item-info-discount">
             <view class="index-list-item-info-discount-item">
-              <text class="index-list-item-info-discount-item-viplefttxt">PLUS会员{{ item.store.vip2 }}折</text>
+              <text class="index-list-item-info-discount-item-viplefttxt">PLUS会员{{ item.vip2 }}折</text>
             </view>
             <view class="index-list-item-info-discount-item">
-              <text class="index-list-item-info-discount-item-huiyuanlefttxt">会员{{ item.store.vip1 }}折</text>
+              <text class="index-list-item-info-discount-item-huiyuanlefttxt">会员{{ item.vip1 }}折</text>
             </view>
           </view>
           <view wx:if="{{item.tagList && item.tagList.length}}" class="index-list-item-info-list">

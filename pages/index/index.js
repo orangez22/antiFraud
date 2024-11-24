@@ -1,11 +1,10 @@
-import request from '@/utils/request'
-
 import {
-  isLogin
+    isLogin
 } from '@/utils/common'
 import {getNearbyPage} from "@/api/merchantApi";
+
 Page({
-      data: {
+    data: {
         indicatorColor: '#fff',
         indicatorActiveColor: '#FD4D7D',
         indicatorNavColor: '#D8D8D8',
@@ -24,172 +23,115 @@ Page({
         address: '正在获取您的地址',
         h5ListHeight: 0,
         appListHeight: 0,
-      },
-      onLoad() {
+    },
+    onLoad() {
         this.getLocationAndData();
         //this.getBannerData();
-      },
-      onReachBottom() {
+    },
+    onReachBottom() {
         if (this.data.zh_page < this.data.zh_totalPage) {
-          this.setData({
-            zh_page: this.data.zh_page + 1
-          });
-          this.getShopData();
+            this.setData({
+                zh_page: this.data.zh_page + 1
+            });
+            this.getShopData();
         } else {
-          wx.showToast({
-            title: '已经到底部了',
-            icon: 'none'
-          });
+            wx.showToast({
+                title: '已经到底部了',
+                icon: 'none'
+            });
         }
-      },
-      onPullDownRefresh() {
+    },
+    onPullDownRefresh() {
         this.setData({
-          store_list: [],
-          zh_page: 1
+            store_list: [],
+            zh_page: 1
         });
         this.getShopData();
         wx.stopPullDownRefresh();
-      },
+    },
 
-      getLocationAndData() {
+    getLocationAndData() {
         wx.getLocation({
-          type: 'wgs84',
-          success: (res) => {
-            console.log(res)
-            this.setData({
-              latitude: res.latitude,
-              longitude: res.longitude
-            });
-            this.getShopData();
-            this.getAddressFromCoords();
-          },
-          fail: (res) => {
-            console.log(res)
-          },
+            type: 'wgs84',
+            success: (res) => {
+                console.log(res)
+                this.setData({
+                    latitude: res.latitude,
+                    longitude: res.longitude
+                });
+                this.getShopData();
+                this.getAddressFromCoords();
+            },
+            fail: (res) => {
+                console.log(res)
+            },
         });
-      },
-      getAddressFromCoords() {
-        wx.request({
-          url: `member/map/getAddress/${this.data.longitude}/${this.data.latitude}/`,
-          success: (res) => {
-            const {
-              status,
-              data
-            } = res.data;
-            this.setData({
-              address: status.flag ? data.addressComponent.district : '',
-            });
-          },
-        });
-      },
+    },
+    getAddressFromCoords() {
 
-      pageTotal(rowCount, pageSize) {
+    },
+
+    pageTotal(rowCount, pageSize) {
         if (!rowCount) return 0;
         return Math.ceil(rowCount / pageSize);
-      },
-      navigateToSearchResult(item) {
+    },
+    navigateToSearchResult(item) {
         if (item.id) {
-          wx.navigateTo({
-            url: `../searchresult/searchresult?flag=1&id=${item.id}&name=${item.name}`,
-          });
+            wx.navigateTo({
+                url: `../searchresult/searchresult?flag=1&id=${item.id}&name=${item.name}`,
+            });
         }
-      },
-      scanCode() {
+    },
+    scanCode() {
         isLogin()
         wx.scanCode({
-          success: (res) => {
-            wx.navigateTo({
-              url: res.result.split('#')[1]
-            });
-          },
+            success: (res) => {
+                wx.navigateTo({
+                    url: res.result.split('#')[1]
+                });
+            },
         });
-      },
-      openWXSM() {
+    },
+    openWXSM() {
         wx.hideLoading();
         jweixin.scanQRCode({
-          needResult: 1,
-          success: (res) => {
-            wx.navigateTo({
-              url: res.resultStr.split('#')[1]
-            });
-          },
+            needResult: 1,
+            success: (res) => {
+                wx.navigateTo({
+                    url: res.resultStr.split('#')[1]
+                });
+            },
         });
-      },
-      getAdData() {
-        wx.request({
-          url: `ad/ad/index`,
-          method: 'POST',
-          data: {
-            area_list: this.data.address
-          },
-          success: (res) => {
-            const {
-              status,
-              data
-            } = res.data;
-            this.setData({
-              adData: status.flag ? data : []
-            });
-          },
-        });
-      },
-      getBannerData() {
-        wx.showLoading({
-          title: '加载中'
-        });
-        request({
-          url: `/ad/banner/index`,
-          method: 'POST',
-        }).then(res => {
-          const {
-            status,
-            data
-          } = res.data;
-          this.setData({
-            swiperData: status.flag ? data : []
-          });
-        }).catch(err => {
-          console.log(err)
-          wx.hideLoading()
-        })
+    },
+    getAdData() {
 
-      },
-      getNavData() {
-        wx.request({
-          url: `merchant/industry/index`,
-          success: (res) => {
-            const {
-              status,
-              data
-            } = res.data;
-            this.setData({
-              navData: status.flag ? data : []
-            });
-          },
-          complete: this.getAdData,
-        });
-      },
-      getShopData() {
+    },
+    getBannerData() {
+
+    },
+    getNavData() {
+
+    },
+    getShopData() {
         getNearbyPage({
-          latitude: this.data.latitude,
-          longitude: this.data.longitude
+            latitude: this.data.latitude,
+            longitude: this.data.longitude,
+            distance: 100
         }).then(res => {
-            const {
-              status,
-              data
-            } = res.data;
-            if (status.flag) {
-              this.setData({
-                store_list: this.data.store_list.concat(data.storeAndTagsList),
-                zh_total: data.total,
-                zh_totalPage: this.pageTotal(data.total, this.data.zh_size),
-              });
+            if (res.success) {
+                const { records, total, size, current, pages } = res.data;
+                this.setData({
+                    store_list: this.data.zh_page === 1
+                        ? records
+                        : [...this.data.store_list, ...records],
+                    zh_total: total,
+                    zh_size: size,
+                    zh_page: current,
+                    zh_totalPage: pages
+                });
             }
-          })
-          .catch(err => {
-            console.log(err)
-          })
-
-
-        },
-      });
+        }).catch(err => {
+            console.log(err);
+        });
+    },
+});

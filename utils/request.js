@@ -1,4 +1,3 @@
-/* utils/request.js*/
 import config from '@/config/config';
 import { getToken, removeToken } from '@/utils/auth';
 
@@ -61,5 +60,45 @@ function handleError(response) {
     });
   }
 }
+
+// 添加 post 方法
+request.post = (url, data, options = {}) => {
+  return request({
+    url,
+    data,
+    method: 'POST',
+    ...options
+  });
+};
+
+// 添加 get 方法
+request.get = (url, data, options = {}) => {
+  return request({
+    url,
+    data,
+    method: 'GET',
+    ...options
+  });
+};
+
+// 添加 put 方法
+request.put = (url, data, options = {}) => {
+  return request({
+    url,
+    data,
+    method: 'PUT',
+    ...options
+  });
+};
+
+// 添加 delete 方法
+request.delete = (url, data, options = {}) => {
+  return request({
+    url,
+    data,
+    method: 'DELETE',
+    ...options
+  });
+};
 
 export default request;

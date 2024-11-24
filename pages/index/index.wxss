@@ -274,3 +274,149 @@
   font-size: 28rpx;
   color: #fff;
 }
+
+.index-list-item {
+  width: 100%;
+  height: 220rpx;
+  background-color: #fff;
+  margin-bottom: 14rpx;
+  box-sizing: border-box;
+  padding-left: 26rpx;
+  display: flex;
+  align-items: center;
+}
+
+.index-list-item:last-child {
+  margin-bottom: 0;
+}
+
+.index-list-item-img {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 4rpx;
+}
+
+.index-list-item-info {
+  margin-left: 32rpx;
+  display: flex;
+  flex-direction: column;
+  min-width: 450rpx;
+  align-self: flex-start;
+  padding-top: 24rpx;
+}
+
+.index-list-item-info-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+
+.index-list-item-info-name-txt {
+  font-size: 30rpx;
+  font-weight: 500;
+  line-height: 42rpx;
+  color: #333333;
+}
+
+.index-list-item-info-name-jl {
+  font-size: 22rpx;
+  line-height: 32rpx;
+  color: #999999;
+}
+
+.index-list-item-info-discount {
+  margin-top: 10rpx;
+  display: flex;
+  align-items: center;
+}
+
+.index-list-item-info-discount-item {
+  display: flex;
+  align-items: center;
+  margin-right: 16rpx;
+}
+
+.index-list-item-info-discount-item:last-child {
+  margin-right: 0;
+}
+
+.index-list-item-info-discount-item-viplefttxt {
+  font-size: 24rpx;
+  line-height: 34rpx;
+  color: #e8541e;
+  margin-left: 10rpx;
+}
+
+.index-list-item-info-discount-item-huiyuanlefttxt {
+  font-size: 24rpx;
+  line-height: 34rpx;
+  color: #1e92e8;
+  margin-left: 10rpx;
+}
+
+.index-list-item-info-list {
+  margin-top: 14rpx;
+  display: flex;
+  align-items: center;
+}
+
+.index-list-item-info-list-item {
+  display: flex;
+  align-items: center;
+  margin-right: 18rpx;
+}
+
+.index-list-item-info-list-item-content {
+  position: relative;
+  display: inline-block;
+  line-height: 34rpx;
+  padding: 2rpx 14rpx;
+  margin-left: 20rpx;
+  background-color: #f7b500;
+  font-size: 14rpx;
+  font-weight: normal;
+  color: #ffffff;
+  border-radius: 4rpx;
+  box-sizing: border-box;
+}
+
+.index-list-item-info-list-item-content::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -6rpx;
+  left: -42rpx;
+  border-width: 24rpx;
+  border-style: solid;
+  border-color: transparent #f7b500 transparent transparent;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+.index-list-item-info-list-item-content::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: calc(50% - 4rpx);
+  left: 0;
+  width: 8rpx;
+  height: 8rpx;
+  background-color: #ffffff;
+  border-radius: 50%;
+}
+
+.index-banner {
+  width: 100%;
+  height: 188rpx;
+  box-sizing: border-box;
+  padding-left: 44rpx;
+  padding-right: 44rpx;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.index-banner-img {
+  width: 322rpx;
+  height: 168rpx;
+}
