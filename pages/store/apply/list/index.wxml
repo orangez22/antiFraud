@@ -11,6 +11,7 @@
       <view class="store-entry-list-numbers">申请单号：{{item.id}}</view>
       <view class="store-entry-list-time">提交时间：{{item.createdAt}}</view>
       <view class="store-entry-list-btn">
+        <view bindtap="downloadQRCode" data-item="{{item}}" data-id="{{item.id}}" wx:if="{{item.status === '1'}}" class="btn-see-reason">下载店铺二维码</view>
         <view bindtap="onClickSeeBecause" data-item="{{item}}" wx:if="{{item.status === '2'}}" class="btn-see-reason">查看原因</view>
       </view>
     </view>

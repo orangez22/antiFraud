@@ -14,4 +14,12 @@ export const storePageApi=(data)=>{
     method: 'POST',
     data: data
   })
-} 
+}
+
+export const downloadQRCodeApi=(data)=>{
+  return request({
+    url: '/base/qrcode/generate',
+    method:'POST',
+    data: data
+  })
+}
