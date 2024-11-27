@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function login(params) {
+export function loginApi(params) {
   return request.post(`/sso/member/login`, params);
 }
 

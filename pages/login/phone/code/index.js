@@ -9,6 +9,7 @@ import {
   getToken,
   setId
 } from '@/utils/auth';
+import {loginApi} from "../../../../api/sso";
 
 Page({
   data: {
@@ -111,19 +112,15 @@ Page({
       phone: this.data.phone,
       code: this.data.code,
       type: 'verificationCodeAuthService'
-      // type: 'memberServiceImplByCode'
     };
     validateForm(data, this.rules)
       .then(() => {
         wx.showLoading({
           title: '登录中...'
         });
-        request({
-          url: `/sso/member/login`,
-          method: 'POST',
-          data
-        }).then(res => {
+        loginApi(data).then(res => {
           setToken(res.data.token);
+          setId(res.data.id);
           wx.showToast({
             title: '登录成功',
             icon: 'success'
