@@ -1,0 +1,40 @@
+<view class="onlinepay">
+  <view class="onlinepay-bgbanner"></view>
+  <view class="onlinepay-content">
+    <view class="onlinepay-content-list">
+      <view class="onlinepay-content-list-name">
+        <view class="onlinepay-content-list-name-txt">闽南猪脚饭（高新店）</view>
+        <view class="onlinepay-content-list-name-zk">
+          <view class="onlinepay-content-list-name-zk-left">
+            <view class="onlinepay-content-list-name-zk-left-txt">折</view>
+            <view class="onlinepay-content-list-name-zk-left-content">PLUS会员78折</view>
+          </view>
+          <view class="onlinepay-content-list-name-zk-right">
+            <view class="onlinepay-content-list-name-zk-right-txt">折</view>
+            <view class="onlinepay-content-list-name-zk-right-content">会员78折</view>
+          </view>
+        </view>
+        <view class="onlinepay-content-list-name-line"></view>
+      </view>
+      <view class="onlinepay-content-list-line">
+        <view class="onlinepay-content-list-line-wrap"></view>
+      </view>
+
+      <view class="merchant-submits-apply-info-input">
+            <input 
+              class="merchant-submits-apply-info-input-input" 
+              placeholder-style="color:#CCCCCC" 
+            />
+          </view>
+
+    </view>
+    <view class="onlinepay-content-symd">
+      <image src="{{commonImg('select.png')}}" class="onlinepay-content-symd-select"></image>
+      <view class="onlinepay-content-symd-txt">使用100码豆</view>
+      <view class="onlinepay-content-symd-warn">使用码豆可以抵扣并为商家投票哦～</view>
+    </view>
+  </view>
+  <view class="onlinepay-btn">
+    <button class="onlinepay-btn-wrap">¥303.56 码上结帐</button>
+  </view>
+</view>

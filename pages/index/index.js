@@ -97,8 +97,10 @@ Page({
         jweixin.scanQRCode({
             needResult: 1,
             success: (res) => {
+              console.log('扫码')
+              console.log(res.result)
                 wx.navigateTo({
-                    url: res.resultStr.split('#')[1]
+                    url: res.result
                 });
             },
         });
@@ -139,6 +141,9 @@ Page({
             onlyFromCamera: true,
             success (res) {
                 console.log(res)
+                wx.navigateTo({
+                  url: res.result
+              });
             }
         })
     }

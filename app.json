@@ -2,6 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/about/index",
+    "pages/pay/index/index",
+    "pages/pay/success/index",
     "pages/merchant/apply/list/index",
     "pages/merchant/apply/index/index",
     "pages/store/apply/list/index",
@@ -9,7 +11,6 @@
     "pages/my/index",
     "pages/modify/index",
     "pages/findback/index",
-    "pages/pay/index",
     "pages/login/phone/code/index",
     "pages/login/phone/pwd/index",
     "pages/login/wechat/index",
