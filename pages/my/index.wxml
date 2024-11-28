@@ -143,7 +143,11 @@
             </view>
             <view bindtap="toStore" data-url='/pages/store/apply/list/index' class="my-list-wrap-item-list-item">
               <image style="width: 50rpx; height: 50rpx;" src="/assets/images/my/shangjiaruzhu.png" class="my-list-wrap-item-list-item-img"></image>
-              <text class="my-list-wrap-item-list-item-txt">商铺入驻</text>
+              <text class="my-list-wrap-item-list-item-txt">商铺入驻申请</text>
+            </view>
+            <view bindtap="navigate" data-url='/pages/store/list/index' class="my-list-wrap-item-list-item">
+              <image style="width: 50rpx; height: 50rpx;" src="/assets/images/my/shangjiaruzhu.png" class="my-list-wrap-item-list-item-img"></image>
+              <text class="my-list-wrap-item-list-item-txt">商铺管理</text>
             </view>
             <view bindtap="onClickExit" class="my-list-wrap-item-list-item">
               <image style="width: 50rpx; height: 50rpx;" src="/assets/images/my/exit.png" class="my-list-wrap-item-list-item-img"></image>

@@ -3,7 +3,7 @@ import { storePageApi } from '@/api/storeApply'
 import {
   getUser
 } from '@/utils/auth'
-import {downloadQRCodeApi} from "../../../../api/storeApply";
+import {downloadQRCodeApi, generateQrCodeByStoreApplyIdApi} from "../../../../api/storeApply";
 import {getId} from "../../../../utils/auth";
 Page({
   data: {
@@ -79,18 +79,12 @@ Page({
     });
   },
 
-  downloadQRCode(event) {
-    // 假设 isLogin 和 getId 是前面定义的验证登录和获取 merchantId 的方法
-    isLogin();
-    const merchantId = getId();
-    const storeId = event.currentTarget.dataset.id;
-
-    // 调用后端接口生成二维码
-    downloadQRCodeApi({
-      text: `/pages/pay/index/index?merchantId=${merchantId}&storeId=${storeId}`,
-      size: 300,
-      filePath: ''
-    }).then(res => {
+  downloadQRCode(event){
+    isLogin()
+    //storeApplyId用来换取storeId
+    const storeApplyId = event.currentTarget.dataset.id;
+    console.log(`storeApplyId=${storeApplyId}`)
+    generateQrCodeByStoreApplyIdApi(storeApplyId).then(res => {
       if (res.success && res.data) {
         // 后端返回 Base64 数据
         const base64Data = res.data;
@@ -100,7 +94,7 @@ Page({
         const buffer = wx.base64ToArrayBuffer(base64Image); // 转换为 ArrayBuffer
 
         // 将 ArrayBuffer 写入本地文件
-        const filePath = `${wx.env.USER_DATA_PATH}/qr_code_${storeId}.png`; // 指定文件名
+        const filePath = `${wx.env.USER_DATA_PATH}/qr_code.png`; // 指定文件名
         wx.getFileSystemManager().writeFile({
           filePath,
           data: buffer,
@@ -139,13 +133,7 @@ Page({
           icon: 'none'
         });
       }
-    }).catch(err => {
-      console.error("请求失败", err);
-      wx.showToast({
-        title: '请求失败',
-        icon: 'none'
-      });
-    });
+    })
   },
 
   // 查看详情

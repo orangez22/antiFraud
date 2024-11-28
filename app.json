@@ -8,6 +8,7 @@
     "pages/merchant/apply/index/index",
     "pages/store/apply/list/index",
     "pages/store/apply/index/index",
+    "pages/store/list/index",
     "pages/my/index",
     "pages/modify/index",
     "pages/findback/index",

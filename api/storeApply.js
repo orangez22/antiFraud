@@ -16,10 +16,6 @@ export const storePageApi=(data)=>{
   })
 }
 
-export const downloadQRCodeApi=(data)=>{
-  return request({
-    url: '/base/qrcode/generate',
-    method:'POST',
-    data: data
-  })
+export function generateQrCodeByStoreApplyIdApi(storeApplyId) {
+  return request.get(`/merchant/store/generateQrCodeByStoreApplyId/${storeApplyId}`);
 }
