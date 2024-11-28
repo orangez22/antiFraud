@@ -116,9 +116,6 @@
   align-items: center;
   box-sizing: border-box;
 }
-/* 	textarea::-webkit-input-placeholder{
-    padding: 10rpx;
-} */
 
 .merchant-submits-apply-info-input-input {
   padding: 0;
