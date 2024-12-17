@@ -3,7 +3,7 @@ const env = __wxConfig.envVersion; // Retrieves the current environment in WeCha
 
 const config = {
   development: {
-    baseURL: 'http://localhost:8080'
+    baseURL: 'http://localhost:28080'
   },
   trial: {
     baseURL: 'https://test-api.your-site.com'

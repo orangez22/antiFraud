@@ -1,116 +1,66 @@
-// pages/beans/beans.js
-import request from '@/utils/request'
-import {
-  validateForm,
-  isLogin
-} from '@/utils/common'
+// pages/bean/index.js
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    codeBean: '1000', // 码豆
-    goldBean: '', // 金豆
-    list: [
-      {
-        id:1,
-        time:"2024年1月1日",
-        num:"100"
-      }
-    ]      // 消费明细
+
   },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad(options) {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
   onShow() {
-    this._getInfoByToken()
-  },
-  _getInfoByToken() {
-    //判断是否已经登录
-    isLogin()
 
-    request({
-      url: `/sso/member/findByToken`,
-    }).then(res => {
-      const {success,data,message} = res
-      if (success) {
-        this.user = data
-      } else {
-        wx.showToast({
-          icon: 'none',
-          title: message
-        })
-      }
-    })
   },
 
-  // 获取码豆数据
-  _getBeansData() {
-    wx.showLoading({ title: '加载中' });
-    const authorization = wx.getStorageSync('authorization');
-    request({
-      url: "/member/member/myBeans",
-      header: { 'AUTH': authorization.token },
-      success: (res) => {
-        const { status, data } = res.data;
-        if (status.flag) {
-          this.setData({
-            goldBean: data.goldenBeans,
-            codeBean: data.beans
-          });
-        } else {
-          this.setData({
-            goldBean: 0,
-            codeBean: 0
-          });
-        }
-      },
-      fail: () => {
-        this.setData({
-          goldBean: 0,
-          codeBean: 0
-        });
-        wx.showToast({
-          icon: 'none',
-          title: '请求失败, 网络异常'
-        });
-      },
-      complete: () => {
-        wx.hideLoading();
-      }
-    });
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide() {
+
   },
 
-  // 获取消费明细
-  _BeansDetail() {
-    const authorization = wx.getStorageSync('authorization');
-    request({
-      url:"member/consumption/1/3",
-      method: 'POST',
-      header: { 'AUTH': authorization.token },
-      data: {},
-      success: (res) => {
-        const { status, data } = res.data;
-        if (status.flag) {
-          this.setData({
-            list: data.map(item => ({
-              id: item.id,
-              time: item.time,
-              num: item.num
-            }))
-          });
-        }
-      },
-      fail: () => {
-        wx.showToast({
-          icon: 'none',
-          title: '请求失败, 网络异常'
-        });
-      }
-    });
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload() {
+
   },
 
-  // 提现金豆
-  onClickTXgoldBean() {
-    if (this.data.goldBean === 0) {
-      wx.showToast({
-        icon: 'none',
-        title: '暂无金豆, 无法提现'
-      });
-    }
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh() {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom() {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage() {
+
   }
-});
+})

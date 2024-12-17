@@ -1,16 +1,2 @@
-<view class="merchant-entry">
-  <block wx:for="{{applys}}" wx:key="id">
-    <view class="merchant-entry-list">
-      <view class="merchant-entry-list-top">
-        <text class="name">商家名称：{{item.merchantName}}</text>
-        <text class="state {{item.statusClass}}">{{item.statusText}}</text>
-      </view>
-      <view class="merchant-entry-list-numbers">申请单号：{{item.id}}</view>
-      <view class="merchant-entry-list-time">提交时间：{{item.createdAt}}</view>
-      <view class="merchant-entry-list-btn" wx:if="{{item.status === '2'}}">
-        <view bindtap="onClickSeeReason" data-item="{{item}}" class="btn-see-reason">查看原因</view>
-      </view>
-    </view>
-  </block>
-  <view class="add-btn" bindtap="addApply">新增提交</view>
-</view>
+<!--pages/merchant/apply/list/index.wxml-->
+<text>pages/merchant/apply/list/index.wxml</text>
