@@ -74,26 +74,7 @@
     </block>
   </view>
 
-  <!-- 我的资产 -->
-  <view class="my-zc">
-    <view class="my-zc-wrap">
-      <text class="my-zc-wrap-txt">我的资产</text>
-      <view class="my-zc-wrap-list">
-        <view class="my-zc-wrap-list-item" bindtap="navigate" data-url='/pages/bean/index'>
-          <image src="/assets/images/my/madou.png" class="my-zc-wrap-list-item-img"></image>
-          <text class="my-zc-wrap-list-item-txt">码豆</text>
-        </view>
-        <view class="my-zc-wrap-list-item" bindtap="showNotDeveloped">
-          <image src="/assets/images/my/youhuiquan.png" class="my-zc-wrap-list-item-img"></image>
-          <text class="my-zc-wrap-list-item-txt">优惠券</text>
-        </view>
-        <view class="my-zc-wrap-list-item" bindtap="showNotDeveloped">
-          <image src="/assets/images/my/tuijian.png" class="my-zc-wrap-list-item-img"></image>
-          <text class="my-zc-wrap-list-item-txt">分享赚钱</text>
-        </view>
-      </view>
-    </view>
-  </view>
+  <!-- 我的功能 -->
     <view class="my-list">
       <view class="my-list-wrap">
         <view class="my-list-wrap-item">
@@ -101,15 +82,15 @@
           <view class="my-list-wrap-item-list">
             <view bindtap="navigate" data-url='/pages/order/index' class="my-list-wrap-item-list-item">
               <image style="width: 46rpx; height: 40rpx;" src="/assets/images/my/wodedingdan.png" class="my-list-wrap-item-list-item-img"></image>
-              <text class="my-list-wrap-item-list-item-txt">我的订单</text>
+              <text class="my-list-wrap-item-list-item-txt">经历上传</text>
             </view>
             <view bindtap="navigate" data-url='/pages/appraise/list/index' class="my-list-wrap-item-list-item">
               <image style="width: 46rpx; height: 40rpx;" src="/assets/images/my/wodepingjia.png" class="my-list-wrap-item-list-item-img"></image>
-              <text class="my-list-wrap-item-list-item-txt">我的评价</text>
+              <text class="my-list-wrap-item-list-item-txt">我的考试</text>
             </view>
             <view bindtap="showNotDeveloped" class="my-list-wrap-item-list-item">
               <image style="width: 48rpx; height: 42rpx;" src="/assets/images/my/huiyuanxuzhi.png" class="my-list-wrap-item-list-item-img"></image>
-              <text class="my-list-wrap-item-list-item-txt">会员须知</text>
+              <text class="my-list-wrap-item-list-item-txt">用户须知</text>
             </view>
           </view>
         </view>
@@ -126,7 +107,7 @@
             </view>
             <view bindtap="navigate" data-url='/pages/complain/list/index' class="my-list-wrap-item-list-item">
               <image style="width: 46rpx; height: 44rpx;" src="/assets/images/my/tousushangjia.png" class="my-list-wrap-item-list-item-img"></image>
-              <text class="my-list-wrap-item-list-item-txt">投诉商家</text>
+              <text class="my-list-wrap-item-list-item-txt">一键举报</text>
             </view>
             <view bindtap="navigate" data-url='/pages/feedback/list/index' class="my-list-wrap-item-list-item">
               <image style="width: 50rpx; height: 46rpx;" src="/assets/images/my/yijianfankui.png" class="my-list-wrap-item-list-item-img"></image>

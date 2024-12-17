@@ -228,12 +228,9 @@ Page({
       url: url
     });
   },
-  // 提示功能尚未开发
   showNotDeveloped() {
-    wx.showToast({
-      title: '功能尚未开发', // 提示内容
-      icon: 'none', // 无图标
-      duration: 2000, // 显示时间，单位毫秒
-    });
+    wx.navigateTo({
+      url: '/pages/about/index',
+    })
   },
 })

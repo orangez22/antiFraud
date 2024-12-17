@@ -2,64 +2,44 @@
 <view>
     <view class="about">
         <view class="about_content">
-            <view class="view-itemQ"><text>Q：</text>码上结是什么？</view>
-            <view class="view-itemA"><text>A：</text>码上结是一个领先的会员平台。会员可以尊享码上结所有入驻门店会员价结账的服务。码上结专注进店服务，“出门消费，用码上结”，已成为共识。</view>
+            <view class="view-itemQ"><text>Q：</text>反诈科普平台是什么背景下建立的？</view>
+            <view class="view-itemA"><text>A：</text>随着诈骗案件在社会中持续高发，公众的财产安全与信息安全面临严峻挑战，为贯彻国家强化防范诈骗宣传工作的号召，提升全民反诈意识，建立反诈科普平台刻不容缓。</view>
         </view>
         <view class="about_content">
-            <view class="view-itemQ"><text>Q：</text>如何成为会员？</view>
-            <view class="view-itemA"><text>A：</text>搜索或扫码关注“码上结”微信公众号，一元注册成会员。会员须完善手机号、生日、身份证等信息，获得相应的服务权限。</view>
+            <view class="view-itemQ"><text>Q：</text>平台的使命是什么？</view>
+            <view class="view-itemA"><text>A：</text>平台的使命是通过各种方式普及反诈知识，提高公众的反诈意识和防范能力，帮助人们识别和避免各种诈骗手段，守护公众的财产安全，共同构建一个更加安全、和谐的社会环境。</view>
         </view>
         <view class="about_content">
-            <view class="view-itemQ"><text>Q：</text>不充卡也能享受会员价吗？</view>
-            <view class="view-itemA"><text>A：</text>没有在所消费门店充卡，只要注册了码上结，您也就是所在门店的线上会员，一样能享受平台标注的会员价。</view>
+            <view class="view-itemQ"><text>Q：</text>平台有哪些主要的功能和服务？</view>
+            <view class="view-itemA"><text>A：</text>常见的功能包括提供丰富的反诈资讯，防范技巧分享等；还有一键举报功能，可对可疑的账号、网址等进行举报；平台设有论坛功能，方便用户对遇到的诈骗行为进行交流；以及在线咨询服务，用户可向专业人员或智能客服咨询反诈问题；以及通过反诈科普考试巩固反诈知识。</view>
         </view>
         <view class="about_content">
-            <view class="view-itemQ"><text>Q：</text>会员价和PLUS价有什么区别？</view>
-            <view class="view-itemA"><text>A：</text>PLUS价的折扣比普通会员价更低，省钱更多。1元注册，终身享受会员价；PLUS价则需要支付年费，按年收取，有效期从支付首日起计算。</view>
+            <view class="view-itemQ"><text>Q：</text>如何使用平台的一键举报功能？</view>
+            <view class="view-itemA"><text>A：</text>在"我的"页面中点击一键举报后，根据提示，输入相关信息即可完成一键举报。</view>
         </view>
         <view class="about_content">
-            <view class="view-itemQ"><text>Q：</text>如何用码上结结账？</view>
-            <view class="view-itemA"><text>A：</text>方法一：打开码上结“附近商家”，直接点击所在商家，进入“立即买单”页面。输入小票金额后，平台自动根据会员等级生成折后价格，按照折后价格点击支付即可。</view>
-            <view class="view-itemA"><text>A：</text>方法二：直接扫商家前台码上结二维码，输入小票金额后，平台自动根据会员等级生成折后价格，按照折后价格点击支付即可。</view>
+            <view class="view-itemQ"><text>Q：</text>平台的反诈知识内容和资源是从哪里来的？</view>
+            <view class="view-itemA"><text>A：</text>内容和资源一般来源于专业的反诈机构、警方的案例数据、权威媒体报道以及专家的研究分析等，确保所提供的信息准确、可靠、具有权威性。</view>
         </view>
         <view class="about_content">
-            <view class="view-itemQ"><text>Q：</text>“分享赚钱”的推荐功能如何使用、如何获益？</view>
-            <view class="view-itemA"><text>A：</text>点击“我的”页面，点击“分享赚钱”，平台自动生成您的专属二维码。分享朋友圈，或直接让好友扫描您的二维码，关注码上结，并注册成会员。接下来，您就可以在“我的团队”里看到好友昵称和好友数量。</view>
-            <view class="view-itemA"><text>B：</text>分享获得两大福利：一种是通过分享注册本身就可以获得码豆奖励；二是好友消费省钱时，分享者会获得相应的码豆奖励。码豆可以当钱花哦！</view>
+            <view class="view-itemQ"><text>Q：</text>平台如何保证内容的及时性和有效性？</view>
+            <view class="view-itemA"><text>A：</text>平台会有专业的团队或人员负责跟踪最新的诈骗动态和趋势，及时更新和发布相关的反诈知识和资讯，同时对已有的内容进行定期审查和修订，以保证其有效性。</view>
         </view>
         <view class="about_content">
-            <view class="view-itemQ"><text>Q：</text>商家不让用怎么办？</view>
-            <view class="view-itemA"><text>A：</text>您是平台所有入驻商家的线上会员，理应获得入驻商家的尊享服务。商家跟码上结签有入驻协议，根据协议要求，商家不得拒绝所有线上会员使用。假如商家不让用，请您保留证据，进入会员入口点击“投诉商家”。您也可以拨打客服热线:400-625-0209。平台负责赔偿您本单消费应当享受的折扣优惠。同时，平台会对商家进行违约、下架处理。</view>
+            <view class="view-itemQ"><text>Q：</text>用户可以通过哪些方式参与到平台的互动中？</view>
+            <view class="view-itemA"><text>A：</text>用户可以在平台中的论坛功能上发表自己的反诈经历、心得和见解，参与话题讨论、反诈考试；还可以参加平台举办的线上线下活动，如反诈知识竞赛、线下宣传活动等。</view>
         </view>
         <view class="about_content">
-            <view class="view-itemQ"><text>Q：</text>码上结开通的城市有哪些？</view>
-            <view class="view-itemA"><text>A：</text>码上结已经在广东、福建、河南、山西、河北、安徽、广西等数个省份开通服务。请关注码上结公众号，点击附近商家，如果您所在城市有商家入驻，则您所在的城市已经开通服务。</view>
+            <view class="view-itemQ"><text>Q：</text>平台如何保护用户的隐私数据？</view>
+            <view class="view-itemA"><text>A：</text>平台会采取多种技术手段和管理措施来保护用户隐私，如加密存储用户数据、限制数据访问权限、定期进行数据安全审计等，防止用户数据泄露和被滥用。</view>
         </view>
         <view class="about_content">
-            <view class="view-itemQ"><text>Q：</text>我对码上结的模式很感兴趣，如何代理，成为合伙人？</view>
-            <view class="view-itemA"><text>A：</text>码上结以县/区为单元，采取县区合伙人制，每个县区招募一个合伙人。如果您有投资创业的愿望，愿意扎根县区，将服务本地会员作为自己的事业，请搜索或扫码关注“码上结”微信公众号，在“我的”页面点击“我要代理”，完善信息，等待审核。如果您所在县区已有合伙人，系统会提醒您。您也可以在码上结“附近商家”页面查看是否已经有商家入驻，已有商家入驻，则意味着本县区已经有合伙人在运营。</view>
+            <view class="view-itemQ"><text>Q：</text>如果我对某些反诈问题有深入的疑问，能否得到专业的解答？</view>
+            <view class="view-itemA"><text>A：</text>可以的，平台提供了多种咨询渠道，如在线客服、论坛评论等，用户可以通过这些渠道向专业团队提出问题，获得深入、准确的解答。</view>
         </view>
         <view class="about_content">
-            <view class="view-itemQ"><text>Q：</text>我是商家，想入驻码上结，请问该如何入驻？</view>
-            <view class="view-itemA"><text>A：</text>如果您的城市开通了码上结，请搜索或扫码关注“码上结”微信公众号后，在“我的”页面，点击“商家入驻”，输入相应信息，待平台审核。如果您是符合入驻条件的优质商家，码上结的城市合伙人会第一时间跟您联系入驻事宜。</view>
-            <view class="view-itemA"><text>B：</text>码上结是排他入驻机制，一个商圈周边1～2两公里内，同品类商家，</view>
-            <view class="view-itemA"><text>C：</text>码上结只择优选取其中的一家入驻。</view>
-            <view class="view-itemA"><text>D：</text>平台不收取商家入驻费，不抽取商家的佣金，没有账期。</view>
-        </view>
-        <view class="about_content">
-            <view class="view-itemQ"><text>Q：</text>商家入驻码上结有什么好处？</view>
-            <view class="view-itemA"><text>A：</text>门店创造回头客的方式有两种：一种是打造品牌，让消费者指名购买，自动消费；另一种就是通过互联网技术锁定线上会员。码上结通过“结账即会员”的技术，帮助商家把所有散客变成线上会员，让传统“店商”也能社交化。商家可以通过码上结平台与线上会员沟通、送福利，“一次头回客，终身回头客”，实现实体门店和互联网的融合，实现门店和粉丝的互动。一个商圈内，不同业态商家之间的线上会员，可以通过码上结实现互通和共享。平台将单个商家的线下孤岛会员，变成线上会员群岛，培育一个良性的商圈消费生态。</view>
-        </view>
-        <view class="about_content">
-            <view class="view-itemQ"><text>Q：</text>码上结如何帮商家做活动？</view>
-            <view class="view-itemA"><text>A：</text>码上结旗下有国内专业的门店定位咨询机构，由门店实战专家和新媒体传播专家，为入驻门店进行咨询服务，每个城市都有免费获得服务的名额：</view>
-            <view class="view-itemC">
-                <view>第一步：分析竞争，心智调研，进行定位升级；</view>
-                <view>第二步：进行门头的优化改造，制定宣传口号；</view>
-                <view>第三步：优化店内设计，包括菜单设计升级、空间设计升级、服务细节和流程的设计升级；</view>
-                <view>第四步：联合进行促销，制定公关推广策略等，帮助实体门店打造独一无二的品牌。</view>
-                <view>第五步：联合具有竞争力的门店品牌，在码上结的入驻城市做加盟推广、品牌复制。</view>
-            </view>
+            <view class="view-itemQ"><text>Q：</text>这个反诈科普平台与其他同类平台相比，有什么特色和优势？</view>
+            <view class="view-itemA"><text>A：</text>本平台的特色和优势在于其内容的权威性和专业性，由专业的反诈机构和专家团队提供支持，确保知识准确可靠；同时，平台采用多样化的呈现形式，更易于用户理解和接受。此外，平台还具备多样化的服务功能，能够适应不同用户的需求和习惯，提高用户的学习效果。</view>
         </view>
     </view>
 </view>
