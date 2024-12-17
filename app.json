@@ -2,6 +2,10 @@
   "pages": [
     "pages/index/index",
     "pages/about/index",
+    "pages/exam/examList/examList",
+    "pages/exam/exam/exam",
+    "pages/exam/examResult/examResult",
+    "pages/forum/forum",
     "pages/pay/index/index",
     "pages/pay/success/index",
     "pages/merchant/apply/list/index",
@@ -30,17 +34,33 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "首页"
+        "text": "首页",
+        "iconPath": "assets/images/tabBarIco/home.png",
+        "selectedIconPath": "assets/images/tabBarIco/home-active.png"
+      },
+      {
+        "pagePath": "pages/forum/forum",
+        "text": "交流论坛",
+        "iconPath": "assets/images/tabBarIco/message.png",
+        "selectedIconPath": "assets/images/tabBarIco/message-active.png"
+      },
+      {
+        "pagePath": "pages/exam/examList/examList",
+        "text": "考试",
+        "iconPath": "assets/images/tabBarIco/examination.png",
+        "selectedIconPath": "assets/images/tabBarIco/examination-active.png"
       },
       {
         "pagePath": "pages/my/index",
-        "text": "我的"
+        "text": "我的",
+        "iconPath": "assets/images/tabBarIco/member.png",
+        "selectedIconPath": "assets/images/tabBarIco/member-active.png"
       }
     ]
   },
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "Weixin",
+    "navigationBarTitleText": "反诈科普系统",
     "navigationBarBackgroundColor": "#ffffff"
   },
   "style": "v2",
