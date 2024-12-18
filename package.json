@@ -10,5 +10,8 @@
     "type": "git",
     "url": "https://github.com/orangez22/antiFraud.git"
   },
-  "private": true
+  "private": true,
+  "dependencies": {
+    "@vant/weapp": "^1.11.7"
+  }
 }

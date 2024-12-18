@@ -59,18 +59,11 @@
             <text wx:if="{{user.nickname}}" class="my-info-mail-info-top-txt">{{user.nickname}}</text>
             <image style="width: 40rpx;" src="/assets/images/my/youke.png" class="my-info-mail-info-top-jb"></image>
           </view>
-          <view class="my-info-mail-info-bottom">会员号 {{user.id}}</view>
+          <view class="my-info-mail-info-bottom">用户号 {{user.id}}</view>
         </view>
-        <view class="my-info-mail-lj">累计节省：¥{{user.totalSave}}</view>
       </view>
-      <view class="my-info-desc" style="background:linear-gradient(99deg,rgba(245,245,245,1) 0%,rgba(225,224,224,1) 100%);">
-        <image src="/assets/images/my/huangguan.png" class="my-info-desc-jb"></image>
-        <text class="my-info-desc-txt" style="color: #6D7278;">游客 | 无会员折扣</text>
-        <text class="my-info-mail-info-bottom-cwplus" style="height: 22rpx;margin-top: 10rpx;background-color: #F7DC7C;color: #6D7278;" bindtap="vipToPay" data-value="1">成为会员 ></text>
-      </view>
-      <view class="my-info-bottom">
-        <image src="/assets/images/my/bottom.png" class="my-info-bottom-img"></image>
-      </view>
+      
+      
     </block>
   </view>
 

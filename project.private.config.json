@@ -16,6 +16,20 @@
           "scene": null
         },
         {
+          "name": "pages/my/index",
+          "pathName": "pages/my/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/store/apply/list/index",
           "pathName": "pages/store/apply/list/index",
           "query": "",
