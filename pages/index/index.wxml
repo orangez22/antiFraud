@@ -26,6 +26,14 @@
         <image src="/images/sample2.jpg" />
         <text>防骗小技巧2</text>
       </view>
+      <view class="content-item" bindtap="goToDetail">
+        <image src="/images/sample2.jpg" />
+        <text>防骗小技巧3</text>
+      </view>
+      <view class="content-item" bindtap="goToDetail">
+        <image src="/images/sample2.jpg" />
+        <text>防骗小技巧4</text>
+      </view>
     </view>
   </view>
 </view>

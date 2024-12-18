@@ -48,6 +48,7 @@ Page({
 
   // 跳转到详情页面
   goToDetail() {
+    console.log("跳转")
     wx.navigateTo({
       url: '/subpkg/detail/detail'  // 假设有一个详情页面
     });

@@ -15,11 +15,12 @@ Page({
    */
   data: {
     user: {
-      id: "",
+      id: '',
+      exameId:'',
       totalSave: 0,
-      isPlus: '0',
       avatar: '',
-      nickname: '',
+      name: '',
+      age:'',
       gender: '',
       isMerchant:''
     },
@@ -196,8 +197,9 @@ Page({
         message
       } = res
       if (success) {
-        this.setData({user:data})
+        this.setData({user:res.data})
         setUser(data)
+        console.log("用户id为:",this.data.user.id)
       } else {
         wx.showToast({
           icon: 'none',

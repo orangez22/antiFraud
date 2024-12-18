@@ -49,22 +49,22 @@
       </view>
     </block>
 
-    <block wx:elif="{{user.isPlus === '0'}}">
+   
       <view class="my-info-mail">
         <view class="my-info-mail-avatar">
           <image src="{{user.avatar}}" class="my-info-mail-avatar-img"></image>
         </view>
         <view class="my-info-mail-info">
           <view class="my-info-mail-info-top">
-            <text wx:if="{{user.nickname}}" class="my-info-mail-info-top-txt">{{user.nickname}}</text>
+            <text wx:if="{{user.name}}" class="my-info-mail-info-top-txt">{{user.name}}</text>
             <image style="width: 40rpx;" src="/assets/images/my/youke.png" class="my-info-mail-info-top-jb"></image>
           </view>
-          <view class="my-info-mail-info-bottom">用户号 {{user.id}}</view>
+          <view class="my-info-mail-info-bottom">用户Id: {{user.id}}</view>
         </view>
       </view>
       
       
-    </block>
+   
   </view>
 
   <!-- 我的功能 -->
@@ -84,6 +84,10 @@
             <view bindtap="showNotDeveloped" class="my-list-wrap-item-list-item">
               <image style="width: 48rpx; height: 42rpx;" src="/assets/images/my/huiyuanxuzhi.png" class="my-list-wrap-item-list-item-img"></image>
               <text class="my-list-wrap-item-list-item-txt">用户须知</text>
+            </view>
+            <view bindtap="navigate" data-url='/pages/appraise/list/index' class="my-list-wrap-item-list-item">
+              <image style="width: 46rpx; height: 40rpx;" src="/assets/images/my/woyaofatie.png" class="my-list-wrap-item-list-item-img"></image>
+              <text class="my-list-wrap-item-list-item-txt">我要发贴</text>
             </view>
           </view>
         </view>
@@ -111,18 +115,6 @@
         <view class="my-list-wrap-item">
           <text class="my-list-wrap-item-name">更多</text>
           <view class="my-list-wrap-item-list">
-            <view bindtap="navigate" data-url='/pages/merchant/apply/list/index' class="my-list-wrap-item-list-item">
-              <image style="width: 50rpx; height: 50rpx;" src="/assets/images/my/woyaodaili.png" class="my-list-wrap-item-list-item-img"></image>
-              <text class="my-list-wrap-item-list-item-txt">商家入驻</text>
-            </view>
-            <view bindtap="toStore" data-url='/pages/store/apply/list/index' class="my-list-wrap-item-list-item">
-              <image style="width: 50rpx; height: 50rpx;" src="/assets/images/my/shangjiaruzhu.png" class="my-list-wrap-item-list-item-img"></image>
-              <text class="my-list-wrap-item-list-item-txt">商铺入驻申请</text>
-            </view>
-            <view bindtap="navigate" data-url='/pages/store/list/index' class="my-list-wrap-item-list-item">
-              <image style="width: 50rpx; height: 50rpx;" src="/assets/images/my/shangjiaruzhu.png" class="my-list-wrap-item-list-item-img"></image>
-              <text class="my-list-wrap-item-list-item-txt">商铺管理</text>
-            </view>
             <view bindtap="onClickExit" class="my-list-wrap-item-list-item">
               <image style="width: 50rpx; height: 50rpx;" src="/assets/images/my/exit.png" class="my-list-wrap-item-list-item-img"></image>
               <text class="my-list-wrap-item-list-item-txt">退出登录</text>
