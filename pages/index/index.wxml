@@ -6,34 +6,35 @@
   </view>
 
   <!-- 轮播图 -->
-  <swiper indicator-dots="true" autoplay="true" interval="2000" duration="500" circular="true" class="swiper">
+  <swiper 
+    indicator-dots="true" 
+    autoplay="true" 
+    interval="2000" 
+    duration="500" 
+    circular="true" 
+    class="swiper"
+  >
     <swiper-item wx:for="{{swiperList}}" wx:key="index">
-      <navigator class="swiper-item" url="/subpkg/goods_detail/goods_detail?goods_id={{item.goods_id}}">
-        <image class="swiper-image" src="/assets/images/index{{item.image_src}}" alt="轮播图" />
-      </navigator>
+      <image 
+        class="swiper-image" 
+        src="/assets/images/index{{item.image_src}}" 
+        mode="aspectFill" 
+        alt="轮播图" 
+      />
     </swiper-item>
   </swiper>
 
-  <!-- 其他内容，展示反诈科普相关内容 -->
-  <view class="info">
-    <view class="section-title">反诈科普</view>
-    <view class="content-box">
-      <view class="content-item" bindtap="goToDetail">
-        <image src="/images/sample1.jpg" />
-        <text>防骗小技巧1</text>
+ <!-- 反诈科普内容 -->
+ <view class="info">
+    <view class="section-title">安全新闻</view>
+    <block wx:for="{{infoList}}" wx:key="index">
+      <view class="info-item" bindtap="goToDetail" data-id="{{item.id}}">
+        <image class="info-image" src="/assets/images/index{{item.image}}" mode="aspectFill" />
+        <view class="info-content">
+          <text class="info-title">{{item.title}}</text>
+          <text class="info-date">{{item.date}}</text>
+        </view>
       </view>
-      <view class="content-item" bindtap="goToDetail">
-        <image src="/images/sample2.jpg" />
-        <text>防骗小技巧2</text>
-      </view>
-      <view class="content-item" bindtap="goToDetail">
-        <image src="/images/sample2.jpg" />
-        <text>防骗小技巧3</text>
-      </view>
-      <view class="content-item" bindtap="goToDetail">
-        <image src="/images/sample2.jpg" />
-        <text>防骗小技巧4</text>
-      </view>
-    </view>
+    </block>
   </view>
 </view>
