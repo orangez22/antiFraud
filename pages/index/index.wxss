@@ -94,3 +94,8 @@
   color: #999;
   margin-top: 10rpx;
 }
+.more-btn {
+  font-size: 14px;
+  color: #615c59;
+  cursor: pointer;
+}

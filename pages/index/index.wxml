@@ -26,7 +26,9 @@
 
  <!-- 反诈科普内容 -->
  <view class="info">
-    <view class="section-title">安全新闻</view>
+    <view class="section-title">反诈新资讯
+      <text class="more-btn" bindtap="goToMoreInfo">点击查看更多</text>
+    </view>
     <block wx:for="{{infoList}}" wx:key="index">
       <view class="info-item" bindtap="goToDetail" data-id="{{item.id}}">
         <image class="info-image" src="/assets/images/index{{item.image}}" mode="aspectFill" />

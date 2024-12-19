@@ -1,8 +1,8 @@
 <!--pages/login/phone/pwd/index.wxml-->
 <view class="login-box">
   <view class="login-box-top">
-    <image src="/assets/images/login/msjimg.png"></image>
-    <view class="login-box-top-text">折扣价结账</view>
+    <image src="/assets/images/login/xiagongfanzha.png"></image>
+    <view class="login-box-top-text">反诈科普系统登录</view>
   </view>
   <view class="login-box-center">
     <view class="login-box-center-phone">

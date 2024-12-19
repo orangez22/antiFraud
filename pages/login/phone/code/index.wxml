@@ -3,8 +3,8 @@
   <!-- Only display the nav bar for APP-PLUS platform in Uni-app -->
   <view class="code-login-box">
     <view class="code-login-box-top">
-      <image src="/assets/images/login/msjimg.png"></image> <!-- Replace with the direct image path -->
-      <view class="code-login-box-top-text">会员价结账</view>
+      <image src="/assets/images/login/xiagongfanzha.png"></image> <!-- Replace with the direct image path -->
+      <view class="code-login-box-top-text">反诈科普系统登录</view>
     </view>
     <view class="code-login-box-center">
       <view class="code-login-box-center-phone">
