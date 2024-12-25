@@ -1,0 +1,29 @@
+<!-- 反诈科普内容 -->
+<view class="info">
+    <block wx:for="{{infoList}}" wx:key="index">
+      <view class="info-item" bindtap="goToDetail" data-id="{{item.id}}">
+        <image class="info-image" src="{{item.image}}" mode="aspectFill" />
+        <view class="info-content">
+          <text class="info-title">{{item.title}}</text>
+          <text class="info-date">{{item.date}}</text>
+        </view>
+      </view>
+    </block>
+    <view wx:if="{{infoList.length === 0}}" class="no-content-container">
+  <text class="no-content-text">暂无内容</text>
+</view>
+</view>
+<!--底部导航栏-->
+<view class="pagination">
+  <text class="pagination-text">共 {{totalPages}} 页</text>
+  <picker mode="selector" range="{{pageSizes}}" bindchange="onPageSizeChange">
+    <view class="pagination-dropdown">{{pageSize}}条/页</view>
+  </picker>
+  <view class="pagination-input-container">
+    <text class="pagination-text">前往</text>
+    <input class="pagination-input" type="number" value="{{goToPage}}" bindinput="onInputPageChange" />
+    <text class="pagination-text">页</text>
+    <button class="pagination-go-btn" bindtap="onGoToPage">跳转</button>
+  </view>
+</view>
+

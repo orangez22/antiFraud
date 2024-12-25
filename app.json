@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/index/allList/index",
     "pages/about/index",
     "pages/exam/examList/examList",
     "pages/exam/exam/exam",

@@ -2,39 +2,18 @@ import request from '@/utils/request';
 
 Page({
   data: {
-    swiperList: [
-      { image_src: '/banner1.png' },
-      { image_src: '/banner2.png' },
-      { image_src: '/banner3.png' },
-    ],
     infoList: [], // 初始化为空数组，待接口返回后填充
-    searchValue: '', // 存储搜索框的值
+    currentPage: 1, // 当前页
+    totalPages: 7, // 总页数
+    pageSize: 10, // 每页条数
+    goToPage: 1, // 输入框中的页码
   },
 
   onLoad() {
     this.getAntiFraudInfo(); // 页面加载时获取反诈科普内容
-  },
-
-  // 搜索框输入事件
-  onSearchInput(e) {
-    this.setData({
-      searchValue: e.detail.value, // 获取搜索框的输入值
+    wx.setNavigationBarTitle({
+      title: '反诈咨询集',
     });
-  },
-
-  // 搜索按钮点击事件
-  onSearchClick() {
-    const searchValue = this.data.searchValue.trim();
-    if (searchValue) {
-      wx.navigateTo({
-        url: `/subpkg/search/search?query=${searchValue}`, // 跳转到搜索结果页面
-      });
-    } else {
-      wx.showToast({
-        title: '请输入搜索内容',
-        icon: 'none',
-      });
-    }
   },
 
   // 获取反诈科普内容数据
@@ -42,7 +21,7 @@ Page({
     wx.showLoading({ title: '加载中' });
 
     // 使用 request.post 方法来发送 POST 请求
-    request.post('/list/getInfoList', { current: 1, size: 4 })
+    request.post('/list/getInfoList', { current: this.data.currentPage, size: this.data.pageSize })
       .then((response) => {
         wx.hideLoading();
         const { success, data, errorCode, message } = response;
@@ -71,19 +50,33 @@ Page({
       });
   },
 
-  // 点击查看更多
-  goToMoreInfo() {
-    wx.navigateTo({
-      url: '/pages/index/allList/index',
-    });
-  },
-
   // 点击反诈内容跳转详情页
   goToDetail(e) {
     console.log("跳转至详情页");
     const id = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: `/pages/detail/detail?id=${id}`,
+    });
+  },
+
+  // 输入页码
+  onInputPageChange(e) {
+    const goToPage = parseInt(e.detail.value) || 1;
+    this.setData({ goToPage });
+  },
+
+  // 跳转到指定页
+  onGoToPage() {
+    const goToPage = Math.min(Math.max(this.data.goToPage, 1), this.data.totalPages);
+    this.setData({ currentPage: goToPage }, () => {
+      this.getAntiFraudInfo();
+    });
+  },
+  // 改变每页条数
+  onPageSizeChange(e) {
+    const pageSize = this.data.pageSizes[e.detail.value];
+    this.setData({ pageSize, currentPage: 1 }, () => {
+      this.getAntiFraudInfo();
     });
   },
 });
