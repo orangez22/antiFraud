@@ -1,0 +1,14 @@
+<view class="container">
+  <!-- 文章标题 -->
+  <view class="article-title">{{detail.title}}</view>
+
+  <!-- 作者与发布时间 -->
+  <view class="article-meta">
+    <text class="meta-item">{{detail.date}}</text>
+    <text class="meta-separator">|</text>
+    <text class="meta-item">{{detail.author}}</text>
+  </view>
+
+  <!-- 文章内容 -->
+  <view class="article-content">{{detail.content}}</view>
+</view>

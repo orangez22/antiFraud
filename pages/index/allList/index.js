@@ -52,8 +52,7 @@ Page({
 
   // 点击反诈内容跳转详情页
   goToDetail(e) {
-    console.log("跳转至详情页");
-    const id = e.currentTarget.dataset.id;
+    const id = e.currentTarget.dataset.id; // 获取文章 ID
     wx.navigateTo({
       url: `/pages/detail/detail?id=${id}`,
     });
