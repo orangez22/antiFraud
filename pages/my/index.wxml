@@ -81,13 +81,13 @@
               <image style="width: 46rpx; height: 40rpx;" src="/assets/images/my/wodepingjia.png" class="my-list-wrap-item-list-item-img"></image>
               <text class="my-list-wrap-item-list-item-txt">我的考试</text>
             </view>
-            <view bindtap="showNotDeveloped" class="my-list-wrap-item-list-item">
-              <image style="width: 48rpx; height: 42rpx;" src="/assets/images/my/huiyuanxuzhi.png" class="my-list-wrap-item-list-item-img"></image>
-              <text class="my-list-wrap-item-list-item-txt">用户须知</text>
-            </view>
             <view bindtap="navigate" data-url='/pages/appraise/list/index' class="my-list-wrap-item-list-item">
               <image style="width: 46rpx; height: 40rpx;" src="/assets/images/my/woyaofatie.png" class="my-list-wrap-item-list-item-img"></image>
               <text class="my-list-wrap-item-list-item-txt">我要发贴</text>
+            </view>
+            <view bindtap="navigate" data-url='/pages/appraise/list/index' class="my-list-wrap-item-list-item">
+              <image style="width: 46rpx; height: 40rpx;" src="/assets/images/my/shoucang.png" class="my-list-wrap-item-list-item-img"></image>
+              <text class="my-list-wrap-item-list-item-txt">我的收藏</text>
             </view>
           </view>
         </view>
@@ -109,6 +109,10 @@
             <view bindtap="navigate" data-url='/pages/feedback/list/index' class="my-list-wrap-item-list-item">
               <image style="width: 50rpx; height: 46rpx;" src="/assets/images/my/yijianfankui.png" class="my-list-wrap-item-list-item-img"></image>
               <text class="my-list-wrap-item-list-item-txt">意见反馈</text>
+            </view>
+            <view bindtap="showNotDeveloped" class="my-list-wrap-item-list-item">
+              <image style="width: 48rpx; height: 42rpx;" src="/assets/images/my/huiyuanxuzhi.png" class="my-list-wrap-item-list-item-img"></image>
+              <text class="my-list-wrap-item-list-item-txt">用户须知</text>
             </view>
           </view>
         </view>
