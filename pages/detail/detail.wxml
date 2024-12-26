@@ -12,3 +12,18 @@
   <!-- 文章内容 -->
   <view class="article-content">{{detail.content}}</view>
 </view>
+<view class="detail-container">
+  <!-- 文章标题、发布时间、作者、内容略 -->
+  
+  <!-- 收藏按钮 -->
+  <view class="favorite-container">
+  <button class="favorite-btn" bindtap="toggleFavorite">
+    <image 
+      src="{{favoriteStatus === 0 ? '/assets/images/favorite/favorite.png' : '/assets/images/favorite/unfavorite.png'}}" 
+      class="favorite-icon" 
+    />
+    <text class="favorite-text">{{favoriteStatus === 0 ? '已收藏' : '收藏'}}</text>
+  </button>
+</view>
+
+</view>

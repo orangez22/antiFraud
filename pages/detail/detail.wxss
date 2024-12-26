@@ -33,3 +33,29 @@
   text-indent: 2em;
   color: #333;
 }
+/*收藏*/
+.favorite-container {
+  margin-top: 30rpx;
+  text-align: center;
+}
+
+.favorite-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10rpx;
+  border: none;
+  background-color: transparent;
+}
+
+.favorite-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 10rpx;
+}
+
+.favorite-text {
+  font-size: 28rpx;
+  color: #555;
+}
+
