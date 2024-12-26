@@ -2,6 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/index/allList/index",
+    "pages/my/favoriteList/index",
     "pages/about/index",
     "pages/detail/detail",
     "pages/exam/examList/examList",
