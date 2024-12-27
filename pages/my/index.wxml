@@ -56,15 +56,12 @@
         </view>
         <view class="my-info-mail-info">
           <view class="my-info-mail-info-top">
-            <text wx:if="{{user.name}}" class="my-info-mail-info-top-txt">{{user.name}}</text>
+            <text wx:if="{{user.name}}" class="my-info-mail-info-top-txt">用户名 {{user.name}}</text>
             <image style="width: 40rpx;" src="/assets/images/my/youke.png" class="my-info-mail-info-top-jb"></image>
           </view>
           <view class="my-info-mail-info-bottom">用户Id {{user.id}}</view>
         </view>
       </view>
-      
-      
-   
   </view>
 
   <!-- 我的功能 -->

@@ -199,7 +199,6 @@ Page({
       if (success) {
         this.setData({user:res.data})
         setUser(data)
-        console.log("用户id为:",this.data.user.id)
         const app = getApp();
         app.setMemberId(this.data.user.id); // 调用 setMemberId
       } else {

@@ -68,45 +68,6 @@
   margin-left: auto;
 }
 
-.modifydata-wrap-tel-code {
-  flex: 1;
-  height: 100%;
-  border: 2rpx solid rgba(221, 221, 221, 1);
-  display: flex;
-  align-items: center;
-  box-sizing: border-box;
-  border-radius: 12rpx;
-}
-
-.modifydata-wrap-tel-code-input {
-  margin: 0;
-  outline: none;
-  border: none;
-  background-color: #fff;
-  flex: 1;
-  height: 100%;
-  box-sizing: border-box;
-  padding-left: 22rpx;
-}
-
-.modifydata-wrap-tel-code-close {
-  width: 30rpx;
-  height: 30rpx;
-  border-radius: 50%;
-  margin-right: 26rpx;
-}
-
-.modifydata-wrap-tel-code-input-date {
-  font-size: 30rpx;
-  line-height: 72rpx;
-}
-
-.modifydata-wrap-tel-code-input-nodate {
-  font-size: 30rpx;
-  line-height: 72rpx;
-  color: #CCCCCC;
-}
-
 .modifydata-wrap-tel-sex {
   display: flex;
   align-items: center;
@@ -133,6 +94,25 @@
   font-size: 30rpx;
   color: #333333;
   line-height: 42rpx;
+}
+
+.modifydata-wrap-tel-avatar-container {
+  display: flex;
+  align-items: center;
+}
+
+.modifydata-wrap-tel-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 14rpx;
+}
+
+.modifydata-wrap-tel-avatar-text {
+  font-size: 24rpx;
+  color: #1677FF;
+  line-height: 100rpx;
 }
 
 .modifydata-savebtn {

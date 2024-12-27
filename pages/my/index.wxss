@@ -55,7 +55,6 @@
   color: #FFFFFF;
   margin-right: 6rpx;
   max-width: 240rpx;
-  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -65,14 +64,15 @@
   height: 22rpx;
   border-radius: 15rpx;
   margin-top: 8rpx;
+  margin-left: 20rpx;
 }
 
 .my-info-mail-info-bottom {
   margin-top: 50rpx;
   font-size: 30rpx;
   line-height: 30rpx;
-  color: #fff;
-  font-weight: 500;
+  color: #FFFFFF;
+  font-weight: 600;
   max-width: 450rpx;
   overflow: hidden;
   text-overflow: ellipsis;
