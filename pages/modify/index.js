@@ -67,8 +67,7 @@ _getInfoById() {
     },
   });
 },
-  // 更新用户信息
-  // 获取会员详情
+  // 获取用户信息
 _getInfoById() {
   const authorization = wx.getStorageSync('authorization');
   wx.showLoading({ title: '加载中' });
@@ -185,20 +184,28 @@ updateMemberInfo() {
       gender: e.currentTarget.dataset.value,
     });
   },
-   // 前端选择头像并上传
+  // 选择头像并上传
 chooseAvatarImage(type) {
-  wx.chooseMedia({
-    count: 1, // 选择 1 张图片或视频
-    mediaType: ['image'], // 指定选择的媒体类型为图片
-    sourceType: ['album', 'camera'], // 可选择相册或相机
+  // 确保 `type` 是字符串类型
+  if (typeof type !== 'string' || !type) {
+    console.error('Invalid type:', type);  // 输出错误信息
+    return;
+  }
+
+  wx.chooseImage({
+    count: 1,  // 选择 1 张图片
+    sizeType: ['original', 'compressed'],  // 选择图片
+    sourceType: ['album', 'camera'],  // 可选择相册或相机
     success: (res) => {
-      const tempFilePath = res.tempFiles[0].tempFilePath; // 获取选择的图片路径
+      const tempFilePath = res.tempFilePaths[0];  // 获取图片路径
+      console.log('type:', type);  // 确保 type 是合法的字符串
+      console.log('tempFilePath:', tempFilePath);  // 确保 tempFilePath 是有效的路径
+
       this.setData({
-        [type]: tempFilePath,
+        [type]: tempFilePath,  // 使用动态字段名更新数据
       });
 
-      // 可选：上传图片到服务器
-      this.uploadToServer(tempFilePath);
+      this.uploadImage(tempFilePath, type);  // 上传图片
     },
     fail: () => {
       wx.showToast({
@@ -208,29 +215,28 @@ chooseAvatarImage(type) {
     },
   });
 },
-
-// 上传图片到后端
-uploadToServer(filePath) {
+// 选择头像处理器
+chooseAvatar() {
+  console.log("调用了该方法")
+  this.chooseAvatarImage('avatar');  // 调用头像选择函数，传递 'avatar' 字段名
+},
+// 上传图片
+uploadImage(filePath, type) {
   wx.uploadFile({
-    url: '/member/upload',  // 假设这是后端处理上传的接口
-    filePath: filePath,
-    name: 'file', // 上传文件时的字段名
-    formData: {
-      memberId: this.getMemberId(),  // 附带会员ID等其他参数
-    },
+    url: 'http://localhost:28080/member/upload',  // 后端接口，用于上传图片
+    method:'POST',
+    filePath:filePath,
+    name: 'file',  // 上传字段名称
     success: (res) => {
-      const data = JSON.parse(res.data);
-      if (data.success) {
+      const { data } = JSON.parse(res.data);  // 获取返回的图片数据
+        // 更新页面显示头像
         this.setData({
-          avatar: data.url,  // 更新显示的头像 URL
+          [type]: data.url,  // 将返回的 URL 存入对应的字段
         });
         wx.showToast({ title: '头像更新成功', icon: 'success' });
-      } else {
-        wx.showToast({ title: '头像上传失败', icon: 'none' });
-      }
-    },
+      } ,
     fail: (error) => {
-      console.error("上传失败错误信息：", error);  // 打印失败信息
+      console.error("上传失败错误信息：", error);
       wx.showToast({ title: '网络异常，请重试', icon: 'none' });
     },
   });

@@ -41,9 +41,9 @@
         <text style="box-sizing: border-box;padding-left: 14rpx;" class="modifydata-wrap-tel-title">头像</text>
         <view class="modifydata-wrap-tel-avatar-container">
           <!-- 头像显示 -->
-          <image class="modifydata-wrap-tel-avatar" src="{{avatar}}" bindtap="chooseAvatarImage" />
+          <image class="modifydata-wrap-tel-avatar" src="{{avatar}}" bindtap="chooseAvatar" />
           <!-- 提示文本 -->
-          <text class="modifydata-wrap-tel-avatar-text" bindtap="chooseAvatarImage">点击更换头像</text>
+          <text class="modifydata-wrap-tel-avatar-text" bindtap="chooseAvatar">点击更换头像</text>
         </view>
       </view>
     </view>
