@@ -9,6 +9,8 @@
     "pages/exam/exam/exam",
     "pages/exam/examResult/examResult",
     "pages/forum/forum",
+    "pages/forum/admin/index",
+    "pages/forum/member/index",
     "pages/pay/index/index",
     "pages/pay/success/index",
     "pages/merchant/apply/list/index",

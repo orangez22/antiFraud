@@ -1,2 +1,4 @@
-<!--pages/forum/forum.wxml-->
-<text>pages/forum/forum.wxml</text>
+<view class="container">
+  <text class="welcome-text">欢迎使用论坛功能</text>
+  <text class="loading-text">正在判断身份，请稍候...</text>
+</view>

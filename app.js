@@ -15,6 +15,7 @@ App({
   globalData: {
     memberId: null, // 全局变量
     userInfo: null,
+    role:null
   },
 
   // 设置 memberId 并存储到本地
@@ -31,5 +32,20 @@ App({
     }
     console.log('获取全局 memberId:', this.globalData.memberId);
     return this.globalData.memberId;
+  },
+   // 设置角色并存储
+   setRole(role) {
+    this.globalData.role = role;
+    wx.setStorageSync('role', role);
+    console.log('设置全局角色:', role);
+  },
+
+  // 获取角色
+  getRole() {
+    if (!this.globalData.role) {
+      this.globalData.role = wx.getStorageSync('role') || null;
+    }
+    console.log('获取全局角色:', this.globalData.role);
+    return this.globalData.role;
   },
 });

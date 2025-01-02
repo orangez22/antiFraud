@@ -1,0 +1,151 @@
+/* 整体容器样式 */
+.container {
+  padding: 20px;
+}
+
+/* 新增按钮样式 */
+.add-button {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* 分类数据展示容器 */
+.categories-container {
+  margin-top: 20px;
+  width: 100%;
+}
+
+/* 表头和数据行容器 */
+.categories-header,
+.categories-row {
+  display: flex;
+  align-items: center;  /* 垂直居中 */
+  justify-content: space-between; /* 水平均分，确保列宽一致 */
+  border-bottom: 1px solid #ddd;
+  padding: 12px 0;
+}
+
+/* 单个列样式 */
+.column {
+  display: flex;
+  justify-content: center; /* 水平居中 */
+  align-items: center;     /* 垂直居中 */
+  text-align: center;      /* 确保文本居中 */
+}
+
+/* 设置每列的固定宽度 */
+.categories-header .column:nth-child(1),
+.categories-row .column:nth-child(1) {
+  width: 50px;
+}
+
+.categories-header .column:nth-child(2),
+.categories-row .column:nth-child(2) {
+  width: 200px;  /* 分类名称宽度 */
+}
+
+.categories-header .column:nth-child(3),
+.categories-row .column:nth-child(3) {
+  width: 100px;  /* 论坛数宽度 */
+}
+
+.categories-header .column:nth-child(4),
+.categories-row .column:nth-child(4) {
+  width: 200px;  /* 创建时间宽度 */
+}
+
+.categories-header .column:nth-child(5),
+.categories-row .column:nth-child(5) {
+  width: 150px;  /* 操作列宽度 */
+}
+/* 表头列样式，设置加粗 */
+.categories-header .column {
+  font-weight: bold; /* 加粗文字 */
+}
+/* 操作按钮组 */
+.button-group {
+  display: flex;
+  flex-direction: column; /* 按钮竖直排列 */
+  justify-content: space-between;
+  height: 100%; /* 让按钮填满容器 */
+  align-items: center; /* 居中按钮 */
+}
+
+/* 图标按钮样式 */
+.icon-button {
+  width: 24px; /* 设置图标的大小 */
+  height: 24px; /* 设置图标的大小 */
+  margin: 4px 0; /* 按钮间距 */
+  cursor: pointer;
+}
+
+/* 确保响应式适配 */
+@media (max-width: 600px) {
+  .icon-button {
+    width: 18px;
+    height: 18px;
+  }
+}
+/* 底部分页导航栏 */
+.pagination {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120rpx;
+  background-color: #ffffff;
+  box-shadow: 0 -2rpx 5rpx rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1000;
+  padding: 10rpx 20rpx;
+}
+.pagination-text {
+  font-size: 26rpx;
+  color: #333;
+  margin-right: 20rpx; /* 给每个文本元素右侧增加一些间距 */
+}
+
+.pagination-dropdown {
+  font-size: 26rpx;
+  color: #615c59;
+  background-color: #f5f5f5;
+  padding: 10rpx 20rpx;
+  border-radius: 10rpx;
+  border: 1rpx solid #ddd;
+  cursor: pointer;
+  margin-right: 20rpx; /* 给下拉框右侧增加间距 */
+}
+
+.pagination-input-container {
+  display: flex;
+  align-items: center;
+}
+
+.pagination-input {
+  width: 80rpx;
+  height: 40rpx;
+  font-size: 26rpx;
+  text-align: center;
+  border: 1rpx solid #ddd;
+  border-radius: 5rpx;
+  margin: 0 10rpx; /* 微调输入框左右的间距 */
+}
+
+.pagination-go-btn {
+  font-size: 26rpx;
+  color: #ffffff;
+  background-color: #ff0800;
+  padding: 10rpx 20rpx;
+  border-radius: 8rpx;
+  border: none;
+  margin-left: 10rpx; /* 给按钮左侧增加一点间距 */
+}

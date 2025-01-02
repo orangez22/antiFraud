@@ -1,4 +1,3 @@
-// pages/login/phone/code/index.js
 import request from '@/utils/request';
 import {
   validateForm,
@@ -9,11 +8,11 @@ import {
   getToken,
   setId
 } from '@/utils/auth';
-import {loginApi} from "../../../../api/sso";
+import { loginApi } from "../../../../api/sso";
 
 Page({
   data: {
-    phone: '13812341234',
+    phone: '',
     countdown: 60,
     getMessageText: '发送验证码',
     timer: null,
@@ -150,10 +149,11 @@ Page({
       url: '/pages/login/phone/pwd/index'
     });
   },
+
   loginByWeChat() {
     wx.login({
       success(res) {
-        console.log(res)
+        console.log(res);
         request({
           url: '/sso/member/login',
           method: 'post',
@@ -162,28 +162,35 @@ Page({
             'type': 'weChatAuthService'
           }
         }).then(r => {
-          console.log(r)
+          console.log(r);
           const {
             data,
             success
-          } = r
+          } = r;
           if (success) {
-            setToken(data.token)
+            setToken(data.token);
             setTimeout(function () {
               wx.showToast({
                 title: '登录成功',
                 icon: 'success'
-              })
-            })
+              });
+            });
             wx.switchTab({
               url: "/pages/my/index"
             });
           }
         }).catch(err => {
-          console.log(err)
-        })
+          console.log(err);
+        });
       }
-    })
+    });
+  },
+
+  // 动态更新手机号
+  onPhoneInput(e) {
+    this.setData({
+      phone: e.detail.value
+    });
   },
 
   onCodeInput(e) {

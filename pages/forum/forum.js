@@ -1,66 +1,32 @@
-// pages/forum/forum.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    role: null, // 当前用户角色
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
+  onLoad() {
+    const app = getApp();
+    const role = app.getRole(); // 获取全局角色
 
+    if (!role) {
+      console.error('未获取到用户角色，请检查登录逻辑！');
+      return;
+    }
+
+    this.setData({ role });
+
+    // 根据角色跳转到不同页面
+    if (role === '0') {
+      // 管理员
+      wx.redirectTo({
+        url: '/pages/forum/admin/index', // 管理员页面
+      });
+    } else if (role === '1') {
+      // 普通用户
+      wx.redirectTo({
+        url: '/pages/forum/member/index', // 普通用户页面
+      });
+    } else {
+      console.error('未知角色，请检查逻辑！');
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
-})
+});

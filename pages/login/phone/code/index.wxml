@@ -1,4 +1,3 @@
-<!--pages/login/phone/code/index.wxml-->
 <view>
   <!-- Only display the nav bar for APP-PLUS platform in Uni-app -->
   <view class="code-login-box">

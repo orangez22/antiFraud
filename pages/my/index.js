@@ -201,6 +201,7 @@ Page({
         setUser(data)
         const app = getApp();
         app.setMemberId(this.data.user.id); // 调用 setMemberId
+        app.setRole(this.data.user.role)//调用setRole
       } else {
         wx.showToast({
           icon: 'none',

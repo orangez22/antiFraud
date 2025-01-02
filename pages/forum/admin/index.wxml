@@ -1,0 +1,49 @@
+<view class="container">
+  <!-- 新增按钮 -->
+  <button class="add-button" bindtap="addCategory">+ 新增分类</button>
+
+  <!-- 分类数据展示容器 -->
+  <view class="categories-container">
+    <!-- 表头 -->
+    <view class="categories-header">
+      <view class="column">序号</view>
+      <view class="column">分类名称</view>
+      <view class="column">论坛数</view>
+      <view class="column">创建时间</view>
+      <view class="column">操作</view>
+    </view>
+    <!-- 数据行 -->
+    <block wx:for="{{categories}}" wx:key="index">
+      <view class="categories-row">
+        <view class="column">{{index + 1}}</view>
+        <view class="column">{{item.name}}</view>
+        <view class="column">{{item.total}}</view>
+        <view class="column">{{item.createTime}}</view>
+        <view class="column">
+          <view class="button-group">
+            <!-- 预览图标 -->
+            <image class="icon-button" src="/assets/images/forum/view.png" bindtap="previewCategory" />
+            <!-- 编辑图标 -->
+            <image class="icon-button" src="/assets/images/forum/edit.png" bindtap="editCategory" />
+            <!-- 删除图标 -->
+            <image class="icon-button" src="/assets/images/forum/delete.png" bindtap="deleteCategory" data-id="{{item.id}}" />
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <!-- 底部分页导航栏 -->
+<view class="pagination">
+  <text class="pagination-text">共 {{totalPages}} 页</text>
+  <picker mode="selector" range="{{pageSizes}}" bindchange="onPageSizeChange">
+    <view class="pagination-dropdown">{{pageSize}}条/页</view>
+  </picker>
+  <view class="pagination-input-container">
+    <text class="pagination-text">前往</text>
+    <input class="pagination-input" type="number" value="{{goToPage}}" bindinput="onInputPageChange" />
+    <text class="pagination-text">页</text>
+    <button class="pagination-go-btn" bindtap="onGoToPage">跳转</button>
+  </view>
+</view>
+
+</view>
