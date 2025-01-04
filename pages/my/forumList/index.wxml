@@ -1,0 +1,36 @@
+<!-- 论坛列表内容 -->
+<view class="info">
+  <block wx:for="{{forumList}}" wx:key="index">
+    <view class="info-item">
+      <!-- 论坛内容部分 -->
+      <view class="info-content" bindtap="goToDetail" data-id="{{item.id}}">
+        <text class="info-title">{{item.title}}</text>
+        <text class="info-date">{{item.createTime}}</text>
+      </view>
+      <!-- 按钮组 -->
+      <view class="button-group">
+        <!-- 编辑图标 -->
+        <image class="icon-button" src="/assets/images/forum/edit.png" bindtap="updateCategory" data-id="{{item.id}}" />
+        <!-- 删除图标 -->
+        <image class="icon-button" src="/assets/images/forum/delete.png" bindtap="deleteCategory" data-id="{{item.id}}" />
+      </view>
+    </view>
+  </block>
+  <view wx:if="{{forumList.length === 0}}" class="no-content-container">
+    <text class="no-content-text">暂无内容</text>
+  </view>
+</view>
+
+<!-- 底部分页导航栏 -->
+<view class="pagination">
+  <text class="pagination-text">共 {{totalPages}} 页</text>
+  <picker mode="selector" range="{{pageSizes}}" bindchange="onPageSizeChange">
+    <view class="pagination-dropdown">{{pageSize}}条/页</view>
+  </picker>
+  <view class="pagination-input-container">
+    <text class="pagination-text">前往</text>
+    <input class="pagination-input" type="number" value="{{goToPage}}" bindinput="onInputPageChange" />
+    <text class="pagination-text">页</text>
+    <button class="pagination-go-btn" bindtap="onGoToPage">跳转</button>
+  </view>
+</view>

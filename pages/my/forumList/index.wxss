@@ -1,0 +1,111 @@
+/* 论坛内容样式 */
+.section-title {
+  font-size: 44rpx;
+  font-weight: bold;
+  margin: 30rpx 0 20rpx 20rpx;
+  color: #333;
+  text-align: center;
+}
+
+.info-item {
+  display: flex; /* 弹性布局 */
+  align-items: center; /* 垂直居中对齐 */
+  margin: 20rpx;
+  background-color: #f9f9f9;
+  border-radius: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.info-content {
+  padding: 10rpx 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1; /* 让内容部分占据剩余空间 */
+}
+
+.info-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.info-date {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 10rpx;
+}
+
+/* 按钮组样式 */
+.button-group {
+  display: flex; /* 弹性布局 */
+  align-items: center; /* 垂直居中 */
+  gap: 20rpx; /* 按钮间距 */
+  margin-left: auto; /* 将按钮组推到最右侧 */
+  padding-right: 20rpx; /* 右侧间距 */
+}
+
+.icon-button {
+  width: 48rpx; /* 图标宽度 */
+  height: 48rpx; /* 图标高度 */
+  cursor: pointer;
+}
+
+/* 底部分页导航栏 */
+.pagination {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120rpx;
+  background-color: #ffffff;
+  box-shadow: 0 -2rpx 5rpx rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1000;
+  padding: 10rpx 20rpx;
+}
+
+.pagination-text {
+  font-size: 26rpx;
+  color: #333;
+  margin-right: 20rpx;
+}
+
+.pagination-dropdown {
+  font-size: 26rpx;
+  color: #615c59;
+  background-color: #f5f5f5;
+  padding: 10rpx 20rpx;
+  border-radius: 10rpx;
+  border: 1rpx solid #ddd;
+  cursor: pointer;
+  margin-right: 20rpx;
+}
+
+.pagination-input-container {
+  display: flex;
+  align-items: center;
+}
+
+.pagination-input {
+  width: 80rpx;
+  height: 40rpx;
+  font-size: 26rpx;
+  text-align: center;
+  border: 1rpx solid #ddd;
+  border-radius: 5rpx;
+  margin: 0 10rpx;
+}
+
+.pagination-go-btn {
+  font-size: 26rpx;
+  color: #ffffff;
+  background-color: #ff0800;
+  padding: 10rpx 20rpx;
+  border-radius: 8rpx;
+  border: none;
+  margin-left: 10rpx;
+}
