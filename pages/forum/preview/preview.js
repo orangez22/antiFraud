@@ -11,8 +11,18 @@ Page({
     categoryId: 1, // 默认分类ID（根据实际情况修改）
   },
 
-  onLoad() {
-    this.getForumList(); // 页面加载时获取论坛列表
+  onLoad(options) {
+    const { categoryId } = options; // 从页面参数获取categoryId
+    if (categoryId) {
+      this.setData({ categoryId }); // 设置categoryId
+      this.getForumList(); // 根据categoryId获取论坛列表
+    } else {
+      wx.showToast({
+        title: '无效的分类ID',
+        icon: 'none',
+      });
+    }
+
     wx.setNavigationBarTitle({
       title: '论坛列表',
     });
@@ -61,6 +71,7 @@ Page({
         });
       });
   },
+
   // 审批操作
   approval(e) {
     const forumId = e.currentTarget.dataset.forumId; // 获取论坛ID
@@ -98,6 +109,7 @@ Page({
       },
     });
   },
+
   // 点击论坛内容跳转详情页
   goToDetail(e) {
     const id = e.currentTarget.dataset.id; // 获取文章 ID
