@@ -1,0 +1,44 @@
+<!-- 论坛列表内容 -->
+<view class="info">
+  <block wx:for="{{forumList}}" wx:key="index">
+    <view class="info-item" bindtap="goToDetail" data-id="{{item.id}}">
+      <image class="info-avatar" src="{{item.avatar}}" mode="aspectFill" />
+      <view class="info-content">
+        <view class="info-header">
+          <text class="info-title">{{item.title}}</text>
+        </view>
+        <view class="info-details">
+          <text class="info-author">作者:{{item.author}}</text>
+          <text class="info-gender">性别:{{item.gender === '0' ? '男' : '女'}}</text>
+          <text class="info-status">状态:{{item.status === '1' ? '启用' : '禁用'}}</text>
+        </view>
+        <view class="info-time">
+          <text class="info-create-time">创建时间：{{item.createTime}}</text> <!-- 添加创建时间 -->
+        </view>
+      </view>
+      <view class="info-actions">
+        <!-- 按钮（用图片代替） -->
+        <image src="/assets/images/forum/edit.png" class="action-btn" />
+        <image src="/assets/images/forum/view.png" class="action-btn" />
+        <image src="/assets/images/forum/delete.png" class="action-btn" />
+      </view>
+    </view>
+  </block>
+  <view wx:if="{{forumList.length === 0}}" class="no-content-container">
+    <text class="no-content-text">暂无内容</text>
+  </view>
+</view>
+
+<!-- 底部分页导航栏，保持不动 -->
+<view class="pagination">
+  <text class="pagination-text">共 {{totalPages}} 页</text>
+  <picker mode="selector" range="{{pageSizes}}" bindchange="onPageSizeChange">
+    <view class="pagination-dropdown">{{pageSize}}条/页</view>
+  </picker>
+  <view class="pagination-input-container">
+    <text class="pagination-text">前往</text>
+    <input class="pagination-input" type="number" value="{{goToPage}}" bindinput="onInputPageChange" />
+    <text class="pagination-text">页</text>
+    <button class="pagination-go-btn" bindtap="onGoToPage">跳转</button>
+  </view>
+</view>

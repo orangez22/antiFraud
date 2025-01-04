@@ -22,9 +22,7 @@
         <view class="column">
           <view class="button-group">
             <!-- 预览图标 -->
-            <image class="icon-button" src="/assets/images/forum/view.png" bindtap="previewCategory" />
-            <!-- 编辑图标 -->
-            <image class="icon-button" src="/assets/images/forum/edit.png" bindtap="editCategory" />
+            <image class="icon-button" src="/assets/images/forum/view.png" bindtap="previewCategory" data-id="{{item.id}}" />
             <!-- 删除图标 -->
             <image class="icon-button" src="/assets/images/forum/delete.png" bindtap="deleteCategory" data-id="{{item.id}}" />
           </view>

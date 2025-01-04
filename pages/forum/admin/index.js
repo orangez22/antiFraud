@@ -62,10 +62,41 @@ Page({
 
   // 新增分类
   addCategory() {
-    wx.navigateTo({
-      url: '/pages/admin/add-category', // 跳转到新增分类页面
-    });
-  },
+    wx.showModal({
+      title: '新增分类',
+      editable: true, // 允许用户输入
+      placeholderText: '请输入分类名称', // 提示文本
+      success: (res) => {
+        if (res.confirm && res.content.trim()) {
+          const name = res.content.trim(); // 获取用户输入的分类名称
+          // 调用新增分类接口
+          request.post('/forum/admin/forumCategory/add', { name })
+          .then((res) => { // 后端返回 void，不处理 response
+            // 新增成功后重新加载分类数据
+            if(res.errorCode==20000){ 
+              this.loadCategories()
+            wx.showToast({
+              title: '新增分类成功'
+            })
+          }
+         })
+          .catch((error) => {
+            console.error("新增分类请求失败，错误信息：", error);
+            wx.showToast({
+              title: '新增分类失败',
+              icon: 'none',
+              duration: 2000,
+            });
+          });
+        } else if (res.confirm) {
+          wx.showToast({
+            title: '分类名称不能为空',
+            icon: 'none',
+            duration: 2000,
+          })
+        }}
+      })
+    },
 
     // 删除分类
   deleteCategory(event) {
@@ -87,7 +118,13 @@ Page({
         console.error("删除分类请求失败，错误信息：", error);
       });
   },
-
+  // 点击预览按钮，跳转到预览页面
+previewCategory(e) {
+  const categoryId = e.currentTarget.dataset.id; // 获取分类ID
+  wx.navigateTo({
+    url: `/pages/forum/preview/preview?categoryId=${categoryId}`, // 跳转到预览页面，传递 categoryId 参数
+  });
+},
   // 更新分类名称筛选
   updateCategoryName(e) {
     this.setData({

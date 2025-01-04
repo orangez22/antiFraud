@@ -1,0 +1,158 @@
+/* 论坛列表内容 */
+.info {
+  padding: 20rpx;
+}
+
+.info-item {
+  display: flex;
+  background-color: #f9f9f9;
+  border-radius: 20rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.1);
+  padding: 20rpx;
+  position: relative;
+}
+
+.info-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+  margin-right: 20rpx;
+}
+
+.info-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  flex: 1;
+}
+
+.info-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10rpx;
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  width: 50rpx;
+}
+
+.action-btn {
+  width: 40rpx;
+  height: 40rpx;
+  cursor: pointer;
+}
+
+.info-details {
+  margin-top: 10rpx;
+}
+
+.info-author,
+.info-gender,
+.info-status {
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 8rpx;
+}
+
+.info-author {
+  margin-right: 10rpx; /* 让作者和性别、状态之间有空格 */
+}
+
+.info-gender {
+  margin-right: 10rpx; /* 让性别和状态之间有空格 */
+}
+
+.info-status {
+  font-weight: bold;
+  margin-right: 10rpx; /* 让状态和创建时间之间有空格 */
+}
+
+.info-time {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: #666;
+}
+
+.info-create-time {
+  margin-top: 8rpx;
+}
+
+.no-content-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f9f9f9;
+}
+
+.no-content-text {
+  font-size: 18px;
+  color: #999;
+  font-weight: 500;
+  text-align: center;
+  padding: 10px 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 分页样式 */
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx;
+}
+
+.pagination-dropdown {
+  font-size: 28rpx;
+  color: #333;
+  padding: 10rpx;
+  border: 1px solid #ddd;
+  border-radius: 10rpx;
+}
+
+.pagination-input-container {
+  display: flex;
+  align-items: center;
+}
+
+.pagination-input {
+  width: 80rpx;
+  padding: 5rpx;
+  font-size: 28rpx;
+  border: 1px solid #ddd;
+  border-radius: 10rpx;
+}
+
+.pagination-go-btn {
+  background-color: #ff0000;
+  color: white;
+  font-size: 28rpx;
+  padding: 5rpx 10rpx;
+  border-radius: 10rpx;
+  margin-left: 10rpx;
+  cursor: pointer;
+}
+
+.pagination-text {
+  font-size: 28rpx;
+  color: #333;
+}

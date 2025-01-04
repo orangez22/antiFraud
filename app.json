@@ -9,6 +9,7 @@
     "pages/exam/exam/exam",
     "pages/exam/examResult/examResult",
     "pages/forum/forum",
+    "pages/forum/preview/preview",
     "pages/forum/admin/index",
     "pages/forum/member/index",
     "pages/pay/index/index",
