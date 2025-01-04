@@ -1,0 +1,16 @@
+<view class="container">
+  <!-- 标题 -->
+  <view class="article-title">{{detail.title}}</view>
+
+  <!-- 作者与发布时间 -->
+  <view class="article-meta">
+    <text class="meta-item">作者：{{detail.author}}</text>
+    <text class="meta-separator">|</text>
+    <text class="meta-item">发布时间：{{detail.createTime}}</text>
+  </view>
+
+  <!-- 内容 -->
+  <view class="article-content">
+    {{detail.content}}
+  </view>
+</view>

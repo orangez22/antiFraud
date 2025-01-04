@@ -17,10 +17,13 @@
         </view>
       </view>
       <view class="info-actions">
-        <!-- 按钮（用图片代替） -->
-        <image src="/assets/images/forum/edit.png" class="action-btn" />
-        <image src="/assets/images/forum/view.png" class="action-btn" />
-        <image src="/assets/images/forum/delete.png" class="action-btn" />
+        <image 
+          src="/assets/images/forum/approval.png" 
+          class="action-btn" 
+          bindtap="approval" 
+          data-forum-id="{{item.id}}" 
+          data-status="{{item.status}}" 
+        />
       </view>
     </view>
   </block>

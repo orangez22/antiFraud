@@ -61,12 +61,48 @@ Page({
         });
       });
   },
+  // 审批操作
+  approval(e) {
+    const forumId = e.currentTarget.dataset.forumId; // 获取论坛ID
+    const currentStatus = e.currentTarget.dataset.status; // 获取当前状态
+    const newStatus = currentStatus === '1' ? '0' : '1'; // 切换状态
 
+    wx.showModal({
+      title: '审批操作',
+      content: `确定要将该帖子设置为${newStatus === '1' ? '启用' : '禁用'}吗？`,
+      confirmText: newStatus === '1' ? '启用' : '禁用',
+      confirmColor: newStatus === '1' ? '#4CAF50' : '#FF0000',
+      success: (res) => {
+        if (res.confirm) {
+          wx.showLoading({ title: '提交中...' });
+
+          // 调用后端接口
+          request.post('/forum/admin/forumInfo/approval', { 
+            forumId, 
+            status: newStatus 
+          })
+            .then((response) => {
+              wx.hideLoading();
+              if (response.success) {
+                wx.showToast({ title: `${newStatus === '1' ? '启用' : '禁用'}成功`, icon: 'success' });
+                this.getForumList(); // 刷新列表
+              } else {
+                wx.showToast({ title: response.message || '操作失败', icon: 'none' });
+              }
+            })
+            .catch(() => {
+              wx.hideLoading();
+              wx.showToast({ title: '请求失败，请稍后重试', icon: 'none' });
+            });
+        }
+      },
+    });
+  },
   // 点击论坛内容跳转详情页
   goToDetail(e) {
     const id = e.currentTarget.dataset.id; // 获取文章 ID
     wx.navigateTo({
-      url: `/pages/detail/detail?id=${id}`,
+      url: `/pages/detail/forumDetail/detail?id=${id}`,
     });
   },
 
