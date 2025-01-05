@@ -96,6 +96,22 @@ Page({
     });
   },
 
+  updateCategory(e) {
+    // 获取论坛帖子的 ID
+    const forumId = e.currentTarget.dataset.id; 
+    console.log(e.currentTarget.dataset.id)
+    if (!forumId) {
+      wx.showToast({
+        title: '无效的论坛ID',
+        icon: 'none',
+      });
+      return;
+    }
+    wx.navigateTo({
+      url: `/pages/my/forumList/updateForum/index?id=${forumId}`, // 传递 forumId 到更新页
+    });
+  },
+
   // 输入跳转页码
   onInputPageChange(e) {
     const goToPage = parseInt(e.detail.value) || 1;

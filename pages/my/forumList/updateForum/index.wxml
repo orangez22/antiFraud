@@ -1,0 +1,25 @@
+<!-- 论坛编辑页面 -->
+<view class="form-container">
+  <!-- 分类选择 -->
+  <view class="form-group">
+    <text class="form-label">分类</text>
+    <picker mode="selector" range="{{categories}}" range-key="name" bindchange="onCategoryChange">
+      <view class="form-picker">{{form.categoryName || '请选择分类'}}</view>
+    </picker>
+  </view>
+
+  <!-- 标题 -->
+  <view class="form-group">
+    <text class="form-label">标题</text>
+    <input class="form-input" type="text" value="{{form.title}}" data-field="title" bindinput="onInputChange" />
+  </view>
+
+  <!-- 内容 -->
+  <view class="form-group">
+    <text class="form-label">内容</text>
+    <textarea class="form-textarea" value="{{form.content}}" data-field="content" bindinput="onInputChange"></textarea>
+  </view>
+
+  <!-- 提交按钮 -->
+  <button class="submit-button" bindtap="onUpdateSubmit">提交</button>
+</view>

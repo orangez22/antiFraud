@@ -1,0 +1,35 @@
+.form-container {
+  padding: 20rpx;
+}
+
+.form-group {
+  margin-bottom: 20rpx;
+}
+
+.form-label {
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.form-picker,
+.form-input,
+.form-textarea {
+  width: 100%;
+  font-size: 26rpx;
+  padding: 10rpx;
+  border: 1px solid #ddd;
+  border-radius: 5rpx;
+  background-color: #f9f9f9;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 15rpx;
+  font-size: 28rpx;
+  color: #fff;
+  background-color: #ff0000;
+  border: none;
+  border-radius: 5rpx;
+  text-align: center;
+}
