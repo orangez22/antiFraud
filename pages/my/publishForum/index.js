@@ -50,19 +50,29 @@ Page({
   },
 
   // 表单字段更改处理
-  onInputChange(e) {
-    const field = e.currentTarget.dataset.field; // 数据字段
-    const value = e.detail.value; // 用户输入值
+onInputChange(e) {
+  const field = e.currentTarget.dataset.field; // 数据字段
+  const value = e.detail.value; // 用户输入值
 
-    // 更新字段内容
-    const newForm = { ...this.data.form, [field]: value };
+  // 更新字段内容
+  const newForm = { ...this.data.form, [field]: value };
+  
 
-    // 更新表单数据
-    this.setData({
-      form: newForm,
-      previewContent: newForm.content,  // 直接同步内容到预览区域
-    });
-  },
+  // 如果字段是内容，则更新预览内容
+  let newPreviewContent = this.data.previewContent;
+  if (field === 'content') {
+    newPreviewContent = value;
+  }
+
+  // 更新表单数据和预览内容
+  this.setData({
+    form: newForm,
+    previewContent: newPreviewContent,
+  }); 
+   // 打印更新后的数据
+  console.log('Updated form:', this.data.form);
+  console.log('Updated previewContent:', this.data.previewContent);
+},
 
   // 分类选择更改
   onCategoryChange(e) {

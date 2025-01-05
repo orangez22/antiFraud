@@ -86,5 +86,8 @@
   ],
   "resolveAlias": {
     "@/*": "/*"
-  }
+  },
+  "usingComponents": {
+    "mp-html": "/miniprogram_npm/mp-html/index"
+}
 }

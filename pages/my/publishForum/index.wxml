@@ -65,12 +65,12 @@
   </scroll-view>
 </view>
 
-  <view class="form-group">
-    <text class="form-label">内容预览</text>
-    <view class="preview-content">
-      <mp-html content="{{previewContent}}"></mp-html>
-    </view>
+<view class="form-group">
+  <text class="form-label">内容预览</text>
+  <view class="preview-content">
+    <mp-html content="{{previewContent}}" />
   </view>
+</view>
 
   <!-- 提交按钮 -->
   <button class="submit-button" bindtap="onPublishSubmit">发布</button>
