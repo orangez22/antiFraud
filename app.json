@@ -2,6 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/index/allList/index",
+    "pages/my/publishForum/index",
     "pages/my/favoriteList/index",
     "pages/my/forumList/index",
     "pages/my/forumList/updateForum/index",

@@ -78,7 +78,7 @@
               <image style="width: 46rpx; height: 40rpx;" src="/assets/images/my/wodepingjia.png" class="my-list-wrap-item-list-item-img"></image>
               <text class="my-list-wrap-item-list-item-txt">我的考试</text>
             </view>
-            <view bindtap="navigate" data-url='/pages/appraise/list/index' class="my-list-wrap-item-list-item">
+            <view bindtap="navigate" data-url='/pages/my/publishForum/index' class="my-list-wrap-item-list-item">
               <image style="width: 46rpx; height: 40rpx;" src="/assets/images/my/woyaofatie.png" class="my-list-wrap-item-list-item-img"></image>
               <text class="my-list-wrap-item-list-item-txt">我要发贴</text>
             </view>

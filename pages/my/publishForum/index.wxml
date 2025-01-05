@@ -1,0 +1,66 @@
+<!-- 发布论坛页面 -->
+<view class="form-container">
+  <!-- 分类选择 -->
+  <view class="form-group">
+    <text class="form-label">分类</text>
+    <picker mode="selector" range="{{categories}}" range-key="name" bindchange="onCategoryChange">
+      <view class="form-picker">{{form.categoryName || '请选择分类'}}</view>
+    </picker>
+  </view>
+
+  <!-- 标题 -->
+  <view class="form-group">
+    <text class="form-label">标题</text>
+    <input class="form-input" type="text" value="{{form.title}}" data-field="title" bindinput="onInputChange" />
+  </view>
+
+  <!-- 内容 -->
+  <view class="form-group">
+    <text class="form-label">内容</text>
+    <textarea class="form-textarea" value="{{form.content}}" data-field="content" bindinput="onInputChange"></textarea>
+  </view>
+
+  <!-- 富文本操作工具栏 -->
+  <view class="toolbar">
+    <button bindtap="onBold">
+      <image src="/assets/images/richtext/jiacu.png" class="toolbar-icon" />
+    </button>
+    <button bindtap="onItalic">
+      <image src="/assets/images/richtext/xieti.png" class="toolbar-icon" />
+    </button>
+    <button bindtap="onAddEmoji">
+      <image src="/assets/images/richtext/emoji.png" class="toolbar-icon" />
+    </button>
+    <button data-size="20px" bindtap="onFontSizeChange">
+      <image src="/assets/images/richtext/xiaoxie.png" class="toolbar-icon" />
+    </button>
+    <button data-size="30px" bindtap="onFontSizeChange">
+      <image src="/assets/images/richtext/daxie.png" class="toolbar-icon" />
+    </button>
+    <button bindtap="onAlignLeft">
+      <image src="/assets/images/richtext/juzuoduiqi.png" class="toolbar-icon" />
+    </button>
+    <button bindtap="onAlignCenter">
+      <image src="/assets/images/richtext/juzhongduiqi.png" class="toolbar-icon" />
+    </button>
+    <button bindtap="onAlignRight">
+      <image src="/assets/images/richtext/juyouduiqi.png" class="toolbar-icon" />
+    </button>
+    <button bindtap="onUnderline">
+      <image src="/assets/images/richtext/xiahuaxian.png" class="toolbar-icon" />
+    </button>
+    <button bindtap="onTextColorChange">
+      <image src="/assets/images/richtext/zitiyanse.png" class="toolbar-icon" />
+    </button>
+  </view>
+
+  <view class="form-group">
+    <text class="form-label">内容预览</text>
+    <view class="preview-content">
+      <mp-html content="{{previewContent}}"></mp-html>
+    </view>
+  </view>
+
+  <!-- 提交按钮 -->
+  <button class="submit-button" bindtap="onPublishSubmit">发布</button>
+</view>
