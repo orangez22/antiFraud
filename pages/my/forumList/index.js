@@ -111,6 +111,26 @@ Page({
       url: `/pages/my/forumList/updateForum/index?id=${forumId}`, // 传递 forumId 到更新页
     });
   },
+  // 删除论坛
+  deleteCategory(event) {
+    const forumId = event.currentTarget.dataset.id; 
+    const categoryId = event.currentTarget.dataset.categoryId; 
+    // 发送删除请求，直接传递分类 ID
+    request.post('/forum/forumInfo/delete', {forumId,categoryId})
+      .then((response) => {
+        const { success, errorCode, message } = response;
+        if (errorCode === 20000) {
+          console.log("论坛删除成功");
+          // 删除成功后重新加载论坛数据
+          this.getForumList();
+        } else {
+          console.error("删除论坛失败:", message || "未知错误");
+        }
+      })
+      .catch((error) => {
+        console.error("删除论坛请求失败，错误信息：", error);
+      });
+  },
 
   // 输入跳转页码
   onInputPageChange(e) {

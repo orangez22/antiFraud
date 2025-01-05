@@ -12,7 +12,7 @@
         <!-- 编辑图标 -->
         <image class="icon-button" src="/assets/images/forum/edit.png" bindtap="updateCategory" data-id="{{item.id}}" />
         <!-- 删除图标 -->
-        <image class="icon-button" src="/assets/images/forum/delete.png" bindtap="deleteCategory" data-id="{{item.id}}" />
+        <image class="icon-button" src="/assets/images/forum/delete.png" bindtap="deleteCategory" data-id="{{item.id}}" data-category-id="{{item.categoryId}}" />
       </view>
     </view>
   </block>
