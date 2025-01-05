@@ -33,7 +33,7 @@
   border-radius: 5rpx;
   text-align: center;
 }
-/* 去除按钮的边框和背景 */
+
 .toolbar {
   display: flex;
   justify-content: space-around;
@@ -41,14 +41,45 @@
 }
 
 .toolbar button {
-  background-color: transparent; /* 去掉背景色 */
-  border: none; /* 去掉边框 */
-  padding: 0; /* 去掉内边距 */
-  cursor: pointer; /* 鼠标悬停时显示手指样式 */
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
 }
 
 .toolbar-icon {
-  width: 40rpx; /* 图标大小 */
-  height: 40rpx; /* 图标大小 */
-  background-color: transparent; /* 图标背景透明 */
+  width: 40rpx;
+  height: 40rpx;
+  background-color: transparent;
+}
+
+.emoji-picker {
+  position: absolute;
+  bottom: 60rpx;
+  width: 100%;
+  background-color: #fff;
+  padding: 10rpx;
+  box-shadow: 0 0 10rpx rgba(0, 0, 0, 0.2);
+  max-height: 400rpx; /* 设置最大高度以限制显示区域 */
+}
+
+.emoji-scroll {
+  height: 100%;
+  max-height: 400rpx; /* 确保滑动区域最大高度 */
+  overflow-y: scroll; /* 开启纵向滚动 */
+}
+
+.emoji-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 10rpx; /* 添加间距 */
+}
+
+.emoji-list button {
+  font-size: 40rpx;
+  background: none;
+  border: none;
+  padding: 10rpx;
+  cursor: pointer;
 }

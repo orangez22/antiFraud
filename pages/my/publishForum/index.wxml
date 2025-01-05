@@ -28,7 +28,7 @@
     <button bindtap="onItalic">
       <image src="/assets/images/richtext/xieti.png" class="toolbar-icon" />
     </button>
-    <button bindtap="onAddEmoji">
+    <button bindtap="toggleEmojiPicker">
       <image src="/assets/images/richtext/emoji.png" class="toolbar-icon" />
     </button>
     <button data-size="20px" bindtap="onFontSizeChange">
@@ -53,6 +53,17 @@
       <image src="/assets/images/richtext/zitiyanse.png" class="toolbar-icon" />
     </button>
   </view>
+
+  <!-- emoji选择器 -->
+<view wx:if="{{showEmojiPicker}}" class="emoji-picker">
+  <scroll-view scroll-y class="emoji-scroll">
+    <view class="emoji-list">
+      <button wx:for="{{emojiList}}" wx:key="index" bindtap="onEmojiSelect" data-emoji="{{item}}">
+        {{item}}
+      </button>
+    </view>
+  </scroll-view>
+</view>
 
   <view class="form-group">
     <text class="form-label">内容预览</text>
