@@ -8,19 +8,24 @@
   <view class="recommended-categories">
     <view class="title">热门分类</view>
     <view class="category-list-horizontal">
-      <view wx:for="{{recommendedCategories}}" wx:key="categoryId" class="category-item-horizontal" bindtap="onCategorySelect" data-id="{{item.categoryId}}">
-        <view class="category-box-horizontal">
-          <text>{{item.categoryName}}</text>
+      <block wx:for="{{recommendedCategories}}" wx:key="categoryId">
+        <view class="category-item-horizontal" bindtap="onCategorySelect" data-id="{{item.categoryId}}">
+          <view class="category-box-horizontal">
+            <text>{{item.categoryName}}</text>
+          </view>
         </view>
-      </view>
+      </block>
     </view>
   </view>
 
   <!-- 所有分类 -->
-  <view class="category-list">
-    <view wx:for="{{categories}}" wx:key="categoryId" class="category-item" bindtap="onCategorySelect" data-id="{{item.categoryId}}">
-      <view class="category-box">
-        <text>{{item.categoryName}}</text>
+  <view class="all-categories">
+    <view class="title">所有分类</view> <!-- 添加了标题 -->
+    <view class="category-list">
+      <view wx:for="{{categories}}" wx:key="categoryId" class="category-item" bindtap="onCategorySelect" data-id="{{item.categoryId}}">
+        <view class="category-box">
+          <text>{{item.categoryName}}</text>
+        </view>
       </view>
     </view>
   </view>

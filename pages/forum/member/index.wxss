@@ -3,22 +3,12 @@
   padding: 20px;
   background-color: #f4f4f4;
   min-height: 100vh;
+  font-family: Arial, sans-serif; /* 使用简洁的字体 */
 }
 
-/* 顶部公告条样式 */
-.announcement-bar {
-  background-color: #f8d7da;
-  color: #721c24;
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  font-size: 14px;
-  text-align: center;
-}
-
-/* 标题栏样式 */
+/* 顶部提示 */
 .header {
-  font-size: 20px;
+  font-size: 22px;
   margin-bottom: 30px;
   text-align: center;
   font-weight: bold;
@@ -32,10 +22,13 @@
 
 /* 热门分类标题 */
 .recommended-categories .title {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
-  color: #333;
+  color: #FF5733; /* 热门分类使用突出颜色 */
   margin-bottom: 15px;
+  text-align: left; /* 左对齐 */
+  padding-left: 10px; /* 左边距 */
+  border-bottom: 2px solid #FF5733; /* 下方有个细线条 */
 }
 
 /* 横向热门分类列表样式 */
@@ -44,7 +37,7 @@
   flex-direction: row;
   overflow-x: auto; /* 允许横向滚动 */
   gap: 15px;
-  margin-bottom: 30px;
+  padding-left: 10px; /* 左侧边距 */
 }
 
 .category-item-horizontal {
@@ -55,23 +48,40 @@
 
 .category-box-horizontal {
   padding: 12px 20px;
-  border: 2px solid #ff5733; /* 边框颜色 */
+  border: 2px solid #FF5733;
   border-radius: 12px;
-  background-color: #ffffff;
+  background-color: #fff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .category-box-horizontal:hover {
   transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .category-box-horizontal text {
   font-size: 16px;
   color: #333;
   display: block;
+}
+
+/* 所有分类区域样式 */
+.all-categories {
+  margin-bottom: 30px;
+}
+
+/* 所有分类标题样式 */
+.all-categories .title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+  text-align: left;
+  padding-left: 10px;
+  border-bottom: 2px solid #ddd; /* 下方的细线条 */
 }
 
 /* 分类列表样式 */
@@ -92,27 +102,21 @@
   padding: 15px;
   border: 1px solid #ddd;
   border-radius: 12px;
-  background-color: #ffffff;
+  background-color: #fff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .category-box:hover {
   transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .category-box text {
   font-size: 16px;
   color: #333;
   display: block;
-  text-align: center;
-}
-
-.category-box .post-count {
-  font-size: 12px;
-  color: #888;
-  margin-top: 5px;
   text-align: center;
 }
 
@@ -123,9 +127,10 @@
   margin-top: 30px;
 }
 
-button {
+/* 设置按钮为横向排列 */
+.post-button button {
   padding: 12px 25px;
-  background-color: #ff5733;
+  background-color: #FF5733;
   color: white;
   border-radius: 30px;
   font-size: 18px;
@@ -133,13 +138,21 @@ button {
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin: 0 5px; /* 添加左右边距 */
+  width: 100%; /* 设置按钮宽度为 100% */
+  max-width: 300px; /* 最大宽度为 300px，避免过大 */
 }
 
-button:hover {
-  background-color: #ff2f12;
+.post-button button:hover {
+  background-color: #ff1212;
 }
 
-button:disabled {
+.post-button button:disabled {
   background-color: #ddd;
   cursor: not-allowed;
+}
+
+/* 按钮点击效果 */
+button:active {
+  transform: scale(0.98); /* 按下时轻微缩小 */
 }
