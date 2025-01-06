@@ -58,7 +58,7 @@ Page({
 
     // 跳转到该分类的帖子列表页面
     wx.navigateTo({
-      url: `/pages/forum/category/category?categoryId=${categoryId}`, // 跳转到分类页面，并传递 categoryId
+      url: `/pages/forum/preview/preview?categoryId=${categoryId}`, // 跳转到分类页面，并传递 categoryId
     });
   },
 

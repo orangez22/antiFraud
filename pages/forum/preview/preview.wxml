@@ -16,7 +16,9 @@
           <text class="info-create-time">创建时间：{{item.createTime}}</text> <!-- 添加创建时间 -->
         </view>
       </view>
-      <view class="info-actions">
+
+      <!-- 只有管理员才会看到的审批按钮 -->
+      <view class="info-actions" wx:if="{{role === '0'}}">
         <image 
           src="/assets/images/forum/approval.png" 
           class="action-btn" 
@@ -27,6 +29,7 @@
       </view>
     </view>
   </block>
+  
   <view wx:if="{{forumList.length === 0}}" class="no-content-container">
     <text class="no-content-text">暂无内容</text>
   </view>

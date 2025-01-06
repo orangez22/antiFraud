@@ -9,12 +9,25 @@ Page({
     goToPage: 1, // 输入框中的页码
     pageSizes: [10, 20, 30, 50], // 每页条数选择
     categoryId: 1, // 默认分类ID（根据实际情况修改）
+    role: null, // 当前用户角色，管理员或普通用户
   },
 
   onLoad(options) {
     const { categoryId } = options; // 从页面参数获取categoryId
+    const app = getApp();
+    const role = app.getRole(); // 获取全局角色
+
+    if (!role) {
+      console.error('未获取到用户角色，请检查登录逻辑！');
+      return;
+    }
+
+    this.setData({ 
+      categoryId,
+      role // 保存角色信息
+    });
+
     if (categoryId) {
-      this.setData({ categoryId }); // 设置categoryId
       this.getForumList(); // 根据categoryId获取论坛列表
     } else {
       wx.showToast({
@@ -34,7 +47,6 @@ Page({
 
     const { currentPage, pageSize, categoryId } = this.data;
 
-    // 使用 request.post 方法来发送 POST 请求
     request.post('/forum/admin/forumInfo/getForumList', { 
       categoryId, 
       current: currentPage, 
@@ -139,4 +151,10 @@ Page({
       this.getForumList();
     });
   },
+
+  // 根据角色控制按钮显示
+  getRole() {
+    const app = getApp();
+    return app.getRole(); // 假设 getRole 是从全局 app 获取角色
+  }
 });
