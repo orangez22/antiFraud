@@ -12,8 +12,10 @@ Page({
     },
     categories: [], // 分类列表
     previewContent: '', // 预览内容
-    emojiList: ["😀","😃","😄","😁","😆","😅","😂","🤣","🥲","☺️","😊","😇","🙂","🙃","😉","😌","😍","🥰","😘","😗","😙","😚","😋","😛","😜","😝","🤪","🤨","🧐","🤓","😎","🥸","🤩","🥳","😏","😒","🙄","😬","🤥","😮‍💨","😯","😦","😧","😮","😲","🥺","😳","🤯","😵","😵‍💨","🤕","🤒","😣","😖","😫","😩","🥱","😤","😠","😡","🤬","🤯","😳","🥵","🥶","😱","😨","😰","😥","😓","🤗","🤔","🤭","🤫","🤥","😶","😐","😑","😶‍🌫️","🙄","😏","😒","🙃","🤐","😇","🥰","😍","😘","🥴","🤪","😜","😝","🤑","🤠","😎","🥸","🤓","🧐","😕","🙁","😟","😞","😔","😖","😣","😫","😩","🥺","😢","😭","😤","😠","😡","🤬","🤯","😳","🥵","🥶","😱","😨","😰","😥","😓","🤗","🤔","🤭","🤫","🤥","😶","😐","😑","😶‍🌫️","🙄","😏","😒","🙃","🤐"],  // 预设emoji列表
+    emojiList: ["😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣", "🥲", "☺️", "😊", "😇", "🙂", "🙃", "😉", "😌", "😍", "🥰", "😘", "😗", "😙", "😚", "😋", "😛", "😜", "😝", "🤪", "🤨", "🧐", "🤓", "😎", "🥸", "🤩", "🥳", "😏", "😒", "🙄", "😬", "🤥", "😮‍💨", "😯", "😦", "😧", "😮", "😲", "🥺", "😳", "🤯", "😵", "😵‍💨", "🤕", "🤒", "😣", "😖", "😫", "😩", "🥱", "😤", "😠", "😡", "🤬", "🤯", "😳", "🥵", "🥶", "😱", "😨", "😰", "😥", "😓", "🤗", "🤔", "🤭", "🤫", "🤥", "😶", "😐", "😑", "😶‍🌫️", "🙄", "😏", "😒", "🙃", "🤐"],  // 预设emoji列表
+    colorList: ["#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF00FF", "#00FFFF", "#000000", "#FFFFFF", "#808080", "#800000", "#808000", "#008000", "#000080", "#800080", "#008080", "#FF6347", "#FFA500", "#008080", "#40E0D0", "#9ACD32", "#FFD700", "#DA70D6", "#3CB371", "#7B68EE", "#6A5ACD", "#FF8C00", "#87CEFA", "#00FF7F", "#48D1CC", "#C71585", "#EE82EE", "#F08080", "#20B2AA", "#9370DB", "#98FB98", "#8B0000", "#FF1493", "#DC143C", "#00BFFF", "#ADFF2F", "#FA8072", "#7FFFD4", "#66CDAA", "#00CED1", "#F5FFFA", "#FFE4E1", "#D8BFD8", "#FFEFD5", "#FDF5E6", "#FFF0F5", "#7CFC00", "#FFFACD", "#ADD8E6", "#F0E68C", "#E0FFFF", "#FAFAD2", "#D3D3D3", "#C0C0C0", "#A9A9A9", "#808080", "#696969", "#484848", "#2F4F4F", "#000000"], // 颜色选择器
     showEmojiPicker: false,  // 控制emoji选择器的显示与隐藏
+    showColorPicker: false, // 控制颜色选择器的显示与隐藏
   },
 
   onLoad() {
@@ -50,29 +52,25 @@ Page({
   },
 
   // 表单字段更改处理
-onInputChange(e) {
-  const field = e.currentTarget.dataset.field; // 数据字段
-  const value = e.detail.value; // 用户输入值
+  onInputChange(e) {
+    const field = e.currentTarget.dataset.field; // 数据字段
+    const value = e.detail.value; // 用户输入值
 
-  // 更新字段内容
-  const newForm = { ...this.data.form, [field]: value };
-  
+    // 更新字段内容
+    const newForm = { ...this.data.form, [field]: value };
 
-  // 如果字段是内容，则更新预览内容
-  let newPreviewContent = this.data.previewContent;
-  if (field === 'content') {
-    newPreviewContent = value;
-  }
+    // 如果字段是内容，则更新预览内容
+    let newPreviewContent = this.data.previewContent;
+    if (field === 'content') {
+      newPreviewContent = value;
+    }
 
-  // 更新表单数据和预览内容
-  this.setData({
-    form: newForm,
-    previewContent: newPreviewContent,
-  }); 
-   // 打印更新后的数据
-  console.log('Updated form:', this.data.form);
-  console.log('Updated previewContent:', this.data.previewContent);
-},
+    // 更新表单数据和预览内容
+    this.setData({
+      form: newForm,
+      previewContent: newPreviewContent,
+    });
+  },
 
   // 分类选择更改
   onCategoryChange(e) {
@@ -102,6 +100,27 @@ onInputChange(e) {
         content: `${content}${emoji}`, // 在内容后追加选中的emoji
       },
       previewContent: `${content}${emoji}`,  // 同步到预览区域
+    });
+  },
+
+  // 显示/隐藏颜色选择器
+  toggleColorPicker() {
+    this.setData({
+      showColorPicker: !this.data.showColorPicker,
+    });
+  },
+
+  // 颜色选择事件
+  onTextColorChange(e) {
+    const color = e.currentTarget.dataset.color;
+    const content = this.data.form.content;
+    const updatedContent = `<span style="color:${color}">${content}</span>`;
+    this.setData({
+      form: {
+        ...this.data.form,
+        content: updatedContent,
+      },
+      previewContent: updatedContent,
     });
   },
 
@@ -187,18 +206,6 @@ onInputChange(e) {
         content: `<u>${content}</u>`,
       },
       previewContent: `<u>${content}</u>`,  // 同步到预览区域
-    });
-  },
-
-  // 字体颜色变化
-  onTextColorChange() {
-    const content = this.data.form.content;
-    this.setData({
-      form: {
-        ...this.data.form,
-        content: `<span style="color:red">${content}</span>`, // 字体颜色设置为红色
-      },
-      previewContent: `<span style="color:red">${content}</span>`,  // 同步到预览区域
     });
   },
 

@@ -53,10 +53,14 @@
   background-color: transparent;
 }
 
+/* emoji选择器 */
 .emoji-picker {
   position: absolute;
   bottom: 60rpx;
-  width: 100%;
+  left: 0; /* 取消偏右，设为0 */
+  right: 0; /* 设置右边为0 */
+  margin: 0 auto; /* 自动左右居中 */
+  width: 90%; /* 设定宽度为父容器的90% */
   background-color: #fff;
   padding: 10rpx;
   box-shadow: 0 0 10rpx rgba(0, 0, 0, 0.2);
@@ -82,4 +86,38 @@
   border: none;
   padding: 10rpx;
   cursor: pointer;
+}
+/* 颜色选择器 */
+.color-picker {
+  position: absolute;
+  bottom: 60px;
+  left: 0; /* 取消偏右，设为0 */
+  right: 0; /* 设置右边为0 */
+  margin: 0 auto; /* 自动左右居中 */
+  width: 90%; /* 设定宽度为父容器的90% */
+  max-height: 300px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  padding: 10px;
+}
+
+/* 颜色列表 */
+.color-scroll {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.color-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 每行显示5个颜色 */
+  gap: 10px;
+}
+
+.color-list button {
+  width: 30px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
 }

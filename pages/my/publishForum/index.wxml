@@ -1,4 +1,3 @@
-<!-- 发布论坛页面 -->
 <view class="form-container">
   <!-- 分类选择 -->
   <view class="form-group">
@@ -49,28 +48,38 @@
     <button bindtap="onUnderline">
       <image src="/assets/images/richtext/xiahuaxian.png" class="toolbar-icon" />
     </button>
-    <button bindtap="onTextColorChange">
+    <button bindtap="toggleColorPicker">
       <image src="/assets/images/richtext/zitiyanse.png" class="toolbar-icon" />
     </button>
   </view>
 
   <!-- emoji选择器 -->
-<view wx:if="{{showEmojiPicker}}" class="emoji-picker">
-  <scroll-view scroll-y class="emoji-scroll">
-    <view class="emoji-list">
-      <button wx:for="{{emojiList}}" wx:key="index" bindtap="onEmojiSelect" data-emoji="{{item}}">
-        {{item}}
-      </button>
-    </view>
-  </scroll-view>
-</view>
-
-<view class="form-group">
-  <text class="form-label">内容预览</text>
-  <view class="preview-content">
-    <mp-html content="{{previewContent}}" />
+  <view wx:if="{{showEmojiPicker}}" class="emoji-picker">
+    <scroll-view scroll-y class="emoji-scroll">
+      <view class="emoji-list">
+        <button wx:for="{{emojiList}}" wx:key="index" bindtap="onEmojiSelect" data-emoji="{{item}}">
+          {{item}}
+        </button>
+      </view>
+    </scroll-view>
   </view>
-</view>
+
+  <!-- 颜色选择器 -->
+  <view wx:if="{{showColorPicker}}" class="color-picker">
+    <scroll-view scroll-y class="color-scroll">
+      <view class="color-list">
+        <button wx:for="{{colorList}}" wx:key="index" bindtap="onTextColorChange" data-color="{{item}}" style="background-color: {{item}};">
+        </button>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="form-group">
+    <text class="form-label">内容预览</text>
+    <view class="preview-content">
+      <mp-html content="{{previewContent}}" />
+    </view>
+  </view>
 
   <!-- 提交按钮 -->
   <button class="submit-button" bindtap="onPublishSubmit">发布</button>
