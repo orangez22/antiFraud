@@ -1,1 +1,145 @@
-/* pages/forum/member/index.wxss */
+/* 页面布局样式 */
+.container {
+  padding: 20px;
+  background-color: #f4f4f4;
+  min-height: 100vh;
+}
+
+/* 顶部公告条样式 */
+.announcement-bar {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* 标题栏样式 */
+.header {
+  font-size: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 热门分类区域样式 */
+.recommended-categories {
+  margin-bottom: 30px;
+}
+
+/* 热门分类标题 */
+.recommended-categories .title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* 横向热门分类列表样式 */
+.category-list-horizontal {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto; /* 允许横向滚动 */
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.category-item-horizontal {
+  flex-shrink: 0; /* 防止内容收缩 */
+  width: auto;
+  padding: 10px;
+}
+
+.category-box-horizontal {
+  padding: 12px 20px;
+  border: 2px solid #ff5733; /* 边框颜色 */
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.category-box-horizontal:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.category-box-horizontal text {
+  font-size: 16px;
+  color: #333;
+  display: block;
+}
+
+/* 分类列表样式 */
+.category-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+/* 单个分类样式 */
+.category-item {
+  width: 48%; /* 为了两列布局，宽度设为 48% */
+}
+
+.category-box {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.category-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.category-box text {
+  font-size: 16px;
+  color: #333;
+  display: block;
+  text-align: center;
+}
+
+.category-box .post-count {
+  font-size: 12px;
+  color: #888;
+  margin-top: 5px;
+  text-align: center;
+}
+
+/* 小按钮：我要发帖 */
+.post-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+button {
+  padding: 12px 25px;
+  background-color: #ff5733;
+  color: white;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #ff2f12;
+}
+
+button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}

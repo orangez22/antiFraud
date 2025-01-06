@@ -1,2 +1,32 @@
-<!--pages/forum/member/index.wxml-->
-<text>pages/forum/member/index.wxml</text>
+<view class="container">
+  <!-- 顶部提示 -->
+  <view class="header">
+    <text>请选择要进入的论坛版块</text>
+  </view>
+
+  <!-- 热门分类 -->
+  <view class="recommended-categories">
+    <view class="title">热门分类</view>
+    <view class="category-list-horizontal">
+      <view wx:for="{{recommendedCategories}}" wx:key="categoryId" class="category-item-horizontal" bindtap="onCategorySelect" data-id="{{item.categoryId}}">
+        <view class="category-box-horizontal">
+          <text>{{item.categoryName}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 所有分类 -->
+  <view class="category-list">
+    <view wx:for="{{categories}}" wx:key="categoryId" class="category-item" bindtap="onCategorySelect" data-id="{{item.categoryId}}">
+      <view class="category-box">
+        <text>{{item.categoryName}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 小按钮：我要发帖 -->
+  <view class="post-button">
+    <button bindtap="goToPostPage">我要发帖</button>
+  </view>
+</view>
