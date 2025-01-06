@@ -208,6 +208,22 @@ Page({
       previewContent: `<u>${content}</u>`,  // 同步到预览区域
     });
   },
+  // 撤销富文本样式
+onUndo() {
+  const content = this.data.form.content;
+
+  // 去除所有富文本标签，保留文本内容
+  const cleanContent = content.replace(/<\/?[^>]+(>|$)/g, ""); // 使用正则去除所有HTML标签
+
+  // 更新内容并同步到预览区域
+  this.setData({
+    form: {
+      ...this.data.form,
+      content: cleanContent, // 更新清除标签后的内容
+    },
+    previewContent: cleanContent,  // 同步到预览区域
+  });
+},
 
   // 提交发布
   onPublishSubmit() {

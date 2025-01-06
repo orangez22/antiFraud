@@ -51,7 +51,11 @@
     <button bindtap="toggleColorPicker">
       <image src="/assets/images/richtext/zitiyanse.png" class="toolbar-icon" />
     </button>
-  </view>
+    <!-- 在富文本工具栏中添加撤销按钮 -->
+     <button bindtap="onUndo">
+    <image src="/assets/images/richtext/undo.png" class="toolbar-icon" />
+     </button>
+</view>
 
   <!-- emoji选择器 -->
   <view wx:if="{{showEmojiPicker}}" class="emoji-picker">
