@@ -1,18 +1,33 @@
 /* 页面布局样式 */
 .container {
   padding: 20px;
-  background-color: #f4f4f4;
+  background-color: #f9f9f9;
   min-height: 100vh;
-  font-family: Arial, sans-serif; /* 使用简洁的字体 */
+  font-family: 'Roboto', sans-serif; /* 使用更现代的字体 */
+  color: #333;
 }
 
 /* 顶部提示 */
 .header {
-  font-size: 22px;
-  margin-bottom: 30px;
+  font-size: 24px;
+  margin-bottom: 20px;
   text-align: center;
   font-weight: bold;
-  color: #333;
+  color: #222;
+}
+
+/* 论坛规范提示 */
+.forum-notice {
+  background: linear-gradient(90deg, #fff3e0, #ffe0b2);  /* 渐变背景 */
+  color: #f57c00;  /* 热情橙色文字 */
+  border: 1px solid #ffcc80; /* 边框与背景协调 */
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  font-size: 16px;
+  text-align: center;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* 热门分类区域样式 */
@@ -22,50 +37,47 @@
 
 /* 热门分类标题 */
 .recommended-categories .title {
-  font-size: 20px;
-  font-weight: 600;
-  color: #FF5733; /* 热门分类使用突出颜色 */
+  font-size: 22px;
+  font-weight: 700;
+  color: #ff5722;  /* 较强的颜色，突出 */
   margin-bottom: 15px;
-  text-align: left; /* 左对齐 */
-  padding-left: 10px; /* 左边距 */
-  border-bottom: 2px solid #FF5733; /* 下方有个细线条 */
+  text-align: left;
+  padding-left: 10px;
+  border-bottom: 2px solid #ff5722;
 }
 
 /* 横向热门分类列表样式 */
 .category-list-horizontal {
   display: flex;
   flex-direction: row;
-  overflow-x: auto; /* 允许横向滚动 */
+  overflow-x: auto;
   gap: 15px;
-  padding-left: 10px; /* 左侧边距 */
+  padding-left: 10px;
 }
 
 .category-item-horizontal {
-  flex-shrink: 0; /* 防止内容收缩 */
-  width: auto;
+  flex-shrink: 0;
   padding: 10px;
 }
 
 .category-box-horizontal {
-  padding: 12px 20px;
-  border: 2px solid #FF5733;
-  border-radius: 12px;
-  background-color: #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 14px 25px;
+  border: 2px solid #ff5722;
+  border-radius: 16px;
+  background-color: #ffffff;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
   text-align: center;
-  transition: all 0.3s ease;
-  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .category-box-horizontal:hover {
   transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .category-box-horizontal text {
-  font-size: 16px;
+  font-size: 18px;
   color: #333;
-  display: block;
 }
 
 /* 所有分类区域样式 */
@@ -75,46 +87,46 @@
 
 /* 所有分类标题样式 */
 .all-categories .title {
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 700;
   color: #333;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   text-align: left;
   padding-left: 10px;
-  border-bottom: 2px solid #ddd; /* 下方的细线条 */
+  border-bottom: 2px solid #ddd;
 }
 
 /* 分类列表样式 */
 .category-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
   gap: 15px;
   margin-bottom: 30px;
 }
 
 /* 单个分类样式 */
 .category-item {
-  width: 48%; /* 为了两列布局，宽度设为 48% */
+  width: 48%;
 }
 
 .category-box {
-  padding: 15px;
+  padding: 18px;
   border: 1px solid #ddd;
-  border-radius: 12px;
-  background-color: #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  border-radius: 16px;
+  background-color: #ffffff;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
 }
 
 .category-box:hover {
   transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
 }
 
 .category-box text {
-  font-size: 16px;
+  font-size: 18px;
   color: #333;
   display: block;
   text-align: center;
@@ -129,22 +141,23 @@
 
 /* 设置按钮为横向排列 */
 .post-button button {
-  padding: 12px 25px;
-  background-color: #FF5733;
+  padding: 12px 30px;
+  background: linear-gradient(45deg, #ff5722, #ff1100);  /* 渐变效果 */
   color: white;
   border-radius: 30px;
   font-size: 18px;
   font-weight: bold;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin: 0 5px; /* 添加左右边距 */
-  width: 100%; /* 设置按钮宽度为 100% */
-  max-width: 300px; /* 最大宽度为 300px，避免过大 */
+  transition: background 0.3s ease, transform 0.2s ease;
+  margin: 0 10px;
+  width: 100%;
+  max-width: 350px; /* 限制最大宽度 */
 }
 
 .post-button button:hover {
-  background-color: #ff1212;
+  background: linear-gradient(45deg, #ff1100, #ff5722);
+  transform: scale(1.05);
 }
 
 .post-button button:disabled {
@@ -154,5 +167,5 @@
 
 /* 按钮点击效果 */
 button:active {
-  transform: scale(0.98); /* 按下时轻微缩小 */
+  transform: scale(0.98); /* 按下时缩小 */
 }

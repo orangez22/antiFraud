@@ -1,7 +1,8 @@
 <view class="container">
-  <!-- 顶部提示 -->
-  <view class="header">
-    <text>请选择要进入的论坛版块</text>
+
+  <!-- 论坛规范提示 -->
+  <view class="forum-notice">
+    <text>请遵守论坛规范，文明发帖</text>
   </view>
 
   <!-- 热门分类 -->
@@ -20,7 +21,7 @@
 
   <!-- 所有分类 -->
   <view class="all-categories">
-    <view class="title">所有分类</view> <!-- 添加了标题 -->
+    <view class="title">所有分类</view>
     <view class="category-list">
       <view wx:for="{{categories}}" wx:key="categoryId" class="category-item" bindtap="onCategorySelect" data-id="{{item.categoryId}}">
         <view class="category-box">
