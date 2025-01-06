@@ -10,7 +10,5 @@
   </view>
 
   <!-- 内容 -->
-  <view class="article-content">
-    {{detail.content}}
-  </view>
+  <mp-html content="{{detail.content}}"></mp-html>
 </view>

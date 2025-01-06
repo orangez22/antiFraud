@@ -27,9 +27,16 @@
   color: #ccc;
 }
 
-.article-content {
+article-content {
   font-size: 16px;
   line-height: 1.6;
   text-indent: 2em;
+  color: #333;
+}
+
+/* 富文本的样式 */
+mp-html {
+  font-size: 16px;
+  line-height: 1.6;
   color: #333;
 }
