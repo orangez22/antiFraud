@@ -11,4 +11,59 @@
 
   <!-- 内容 -->
   <mp-html content="{{detail.content}}"></mp-html>
+
+  <view class="comments-section">
+  <!-- 评论数量 -->
+  <view class="comments-count">共{{commentsCount}}条主评论</view>
+
+<!-- 评论列表 -->
+<view class="comment-list">
+  <view wx:for="{{comments}}" wx:key="commentId">
+    <view class="comment">
+      <view class="comment-header">
+        <text class="comment-author">{{item.name}}</text>
+        <text class="comment-time">{{item.createTime}}</text>
+      </view>
+      <view class="comment-content">{{item.content}}</view>
+
+      <!-- 子评论展示 -->
+      <view wx:if="{{item.children && item.children.length > 0}}" class="nested-comments">
+        <view wx:for="{{item.children}}" wx:key="commentId">
+          <view class="comment">
+            <view class="comment-header">
+              <text class="comment-author">{{item.name}}</text>
+              <text class="comment-time">{{item.createTime}}</text>
+            </view>
+            <view class="comment-content">{{item.content}}</view>
+
+            <!-- 如果子评论还有子评论 -->
+            <view wx:if="{{item.children && item.children.length > 0}}" class="nested-comments">
+              <view wx:for="{{item.children}}" wx:key="commentId">
+                <view class="comment">
+                  <view class="comment-header">
+                    <text class="comment-author">{{item.name}}</text>
+                    <text class="comment-time">{{item.createTime}}</text>
+                  </view>
+                  <view class="comment-content">{{item.content}}</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
 </view>
+
+<!-- 发布评论 -->
+<view class="publish-comment">
+  <textarea class="comment-input" bindinput="onCommentInput" value="{{commentContent}}" placeholder="发表你的评论"></textarea>
+  <button class="publish-btn" bindtap="publishComment">发布评论</button>
+</view>
+
+<!-- 加载更多评论 -->
+<view wx:if="{{hasMoreComments}}" class="load-more" bindtap="loadMoreComments">
+  加载更多评论
+</view>
+  </view>
+  </view>
