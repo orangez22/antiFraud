@@ -158,6 +158,7 @@ Page({
 
   // 加载更多评论
   loadMoreComments() {
+    console.log("执行到这")
     const { categoryId, currentPage, hasMoreComments } = this.data;
     if (hasMoreComments) {
       this.setData({ currentPage: currentPage + 1 });

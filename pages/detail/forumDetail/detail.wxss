@@ -1,6 +1,6 @@
 .container {
   padding: 20px;
-  background-color: #fff;
+  background-color: #f9f9f9;
 }
 
 .article-title {
@@ -27,49 +27,111 @@
   color: #ccc;
 }
 
-article-content {
-  font-size: 16px;
-  line-height: 1.6;
-  text-indent: 2em;
-  color: #333;
-}
-
-/* 富文本的样式 */
-mp-html {
-  font-size: 16px;
-  line-height: 1.6;
-  color: #333;
-}
-
-/* 评论区域 */
-.comments-section {
-  margin-top: 20px;
-  padding-bottom: 100px; /* 预留空间给固定的评论区 */
+/* 改进的分割线样式 */
+.comments-divider {
+  margin: 30px 0;
+  padding: 10px 0;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  color: #555;
+  border-top: 1px solid #ddd;
 }
 
 .comments-count {
-  font-size: 16px;
-  font-weight: bold;
-  color: #333;
+  color: #ff0000;
+}
+
+.comments-section {
+  margin-top: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.publish-comment {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* 使评论框居中 */
+  justify-content: center;  /* 垂直居中 */
+}
+
+.comment-input {
+  width: 100%;
+  height: 80px;
   margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.comment-avatar {
+  width: 30px;       /* 设置头像的宽度 */
+  height: 30px;      /* 设置头像的高度 */
+  border-radius: 50%; /* 圆形效果 */
+  margin-right: 10px; /* 与用户名之间的间距 */
+}
+
+.publish-btn {
+  background-color: #ff0000;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
 }
 
 .comment-list {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .comment {
   margin-bottom: 15px;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.comment:last-child {
+  border-bottom: none;
+}
+
+/* 父评论 */
+.parent-comment {
+  font-size: 16px; /* 父评论的字体稍大 */
+  padding-left: 15px; /* 稍微偏移 */
+}
+
+/* 子评论 */
+.child-comment {
+  font-size: 14px; /* 子评论的字体比父评论小 */
+  padding-left: 20px; /* 子评论偏移 */
+}
+
+/* 孙评论 */
+.grandchild-comment {
+  font-size: 13px;       /* 适度减小字体 */
+  padding-left: 25px;    /* 更深的缩进 */
+  line-height: 1.6;      /* 增加行高，避免内容太紧凑 */
+  margin-top: 10px;      /* 增加上边距，避免和子评论挤在一起 */
+  margin-bottom: 10px;   /* 增加下边距 */
+  padding: 10px;         /* 增加内边距，给内容一点空间 */
+  border-radius: 5px;    /* 圆角效果 */
 }
 
 .comment-header {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
 }
 
 .comment-author {
   font-weight: bold;
-  color: #007bff;
+  color: #141414;
+  margin-right: 10px;
 }
 
 .comment-time {
@@ -80,37 +142,17 @@ mp-html {
 .comment-content {
   font-size: 14px;
   color: #333;
+  
 }
 
 .nested-comments {
   margin-top: 10px;
-  margin-left: 20px;
+  
 }
 
-/* 固定在页面底部的评论区 */
-.publish-comment {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: #fff;
-  padding: 15px;
-  border-top: 1px solid #ccc;
-}
-
-.comment-input {
-  width: 100%;
-  height: 100px;
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.publish-btn {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px;
-  border-radius: 5px;
+.load-more {
+  color: #007bff;
   text-align: center;
+  margin-top: 15px;
+  cursor: pointer;
 }
