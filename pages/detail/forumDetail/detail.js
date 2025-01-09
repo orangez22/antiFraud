@@ -60,6 +60,7 @@ Page({
   wx.showLoading({ title: '加载评论中...' });
 
   const { currentPage, pageSize } = this.data;
+  const memberId = getApp().getMemberId(); // 获取全局 memberId
 
   request.post('/forum/forumComment/list', {
     forumId,
@@ -71,8 +72,14 @@ Page({
       const { success, data, message, errorCode } = response;
       if (errorCode === 20000) {
         // 获取评论数据（data.records是评论列表）
-        const newComments = data.records;
-        
+        const newComments = data.records.map((comment) => {
+          console.log(comment.memberId === memberId);
+          return {
+              ...comment,
+              canDelete: comment.memberId === memberId, // 判断评论是否可以删除
+              children: this.processNestedComments(comment.children, memberId), // 递归处理子评论
+          }
+      });
         // 更新评论总数
         const commentsCount = data.total;
         
@@ -103,6 +110,18 @@ Page({
         icon: 'none',
       });
     });
+},
+// 递归处理子评论和孙评论
+processNestedComments(comments, memberId) {
+  if (!comments) return []; // 如果没有子评论，直接返回空数组
+
+  return comments.map((comment) => {
+    return {
+      ...comment,
+      canDelete: comment.userId === memberId, // 判断当前评论是否可以删除
+      children: this.processNestedComments(comment.children, memberId), // 递归处理孙评论
+    };
+  });
 },
   // 监听评论输入框的输入
   onCommentInput(e) {
@@ -154,6 +173,54 @@ Page({
           icon: 'none',
         });
       });
+  },
+  // 删除评论
+  deleteComment(commentId) {
+    wx.showLoading({ title: '删除中...' });
+
+    request.post('/forum/forumComment/delete', { commentId })
+      .then((response) => {
+        wx.hideLoading();
+        const { success, message } = response;
+
+        if (success) {
+          wx.showToast({
+            title: '评论删除成功',
+            icon: 'none',
+          });
+          // 删除后重新获取评论列表
+          const { categoryId } = this.data;
+          this.setData({ currentPage: 1 }); // 重置为第一页
+          this.getComments(categoryId);
+        } else {
+          wx.showToast({
+            title: message || '删除失败',
+            icon: 'none',
+          });
+        }
+      })
+      .catch((error) => {
+        wx.hideLoading();
+        console.error('删除评论失败：', error);
+        wx.showToast({
+          title: '网络错误，请稍后重试',
+          icon: 'none',
+        });
+      });
+  },
+
+  // 点击删除评论
+  onDelete(e) {
+    const { id } = e.currentTarget.dataset;
+    wx.showModal({
+      title: '确认删除',
+      content: '是否删除该评论？',
+      success: (res) => {
+        if (res.confirm) {
+          this.deleteComment(id);
+        }
+      },
+    });
   },
 
   // 加载更多评论

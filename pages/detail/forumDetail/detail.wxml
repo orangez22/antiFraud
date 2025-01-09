@@ -35,7 +35,15 @@
             <text class="comment-time">{{item.createTime}}</text>
           </view>
           <view class="comment-content">{{item.content}}</view>
-
+           <!-- 评论操作 -->
+      <view class="comment-actions">
+        <text class="action-reply" bindtap="onReply" data-id="{{item.commentId}}" data-name="{{item.name}}">
+          回复
+        </text>
+        <text wx:if="{{item.canDelete}}" class="action-delete" bindtap="onDelete" data-id="{{item.commentId}}">
+          删除
+        </text>
+      </view>
           <!-- 子评论展示 -->
           <view wx:if="{{item.children && item.children.length > 0}}" class="nested-comments">
             <view wx:for="{{item.children}}" wx:key="commentId">
@@ -47,6 +55,15 @@
                   <text class="comment-time">{{item.createTime}}</text>
                 </view>
                 <view class="comment-content">{{item.content}}</view>
+                  <!-- 子评论操作 -->
+            <view class="comment-actions">
+              <text class="action-reply" bindtap="onReply" data-id="{{item.commentId}}" data-name="{{item.name}}">
+                回复
+              </text>
+              <text wx:if="{{item.canDelete}}" class="action-delete" bindtap="onDelete" data-id="{{item.commentId}}">
+                删除
+              </text>
+            </view>
 
                 <!-- 子评论的子评论展示 -->
                 <view wx:if="{{item.children && item.children.length > 0}}" class="nested-comments">
@@ -59,6 +76,15 @@
                         <text class="comment-time">{{item.createTime}}</text>
                       </view>
                       <view class="comment-content">{{item.content}}</view>
+                       <!-- 孙评论操作 -->
+                  <view class="comment-actions">
+                    <text class="action-reply" bindtap="onReply" data-id="{{item.commentId}}" data-name="{{item.name}}">
+                      回复
+                    </text>
+                    <text wx:if="{{item.canDelete}}" class="action-delete" bindtap="onDelete" data-id="{{item.commentId}}">
+                      删除
+                    </text>
+                  </view>
                     </view>
                   </view>
                 </view>
