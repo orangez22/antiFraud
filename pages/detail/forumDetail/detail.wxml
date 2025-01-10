@@ -35,15 +35,17 @@
             <text class="comment-time">{{item.createTime}}</text>
           </view>
           <view class="comment-content">{{item.content}}</view>
-           <!-- 评论操作 -->
-      <view class="comment-actions">
-        <text class="action-reply" bindtap="onReply" data-id="{{item.commentId}}" data-name="{{item.name}}">
-          回复
-        </text>
-        <text wx:if="{{item.canDelete}}" class="action-delete" bindtap="onDelete" data-id="{{item.commentId}}">
-          删除
-        </text>
-      </view>
+          
+          <!-- 评论操作 -->
+          <view class="comment-actions">
+            <text class="action-reply" bindtap="onReply" data-id="{{item.commentId}}" data-name="{{item.name}}" data-forum-id="{{categoryId}}">
+              回复
+            </text>
+            <text wx:if="{{item.canDelete}}" class="action-delete" bindtap="onDelete" data-id="{{item.commentId}}">
+              删除
+            </text>
+          </view>
+
           <!-- 子评论展示 -->
           <view wx:if="{{item.children && item.children.length > 0}}" class="nested-comments">
             <view wx:for="{{item.children}}" wx:key="commentId">
@@ -55,36 +57,38 @@
                   <text class="comment-time">{{item.createTime}}</text>
                 </view>
                 <view class="comment-content">{{item.content}}</view>
-                  <!-- 子评论操作 -->
-            <view class="comment-actions">
-              <text class="action-reply" bindtap="onReply" data-id="{{item.commentId}}" data-name="{{item.name}}">
-                回复
-              </text>
-              <text wx:if="{{item.canDelete}}" class="action-delete" bindtap="onDelete" data-id="{{item.commentId}}">
-                删除
-              </text>
-            </view>
+                
+                <!-- 子评论操作 -->
+                <view class="comment-actions">
+                  <text class="action-reply" bindtap="onReply" data-id="{{item.commentId}}" data-name="{{item.name}}" data-forum-id="{{categoryId}}">
+                    回复
+                  </text>
+                  <text wx:if="{{item.canDelete}}" class="action-delete" bindtap="onDelete" data-id="{{item.commentId}}">
+                    删除
+                  </text>
+                </view>
 
                 <!-- 子评论的子评论展示 -->
                 <view wx:if="{{item.children && item.children.length > 0}}" class="nested-comments">
                   <view wx:for="{{item.children}}" wx:key="commentId">
                     <view class="comment grandchild-comment">
-                      <!-- 子评论的子评论 -->
+                      <!-- 孙评论 -->
                       <view class="comment-header">
                         <image class="comment-avatar" src="{{item.avatar}}" alt="头像" />
                         <text class="comment-author">{{item.name}}</text>
                         <text class="comment-time">{{item.createTime}}</text>
                       </view>
                       <view class="comment-content">{{item.content}}</view>
-                       <!-- 孙评论操作 -->
-                  <view class="comment-actions">
-                    <text class="action-reply" bindtap="onReply" data-id="{{item.commentId}}" data-name="{{item.name}}">
-                      回复
-                    </text>
-                    <text wx:if="{{item.canDelete}}" class="action-delete" bindtap="onDelete" data-id="{{item.commentId}}">
-                      删除
-                    </text>
-                  </view>
+                      
+                      <!-- 孙评论操作 -->
+                      <view class="comment-actions">
+                        <text class="action-reply" bindtap="onReply" data-id="{{item.commentId}}" data-name="{{item.name}}" data-forum-id="{{categoryId}}">
+                          回复
+                        </text>
+                        <text wx:if="{{item.canDelete}}" class="action-delete" bindtap="onDelete" data-id="{{item.commentId}}">
+                          删除
+                        </text>
+                      </view>
                     </view>
                   </view>
                 </view>
@@ -93,6 +97,13 @@
           </view>
         </view>
       </view>
+    </view>
+
+    <!-- 回复框显示 -->
+    <view wx:if="{{replyCommentId}}" class="reply-box">
+      <textarea bindinput="onReplyInput" value="{{replyContent}}" placeholder="请输入回复内容"></textarea>
+      <button bindtap="publishReply">发布回复</button>
+      <button bindtap="cancelReply">取消</button>
     </view>
 
     <!-- 加载更多评论 -->

@@ -173,3 +173,103 @@
   margin-top: 15px;
   cursor: pointer;
 }
+
+
+/* 提交按钮悬停效果 */
+.reply-btn:hover {
+  background-color: #e60000;     /* 悬停时背景色更深 */
+}
+
+/* 提交按钮悬停时效果 */
+.reply-comment .submit-reply:hover {
+  color: #fff;
+  background-color: #0056b3;     /* 悬停时改变背景色 */
+}
+/* 回复框 */
+.reply-box {
+  margin-top: 20px;
+  background-color: #f1f1f1;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Arial', sans-serif;
+}
+
+/* 回复框标题 */
+.reply-box-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.reply-box-title::before {
+  content: '💬';
+  margin-right: 8px;
+}
+
+/* 回复框内的输入框 */
+.reply-box textarea {
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+  resize: none;
+  min-height: 60px;
+  transition: border-color 0.3s ease;
+}
+
+.reply-box textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* 按钮容器，使用 Flexbox 布局 */
+.reply-box-buttons {
+  display: flex;
+  justify-content: flex-start; /* 左对齐 */
+  gap: 22px; /* 按钮之间的空隙 */
+}
+
+/* 发布回复按钮 */
+.reply-box button {
+  background-color: #ff2600;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.reply-box button:hover {
+  background-color: #0056b3;
+}
+
+/* 取消回复按钮 */
+.reply-box .cancel-btn {
+  background-color: #f7f7f7;
+  color: #ff2600;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 10px;
+}
+
+.reply-box .cancel-btn:hover {
+  background-color: #e1e1e1;
+}

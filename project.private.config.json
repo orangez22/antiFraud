@@ -9,6 +9,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/detail/forumDetail/detail",
+          "pathName": "pages/detail/forumDetail/detail",
+          "query": "id=1873707549962412033",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/forum/forum",
           "pathName": "pages/forum/forum",
           "query": "",
