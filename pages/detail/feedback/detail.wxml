@@ -1,0 +1,29 @@
+<view class="feedback-detail">
+  <!-- 消息内容区域，支持滚动 -->
+  <scroll-view class="message-list" scroll-y="true" scroll-with-animation scroll-top="{{scrollTop}}">
+    <block wx:for="{{messageDetailVOList}}" wx:key="feedbackMessageId">
+      <view class="message-item {{item.senderId === memberId ? 'user-message' : 'admin-message'}}">
+        <view class="message-content">
+          <text class="message-time">{{item.createTime}}</text>
+
+          <view class="sender-info">
+            <image class="sender-avatar" src="{{item.senderAvatar}}" />
+            <view class="sender-name">{{item.senderName}}</view>
+          </view>
+
+          <view class="message-body">
+            <text class="message-text">{{item.content}}</text>
+          </view>
+
+          <view wx:if="{{item.status === '1'}}" class="unread-badge"></view>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+
+  <!-- 底部聊天输入框 -->
+  <view class="chat-input-container">
+    <input class="chat-input" placeholder="请输入消息..." bindinput="onInputChange" />
+    <button class="send-button" bindtap="sendMessage">发送</button>
+  </view>
+</view>

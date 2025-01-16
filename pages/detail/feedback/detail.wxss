@@ -1,0 +1,136 @@
+.feedback-detail {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  background-color: #f8f8f8;
+  height: 100vh; /* 设置页面占满全屏 */
+}
+
+.message-item {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.user-message .message-content {
+  align-items: flex-end; /* 用户消息右对齐 */
+}
+
+.admin-message .message-content {
+  align-items: flex-start; /* 管理员消息左对齐 */
+}
+
+.message-content {
+  background-color: #fff;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  max-width: 80%; /* 最大宽度为屏幕的80% */
+  min-width: 40%; /* 最小宽度为屏幕的40% */
+  word-wrap: break-word; /* 允许长单词折行 */
+  white-space: pre-wrap; /* 保证文本能够换行 */
+}
+
+.message-time {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.sender-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.sender-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+.sender-name {
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+}
+
+.message-body {
+  padding-top: 10px;
+}
+
+.message-text {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+}
+
+/* 小红点放在左侧 */
+.unread-badge {
+  width: 8px;
+  height: 8px;
+  background-color: #ff4d4f;
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  left: -10px; /* 修改位置，使红点出现在气泡的左侧 */
+}
+
+/* 用户消息右对齐 */
+.user-message .message-content {
+  align-items: flex-end;
+  margin-left: auto; /* 向右侧扩展 */
+}
+
+/* 管理员消息左对齐 */
+.admin-message .message-content {
+  align-items: flex-start;
+  margin-right: auto; /* 向左侧扩展 */
+}
+
+/* 消息列表区域 */
+.message-list {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 80rpx; /* 给底部输入框预留空间 */
+}
+
+/* 底部聊天框 */
+.chat-input-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  padding: 10rpx;
+  background-color: #fff;
+  border-top: 1px solid #f0f0f0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.chat-input {
+  flex: 1;
+  height: 100rpx;
+  padding: 0 10rpx;
+  border-radius: 20rpx;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  outline: none;
+}
+
+.send-button {
+  margin-left: 10rpx;
+  padding: 6rpx 15rpx;
+  background-color: #cf5e5e;
+  color: #fff;
+  border: none;
+  border-radius: 20rpx;
+  font-size: 14px;
+}

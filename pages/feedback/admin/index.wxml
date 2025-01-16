@@ -7,10 +7,13 @@
       <view class="feedback-content">
         <view class="feedback-header">
           <text class="feedback-name">{{item.name}}</text>
-          <view wx:if="{{unreadCountList[item.feedbackId] && unreadCountList[item.feedbackId] > 0}}" class="unread-badge">
-            <text>{{unreadCountList[item.feedbackId]}}</text>
+          
+          <!-- 使用 showRedDot 来控制红点显示 -->
+          <view wx:if="{{item.showRedDot}}" class="unread-badge">
+            <text>{{item.unreadCount}}</text>
           </view>
         </view>
+
         <view class="feedback-message">
           <text class="feedback-time">{{item.createTime}}</text>
           <text class="feedback-text">{{item.content}}</text>

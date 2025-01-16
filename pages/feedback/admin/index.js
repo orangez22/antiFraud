@@ -3,7 +3,6 @@ import request from '@/utils/request';  // 导入请求工具类
 Page({
   data: {
     feedbackList: [],  // 存放反馈信息列表
-    unreadCountList: [],  // 存放每个反馈的未读消息数量
     loading: false,  // 是否正在加载
     hasMore: true,  // 是否有更多数据
   },
@@ -61,25 +60,31 @@ Page({
       return;
     }
   
-    // 初始化未读消息数量对象
-    const unreadCountList = {};
-  
     // 使用 Promise.all 来处理所有异步请求
     const promises = feedbackList.map(feedback =>
       request({
         url: '/feedback/feedbackMessage/unreadCount',
         method: 'POST',
         data: {
-          memberId: memberId,
+          memberId: memberId,  // 当前用户的 ID
           role: role,
-          feedbackId: feedback.feedbackId,
+          feedbackId: feedback.feedbackId,  // 当前反馈的 ID
         },
       })
         .then(res => {
           // 假设返回结构为 [{ feedbackId, unreadCount }]
-          res.data.forEach(item => {
-            unreadCountList[item.feedbackId] = item.unreadCount;
-          });
+          const unreadCount = res.data[0]?.unreadCount || 0;
+  
+          // 只有当反馈的 `memberId` 不是当前用户时，才显示对方的未读消息红点
+          if (String(feedback.memberId) !== String(memberId)) {
+            // 如果是对方反馈给当前用户，更新未读消息数量和红点
+            feedback.unreadCount = unreadCount;
+            feedback.showRedDot = unreadCount > 0;
+          } else {
+            // 当前用户发布的消息，不显示未读红点
+            feedback.unreadCount = 0;
+            feedback.showRedDot = false;
+          }
         })
         .catch(() => {
           wx.showToast({
@@ -92,16 +97,32 @@ Page({
     // 等所有请求完成后更新数据
     Promise.all(promises).then(() => {
       that.setData({
-        unreadCountList: unreadCountList,
+        feedbackList: feedbackList,  // 更新反馈列表，确保红点显示正确
       });
-      console.log('最终未读消息列表:', unreadCountList);
+      console.log('最终未读消息列表:', feedbackList);  // 可以直接输出反馈列表，确认每个反馈的红点状态
     });
   },
+
   // 跳转到反馈详情页面
   goToDetail: function(event) {
     const feedbackId = event.currentTarget.dataset.feedbackId;
-    wx.navigateTo({
-      url: `/pages/feedback-detail/feedback-detail?feedbackId=${feedbackId}`,
+  
+    // 在跳转到详情前，去掉红点
+    const updatedFeedbackList = this.data.feedbackList.map(feedback => {
+      if (feedback.feedbackId === feedbackId) {
+        feedback.showRedDot = false;  // 去掉红点
+      }
+      return feedback;
     });
-  },
+  
+    // 更新数据
+    this.setData({
+      feedbackList: updatedFeedbackList,
+    });
+  
+    // 跳转到反馈详情页面
+    wx.navigateTo({
+      url: `/pages/detail/feedback/detail?feedbackId=${feedbackId}`,
+    });
+  }
 });

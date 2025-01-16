@@ -9,6 +9,7 @@
     "pages/about/index",
     "pages/detail/detail",
     "pages/detail/forumDetail/detail",
+    "pages/detail/feedback/detail",
     "pages/exam/examList/examList",
     "pages/exam/exam/exam",
     "pages/exam/examResult/examResult",
