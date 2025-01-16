@@ -1,0 +1,72 @@
+.feedback-list {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.feedback-item {
+  display: flex;
+  padding: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.feedback-avatar {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.feedback-content {
+  flex: 1;
+}
+
+.feedback-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: #888;
+}
+
+.feedback-name {
+  font-size: 18px; /* 放大名字字号 */
+  font-weight: bold; /* 加粗名字 */
+  color: #000; /* 让名字更加醒目 */
+  margin-right: 10px;
+}
+
+.feedback-time {
+  font-size: 13px; /* 缩小创建时间字号 */
+  color: #aaa;
+}
+
+.unread-badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  background-color: #ff0000;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.feedback-message {
+  margin-top: 5px;
+  font-size: 16px;
+  color: #333;
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  color: #888;
+}

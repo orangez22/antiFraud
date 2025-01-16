@@ -1,0 +1,24 @@
+<view class="feedback-list">
+  <block wx:for="{{feedbackList}}" wx:key="feedbackId">
+    <view class="feedback-item" bindtap="goToDetail" data-feedback-id="{{item.feedbackId}}">
+      <view class="feedback-avatar">
+        <image src="{{item.avatar}}" class="avatar-img" />
+      </view>
+      <view class="feedback-content">
+        <view class="feedback-header">
+          <text class="feedback-name">{{item.name}}</text>
+          <view wx:if="{{unreadCountList[item.feedbackId] && unreadCountList[item.feedbackId] > 0}}" class="unread-badge">
+            <text>{{unreadCountList[item.feedbackId]}}</text>
+          </view>
+        </view>
+        <view class="feedback-message">
+          <text class="feedback-time">{{item.createTime}}</text>
+          <text class="feedback-text">{{item.content}}</text>
+        </view>
+      </view>
+    </view>
+  </block>
+  
+  <!-- 加载更多 -->
+  <view wx:if="{{loading}}" class="loading">加载中...</view>
+</view>

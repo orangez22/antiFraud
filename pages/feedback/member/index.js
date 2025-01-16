@@ -1,4 +1,4 @@
-// pages/merchant/apply/list/index.js
+// pages/feedback/member/index.js
 Page({
 
   /**

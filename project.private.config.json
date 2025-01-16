@@ -9,6 +9,20 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/feedback/admin/index",
+          "pathName": "pages/feedback/admin/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/feedback/feedback",
+          "pathName": "pages/feedback/feedback",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/detail/forumDetail/detail",
           "pathName": "pages/detail/forumDetail/detail",
           "query": "id=1873707549962412033",
