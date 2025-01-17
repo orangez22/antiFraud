@@ -8,17 +8,26 @@ Page({
     role: '', // 当前角色
     messageContent: '', // 输入框内容
     receiverId: '', // 当前对话的固定接收者 ID
+    name: '', // 用户名
+    avatar: '', // 头像
+    phone: '', // 用户手机号
   },
 
   onLoad: function (options) {
-    // 获取当前的用户 ID、角色和反馈 ID
+    // 获取当前的用户 ID、角色、用户名、头像、手机号和反馈 ID
     const memberId = getApp().getMemberId();
     const role = getApp().getRole();
+    const name = getApp().getName();
+    const avatar = getApp().getAvatar();
+    const phone = getApp().getPhone();
     const feedbackId = options.feedbackId;
 
     this.setData({
       memberId: memberId,
       role: role,
+      name: name,
+      avatar: avatar,
+      phone: phone,
       feedbackId: feedbackId,
     });
 
@@ -84,7 +93,9 @@ Page({
       url: '/feedback/feedbackMessage/addFeedback', // 替换为真实接口路径
       method: 'POST',
       data: {
-        phone: '', // 如果有手机号字段，前端可选择传递
+        name:this.data.name,
+        phone:this.data.phone,
+        avatar:this.data.avatar,
         feedbackId: feedbackId,
         role: role,
         receiverId: role === '0' ? receiverId : null, // 管理员传接收者 ID，普通用户不传

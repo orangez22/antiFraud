@@ -202,6 +202,10 @@ Page({
         const app = getApp();
         app.setMemberId(this.data.user.id); // 调用 setMemberId
         app.setRole(this.data.user.role)//调用setRole
+        app.setName(this.data.user.name)//调用setName
+        app.setAvatar(this.data.user.avatar)//调用setAvatar
+        app.setPhone(this.data.user.phone)//调用setPhone
+        app.setGender(this.data.user.gender)//调用setGender
       } else {
         wx.showToast({
           icon: 'none',
