@@ -1,2 +1,17 @@
-<!--pages/feedback/member/index.wxml-->
-<text>pages/feedback/member/index.wxml</text>
+<view class="container">
+  <!-- "我的反馈" 按钮 -->
+  <button class="my-feedback-btn" bindtap="goToMyFeedback">我的反馈</button>
+  
+  <!-- 用户信息 -->
+  <view class="header">
+    <image class="avatar" src="{{avatar}}" />
+    <text class="username">{{name}}</text>
+    <text class="phone">{{phone}}</text>
+  </view>
+
+  <!-- 反馈输入框 -->
+  <textarea class="feedback-input" placeholder="请输入您的反馈..." bindinput="onInputChange" value="{{feedbackContent}}" />
+
+  <!-- 提交按钮 -->
+  <button class="submit-btn" bindtap="submitFeedback">提交反馈</button>
+</view>

@@ -31,6 +31,7 @@
     "pages/feedback/feedback",
     "pages/feedback/admin/index",
     "pages/feedback/member/index",
+    "pages/feedback/member/list/index",
     "pages/logs/logs"
   ],
   "tabBar": {

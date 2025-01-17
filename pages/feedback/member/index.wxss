@@ -1,1 +1,65 @@
-/* pages/feedback/member/index.wxss */
+/* 容器样式 */
+.container {
+  padding: 20px;
+}
+
+/* "我的反馈" 按钮样式（修改后的版本） */
+.my-feedback-btn {
+  width: 100%;
+  padding: 8px 15px;  /* 更小的按钮尺寸 */
+  background-color: #0dcbec;
+  color: white;
+  font-size: 16px;  /* 更小的字体 */
+  border-radius: 8px;
+  border: none;
+  margin-bottom: 15px;  /* 减小按钮与其他元素之间的间距 */
+  text-align: center;
+}
+
+/* 用户信息样式 */
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.username {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.phone {
+  font-size: 14px;
+  color: #888;
+}
+
+/* 反馈输入框样式 */
+.feedback-input {
+  width: 100%;
+  height: 200px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+}
+
+/* 提交按钮样式 */
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  background-color: #fa0000;
+  color: white;
+  font-size: 18px;
+  border-radius: 8px;
+  border: none;
+}
