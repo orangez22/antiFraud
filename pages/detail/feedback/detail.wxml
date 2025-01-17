@@ -22,8 +22,8 @@
   </scroll-view>
 
   <!-- 底部聊天输入框 -->
-  <view class="chat-input-container">
-    <input class="chat-input" placeholder="请输入消息..." bindinput="onInputChange" />
-    <button class="send-button" bindtap="sendMessage">发送</button>
-  </view>
+<view class="chat-input-container">
+  <input class="chat-input" placeholder="请输入消息..." bindinput="onInputChange" value="{{messageContent}}" />
+  <button class="send-button" bindtap="sendMessage">发送</button>
+</view>
 </view>

@@ -2,33 +2,36 @@ import request from '@/utils/request';
 
 Page({
   data: {
-    messageDetailVOList: [],  // 存放消息列表
-    memberId: '',  // 当前用户ID
-    feedbackId: '',  // 当前反馈ID
-    role: '',  // 当前角色
+    messageDetailVOList: [], // 消息列表
+    memberId: '', // 当前用户 ID
+    feedbackId: '', // 当前反馈 ID
+    role: '', // 当前角色
+    messageContent: '', // 输入框内容
+    receiverId: '', // 当前对话的固定接收者 ID
   },
 
-  onLoad: function(options) {
-    // 获取当前的用户ID、角色、反馈ID
+  onLoad: function (options) {
+    // 获取当前的用户 ID、角色和反馈 ID
     const memberId = getApp().getMemberId();
     const role = getApp().getRole();
     const feedbackId = options.feedbackId;
-    
+
     this.setData({
       memberId: memberId,
       role: role,
       feedbackId: feedbackId,
     });
 
-    this.loadMessageDetails();  // 加载消息详情
+    this.loadMessageDetails(); // 加载消息详情
   },
 
-  loadMessageDetails: function() {
+  // 加载消息详情
+  loadMessageDetails: function () {
     const that = this;
 
-    // 发送请求获取消息详情数据
+    // 获取消息详情
     request({
-      url: '/feedback/feedbackMessage/getFeedbackDetail',  // 替换为真实的接口路径
+      url: '/feedback/feedbackMessage/getFeedbackDetail', // 替换为真实接口路径
       method: 'POST',
       data: {
         feedbackId: that.data.feedbackId,
@@ -36,27 +39,76 @@ Page({
         role: that.data.role,
       },
     })
-    .then(function(res) {
-      const messageDetailVOList = res.data;  // 获取返回的消息列表
+      .then(function (res) {
+        const messageDetailVOList = res.data || [];
 
-      // 过滤掉自己发布且为未读的消息
-      const filteredMessageList = messageDetailVOList.filter(item => {
-        // 只有别人发送的未读消息才会显示小红点，自己的消息不显示
-        if (item.senderId === that.data.memberId) {
-          item.status = '0';  // 强制设置状态为已读
+        // 确定接收者 ID（管理员时为用户 ID）
+        if (that.data.role === '0' && messageDetailVOList.length > 0) {
+          const receiverId = messageDetailVOList[0].senderId; // 普通用户的 ID
+          that.setData({ receiverId: receiverId });
         }
-        return item.senderId !== that.data.memberId || item.status !== '1';  // 不显示自己发送的未读消息
-      });
 
-      that.setData({
-        messageDetailVOList: filteredMessageList,  // 更新页面的消息列表
+        that.setData({
+          messageDetailVOList: messageDetailVOList,
+        });
+      })
+      .catch(function () {
+        wx.showToast({
+          title: '加载消息失败',
+          icon: 'none',
+        });
       });
-    })
-    .catch(function() {
+  },
+
+  // 更新输入框内容
+  onInputChange: function (e) {
+    this.setData({
+      messageContent: e.detail.value,
+    });
+  },
+
+  // 发送消息
+  sendMessage: function () {
+    const { messageContent, memberId, feedbackId, role, receiverId } = this.data;
+
+    if (!messageContent.trim()) {
       wx.showToast({
-        title: '请求失败',
+        title: '请输入消息内容',
         icon: 'none',
       });
-    });
+      return;
+    }
+
+    // 发送消息
+    request({
+      url: '/feedback/feedbackMessage/addFeedback', // 替换为真实接口路径
+      method: 'POST',
+      data: {
+        phone: '', // 如果有手机号字段，前端可选择传递
+        feedbackId: feedbackId,
+        role: role,
+        receiverId: role === '0' ? receiverId : null, // 管理员传接收者 ID，普通用户不传
+        content: messageContent,
+      },
+    })
+      .then(() => {
+        wx.showToast({
+          title: '消息发送成功',
+        });
+
+        // 清空输入框
+        this.setData({
+          messageContent: '', // 清空输入框
+        });
+
+        // 刷新消息列表
+        this.loadMessageDetails(); 
+      })
+      .catch(() => {
+        wx.showToast({
+          title: '消息发送失败',
+          icon: 'none',
+        });
+      });
   },
 });
