@@ -41,11 +41,11 @@ Page({
     });
   },
 
-  // 查看考试信息
+  // 编辑考试信息
   viewExam: function (e) {
     const examId = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: `/pages/exam-detail/exam-detail?id=${examId}`, // 跳转到考试详情页
+      url: `/pages/exam/admin/question/index?id=${examId}`, // 跳转到考试详情页
     });
   },
 

@@ -1,0 +1,104 @@
+/* 页面整体样式 */
+.container {
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+/* 页头样式 */
+.header {
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 12px;
+  background-color: #1e90ff;
+  color: white;
+  border-radius: 8px;
+}
+
+/* 题目列表样式 */
+.exam-question-list {
+  margin-bottom: 20px;
+}
+
+.exam-question-item {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.exam-question-content {
+  margin-bottom: 12px;
+}
+
+.question-text {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+/* 选项样式 */
+.options .option {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px; /* 调整选项之间的间距 */
+  margin-top: 12px;   /* 增加选项与题目之间的间距 */
+}
+
+.exam-question-answer {
+  font-size: 14px;
+  color: #444;
+  margin-top: 12px;
+}
+
+.exam-question-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #999;
+}
+
+.create-time {
+  margin-right: 12px;
+}
+
+.update-btn, .delete-btn {
+  background-color: #1e90ff;
+  color: white;
+  font-size: 14px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+}
+
+.update-btn {
+  background-color: #4CAF50;
+}
+
+.delete-btn {
+  background-color: #f44336;
+}
+
+.create-btn {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.empty-message {
+  font-size: 14px;
+  color: #999;
+  text-align: center;
+  margin-top: 20px;
+}

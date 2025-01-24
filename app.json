@@ -12,6 +12,7 @@
     "pages/detail/feedback/detail",
     "pages/exam/exam",
     "pages/exam/admin/index",
+    "pages/exam/admin/question/index",
     "pages/exam/member/index",
     "pages/forum/forum",
     "pages/forum/preview/preview",

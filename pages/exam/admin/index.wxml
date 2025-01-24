@@ -13,7 +13,7 @@
         </view>
       </view>
       <view class="exam-actions">
-        <button size="mini" bindtap="viewExam" data-id="{{item.id}}">查看</button>
+        <button size="mini" bindtap="viewExam" data-id="{{item.id}}">编辑</button>
         <button size="mini" bindtap="deleteExam" data-id="{{item.id}}" class="delete-btn">删除</button>
       </view>
     </view>

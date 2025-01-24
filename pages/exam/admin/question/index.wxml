@@ -1,0 +1,32 @@
+<view class="container">
+  <!-- 页面头部 -->
+  <view class="header">
+    <text>考试题目列表</text>
+    <button class="create-btn" bindtap="navigateToCreate">创建新题目</button>
+  </view>
+
+  <view class="exam-question-list">
+    <view wx:for="{{examQuestionList}}" wx:key="id" class="exam-question-item">
+      <view class="exam-question-content">
+        <text class="question-text">{{item.questionText}}</text>
+    <!-- 遍历 optionsArray，显示选项 -->
+    <view class="options">
+          <view wx:for="{{item.optionsArray}}" wx:key="{{item.key}}" class="option">
+            <text>{{item.key}}: {{item.value}}</text> <!-- 显示选项的键和值 -->
+          </view>
+        </view>
+        <view class="exam-question-answer">
+          <text>正确答案：{{item.answer}}</text>
+        </view>
+      </view>
+      <view class="exam-question-footer">
+        <text class="create-time">{{item.createTime}}</text>
+        <button class="update-btn" bindtap="updateExamQuestion" data-id="{{item.id}}">更新</button>
+        <button class="delete-btn" bindtap="deleteExamQuestion" data-id="{{item.id}}">删除</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 无数据时显示 -->
+  <view wx:if="{{examQuestionList.length === 0}}" class="empty-message">暂无题目信息</view>
+</view>
