@@ -1,0 +1,33 @@
+<view class="container">
+  <view class="header">
+    <text>考试列表</text>
+  </view>
+
+  <!-- 考试列表 -->
+  <view class="exam-list">
+    <view wx:for="{{examList}}" wx:key="id" class="exam-item">
+      <view class="exam-content">
+        <view class="exam-title">{{item.title}}</view>
+        <view class="exam-info">
+          <text>时长: {{item.duration}}</text> | <text>创建时间: {{item.createTime}}</text>
+        </view>
+      </view>
+      <view class="exam-actions">
+        <button size="mini" bindtap="viewExam" data-id="{{item.id}}">查看</button>
+        <button size="mini" bindtap="deleteExam" data-id="{{item.id}}" class="delete-btn">删除</button>
+      </view>
+    </view>
+  </view>
+  
+  <view wx:if="{{examList.length === 0}}" class="empty-message">暂无考试信息</view>
+
+  <!-- 创建考试 -->
+  <view class="create-section">
+    <view class="create-header">创建新考试</view>
+    <input class="create-input" placeholder="请输入考试标题" bindinput="handleTitleChange" value="{{title}}" />
+    <picker mode="time" bindchange="handleDurationChange" class="time-picker">
+      <view class="time-picker-text">选择考试时长: {{examDuration}}</view>
+    </picker>
+    <button class="create-btn" bindtap="createExam">创建考试</button>
+  </view>
+</view>

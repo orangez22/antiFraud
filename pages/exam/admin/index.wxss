@@ -1,0 +1,118 @@
+/* 页面整体样式 */
+.container {
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+/* 页头样式 */
+.header {
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 12px;
+  background-color: #e90808;
+  color: white;
+  border-radius: 8px;
+}
+
+/* 考试列表样式 */
+.exam-list {
+  margin-bottom: 20px;
+}
+
+.exam-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.exam-content {
+  flex: 1;
+}
+
+.exam-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.exam-info {
+  font-size: 14px;
+  color: #666;
+}
+
+/* 按钮样式 */
+.exam-actions button {
+  margin-left: 8px;
+}
+
+.delete-btn {
+  background-color: #f44336 !important;
+  color: white !important;
+}
+
+/* 创建考试区域样式 */
+.create-section {
+  background-color: white;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.create-header {
+  font-size: 18px;
+  font-weight: bold;
+  color:  #fd4a03;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.create-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.time-picker {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.time-picker-text {
+  padding: 10px;
+  font-size: 14px;
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  color: #666;
+}
+
+.create-btn {
+  width: 100%;
+  background-color: #db3232;
+  color: white;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  text-align: center;
+}
+.empty-message {
+  font-size: 14px;
+  color: #999;
+  text-align: center;
+  margin-top: 20px;
+}

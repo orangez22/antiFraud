@@ -1,4 +1,4 @@
-// pages/exam/examList/examList.js
+// pages/exam/member/index.js
 Page({
 
   /**
