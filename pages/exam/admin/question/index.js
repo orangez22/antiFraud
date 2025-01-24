@@ -55,29 +55,35 @@ Page({
   // 删除题目
   deleteExamQuestion: function (e) {
     const questionId = e.currentTarget.dataset.id;
-
     // 确认是否删除题目
     wx.showModal({
       title: '删除确认',
       content: '确定要删除该题目吗？',
       success: (res) => {
         if (res.confirm) {
-          // 调用接口进行删除
-          request.post('/examQuestion/delete', { examQuestionId: questionId })
+          // 调用删除接口，使用 DELETE 方法，URL 中传递 questionId
+          request.delete(`/exam/examQuestion/delete/${questionId}`)
             .then((response) => {
-              const { success } = response;
-
-              if (success) {
+              const { success, errorCode, message } = response;
+              if (errorCode === 20000) {
                 // 删除成功后刷新题目列表
-                wx.showToast({ title: '删除成功', icon: 'success' });
+                wx.showToast({
+                  title: '删除成功',
+                  icon: 'success'
+                });
                 this.fetchExamQuestions(this.data.examId); // 重新加载当前 examId 下的题目
               } else {
-                // 删除失败
-                wx.showToast({ title: '删除失败', icon: 'none' });
+                wx.showToast({
+                  title: message || '删除失败',
+                  icon: 'none'
+                });
               }
             })
-            .catch(() => {
-              wx.showToast({ title: '请求失败', icon: 'none' });
+            .catch((error) => {
+              wx.showToast({
+                title: '请求失败',
+                icon: 'none'
+              });
             });
         }
       }
