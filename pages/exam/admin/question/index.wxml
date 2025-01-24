@@ -1,7 +1,6 @@
 <view class="container">
   <!-- 页面头部 -->
   <view class="header">
-    <text>考试题目列表</text>
     <button class="create-btn" bindtap="navigateToCreate">创建新题目</button>
   </view>
 

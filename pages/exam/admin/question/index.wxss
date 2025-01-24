@@ -13,7 +13,6 @@
   text-align: center;
   margin-bottom: 20px;
   padding: 12px;
-  background-color: #1e90ff;
   color: white;
   border-radius: 8px;
 }
@@ -79,7 +78,7 @@
 }
 
 .update-btn {
-  background-color: #4CAF50;
+  background-color: #a1a1ac;
 }
 
 .delete-btn {
@@ -87,7 +86,7 @@
 }
 
 .create-btn {
-  background-color: #4CAF50;
+  background-color: #f70808;
   color: white;
   font-size: 16px;
   padding: 10px;

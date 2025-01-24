@@ -5,19 +5,24 @@ Page({
     examQuestionList: [], // 用于存储考试题目列表
     currentPage: 1, // 当前页
     pageSize: 10, // 每页条数
+    examId: null, // 存储传递进来的 examId
   },
 
   // 页面加载时获取考试题目列表
-  onLoad: function () {
-    this.fetchExamQuestions(); // 加载题目数据
+  onLoad: function (options) {
+    const { id } = options; // 获取页面传递过来的 examId
+    if (id) {
+      this.setData({ examId: id }); // 保存 examId 到 data 中
+      this.fetchExamQuestions(id); // 加载指定的考试题目数据
+    }
   },
 
-  // 获取所有考试题目
-  fetchExamQuestions: function () {
+  // 获取特定考试的题目
+  fetchExamQuestions: function (examId) {
     const { currentPage, pageSize } = this.data;
 
-    // 请求后台获取题目列表数据
-    request.post('/exam/examQuestion/list', { current: currentPage, size: pageSize })
+    // 请求后台获取指定考试的题目列表数据
+    request.post('/exam/examQuestion/list', { current: currentPage, size: pageSize, examId })
       .then((response) => {
         const { success, data, errorCode } = response;
 
@@ -30,7 +35,6 @@ Page({
               item.options = item.options || {};  
               // 将 options 对象转换为键值对数组，方便在 WXML 中遍历
               item.optionsArray = Object.entries(item.options).map(([key, value]) => ({ key, value }));
-              console.log( item.options )
             }
           });
 
@@ -66,7 +70,7 @@ Page({
               if (success) {
                 // 删除成功后刷新题目列表
                 wx.showToast({ title: '删除成功', icon: 'success' });
-                this.fetchExamQuestions();
+                this.fetchExamQuestions(this.data.examId); // 重新加载当前 examId 下的题目
               } else {
                 // 删除失败
                 wx.showToast({ title: '删除失败', icon: 'none' });
