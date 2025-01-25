@@ -59,6 +59,7 @@
   margin-bottom: 12px;
 }
 
+/* 动态选项样式 */
 .options .option {
   font-size: 14px;
   color: #666;
@@ -66,22 +67,29 @@
   margin-top: 12px;   /* 增加选项与题目之间的间距 */
 }
 
+.edit-option {
+  width: 80%;
+  padding: 8px;
+  margin-top: 8px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-weight: bold; /* 加粗文本框中的文字 */
+}
+
+/* 正确答案样式 */
 .exam-question-answer {
   font-size: 14px;
   color: #444;
   margin-top: 12px;
 }
 
-/* 修改框样式 */
-.edit-question-text,
-.edit-answer-input,
-.edit-option {
-  width: 100%;
+.edit-answer-input {
+  width: 80%;
   padding: 8px;
-  margin-bottom: 12px;
+  margin-top: 8px;
   border-radius: 4px;
   border: 1px solid #ddd;
-  font-weight: bold;
+  font-weight: bold; /* 加粗文本框中的文字 */
 }
 
 /* 页脚部分 */
@@ -119,4 +127,6 @@
   border: none;
   border-radius: 8px;
   width: 200px;
+  text-align: center;
+  cursor: pointer;
 }

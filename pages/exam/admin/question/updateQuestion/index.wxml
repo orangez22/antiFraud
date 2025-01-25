@@ -16,24 +16,13 @@
             <input class="edit-question-text" value="{{item.questionText}}" bindinput="handleQuestionTextChange" data-id="{{item.id}}" />
           </view>
 
-          <view class="options">
-            <view class="option">
-              <text>A: </text>
-              <input type="text" class="edit-option" value="{{item.options.A}}" bindinput="handleOptionChange" data-id="{{item.id}}" data-option="A"/>
-            </view>
-            <view class="option">
-              <text>B: </text>
-              <input type="text" class="edit-option" value="{{item.options.B}}" bindinput="handleOptionChange" data-id="{{item.id}}" data-option="B"/>
-            </view>
-            <view class="option">
-              <text>C: </text>
-              <input type="text" class="edit-option" value="{{item.options.C}}" bindinput="handleOptionChange" data-id="{{item.id}}" data-option="C"/>
-            </view>
-            <view class="option">
-              <text>D: </text>
-              <input type="text" class="edit-option" value="{{item.options.D}}" bindinput="handleOptionChange" data-id="{{item.id}}" data-option="D"/>
-            </view>
+          <!-- 遍历选项，动态显示选项 A、B、C、D -->
+        <view class="options">
+          <view wx:for="{{item.optionsArray}}" wx:key="{{item.key}}" class="option">
+            <text>{{item.key}}: </text>
+            <input class="edit-option" value="{{item.value}}" placeholder="修改选项" bindinput="handleOptionChange" data-option-key="{{item.key}}" />
           </view>
+        </view>
 
           <view class="exam-question-answer">
             <text>正确答案：</text>
