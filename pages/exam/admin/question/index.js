@@ -29,16 +29,22 @@ Page({
         if (errorCode === 20000) {
           // 请求成功，更新页面数据
           const examQuestionList = data.records || [];
+          
+          // 按题目类型进行分组
+          const groupedQuestions = this.groupQuestionsByType(examQuestionList);
+          
           // 处理选项字段
-          examQuestionList.forEach(item => {
-            if (item.options) {
-              item.options = item.options || {};  
-              // 将 options 对象转换为键值对数组，方便在 WXML 中遍历
-              item.optionsArray = Object.entries(item.options).map(([key, value]) => ({ key, value }));
-            }
+          groupedQuestions.forEach(group => {
+            group.questions.forEach(item => {
+              if (item.options) {
+                item.options = item.options || {};  
+                // 将 options 对象转换为键值对数组，方便在 WXML 中遍历
+                item.optionsArray = Object.entries(item.options).map(([key, value]) => ({ key, value }));
+              }
+            });
           });
 
-          this.setData({ examQuestionList });
+          this.setData({ examQuestionList: groupedQuestions });
         } else {
           // 请求失败时，清空数据并显示错误提示
           this.setData({ examQuestionList: [] });
@@ -50,6 +56,27 @@ Page({
         this.setData({ examQuestionList: [] });
         wx.showToast({ title: '请求失败', icon: 'none' });
       });
+  },
+
+  // 按题目类型分组
+  groupQuestionsByType: function (examQuestions) {
+    const grouped = [];
+    
+    examQuestions.forEach(item => {
+      const existingGroup = grouped.find(group => group.questionTypeId === item.questionTypeId);
+      
+      if (existingGroup) {
+        existingGroup.questions.push(item);
+      } else {
+        grouped.push({
+          questionTypeName: item.questionTypeName,
+          questionTypeId: item.questionTypeId,
+          questions: [item],
+        });
+      }
+    });
+    
+    return grouped;
   },
 
   // 删除题目

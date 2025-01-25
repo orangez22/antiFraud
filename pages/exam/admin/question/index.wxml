@@ -4,24 +4,37 @@
     <button class="create-btn" bindtap="navigateToCreate">创建新题目</button>
   </view>
 
+  <!-- 按题目类型分组显示题目 -->
   <view class="exam-question-list">
-    <view wx:for="{{examQuestionList}}" wx:key="id" class="exam-question-item">
-      <view class="exam-question-content">
-        <text class="question-text">{{item.questionText}}</text>
-    <!-- 遍历 optionsArray，显示选项 -->
-    <view class="options">
-          <view wx:for="{{item.optionsArray}}" wx:key="{{item.key}}" class="option">
-            <text>{{item.key}}: {{item.value}}</text> <!-- 显示选项的键和值 -->
+    <view wx:for="{{examQuestionList}}" wx:key="id" class="exam-question-type-group">
+      <view class="exam-question-type-title">
+        <text>{{item.questionTypeName}}</text> <!-- 显示题目类型 -->
+      </view>
+
+      <view wx:for="{{item.questions}}" wx:key="id" class="exam-question-item">
+        <view class="exam-question-content">
+          <!-- 显示题目文本 -->
+          <text class="question-text">{{item.questionText}}</text>
+
+          <!-- 遍历选项，显示选项 -->
+          <view class="options">
+            <view wx:for="{{item.optionsArray}}" wx:key="{{item.key}}" class="option">
+              <text>{{item.key}}: {{item.value}}</text> <!-- 显示选项的键和值 -->
+            </view>
+          </view>
+
+          <!-- 显示正确答案 -->
+          <view class="exam-question-answer">
+            <text>正确答案：{{item.answer}}</text>
           </view>
         </view>
-        <view class="exam-question-answer">
-          <text>正确答案：{{item.answer}}</text>
+
+        <!-- 页脚部分 -->
+        <view class="exam-question-footer">
+          <text class="create-time">{{item.createTime}}</text>
+          <button class="update-btn" bindtap="updateExamQuestion" data-id="{{item.id}}">更新</button>
+          <button class="delete-btn" bindtap="deleteExamQuestion" data-id="{{item.id}}">删除</button>
         </view>
-      </view>
-      <view class="exam-question-footer">
-        <text class="create-time">{{item.createTime}}</text>
-        <button class="update-btn" bindtap="updateExamQuestion" data-id="{{item.id}}">更新</button>
-        <button class="delete-btn" bindtap="deleteExamQuestion" data-id="{{item.id}}">删除</button>
       </view>
     </view>
   </view>

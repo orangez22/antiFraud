@@ -22,6 +22,19 @@
   margin-bottom: 20px;
 }
 
+.exam-question-type-group {
+  margin-bottom: 20px; /* 为每种题目类型分组增加底部间距 */
+}
+
+.exam-question-type-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #1e90ff; /* 使用不同颜色来区分题目类型 */
+  margin-bottom: 12px;
+  border-bottom: 2px solid #ddd; /* 分隔线 */
+  padding-bottom: 8px;
+}
+
 .exam-question-item {
   background-color: white;
   border: 1px solid #ddd;
@@ -100,4 +113,33 @@
   color: #999;
   text-align: center;
   margin-top: 20px;
+}
+
+/* 题目类型样式 */
+.question-type {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* 按题目类型显示的分组样式 */
+.exam-question-type-group {
+  margin-top: 20px;
+}
+
+.exam-question-type-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  padding: 8px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.exam-question-type-group .exam-question-item {
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
