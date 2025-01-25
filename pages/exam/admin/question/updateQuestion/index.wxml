@@ -1,0 +1,54 @@
+<view class="container">
+  <!-- 页面头部 -->
+
+  <!-- 按题目类型分组显示题目 -->
+  <view class="exam-question-list">
+    <view wx:for="{{examQuestionList}}" wx:key="typeId" class="exam-question-type-group">
+      <view class="exam-question-type-title">
+        <text>{{item.typeName}}</text> <!-- 显示题目类型 -->
+      </view>
+
+      <view wx:for="{{item.questions}}" wx:key="id" class="exam-question-item">
+        <!-- 显示题目内容 -->
+        <view class="exam-question-content">
+          <view class="question-text">
+            <text>问题： </text>
+            <input class="edit-question-text" value="{{item.questionText}}" bindinput="handleQuestionTextChange" data-id="{{item.id}}" />
+          </view>
+
+          <view class="options">
+            <view class="option">
+              <text>A: </text>
+              <input type="text" class="edit-option" value="{{item.options.A}}" bindinput="handleOptionChange" data-id="{{item.id}}" data-option="A"/>
+            </view>
+            <view class="option">
+              <text>B: </text>
+              <input type="text" class="edit-option" value="{{item.options.B}}" bindinput="handleOptionChange" data-id="{{item.id}}" data-option="B"/>
+            </view>
+            <view class="option">
+              <text>C: </text>
+              <input type="text" class="edit-option" value="{{item.options.C}}" bindinput="handleOptionChange" data-id="{{item.id}}" data-option="C"/>
+            </view>
+            <view class="option">
+              <text>D: </text>
+              <input type="text" class="edit-option" value="{{item.options.D}}" bindinput="handleOptionChange" data-id="{{item.id}}" data-option="D"/>
+            </view>
+          </view>
+
+          <view class="exam-question-answer">
+            <text>正确答案：</text>
+            <input class="edit-answer-input" value="{{item.answer}}" bindinput="handleAnswerChange" data-id="{{item.id}}"/>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 无数据时显示 -->
+  <view wx:if="{{examQuestionList.length === 0}}" class="empty-message">暂无题目信息</view>
+
+  <!-- 提交更新按钮 -->
+  <view class="submit-btn-container">
+    <button class="submit-btn" bindtap="handleSubmit">提交更新</button>
+  </view>
+</view>

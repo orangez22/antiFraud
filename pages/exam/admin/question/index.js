@@ -130,7 +130,7 @@ Page({
 
     // 跳转到更新页面，并传递题目ID
     wx.navigateTo({
-      url: `/pages/exam-question-update/exam-question-update?id=${questionId}`,
+      url: `/pages/exam/admin/question/updateQuestion/index?questionId=${questionId}`,
     });
   }
 });
