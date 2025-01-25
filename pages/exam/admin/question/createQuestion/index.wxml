@@ -1,2 +1,41 @@
-<!--pages/exam/admin/question/createQuestion/index.wxml-->
-<text>pages/exam/admin/question/createQuestion/index.wxml</text>
+<view class="page">
+  <!-- 选择题目类型 -->
+  <view class="form-item">
+    <text class="label">选择题目类型</text>
+    <picker mode="selector" range="{{questionTypes}}" range-key="name" bindchange="onQuestionTypeChange">
+      <view class="picker">
+        <text>{{selectedQuestionType.name || '请选择题目类型'}}</text>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 输入题目内容 -->
+  <view class="form-item">
+    <text class="label">题目内容</text>
+    <input class="input" type="text" placeholder="请输入题目内容" bindinput="onQuestionTextInput" />
+  </view>
+
+  <!-- 选项 -->
+  <view class="form-item" wx:if="{{isMultipleChoice || isTrueFalse}}">
+    <text class="label">选项</text>
+    <view class="options">
+      <view class="option" wx:for="{{options}}" wx:key="index" data-index="{{index}}">
+        <!-- 显示选项标签（A, B, C, D） -->
+        <text>{{getOptionLabel(index)}}</text>
+        <input class="input" type="text" placeholder="请输入选项内容" data-index="{{index}}" bindinput="onOptionInput" />
+        <!-- 删除选项按钮 -->
+        <button class="remove-btn" bindtap="onRemoveOption" data-index="{{index}}">删除</button>
+      </view>
+      <button class="add-btn" bindtap="onAddOption">添加选项</button>
+    </view>
+  </view>
+
+  <!-- 输入正确答案 -->
+  <view class="form-item">
+    <text class="label">正确答案</text>
+    <input class="input" type="text" placeholder="请输入正确答案" bindinput="onAnswerInput" />
+  </view>
+
+  <!-- 提交按钮 -->
+  <button class="submit-btn" bindtap="onSubmit">提交</button>
+</view>

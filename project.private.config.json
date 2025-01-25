@@ -9,6 +9,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/exam/admin/question/createQuestion/index",
+          "pathName": "pages/exam/admin/question/createQuestion/index",
+          "query": "examId=1881255312378880001",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/exam/admin/question/index",
           "pathName": "pages/exam/admin/question/index",
           "query": "id=1881255312378880001",

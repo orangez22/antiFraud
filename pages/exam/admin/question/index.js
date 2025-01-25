@@ -118,9 +118,10 @@ Page({
   },
 
   // 跳转到创建新题目页面
-  navigateToCreate: function () {
+  navigateToCreate: function (e) {
+    const examId = this.data.examId;
     wx.navigateTo({
-      url: '/pages/exam-question-create/exam-question-create', // 跳转到创建页面
+      url: `/pages/exam/admin/question/createQuestion/index?examId=${examId}`, // 跳转到创建页面
     });
   },
 
