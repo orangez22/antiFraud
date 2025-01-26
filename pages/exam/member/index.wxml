@@ -1,2 +1,21 @@
-<!--pages/exam/member/index.wxml-->
-<text>pages/exam/member/index.wxml</text>
+<view class="container">
+  <!-- 考试列表 -->
+  <view class="exam-list">
+    <view wx:for="{{examList}}" wx:key="id" class="exam-item">
+      <view class="exam-card">
+        <view class="exam-content">
+          <view class="exam-title">{{item.title}}</view>
+          <view class="exam-info">
+            <text class="exam-duration">时长: {{item.duration}}</text>| 
+            <text class="exam-score">试卷总分: {{item.totalScore}}分</text>
+          </view>
+        </view>
+        <view class="exam-actions">
+          <button class="start-btn" bindtap="startExam" data-id="{{item.id}}">开始考试</button>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view wx:if="{{examList.length === 0}}" class="empty-message">暂无考试信息</view>
+</view>

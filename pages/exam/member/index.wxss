@@ -1,1 +1,95 @@
-/* pages/exam/member/index.wxss */
+/* 页面整体样式 */
+.container {
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  padding: 16px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 考试列表 */
+.exam-list {
+  width: 100%;
+  max-width: 600px; /* 限制最大宽度 */
+  margin-top: 16px;
+}
+
+/* 每个考试项 */
+.exam-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+/* 考试卡片样式 */
+.exam-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* 考试信息内容 */
+.exam-content {
+  margin-bottom: 16px;
+}
+
+.exam-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.exam-info {
+  font-size: 14px;
+  color: #666;
+}
+
+.exam-duration,
+.exam-score {
+  margin-right: 8px;
+}
+
+/* 按钮样式 */
+.exam-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.start-btn {
+  background-color: #db3232;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  width: 80%;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* 考试为空时的提示样式 */
+.empty-message {
+  font-size: 16px;
+  color: #999;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* 响应式调整，确保在小屏设备上的展示效果 */
+@media screen and (max-width: 600px) {
+  .exam-card {
+    padding: 12px;
+  }
+
+  .start-btn {
+    width: 100%;
+  }
+}

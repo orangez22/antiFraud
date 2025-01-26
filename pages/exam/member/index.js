@@ -1,66 +1,42 @@
-// pages/exam/member/index.js
+import request from '@/utils/request';
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    examList: [], // 用于存储考试信息
+    examDuration: '00:00', // 存储选择的考试时长
+    title: '', // 存储考试标题
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
+  // 页面加载时获取考试列表
+  onLoad: function () {
+    this.fetchExams(); // 加载考试数据
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
+  // 获取所有考试信息
+  fetchExams: function () {
+    request.get('/exam/examInfo/list', {
+      // 向后端请求获取考试列表数据
+    })
+    .then((response) => {
+      const { success, data, errorCode, message } = response;
+      if (response.errorCode === 20000) {
+        console.log("接口返回成功，数据为：", data);
 
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
-})
+        // 假设返回的数据是一个考试列表
+        this.setData({
+          examList: data || [],
+        });
+      } else {
+        console.error("接口返回成功，但无有效数据：", message || "未知错误");
+        this.setData({
+          examList: [], // 如果没有数据，显示空列表
+        });
+      }
+    })
+    .catch((error) => {
+      console.error("请求失败，错误信息：", error);
+      this.setData({
+        examList: [], // 请求失败时，显示空列表
+      });
+    })
+  }})
