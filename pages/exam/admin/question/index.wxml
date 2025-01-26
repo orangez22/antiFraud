@@ -9,6 +9,7 @@
     <view wx:for="{{examQuestionList}}" wx:key="id" class="exam-question-type-group">
       <view class="exam-question-type-title">
         <text>{{item.questionTypeName}}</text> <!-- 显示题目类型 -->
+        <text class="question-mark"> 总分值：{{item.totalMark}}</text> <!-- 显示题目类型的分数总和 -->
       </view>
 
       <view wx:for="{{item.questions}}" wx:key="id" class="exam-question-item">

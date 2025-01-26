@@ -11,6 +11,7 @@ Page({
   onLoad: function () {
     this.fetchExams(); // 加载考试数据
   },
+
   // 获取所有考试信息
   fetchExams: function () {
     request.get('/exam/examInfo/list', {

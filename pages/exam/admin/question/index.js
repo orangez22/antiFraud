@@ -27,10 +27,11 @@ Page({
         const { success, data, errorCode } = response;
 
         if (errorCode === 20000) {
+          console.log("获取到的题目数据:", data.records);  // 输出数据以检查mark字段
           // 请求成功，更新页面数据
           const examQuestionList = data.records || [];
           
-          // 按题目类型进行分组
+          // 按题目类型进行分组并计算分数总和
           const groupedQuestions = this.groupQuestionsByType(examQuestionList);
           
           // 处理选项字段
@@ -41,6 +42,7 @@ Page({
                 // 将 options 对象转换为键值对数组，方便在 WXML 中遍历
                 item.optionsArray = Object.entries(item.options).map(([key, value]) => ({ key, value }));
               }
+              item.mark = item.mark || '0'; // 默认分值为 0
             });
           });
 
@@ -55,10 +57,14 @@ Page({
         // 请求失败时，清空数据并显示失败提示
         this.setData({ examQuestionList: [] });
         wx.showToast({ title: '请求失败', icon: 'none' });
+      })
+      .finally(() => {
+        // 停止下拉刷新
+        wx.stopPullDownRefresh();
       });
   },
 
-  // 按题目类型分组
+  // 按题目类型分组，并计算每个类型的分数总和
   groupQuestionsByType: function (examQuestions) {
     const grouped = [];
     
@@ -67,11 +73,13 @@ Page({
       
       if (existingGroup) {
         existingGroup.questions.push(item);
+        existingGroup.totalMark += parseInt(item.mark);  // 累加分数
       } else {
         grouped.push({
           questionTypeName: item.questionTypeName,
           questionTypeId: item.questionTypeId,
           questions: [item],
+          totalMark: parseInt(item.mark) || 0,  // 初始分数为该题的分数
         });
       }
     });
@@ -133,5 +141,11 @@ Page({
     wx.navigateTo({
       url: `/pages/exam/admin/question/updateQuestion/index?questionId=${questionId}`,
     });
+  },
+
+  // 下拉刷新
+  onPullDownRefresh: function () {
+    // 下拉刷新时，重新加载题目数据
+    this.fetchExamQuestions(this.data.examId);
   }
 });
