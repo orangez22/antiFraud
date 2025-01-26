@@ -100,5 +100,5 @@
 }
 
 .submit-btn:active {
-  background-color: #218838;
+  background-color: #ff3c00;
 }

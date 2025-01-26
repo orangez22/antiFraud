@@ -12,7 +12,7 @@
   <!-- 输入题目内容 -->
   <view class="form-item">
     <text class="label">题目内容</text>
-    <input class="input" type="text" placeholder="请输入题目内容" bindinput="onQuestionTextInput" />
+    <input class="input" type="text" placeholder="请输入题目内容" value="{{questionText}}" bindinput="onQuestionTextInput" />
   </view>
 
   <!-- 选项 -->
@@ -21,10 +21,10 @@
     <view class="options">
       <view class="option" wx:for="{{options}}" wx:key="index" data-index="{{index}}">
         <!-- 显示选项标签（A, B, C, D） -->
-        <text>{{getOptionLabel(index)}}</text>
-        <input class="input" type="text" placeholder="请输入选项内容" data-index="{{index}}" bindinput="onOptionInput" />
+        <text>{{labels[index]}}</text>
+        <input class="input" type="text" placeholder="请输入选项内容" value="{{options[index]}}" data-index="{{index}}" bindinput="onOptionInput" />
         <!-- 删除选项按钮 -->
-        <button class="remove-btn" bindtap="onRemoveOption" data-index="{{index}}">删除</button>
+        <button class="remove-btn" data-index="{{index}}" bindtap="onRemoveOption">删除</button>
       </view>
       <button class="add-btn" bindtap="onAddOption">添加选项</button>
     </view>
@@ -33,7 +33,7 @@
   <!-- 输入正确答案 -->
   <view class="form-item">
     <text class="label">正确答案</text>
-    <input class="input" type="text" placeholder="请输入正确答案" bindinput="onAnswerInput" />
+    <input class="input" type="text" placeholder="请输入正确答案" value="{{answer}}" bindinput="onAnswerInput" />
   </view>
 
   <!-- 提交按钮 -->
