@@ -9,7 +9,7 @@
       <view class="exam-content">
         <view class="exam-title">{{item.title}}</view>
         <view class="exam-info">
-          <text>时长: {{item.duration}}</text> | <text>创建时间: {{item.createTime}}</text>
+          <text>时长: {{item.duration}}</text> | <text>试卷总分: {{item.totalScore}}</text>
         </view>
       </view>
       <view class="exam-actions">
