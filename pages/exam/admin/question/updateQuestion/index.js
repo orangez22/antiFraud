@@ -172,7 +172,16 @@ Page({
     success: (response) => {
       const { success, errorCode } = response.data;  // 获取响应数据
       if (errorCode === 20000) {
-        wx.showToast({ title: '更新成功', icon: 'success' });
+        wx.showToast({
+          title: '题目创建成功',
+          icon: 'success',
+        });
+        // 延迟 0.5 秒后返回上一页
+      setTimeout(() => {
+        wx.navigateBack({
+          delta: 1  // 返回上一级页面
+        });
+      }, 500); // 0.5 秒后执行返回操作
       } else {
         wx.showToast({ title: '更新失败', icon: 'none' });
       }
