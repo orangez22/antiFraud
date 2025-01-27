@@ -1,0 +1,48 @@
+<view class="exam-container">
+  <!-- 倒计时 -->
+  <view class="countdown">
+    <text>考试倒计时：{{ countdown }}</text>
+  </view>
+
+  <!-- 按题型分组显示题目 -->
+  <view class="question-list">
+    <view wx:for="{{examQuestionList}}" wx:key="index" class="question-item">
+      <view class="question-header">
+        <text class="question-type">{{item.questionTypeName}}</text>
+      </view>
+
+      <view class="question-body">
+        <text>{{index + 1}}. {{item.questionText}}</text>
+
+        <!-- 显示选项 -->
+        <view class="options">
+          <view wx:for="{{item.optionsArray}}" wx:key="key" class="option">
+            <radio-group wx:if="{{item.questionTypeId === 1}}" bindchange="onOptionSelect">
+              <label class="radio-option">
+                <radio value="{{item.key}}" checked="{{item.selected === item.key}}" />
+                <text>{{item.key}}: {{item.value}}</text>
+              </label>
+            </radio-group>
+
+            <checkbox-group wx:if="{{item.questionTypeId !== 1}}" bindchange="onOptionSelect">
+              <label class="checkbox-option">
+                <checkbox value="{{item.key}}" checked="{{item.selected && item.selected.includes(item.key)}}" />
+                <text>{{item.key}}: {{item.value}}</text>
+              </label>
+            </checkbox-group>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 提交按钮 -->
+  <button wx:if="{{showSubmitButton}}" class="submit-btn" bindtap="submitExam">提交考试</button>
+
+  <!-- 分页控制 -->
+  <view class="pagination">
+    <button bindtap="previousPage" disabled="{{currentTypeIndex <= 0}}">上一页</button>
+    <text>{{currentTypeIndex + 1}} / {{totalPages}}</text>
+    <button bindtap="nextPage" disabled="{{currentTypeIndex >= totalPages - 1}}">下一页</button>
+  </view>
+</view>

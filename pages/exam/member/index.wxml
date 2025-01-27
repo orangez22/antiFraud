@@ -11,7 +11,7 @@
           </view>
         </view>
         <view class="exam-actions">
-          <button class="start-btn" bindtap="startExam" data-id="{{item.id}}">开始考试</button>
+          <button class="start-btn" bindtap="startExam" data-id="{{item.id}}"data-duration="{{item.duration}}">开始考试</button>
         </view>
       </view>
     </view>

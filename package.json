@@ -12,7 +12,7 @@
   },
   "private": true,
   "dependencies": {
-    "@babel/runtime": "^7.26.0",
+    "@babel/runtime": "^7.26.7",
     "@vant/weapp": "^1.11.7",
     "mp-html": "^2.5.0"
   }

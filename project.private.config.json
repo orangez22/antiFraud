@@ -9,6 +9,20 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/exam/member/question/index",
+          "pathName": "pages/exam/member/question/index",
+          "query": "id=1881255312378880001",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/exam/member/index",
+          "pathName": "pages/exam/member/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/exam/admin/question/createQuestion/index",
           "pathName": "pages/exam/admin/question/createQuestion/index",
           "query": "examId=1881255312378880001",

@@ -16,6 +16,7 @@
     "pages/exam/admin/question/updateQuestion/index",
     "pages/exam/admin/question/createQuestion/index",
     "pages/exam/member/index",
+    "pages/exam/member/question/index",
     "pages/forum/forum",
     "pages/forum/preview/preview",
     "pages/forum/admin/index",
