@@ -185,7 +185,7 @@ Page({
         });
         // 跳转到结果页面
         wx.navigateTo({
-          url: `pages/detail/examDetail/detail?recordId=${examRecordId}`, 
+          url: `/pages/detail/examDetail/detail?recordId=${examRecordId}`, 
         });
         // 禁用所有选择操作
         this.setData({
