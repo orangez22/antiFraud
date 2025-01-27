@@ -51,5 +51,7 @@
         </view>
       </block>
     </view>
+    <!-- 每个题型之间增加间隔 -->
+    <view class="type-separator"></view>
   </block>
 </view>

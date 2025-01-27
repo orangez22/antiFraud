@@ -34,6 +34,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* 题型标题 */
 .question-type-title {
   font-size: 18px;
   font-weight: bold;
@@ -77,8 +78,7 @@
 .option {
   font-size: 14px;
   color: #555;
-  margin-bottom: 15px;  /* 给每个选项添加间距 */
-  width: 100%;  /* 确保每个选项占满宽度 */
+  margin-bottom: 10px;  /* 给每个选项添加间距 */
 }
 
 /* 分割线 */
@@ -115,8 +115,8 @@
   font-size: 14px;
   color: #333;
 }
+/* 总分区 */
 
-/* 得分 */
 .score-section {
   display: flex;
   justify-content: space-between;
@@ -125,12 +125,27 @@
   margin-top: 10px;
 }
 
+.score-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  font-weight: bold;  /* 使文本加粗 */
+}
+
 .score-title {
-  font-size: 14px;
+  font-size: 16px;
   color: #333;
 }
 
 .score-value {
-  font-size: 16px;
-  color: #ff6600;
+  font-size: 24px;  /* 增大总分字体大小 */
+  color: #ff6600;   /* 总分颜色 */
+  font-weight: bold;  /* 使总分加粗 */
+  line-height: 1.5;
+}
+
+/* 题型之间的分隔线 */
+.type-separator {
+  height: 20px;
 }

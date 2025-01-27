@@ -99,6 +99,7 @@ Page({
               item.optionsArray = Object.entries(item.options).map(([key, value]) => ({ key, value }));
             }
             item.mark = item.mark || '0';
+            item.selected = ''; // 初始化题目的选中状态
           });
         });
 
@@ -136,7 +137,10 @@ Page({
         grouped.push({
           questionTypeName: item.questionTypeName,
           questionTypeId: item.questionTypeId,
-          questions: [item],
+          questions: [{
+            ...item,
+            selected: ''  // 初始化选中状态
+          }],
           totalMark: parseInt(item.mark) || 0,  // 初始分数为该题的分数
         });
       }
