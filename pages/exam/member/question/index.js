@@ -24,6 +24,7 @@ Page({
       duration: this.convertToSeconds(options.duration) || 60 * 60, // 设置倒计时秒数，默认为 1 小时
       examRecordId: options.examRecordId || '', // 设置 examRecordId
     });
+    console.log("examId:", this.data.examId);  // 调试输出
     this.startCountdown();
     this.fetchExamQuestions(options.examId); // 获取题目列表
   },
@@ -78,7 +79,6 @@ Page({
   // 获取考试题目列表
   fetchExamQuestions: function(examId) {
     const { currentPage, pageSize } = this.data;
-
     request.post('/exam/examQuestion/list', {
       examId, // 使用存储的 examId
       current: currentPage,
@@ -185,7 +185,7 @@ Page({
         });
         // 跳转到结果页面
         wx.navigateTo({
-          url: `/pages/exam/result/index?examId=${examId}`, 
+          url: `pages/detail/examDetail/detail?recordId=${examRecordId}`, 
         });
         // 禁用所有选择操作
         this.setData({

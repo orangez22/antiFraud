@@ -61,7 +61,7 @@ Page({
 
         // 跳转到考试页面，并传递 examRecordId 和考试时长
         wx.navigateTo({
-          url: `/pages/exam/member/question/index?id=${examId}&duration=${duration}&examRecordId=${examRecordId}`,
+          url: `/pages/exam/member/question/index?examId=${examId}&duration=${duration}&examRecordId=${examRecordId}`,
         });
       } else {
         wx.showToast({
