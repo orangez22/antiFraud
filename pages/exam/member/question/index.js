@@ -12,16 +12,18 @@ Page({
     groupedQuestions: [], // 分组后的题目
     currentTypeIndex: 0, // 当前显示的题型索引
     showSubmitButton: false, // 是否显示提交按钮
+    examRecordId: '', // 存储考试记录 ID
   },
 
   onLoad(options) {
-    // 获取传递过来的 examId 和 duration
+    // 获取传递过来的 examId、duration 和 examRecordId
     this.setData({
       examId: options.examId || '', // 设置 examId
-      duration: this.convertToSeconds(options.duration) || 60 * 60 // 设置倒计时秒数，默认为 1 小时
+      duration: this.convertToSeconds(options.duration) || 60 * 60, // 设置倒计时秒数，默认为 1 小时
+      examRecordId: options.examRecordId || '', // 设置 examRecordId
     });
     this.startCountdown();
-    this.fetchExamQuestions(options.examId); // 改成 fetchExamQuestions 方法
+    this.fetchExamQuestions(options.examId); // 获取题目列表
   },
 
   // 将 HH:mm:ss 转换为秒数
@@ -142,14 +144,57 @@ Page({
     return errorCode === 20000 && success && data; // 判断成功的标准
   },
 
-  // 提交考试
-  submitExam() {
-    wx.showToast({
-      title: '考试已提交',
-      icon: 'success'
+ // 提交考试
+submitExam() {
+  const { examId, examRecordId, groupedQuestions } = this.data;
+
+  // 构造用户答案
+  const answers = [];
+  groupedQuestions.forEach(group => {
+    group.questions.forEach(question => {
+       // 打印每道题的 selected 值，看看是否有被正确赋值
+       console.log(question.selected);
+      // 假设选择的答案保存在 `question.selected` 中
+      if (question.selected) {
+        answers.push({
+          questionId: question.id,  // 题目ID
+          answer: question.selected  // 用户选择的答案
+        });
+      }
+      console.log(question.selected)
     });
-    // 这里可以处理提交考试的逻辑
-  },
+  });
+
+  // 提交数据
+  request.post('/exam/examRecordDetail/submit', {
+    recordId: examRecordId,  // 从传递的 examRecordId 获取
+    answers,   // 用户的答案列表
+  }).then((response) => {
+    const { success, message } = response;
+
+    if (success) {
+      wx.showToast({
+        title: '考试提交成功',
+        icon: 'success'
+      });
+      // 跳转到结果页面
+      wx.navigateTo({
+        url: `/pages/exam/result/index?examId=${examId}`, 
+      });
+    } else {
+      wx.showToast({
+        title: message || '提交失败',
+        icon: 'none'
+      });
+    }
+  }).catch((error) => {
+    console.error("提交考试失败", error);
+    wx.showToast({
+      title: '提交失败',
+      icon: 'none'
+    });
+  });
+},
 
   // 切换题目类型页
   updateQuestionPage() {
@@ -199,21 +244,24 @@ Page({
     // 找到当前题型的题目列表
     const currentGroup = groupedQuestions[currentTypeIndex] || {};
     const currentQuestions = Array.isArray(currentGroup.questions) ? currentGroup.questions : []; 
-    
+    console.log("选中的选项值:", value); // 调试信息：打印选中的值
     // 更新选中状态
-    currentQuestions.forEach(question => {
-      // 如果是该题的选项，设置选中状态
-      if (question.key === value) {
-        question.selected = value;
-      } else {
-        // 其他选项取消选中
-        question.selected = '';
+  currentQuestions.forEach(question => {
+    question.selected = ''; // 首先清空选中项
+    // 遍历选项数组
+    question.optionsArray.forEach(option => {
+      if (option.key === value) {
+        question.selected = value; // 设置选中值
       }
+      console.log("option.key:"+ option.key)
+      console.log("value:"+value)
     });
+  });
 
     // 更新题目列表数据
     this.setData({
       groupedQuestions: [...groupedQuestions], 
     });
+    console.log("更新后的题目数据:", groupedQuestions); // 调试信息：查看更新后的数据
   }
 });
