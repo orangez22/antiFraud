@@ -154,9 +154,11 @@ Page({
   // 切换题目类型页
   updateQuestionPage() {
     const { groupedQuestions, currentTypeIndex } = this.data;
-    const currentQuestions = groupedQuestions[currentTypeIndex] || {};
+    const currentGroup = groupedQuestions[currentTypeIndex] || {};
+    const currentQuestions = Array.isArray(currentGroup.questions) ? currentGroup.questions : []; // Ensure it's an array
+
     this.setData({
-      examQuestionList: currentQuestions.questions || [],
+      examQuestionList: currentQuestions,
       showSubmitButton: currentTypeIndex === groupedQuestions.length - 1, // 判断是否是最后一页
     });
   },
@@ -188,28 +190,30 @@ Page({
     // 下拉刷新时，重新加载题目数据
     this.fetchExamQuestions(this.data.examId);
   },
-  // 处理选项选择
-onOptionSelect(e) {
-  const { value } = e.detail; // 获取选中的选项值
-  const { examQuestionList, currentTypeIndex } = this.data;
-  
-  // 找到当前题型的题目列表
-  const currentQuestions = examQuestionList[currentTypeIndex] || [];
-  
-  // 更新选中状态
-  currentQuestions.forEach(question => {
-    // 如果是该题的选项，设置选中状态
-    if (question.key === value) {
-      question.selected = value;
-    } else {
-      // 其他选项取消选中
-      question.selected = '';
-    }
-  });
 
-  // 更新题目列表数据
-  this.setData({
-    examQuestionList: currentQuestions
-  });
-}
+  // 处理选项选择
+  onOptionSelect(e) {
+    const { value } = e.detail; // 获取选中的选项值
+    const { groupedQuestions, currentTypeIndex } = this.data;
+    
+    // 找到当前题型的题目列表
+    const currentGroup = groupedQuestions[currentTypeIndex] || {};
+    const currentQuestions = Array.isArray(currentGroup.questions) ? currentGroup.questions : []; // Ensure it's an array
+    
+    // 更新选中状态
+    currentQuestions.forEach(question => {
+      // 如果是该题的选项，设置选中状态
+      if (question.key === value) {
+        question.selected = value;
+      } else {
+        // 其他选项取消选中
+        question.selected = '';
+      }
+    });
+
+    // 更新题目列表数据
+    this.setData({
+      groupedQuestions: [...groupedQuestions], 
+    });
+  }
 });
