@@ -1,2 +1,55 @@
-<!--pages/detail/examDetail/detail.wxml-->
-<text>pages/detail/examDetail/detail.wxml</text>
+<view class="container">
+  <!-- 显示总分 -->
+  <view class="score-summary">
+    <text class="score-title">考试总分</text>
+    <text class="score-value">{{totalScore}}</text>
+  </view>
+
+  <!-- 按题型分组展示 -->
+  <block wx:for="{{groupedExamDetails}}" wx:key="questionTypeId">
+    <view class="question-type-group">
+      <!-- 题型标题 -->
+      <view class="question-type-title">
+        <text>{{item.questionTypeName}}</text>
+      </view>
+
+      <!-- 每道题目的详情 -->
+      <block wx:for="{{item.questions}}" wx:key="id">
+        <view class="question-card">
+          <!-- 题目 -->
+          <view class="question-info">
+            <text class="question-text">{{item.questionText}}</text>
+          </view>
+
+          <!-- 选项 -->
+          <view class="options">
+            <block wx:for="{{item.optionsArray}}" wx:key="key">
+              <text class="option">{{item.key}}: {{item.value}}</text>
+            </block>
+          </view>
+
+          <!-- 分割线 -->
+          <view class="divider"></view>
+
+          <!-- 用户答案 -->
+          <view class="answer-section">
+            <text class="answer-title">你的答案：</text>
+            <text class="answer {{item.answer === item.trueAnswer ? 'correct' : 'incorrect'}}">{{item.answer}}</text>
+          </view>
+
+          <!-- 正确答案 -->
+          <view class="answer-section">
+            <text class="answer-title">正确答案：</text>
+            <text class="correct-answer">{{item.trueAnswer}}</text>
+          </view>
+
+          <!-- 得分 -->
+          <view class="score-section">
+            <text class="score-title">得分：</text>
+            <text class="score-value">{{item.score}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </block>
+</view>

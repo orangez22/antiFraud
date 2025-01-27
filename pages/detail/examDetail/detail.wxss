@@ -1,1 +1,136 @@
-/* pages/detail/examDetail/detail.wxss */
+/* 页面容器 */
+.container {
+  padding: 20px;
+  background-color: #f5f5f5;
+  width: 360px;  /* 固定宽度 */
+  margin: 0 auto;  /* 居中 */
+  font-weight: bold;  /* 全部文本加粗 */
+}
+
+/* 总分区 */
+.score-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.score-title {
+  font-size: 16px;
+  color: #333;
+}
+
+.score-value {
+  font-size: 20px;
+  color: #ff6600;
+}
+
+/* 按题型分组的容器 */
+.question-type-group {
+  margin-bottom: 20px;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.question-type-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* 每道题目的卡片 */
+.question-card {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 题目信息 */
+.question-info {
+  margin-bottom: 10px;
+}
+
+.question-text {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.5;
+}
+
+.question-type {
+  font-size: 14px;
+  color: #666;
+}
+
+/* 选项 */
+.options {
+  margin-bottom: 10px;
+  display: block;  /* 让选项竖直排列 */
+  width: 100%;  /* 确保容器的宽度为100% */
+}
+
+/* 选项项 */
+.option {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 15px;  /* 给每个选项添加间距 */
+  width: 100%;  /* 确保每个选项占满宽度 */
+}
+
+/* 分割线 */
+.divider {
+  margin: 10px 0;
+  border-top: 1px solid #eee;
+}
+
+/* 答案部分 */
+.answer-section {
+  margin-bottom: 10px;
+}
+
+.answer-title {
+  font-size: 14px;
+  color: #333;
+}
+
+.answer {
+  font-size: 14px;
+  color: #333;
+}
+
+.incorrect {
+  color: #4caf50;
+}
+
+.correct {
+  color: #f44336;
+}
+
+/* 正确答案 */
+.correct-answer {
+  font-size: 14px;
+  color: #333;
+}
+
+/* 得分 */
+.score-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.score-title {
+  font-size: 14px;
+  color: #333;
+}
+
+.score-value {
+  font-size: 16px;
+  color: #ff6600;
+}
