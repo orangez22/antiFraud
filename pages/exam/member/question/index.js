@@ -13,6 +13,8 @@ Page({
     currentTypeIndex: 0, // 当前显示的题型索引
     showSubmitButton: false, // 是否显示提交按钮
     examRecordId: '', // 存储考试记录 ID
+    isSubmitted: false, // 是否提交标记，防止再修改
+    countdownInterval: null, // 用于存储倒计时定时器
   },
 
   onLoad(options) {
@@ -47,7 +49,7 @@ Page({
           title: '时间到！',
           icon: 'none'
         });
-        this.submitExam();
+        this.submitExam(); // 自动提交
         return;
       }
 
@@ -61,6 +63,11 @@ Page({
 
       totalTime--; // 每秒递减一次
     }, 1000);
+
+    // 存储定时器引用，方便清除
+    this.setData({
+      countdownInterval: interval
+    });
   },
 
   // 格式化时间，确保时间小于10时前面加0
@@ -144,57 +151,60 @@ Page({
     return errorCode === 20000 && success && data; // 判断成功的标准
   },
 
- // 提交考试
-submitExam() {
-  const { examId, examRecordId, groupedQuestions } = this.data;
+  // 提交考试
+  submitExam() {
+    const { examId, examRecordId, groupedQuestions } = this.data;
 
-  // 构造用户答案
-  const answers = [];
-  groupedQuestions.forEach(group => {
-    group.questions.forEach(question => {
-       // 打印每道题的 selected 值，看看是否有被正确赋值
-       console.log(question.selected);
-      // 假设选择的答案保存在 `question.selected` 中
-      if (question.selected) {
-        answers.push({
-          questionId: question.id,  // 题目ID
-          answer: question.selected  // 用户选择的答案
+    // 停止倒计时
+    clearInterval(this.data.countdownInterval);
+
+    // 构造用户答案
+    const answers = [];
+    groupedQuestions.forEach(group => {
+      group.questions.forEach(question => {
+        if (question.selected) {
+          answers.push({
+            questionId: question.id,  // 题目ID
+            answer: question.selected  // 用户选择的答案
+          });
+        }
+      });
+    });
+
+    // 提交数据
+    request.post('/exam/examRecordDetail/submit', {
+      recordId: examRecordId,  // 从传递的 examRecordId 获取
+      answers,   // 用户的答案列表
+    }).then((response) => {
+      const { success, message } = response;
+
+      if (success) {
+        wx.showToast({
+          title: '考试提交成功',
+          icon: 'success'
+        });
+        // 跳转到结果页面
+        wx.navigateTo({
+          url: `/pages/exam/result/index?examId=${examId}`, 
+        });
+        // 禁用所有选择操作
+        this.setData({
+          isSubmitted: true
+        });
+      } else {
+        wx.showToast({
+          title: message || '提交失败',
+          icon: 'none'
         });
       }
-      console.log(question.selected)
-    });
-  });
-
-  // 提交数据
-  request.post('/exam/examRecordDetail/submit', {
-    recordId: examRecordId,  // 从传递的 examRecordId 获取
-    answers,   // 用户的答案列表
-  }).then((response) => {
-    const { success, message } = response;
-
-    if (success) {
+    }).catch((error) => {
+      console.error("提交考试失败", error);
       wx.showToast({
-        title: '考试提交成功',
-        icon: 'success'
-      });
-      // 跳转到结果页面
-      wx.navigateTo({
-        url: `/pages/exam/result/index?examId=${examId}`, 
-      });
-    } else {
-      wx.showToast({
-        title: message || '提交失败',
+        title: '提交失败',
         icon: 'none'
       });
-    }
-  }).catch((error) => {
-    console.error("提交考试失败", error);
-    wx.showToast({
-      title: '提交失败',
-      icon: 'none'
     });
-  });
-},
+  },
 
   // 切换题目类型页
   updateQuestionPage() {
@@ -230,38 +240,37 @@ submitExam() {
     }
   },
 
-  // 下拉刷新
-  onPullDownRefresh: function () {
-    // 下拉刷新时，重新加载题目数据
-    this.fetchExamQuestions(this.data.examId);
-  },
-
   // 处理选项选择
   onOptionSelect(e) {
     const { value } = e.detail; // 获取选中的选项值
-    const { groupedQuestions, currentTypeIndex } = this.data;
+    const { groupedQuestions, currentTypeIndex, isSubmitted } = this.data;
     
+    // 如果考试已经提交，禁止修改选择
+    if (isSubmitted) {
+      wx.showToast({
+        title: '考试已提交，不能修改',
+        icon: 'none'
+      });
+      return;
+    }
+
     // 找到当前题型的题目列表
     const currentGroup = groupedQuestions[currentTypeIndex] || {};
     const currentQuestions = Array.isArray(currentGroup.questions) ? currentGroup.questions : []; 
-    console.log("选中的选项值:", value); // 调试信息：打印选中的值
-    // 更新选中状态
-  currentQuestions.forEach(question => {
-    question.selected = ''; // 首先清空选中项
-    // 遍历选项数组
-    question.optionsArray.forEach(option => {
-      if (option.key === value) {
-        question.selected = value; // 设置选中值
-      }
-      console.log("option.key:"+ option.key)
-      console.log("value:"+value)
+
+    currentQuestions.forEach(question => {
+      question.selected = ''; // 首先清空选中项
+      // 遍历选项数组
+      question.optionsArray.forEach(option => {
+        if (option.key === value) {
+          question.selected = value; // 设置选中值
+        }
+      });
     });
-  });
 
     // 更新题目列表数据
     this.setData({
       groupedQuestions: [...groupedQuestions], 
     });
-    console.log("更新后的题目数据:", groupedQuestions); // 调试信息：查看更新后的数据
   }
 });

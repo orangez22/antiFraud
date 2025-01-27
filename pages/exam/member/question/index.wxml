@@ -20,7 +20,11 @@
           <radio-group wx:if="{{item.questionTypeId !== 1}}" bindchange="onOptionSelect">
             <view wx:for="{{item.optionsArray}}" wx:key="key" class="option">
               <label class="radio-option">
-                <radio value="{{item.key}}" checked="{{item.selected === item.key}}" />
+                <radio 
+                  value="{{item.key}}" 
+                  checked="{{item.selected === item.key}}" 
+                  disabled="{{isSubmitted}}" 
+                />
                 <text>{{item.key}}: {{item.value}}</text>
               </label>
             </view>
@@ -30,8 +34,14 @@
     </view>
   </view>
 
-  <!-- 提交按钮 -->
-  <button wx:if="{{showSubmitButton}}" class="submit-btn" bindtap="submitExam">提交考试</button>
+    <!-- 提交按钮 -->
+    <button 
+    wx:if="{{showSubmitButton}}" 
+    class="submit-btn" 
+    bindtap="submitExam" 
+    disabled="{{isSubmitted}}">
+    提交考试
+  </button>
 
   <!-- 分页控制 -->
   <view class="pagination">
