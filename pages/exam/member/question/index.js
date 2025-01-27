@@ -198,7 +198,7 @@ Page({
     
     // 找到当前题型的题目列表
     const currentGroup = groupedQuestions[currentTypeIndex] || {};
-    const currentQuestions = Array.isArray(currentGroup.questions) ? currentGroup.questions : []; // Ensure it's an array
+    const currentQuestions = Array.isArray(currentGroup.questions) ? currentGroup.questions : []; 
     
     // 更新选中状态
     currentQuestions.forEach(question => {

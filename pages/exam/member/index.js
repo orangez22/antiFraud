@@ -44,12 +44,38 @@ Page({
   // 处理点击“开始考试”按钮事件
   startExam: function (event) {
     const examId = event.currentTarget.dataset.id; // 获取点击的考试ID
-    const duration = event.currentTarget.dataset.duration
+    const duration = event.currentTarget.dataset.duration; // 获取考试时长
     console.log("开始考试，考试ID为：", examId);
-    console.log("开始考试，考试时长为：",duration);
-    // 跳转到具体的考试页面
-    wx.navigateTo({
-      url: `/pages/exam/member/question/index?id=${examId}}&duration=${duration}`, // 假设考试详情页路径为 /pages/exam/examDetail
+    console.log("开始考试，考试时长为：", duration);
+
+    // 请求后端接口，开始考试并获取 examRecordId
+    request.post('/exam/examRecord/create', {
+      examId: examId, // 传递考试ID
+    })
+    .then((response) => {
+      const { success, data, errorCode, message } = response;
+
+      if (success && data) {
+        const examRecordId = data; // 获取考试记录ID
+        console.log("考试记录ID：", examRecordId);
+
+        // 跳转到考试页面，并传递 examRecordId 和考试时长
+        wx.navigateTo({
+          url: `/pages/exam/member/question/index?id=${examId}&duration=${duration}&examRecordId=${examRecordId}`,
+        });
+      } else {
+        wx.showToast({
+          title: message || '开始考试失败',
+          icon: 'none'
+        });
+      }
+    })
+    .catch((error) => {
+      console.error("请求失败，错误信息：", error);
+      wx.showToast({
+        title: '开始考试失败，请重试',
+        icon: 'none'
+      });
     });
   },
 
