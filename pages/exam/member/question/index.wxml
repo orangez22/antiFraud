@@ -16,21 +16,15 @@
 
         <!-- 显示选项 -->
         <view class="options">
-          <view wx:for="{{item.optionsArray}}" wx:key="key" class="option">
-            <radio-group wx:if="{{item.questionTypeId === 1}}" bindchange="onOptionSelect">
+          <!-- 只用一个 radio-group 包裹所有选项 -->
+          <radio-group wx:if="{{item.questionTypeId !== 1}}" bindchange="onOptionSelect">
+            <view wx:for="{{item.optionsArray}}" wx:key="key" class="option">
               <label class="radio-option">
                 <radio value="{{item.key}}" checked="{{item.selected === item.key}}" />
                 <text>{{item.key}}: {{item.value}}</text>
               </label>
-            </radio-group>
-
-            <checkbox-group wx:if="{{item.questionTypeId !== 1}}" bindchange="onOptionSelect">
-              <label class="checkbox-option">
-                <checkbox value="{{item.key}}" checked="{{item.selected && item.selected.includes(item.key)}}" />
-                <text>{{item.key}}: {{item.value}}</text>
-              </label>
-            </checkbox-group>
-          </view>
+            </view>
+          </radio-group>
         </view>
       </view>
     </view>
