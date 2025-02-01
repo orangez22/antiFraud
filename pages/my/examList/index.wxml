@@ -4,7 +4,7 @@
       <view class="record-content">
         <text class="record-title">{{item.examName}}</text>
         <text class="record-member">考生: {{item.memberName}}</text>
-        <text class="record-score">分数: {{item.score}}</text>
+        <text class="record-score">得分: {{item.score}}</text>
         <text class="record-duration">考试时长: {{item.duration}}</text>
       </view>
     </view>
