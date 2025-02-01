@@ -9,6 +9,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/my/examList/index",
+          "pathName": "pages/my/examList/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/detail/examDetail/detail",
           "pathName": "pages/detail/examDetail/detail",
           "query": "",

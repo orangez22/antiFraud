@@ -5,6 +5,7 @@
     "pages/my/publishForum/index",
     "pages/my/favoriteList/index",
     "pages/my/forumList/index",
+    "pages/my/examList/index",
     "pages/my/forumList/updateForum/index",
     "pages/about/index",
     "pages/detail/detail",

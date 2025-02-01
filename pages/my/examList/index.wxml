@@ -1,0 +1,29 @@
+<view class="record-list">
+  <block wx:for="{{recordList}}" wx:key="index">
+    <view class="record-item" bindtap="goToDetail" data-recordid="{{item.id}}">
+      <view class="record-content">
+        <text class="record-title">{{item.examName}}</text>
+        <text class="record-member">考生: {{item.memberName}}</text>
+        <text class="record-score">分数: {{item.score}}</text>
+        <text class="record-duration">考试时长: {{item.duration}}</text>
+      </view>
+    </view>
+  </block>
+  <view wx:if="{{recordList.length === 0}}" class="no-content-container">
+    <text class="no-content-text">暂无考试记录</text>
+  </view>
+</view>
+
+<!-- 底部分页 -->
+<view class="pagination">
+  <text class="pagination-text">共 {{totalPages}} 页</text>
+  <picker mode="selector" range="{{pageSizes}}" bindchange="onPageSizeChange">
+    <view class="pagination-dropdown">{{pageSize}} 条/页</view>
+  </picker>
+  <view class="pagination-input-container">
+    <text class="pagination-text">前往</text>
+    <input class="pagination-input" type="number" value="{{goToPage}}" bindinput="onInputPageChange" />
+    <text class="pagination-text">页</text>
+    <button class="pagination-go-btn" bindtap="onGoToPage">跳转</button>
+  </view>
+</view>

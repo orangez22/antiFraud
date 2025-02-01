@@ -75,7 +75,7 @@
               <image style="width: 46rpx; height: 40rpx;" src="/assets/images/my/wodedingdan.png" class="my-list-wrap-item-list-item-img"></image>
               <text class="my-list-wrap-item-list-item-txt">经历上传</text>
             </view>
-            <view bindtap="navigate" data-url='/pages/appraise/list/index' class="my-list-wrap-item-list-item">
+            <view bindtap="navigate" data-url='/pages/my/examList/index' class="my-list-wrap-item-list-item">
               <image style="width: 46rpx; height: 40rpx;" src="/assets/images/my/wodepingjia.png" class="my-list-wrap-item-list-item-img"></image>
               <text class="my-list-wrap-item-list-item-txt">我的考试</text>
             </view>
