@@ -104,7 +104,7 @@
               <image style="width: 48rpx; height: 48rpx;" src="/assets/images/my/bangzhufankui.png" class="my-list-wrap-item-list-item-img"></image>
               <text class="my-list-wrap-item-list-item-txt">关于我们</text>
             </view>
-            <view bindtap="navigate" data-url='/pages/complain/list/index' class="my-list-wrap-item-list-item">
+            <view bindtap="navigate" data-url='/pages/my/report/index' class="my-list-wrap-item-list-item">
               <image style="width: 46rpx; height: 44rpx;" src="/assets/images/my/tousushangjia.png" class="my-list-wrap-item-list-item-img"></image>
               <text class="my-list-wrap-item-list-item-txt">一键举报</text>
             </view>
