@@ -1,13 +1,16 @@
 import request from '@/utils/request';  // 引入自定义的 request 模块
+const app = getApp();  // 获取应用实例
 
 Page({
   data: {
     reportTypes: [], // 举报类型列表
-    selectedTypeId: '', // 当前选择的举报类型ID
+    selectedTypeId: null, // 当前选择的举报类型ID，初始化为 null
     selectedTypeName: '', // 当前选择的举报类型名称
     phone: '',
     content: '',
     description: '', // 举报描述
+    longitude: '', // 经度
+    latitude: '', // 纬度
   },
 
   // 页面加载时获取举报类型列表
@@ -21,7 +24,6 @@ Page({
       .then((response) => {
         const { success, data, errorCode, message } = response;
         if (success) {
-          // 成功返回数据，存储举报类型列表
           this.setData({
             reportTypes: data  // 假设返回数据格式是 { success: true, data: [...] }
           });
@@ -42,13 +44,29 @@ Page({
 
   // 选择举报类型
   onSelectType: function (e) {
-    const selectedTypeId = e.detail.value;  // 获取选中的举报类型ID
-    const selectedType = this.data.reportTypes[selectedTypeId];  // 获取选中的举报类型
+    const selectedTypeId = e.detail.value;  // 获取选中的举报类型ID的索引
+    const selectedType = this.data.reportTypes[selectedTypeId];  // 根据索引获取选中的举报类型对象
+
+    if (!selectedType) {
+      wx.showToast({
+        title: '无效的举报类型',
+        icon: 'none'
+      });
+      return;
+    }
 
     this.setData({
-      selectedTypeId: selectedTypeId,
+      selectedTypeId: selectedType.id, // 保存选中的举报类型的 id
       selectedTypeName: selectedType.name, // 保存选中的类型名称
     });
+
+    // 如果选中的是 "其他"，并且描述为空，可以提示用户输入描述
+    if (selectedType.name === '其他' && !this.data.description) {
+      wx.showToast({
+        title: '请填写举报描述',
+        icon: 'none'
+      });
+    }
   },
 
   // 输入举报描述
@@ -58,9 +76,46 @@ Page({
     });
   },
 
+  // 输入手机号
+  onInputPhone: function (e) {
+    this.setData({
+      phone: e.detail.value  // 更新手机号
+    });
+  },
+
+  // 输入举报内容
+  onInputContent: function (e) {
+    this.setData({
+      content: e.detail.value  // 更新举报内容
+    });
+  },
+
+  // 获取定位
+  getLocation: function () {
+    wx.getLocation({
+      type: 'wgs84',
+      success: (res) => {
+        // 获取定位成功后更新经纬度
+        this.setData({
+          longitude: res.longitude,
+          latitude: res.latitude
+        });
+      },
+      fail: () => {
+        wx.showToast({
+          title: '定位失败，请稍后重试',
+          icon: 'none'
+        });
+      }
+    });
+  },
+
   // 提交举报信息
   submitReport: function () {
-    const { selectedTypeId, phone, content, description, selectedTypeName } = this.data;
+    const { selectedTypeId, phone, content, description, selectedTypeName, longitude, latitude } = this.data;
+
+    // 获取全局的 memberId
+    const memberId = app.getMemberId();
 
     if (!selectedTypeId || !phone || !content) {
       wx.showToast({
@@ -81,14 +136,17 @@ Page({
 
     // 构造请求数据
     const reportData = {
-      typeId: selectedTypeId,
+      memberId: memberId,  // 添加 memberId
+      typeId: selectedTypeId,  // 使用从列表中获取的 typeId
       phone: phone,
       content: content,
       description: selectedTypeName === '其他' ? description : '', // 只有"其他"类型需要传递描述
+      longitude: longitude || null,  // 经纬度（可选）
+      latitude: latitude || null,    // 经纬度（可选）
     };
 
     // 发起举报请求
-    request.post('/report/add', reportData)  // 使用 POST 请求提交举报数据
+    request.post('/report/reportInfo/add', reportData)  // 使用 POST 请求提交举报数据
       .then((response) => {
         const { success, message } = response;
         if (success) {
@@ -112,6 +170,3 @@ Page({
       });
   }
 });
-
-
-

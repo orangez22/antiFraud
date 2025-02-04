@@ -4,8 +4,8 @@
     <text>举报类型</text>
     <picker mode="selector" range="{{reportTypes}}" range-key="name" bindchange="onSelectType">
       <view class="picker">
-        <!-- 使用三元表达式来判断 selectedTypeId 是否有效 -->
-        {{ selectedTypeId && reportTypes[selectedTypeId] ? reportTypes[selectedTypeId].name : '请选择举报类型'}}
+        <!-- 显示选择的举报类型名称 -->
+        {{ selectedTypeName || '请选择举报类型' }}
       </view>
     </picker>
   </view>
@@ -28,6 +28,23 @@
     <textarea bindinput="onInputContent" value="{{content}}" placeholder="请输入举报内容"></textarea>
   </view>
 
+  <!-- 定位功能 -->
+  <view class="form-item">
+    <text>（可选）举报地点定位</text>
+    <button bindtap="getLocation" class="location-button">获取当前位置</button>
+    <view class="location-info">
+      <text>经度: {{longitude || '未查询'}}</text>
+      <text>纬度: {{latitude || '未查询'}}</text>
+    </view>
+  </view>
+
+  <!-- 附件选择 -->
+  <view class="form-item">
+    <text>（可选）选择附件</text>
+    <button bindtap="chooseAttachment" class="attachment-button">选择附件</button>
+    <text>{{attachment ? '已选择附件' : ''}}</text>
+  </view>
+
   <!-- 提交按钮 -->
-  <button bindtap="submitReport">提交举报</button>
+  <button bindtap="submitReport" class="submit-button">提交举报</button>
 </view>
