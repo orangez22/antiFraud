@@ -98,8 +98,9 @@ Page({
       success: (res) => {
         if (res.confirm) {
           wx.showLoading({ title: '删除中' });
-          
-          request.post('/report/reportInfo/delete', { id: reportId })
+
+          // 修改请求，删除操作需要将id作为URL路径的一部分传递
+          request.delete(`/report/reportInfo/delete/${reportId}`)
             .then((response) => {
               wx.hideLoading();
               const { success, message } = response;
@@ -186,3 +187,4 @@ Page({
     }
   },
 });
+
