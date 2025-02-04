@@ -1,0 +1,106 @@
+/* 页面整体容器 */
+.form {
+  padding: 30rpx;
+  background-color: #f7f7f7;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+/* 表单项容器 */
+.form-item {
+  margin-bottom: 40rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}
+
+/* 表单项标签 */
+.form-item text {
+  font-size: 32rpx;
+  color: #333;
+  margin-bottom: 10rpx;
+  display: block;
+}
+
+/* 举报类型选择器 */
+.picker {
+  width: 95%;
+  height: 80rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  border-radius: 10rpx;
+  background-color: #fff;
+  font-size: 30rpx;
+  color: #666;
+}
+
+/* 举报内容输入框 */
+textarea {
+  width: 95%;
+  height: 200rpx;
+  padding: 20rpx;
+  border: 1px solid #ccc;
+  border-radius: 10rpx;
+  background-color: #fff;
+  font-size: 30rpx;
+  color: #333;
+  line-height: 1.6;
+  resize: none;
+}
+
+/* 手机号输入框 */
+input {
+  width: 95%;
+  height: 80rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  border: 1px solid #ccc;
+  border-radius: 10rpx;
+  background-color: #fff;
+  font-size: 30rpx;
+  color: #333;
+}
+
+/* 提交按钮 */
+button {
+  margin-top: 40rpx;
+  padding: 20rpx;
+  background-color: #ff1e00;
+  color: #fff;
+  font-size: 32rpx;
+  border-radius: 10rpx;
+  border: none;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #005bb5;
+}
+
+/* 禁用按钮样式 */
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* 辅助样式，避免输入框与按钮过于紧凑 */
+.form-item {
+  margin-bottom: 30rpx;
+}
+
+/* picker 下拉框的样式 */
+.picker-view {
+  display: block;
+  font-size: 30rpx;
+  color: #666;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}

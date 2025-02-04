@@ -1,0 +1,33 @@
+<view class="form">
+  <!-- 举报类型 -->
+  <view class="form-item">
+    <text>举报类型</text>
+    <picker mode="selector" range="{{reportTypes}}" range-key="name" bindchange="onSelectType">
+      <view class="picker">
+        <!-- 使用三元表达式来判断 selectedTypeId 是否有效 -->
+        {{ selectedTypeId && reportTypes[selectedTypeId] ? reportTypes[selectedTypeId].name : '请选择举报类型'}}
+      </view>
+    </picker>
+  </view>
+
+  <!-- 举报描述框：仅在选择"其他"类型时显示 -->
+  <view wx:if="{{selectedTypeName === '其他'}}" class="form-item">
+    <text>举报类型描述</text>
+    <textarea bindinput="onInputDescription" value="{{description}}" placeholder="请输入举报描述"></textarea>
+  </view>
+
+  <!-- 手机号输入框 -->
+  <view class="form-item">
+    <text>手机号</text>
+    <input type="text" bindinput="onInputPhone" value="{{phone}}" placeholder="请输入手机号"/>
+  </view>
+
+  <!-- 举报内容输入框 -->
+  <view class="form-item">
+    <text>举报原因</text>
+    <textarea bindinput="onInputContent" value="{{content}}" placeholder="请输入举报内容"></textarea>
+  </view>
+
+  <!-- 提交按钮 -->
+  <button bindtap="submitReport">提交举报</button>
+</view>

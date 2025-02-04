@@ -8,6 +8,8 @@
     "pages/my/examList/index",
     "pages/my/forumList/updateForum/index",
     "pages/my/report/index",
+    "pages/my/report/admin/index",
+    "pages/my/report/member/index",
     "pages/about/index",
     "pages/detail/detail",
     "pages/detail/forumDetail/detail",
