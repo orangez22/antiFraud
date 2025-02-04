@@ -11,6 +11,7 @@ Page({
     description: '', // 举报描述
     longitude: '', // 经度
     latitude: '', // 纬度
+    attachment: null, // 存储附件信息
   },
 
   // 页面加载时获取举报类型列表
@@ -110,9 +111,62 @@ Page({
     });
   },
 
+  // 选择附件
+  chooseAttachment: function () {
+    wx.chooseImage({
+      count: 1, // 限制只能选择一个附件
+      success: (res) => {
+        const tempFilePath = res.tempFilePaths[0];  // 获取附件的临时路径
+
+        // 调用后端上传接口
+        this.uploadAttachment(tempFilePath);
+      },
+      fail: () => {
+        wx.showToast({
+          title: '选择附件失败，请重试',
+          icon: 'none'
+        });
+      }
+    });
+  },
+
+  // 上传附件
+  uploadAttachment: function (filePath) {
+    wx.uploadFile({
+      url: 'http://localhost:28080/report/upload',
+      method:'POST', 
+      filePath: filePath,
+      name: 'file',  // 后端接收的字段名
+      success: (res) => {
+        const data = JSON.parse(res.data);  // 假设返回的 JSON 格式为 { success: true, data: { url: 'file_url' } }
+
+        if (data.success) {
+          this.setData({
+            attachment: data.data.url  // 保存附件 URL
+          });
+          wx.showToast({
+            title: '附件上传成功',
+            icon: 'success'
+          });
+        } else {
+          wx.showToast({
+            title: data.message || '附件上传失败',
+            icon: 'none'
+          });
+        }
+      },
+      fail: () => {
+        wx.showToast({
+          title: '上传附件失败，请重试',
+          icon: 'none'
+        });
+      }
+    });
+  },
+
   // 提交举报信息
   submitReport: function () {
-    const { selectedTypeId, phone, content, description, selectedTypeName, longitude, latitude } = this.data;
+    const { selectedTypeId, phone, content, description, selectedTypeName, longitude, latitude, attachment } = this.data;
 
     // 获取全局的 memberId
     const memberId = app.getMemberId();
@@ -143,6 +197,7 @@ Page({
       description: selectedTypeName === '其他' ? description : '', // 只有"其他"类型需要传递描述
       longitude: longitude || null,  // 经纬度（可选）
       latitude: latitude || null,    // 经纬度（可选）
+      attachment: attachment || null, // 附件 URL（可选）
     };
 
     // 发起举报请求
@@ -155,6 +210,9 @@ Page({
             icon: 'success',
             duration: 2000
           });
+          setTimeout(() => {
+            wx.navigateBack();  // 延迟 0.5 秒后返回上一页
+          }, 500);
         } else {
           wx.showToast({
             title: message || '举报失败',
