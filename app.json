@@ -15,6 +15,7 @@
     "pages/detail/forumDetail/detail",
     "pages/detail/feedback/detail",
     "pages/detail/examDetail/detail",
+    "pages/detail/reportDetail/detail",
     "pages/exam/exam",
     "pages/exam/admin/index",
     "pages/exam/admin/question/index",

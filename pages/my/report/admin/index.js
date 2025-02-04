@@ -100,7 +100,7 @@ Page({
     }
 
     wx.navigateTo({
-      url: `/pages/reportDetail/reportDetail?id=${reportId}`,
+      url: `/pages/detail/reportDetail/detail?id=${reportId}`,
     });
   },
 

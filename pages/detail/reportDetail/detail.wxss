@@ -1,0 +1,67 @@
+.page {
+  padding: 20px;
+  background-color: #f8f8f8; /* 背景色 */
+}
+
+.report-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.report-info .info-item {
+  margin-bottom: 18px;
+  padding: 15px;
+  background-color: #fff; /* 背景色 */
+  border-radius: 8px; /* 圆角 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+}
+
+.report-info .label {
+  font-weight: bold;
+  font-size: 16px;
+  color: rgb(65, 62, 62); /* 标签颜色 */
+}
+
+.report-info .value {
+  font-size: 16px;
+  color: #333; /* 内容颜色 */
+  margin-left: 10px;
+  word-wrap: break-word;
+}
+
+.attachment-btn {
+  background-color: #007aff;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 5px;
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.attachment-btn:hover {
+  background-color: #005fbc; /* 按钮悬停效果 */
+}
+
+.action-btns {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.action-btns .btn {
+  background-color: #ff4500;
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: 5px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.action-btns .btn:hover {
+  background-color: #e03e00; /* 按钮悬停效果 */
+}
