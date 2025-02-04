@@ -1,4 +1,4 @@
-import request from '@/utils/request';
+import request from '@/utils/request'
 
 Page({
   data: {
@@ -48,8 +48,13 @@ Page({
         const { success, data, errorCode, message } = response;
 
         if (success) {
+          const reportListWithColor = data.records.map(item => ({
+            ...item,
+            statusColor: this.getStatusColor(item.status) // 计算并设置状态颜色
+          }));
+
           this.setData({
-            reportList: data.records || [],
+            reportList: reportListWithColor,
             totalPages: data.totalPages || 1,
           });
         } else {
@@ -75,15 +80,52 @@ Page({
       });
   },
 
-  // 搜索输入事件
-  onSearchInput(e) {
-    this.setData({ description: e.detail.value });
-  },
+  // 删除举报信息
+  deleteReport(e) {
+    const reportId = e.currentTarget.dataset.reportid;
 
-  // 搜索按钮点击事件
-  onSearch() {
-    this.setData({ currentPage: 1 }, () => {
-      this.getReportList();
+    if (!reportId) {
+      wx.showToast({
+        title: '无效的举报ID',
+        icon: 'none',
+      });
+      return;
+    }
+
+    wx.showModal({
+      title: '确认删除',
+      content: '您确定要删除这条举报信息吗？',
+      success: (res) => {
+        if (res.confirm) {
+          wx.showLoading({ title: '删除中' });
+          
+          request.post('/report/reportInfo/delete', { id: reportId })
+            .then((response) => {
+              wx.hideLoading();
+              const { success, message } = response;
+
+              if (success) {
+                wx.showToast({
+                  title: '删除成功',
+                  icon: 'success',
+                });
+                this.getReportList(); // 删除后重新加载列表
+              } else {
+                wx.showToast({
+                  title: message || '删除失败',
+                  icon: 'none',
+                });
+              }
+            })
+            .catch((error) => {
+              wx.hideLoading();
+              wx.showToast({
+                title: '删除失败，请稍后重试',
+                icon: 'none',
+              });
+            });
+        }
+      }
     });
   },
 
@@ -128,5 +170,19 @@ Page({
     this.setData({ pageSize, currentPage: 1 }, () => {
       this.getReportList();
     });
+  },
+
+  // 根据状态返回背景颜色
+  getStatusColor(status) {
+    switch (status) {
+      case '0': // 已读
+        return '#A8E6A3'; // 柔和的绿色背景
+      case '1': // 未读
+        return '#FF8C8C'; // 温暖的红色背景
+      case '2': // 已处理
+        return '#8EC8FF'; // 清新的蓝色背景
+      default:
+        return '#F1F1F1'; // 温和的灰色背景
+    }
   },
 });

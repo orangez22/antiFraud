@@ -5,6 +5,7 @@
   padding: 10rpx 20rpx;
   background-color: #fff;
   box-shadow: 0 2rpx 5rpx rgba(0, 0, 0, 0.1);
+  border-radius: 10rpx;
 }
 
 .search-input {
@@ -14,6 +15,11 @@
   font-size: 26rpx;
   border: 1rpx solid #ddd;
   border-radius: 5rpx;
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: #ff0800;
 }
 
 .search-btn {
@@ -24,6 +30,11 @@
   padding: 8rpx 20rpx;
   font-size: 26rpx;
   margin-left: 10rpx;
+  transition: background-color 0.3s;
+}
+
+.search-btn:hover {
+  background-color: #e00600;
 }
 
 /* 举报信息项 */
@@ -34,6 +45,11 @@
   border-radius: 20rpx;
   overflow: hidden;
   box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.info-item:hover {
+  background-color: #f1f1f1;
 }
 
 .info-image {
@@ -47,6 +63,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  flex: 1;
 }
 
 .info-title {
@@ -59,12 +76,15 @@
   font-size: 24rpx;
   color: #999;
   margin-top: 10rpx;
+  flex-grow: 1;
 }
+
 .info-time {
   font-size: 24rpx;
   color: #999;
   margin-top: 10rpx;
 }
+
 .info-date {
   font-size: 24rpx;
   color: #999;
@@ -146,4 +166,41 @@
   border-radius: 8rpx;
   border: none;
   margin-left: 10rpx;
+}
+
+/* 状态容器 */
+.status-container {
+  display: flex;
+  justify-content: center; /* 水平居中 */
+  align-items: center;     /* 垂直居中 */
+  padding: 5px 10px;       /* 添加适当的内边距 */
+  border-radius: 5px;      /* 可选：使背景角落圆润 */
+  background-color: #888;
+}
+
+.status-text {
+  font-size: 14px;  /* 状态文字大小 */
+  color: #fff;      /* 状态文字颜色 */
+}
+/* 删除按钮 */
+.delete-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ff4d4f; /* 红色背景 */
+  color: white; /* 白色文字 */
+  font-size: 26rpx; /* 字体大小 */
+  padding: 8rpx 20rpx; /* 内边距 */
+  border-radius: 8rpx; /* 圆角 */
+  border: none; /* 去掉边框 */
+  cursor: pointer; /* 鼠标指针 */
+  transition: background-color 0.3s ease; /* 背景颜色过渡效果 */
+}
+
+.delete-btn:hover {
+  background-color: #e60000; /* 鼠标悬停时，背景色变为更深的红色 */
+}
+
+.delete-btn:active {
+  background-color: #b30000; /* 按钮被点击时，背景色变为暗红色 */
 }

@@ -14,9 +14,18 @@
           <!-- 显示时间 -->
           <text class="info-time">举报时间：{{item.createTime}}</text>
         </view>
+
+        <!-- 状态显示 -->
+        <view class="status-container" style="background-color: {{item.statusColor}}">
+          <text class="status-text">  {{item.status === '0' ? '已读' : (item.status === '1' ? '未读' : '已处理')}}
+          </text>
+        </view>
+
+        <!-- 删除按钮 -->
+        <button class="delete-btn" bindtap="deleteReport" data-reportid="{{item.id}}">删除</button>
       </view>
     </block>
-    
+
     <view wx:if="{{reportList.length === 0}}" class="no-content-container">
       <text class="no-content-text">暂无内容</text>
     </view>

@@ -65,17 +65,17 @@ Page({
     }
   },
 
-  // 标记为已读
+  // 标记为已处理
   onMarkAsRead() {
     const reportId = this.data.reportInfo.id;
-    wx.showLoading({ title: '标记为已读...' });
+    wx.showLoading({ title: '标记为已处理...' });
 
     request.put(`/report/reportInfo/handle/${reportId}`)
       .then((response) => {
         wx.hideLoading();
         if (response.success) {
           wx.showToast({
-            title: '标记为已读',
+            title: '标记为已处理',
           });
           this.setData({
             'reportInfo.status': '2',  // 设置状态为已处理
