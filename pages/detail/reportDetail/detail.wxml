@@ -32,6 +32,15 @@
       <text class="value">{{reportInfo.createTime}}</text>
     </view>
 
+       <!-- 判断举报地点经纬度 -->
+    <view wx:if="{{reportInfo.latitude && reportInfo.longitude}}">
+      <view class="info-item">
+        <text class="label">举报地点：</text>
+        <text class="value">纬度: {{reportInfo.latitude}}, 经度: {{reportInfo.longitude}}</text>
+      </view>
+    </view>
+
+    <!-- 判断举报附件 -->
     <view wx:if="{{reportInfo.attachment}}">
       <view class="info-item">
         <text class="label">举报附件：</text>

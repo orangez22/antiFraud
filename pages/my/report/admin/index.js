@@ -186,5 +186,18 @@ Page({
         return '#F1F1F1'; // 温和的灰色背景
     }
   },
-});
 
+  // 启用下拉刷新
+  onPullDownRefresh() {
+    // 重置为第一页并重新加载举报信息列表
+    this.setData({
+      currentPage: 1,
+      reportList: [], // 清空当前列表
+    }, () => {
+      this.getReportList(); // 重新请求数据
+    });
+
+    // 停止下拉刷新动画
+    wx.stopPullDownRefresh();
+  },
+});
