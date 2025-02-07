@@ -9,6 +9,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/my/antiFraudList/admin/index",
+          "pathName": "pages/my/antiFraudList/admin/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/my/report/admin/index",
           "pathName": "pages/my/report/admin/index",
           "query": "",

@@ -71,9 +71,9 @@
         <view class="my-list-wrap-item">
           <text class="my-list-wrap-item-name">我的功能</text>
           <view class="my-list-wrap-item-list">
-            <view bindtap="navigate" data-url='/pages/order/index' class="my-list-wrap-item-list-item">
+            <view bindtap="navigate" data-url='/pages/my/antiFraudList/index' class="my-list-wrap-item-list-item">
               <image style="width: 46rpx; height: 40rpx;" src="/assets/images/my/wodedingdan.png" class="my-list-wrap-item-list-item-img"></image>
-              <text class="my-list-wrap-item-list-item-txt">经历上传</text>
+              <text class="my-list-wrap-item-list-item-txt">咨询上传</text>
             </view>
             <view bindtap="navigate" data-url='/pages/my/examList/index' class="my-list-wrap-item-list-item">
               <image style="width: 46rpx; height: 40rpx;" src="/assets/images/my/wodepingjia.png" class="my-list-wrap-item-list-item-img"></image>

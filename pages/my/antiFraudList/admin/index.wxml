@@ -1,0 +1,60 @@
+<view class="page">
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <input class="search-input" placeholder="请输入举报描述" bindinput="onSearchInput" />
+    <button class="search-btn" bindtap="onSearch">搜索</button>
+  </view>
+
+  <!-- 日期选择 -->
+  <view class="date-picker">
+    <text class="date-picker-label">开始日期：</text>
+    <!-- 改为弹窗选择的日期 -->
+    <picker mode="date" value="{{startDate}}" bindchange="onStartDateChange">
+      <view class="picker-container">
+        <text class="date-text">{{startDate ? startDate : '请选择开始日期'}}</text>
+      </view>
+    </picker>
+    
+    <text class="date-picker-label">结束日期：</text>
+    <!-- 改为弹窗选择的日期 -->
+    <picker mode="date" value="{{endDate}}" bindchange="onEndDateChange">
+      <view class="picker-container">
+        <text class="date-text">{{endDate ? endDate : '请选择结束日期'}}</text>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 反诈科普内容 -->
+  <view class="info">
+    <block wx:for="{{infoList}}" wx:key="index">
+      <view class="info-item" bindtap="goToDetail" data-id="{{item.id}}">
+        <image class="info-image" src="{{item.image}}" mode="aspectFill" />
+        <view class="info-content">
+          <text class="info-title">{{item.title}}</text>
+          <text class="info-date">{{item.date}}</text>
+        </view>
+      </view>
+    </block>
+    <view wx:if="{{infoList.length === 0}}" class="no-content-container">
+      <text class="no-content-text">暂无内容</text>
+    </view>
+  </view>
+
+  <!-- 没有内容时的提示 -->
+  <view wx:if="{{antiFraudList.length === 0}}" class="no-content-container">
+    <text class="no-content-text">暂无内容</text>
+  </view>
+
+  <!-- 底部分页导航 -->
+  <view class="pagination">
+    <picker mode="selector" range="{{pageSizes}}" bindchange="onPageSizeChange">
+      <view class="pagination-dropdown">{{pageSize}}条/页</view>
+    </picker>
+    <view class="pagination-input-container">
+      <text class="pagination-text">前往</text>
+      <input class="pagination-input" type="number" value="{{goToPage}}" bindinput="onInputPageChange" />
+      <text class="pagination-text">页</text>
+      <button class="pagination-go-btn" bindtap="onGoToPage">跳转</button>
+    </view>
+  </view>
+</view>

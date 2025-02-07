@@ -40,13 +40,17 @@ Page({
       });
   },
 
-  // 下载附件
-  downloadAttachment() {
-    const attachment = this.data.reportInfo.attachment;
-    if (attachment) {
-      wx.downloadFile({
-        url: attachment,
-        success(res) {
+ // 下载附件
+downloadAttachment() {
+  const attachment = this.data.reportInfo.attachment;
+  console.log("Attachment URL: ", attachment);
+
+  if (attachment) {
+    wx.downloadFile({
+      url: attachment,
+      success(res) {
+        if (res.statusCode === 200) {
+          // 下载成功，保存文件
           wx.saveFile({
             tempFilePath: res.tempFilePath,
             success(result) {
@@ -54,16 +58,38 @@ Page({
                 title: '下载成功',
               });
             },
-            fail() {
+            fail(err) {
+              console.error("保存文件失败:", err);
               wx.showToast({
-                title: '下载失败',
+                title: '保存失败，请稍后重试',
+                icon: 'none',
               });
             },
           });
-        },
-      });
-    }
-  },
+        } else {
+          console.error('下载失败，文件状态不正确:', res.statusCode);
+          wx.showToast({
+            title: '下载失败，文件错误',
+            icon: 'none',
+          });
+        }
+      },
+      fail(err) {
+        console.error('下载文件失败:', err);
+        wx.showToast({
+          title: '下载失败，请稍后重试',
+          icon: 'none',
+        });
+      },
+    });
+  } else {
+    wx.showToast({
+      title: '没有附件可下载',
+      icon: 'none',
+    });
+  }
+},
+
 
   // 标记为已处理
   onMarkAsRead() {
