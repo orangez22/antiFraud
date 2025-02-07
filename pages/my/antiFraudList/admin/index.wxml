@@ -58,4 +58,6 @@
       <button class="pagination-go-btn" bindtap="onGoToPage">跳转</button>
     </view>
   </view>
+ <!-- 新增按钮 -->
+ <button class="add-btn" bindtap="goToAddPage">➕</button>
 </view>

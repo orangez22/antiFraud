@@ -223,3 +223,41 @@
   border: none;
   margin-left: 10rpx;
 }
+
+/* 新增按钮样式 */
+.add-btn {
+  position: fixed;
+  bottom: 180rpx; /* 距离底部100rpx */
+  right: 30rpx;   /* 距离右边30rpx */
+  width: 80rpx;   /* 更改按钮大小 */
+  height: 80rpx;
+  background-color: #ff0800; /* 背景颜色 */
+  color: white;
+  border-radius: 50%; /* 圆形按钮 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36rpx; /* 更大字体 */
+  box-shadow: 0 10rpx 20rpx rgba(0, 0, 0, 0.2); /* 阴影效果 */
+  z-index: 1000; /* 确保按钮位于其他元素之上 */
+  transition: all 0.3s ease-in-out; /* 平滑过渡 */
+}
+
+.add-btn:hover {
+  background-color: #e00600; /* 鼠标悬浮时颜色加深 */
+  transform: scale(1.1); /* 放大效果 */
+}
+
+.add-btn:active {
+  background-color: #c00500; /* 点击时背景颜色 */
+  transform: scale(1); /* 点击时恢复大小 */
+}
+
+.add-btn::after {
+  font-size: 50rpx; /* 加号字体更大 */
+  font-weight: bold;
+  color: white;
+  line-height: 0; /* 确保加号垂直居中 */
+}
+
+

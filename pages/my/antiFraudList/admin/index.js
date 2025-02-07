@@ -114,6 +114,11 @@ deleteInfo(id) {
       console.error("请求失败，错误信息：", error);
     });
 },
+goToAddPage() {
+  wx.navigateTo({
+    url: '/pages/index/admin/add/index' // 跳转到新增页面
+  });
+},
   // 搜索输入框内容变化
   onSearchInput(e) {
     this.setData({
