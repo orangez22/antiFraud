@@ -94,6 +94,7 @@
   border-radius: 20rpx;
   overflow: hidden;
   box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .info-image {
@@ -119,6 +120,25 @@
   font-size: 24rpx;
   color: #999;
   margin-top: 10rpx;
+}
+
+/* 删除按钮样式 */
+.delete-btn {
+  position: absolute;
+  top: 10rpx;
+  right: 10rpx;
+  background-color: rgb(243, 70, 27);
+  color: white;
+  padding: 5rpx 10rpx;
+  font-size: 24rpx;
+  border-radius: 5rpx;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.delete-btn:hover {
+  background-color: darkred;
 }
 
 .more-btn {

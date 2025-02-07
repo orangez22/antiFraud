@@ -33,6 +33,7 @@
           <text class="info-title">{{item.title}}</text>
           <text class="info-date">{{item.date}}</text>
         </view>
+        <button class="delete-btn" bindtap="onDelete" data-id="{{item.id}}">删除</button>
       </view>
     </block>
     <view wx:if="{{infoList.length === 0}}" class="no-content-container">

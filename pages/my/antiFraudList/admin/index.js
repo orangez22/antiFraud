@@ -71,7 +71,49 @@ Page({
       url: `/pages/detail/detail?id=${id}`,
     });
   },
+  // 删除按钮点击事件
+onDelete(e) {
+  const id = e.currentTarget.dataset.id; // 获取要删除的 ID
+  wx.showModal({
+    title: '确认删除',
+    content: '确定要删除此条内容吗？',
+    success: (res) => {
+      if (res.confirm) {
+        // 调用删除接口，传递 ID
+        this.deleteInfo(id);
+      }
+    }
+  });
+},
 
+// 删除操作
+deleteInfo(id) {
+  // 构建传递给后端的 AntiFraudDeleteDTO 对象
+  const antiFraudDeleteDTO = {
+    antiFraudId: id, // 传递反诈资讯的 ID
+  };
+
+  // 调用接口进行删除，使用 POST 请求
+  request.post('/list/delete', antiFraudDeleteDTO) // 使用 POST 请求进行删除
+    .then((response) => {
+      if (response.success) {
+        // 成功后刷新数据
+        this.getAntiFraudInfo();
+      } else {
+        wx.showToast({
+          title: '删除失败',
+          icon: 'none',
+        });
+      }
+    })
+    .catch((error) => {
+      wx.showToast({
+        title: '请求失败',
+        icon: 'none',
+      });
+      console.error("请求失败，错误信息：", error);
+    });
+},
   // 搜索输入框内容变化
   onSearchInput(e) {
     this.setData({
